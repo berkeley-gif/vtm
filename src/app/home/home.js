@@ -56,7 +56,7 @@ angular.module( 'vtm.home', [
 
   slides.push(
     {
-      image: 'assets/img/VTM_Photo_Before-Big-Tree_550px.jpg',
+      image: 'assets/img/VTM_Photo_Before-Big-Tree.jpg',
       text: ''
     },
     {

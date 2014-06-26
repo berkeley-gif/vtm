@@ -300,7 +300,9 @@ angular.module("data/data.vegetation.tpl.html", []).run(["$templateCache", funct
 
 angular.module("home/home.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("home/home.tpl.html",
-    "<div class=\"banner\">\n" +
+    "<div class=\"container\">\n" +
+    "\n" +
+    "    <div class=\"banner\">\n" +
     "    <div class=\"row\">\n" +
     "        <div class=\"col-md-12\">\n" +
     "\n" +
@@ -309,7 +311,7 @@ angular.module("home/home.tpl.html", []).run(["$templateCache", function($templa
     "                <div>\n" +
     "                  <carousel interval=\"myInterval\">\n" +
     "                    <slide ng-repeat=\"slide in slides\" active=\"slide.active\">\n" +
-    "                      <img ng-src=\"{{slide.image}}\" style=\"margin:auto;height:40em;\">\n" +
+    "                      <img class=\"img-responsive\" ng-src=\"{{slide.image}}\" style=\"margin:auto;height:40em;\">\n" +
     "                    </slide>\n" +
     "                  </carousel>\n" +
     "                </div>\n" +
@@ -317,12 +319,12 @@ angular.module("home/home.tpl.html", []).run(["$templateCache", function($templa
     "            </div>\n" +
     "\n" +
     "            <div class=\"row\">\n" +
-    "                <div class=\"col-md-2 col-md-offset-1\" id=\"portrait\">\n" +
-    "                    <img  src=\"assets/img/wieslander.jpg\"></img>\n" +
+    "                <div class=\"col-sm-2 col-sm-offset-1\" id=\"portrait\">\n" +
+    "                    <img  src=\"assets/img/Wieslander_Portrait.png\"></img>\n" +
     "                </div>\n" +
-    "                <div class=\"col-md-8 col-md-offset-3\" id=\"slogan\">\n" +
-    "                    <h3><span class=\"title\"><span class=\"title-first-letter\">W</span>ieslander <span class=\"title-first-letter\">V</span>egetation <span class=\"first-letter\">T</span>ype <span class=\"title-first-letter\">M</span>apping</span></h3>\n" +
-    "                    <p>This project is a collection of datasets that provides a snapshot of California's vegetation in the early 20th century.</p>\n" +
+    "                <div class=\"col-sm-8 col-sm-offset-3\" id=\"slogan\">\n" +
+    "                    <h3><span class=\"title\"><span class=\"title-first-letter\">W</span>ieslander <span class=\"title-first-letter\">V</span>egetation <span class=\"title-first-letter\">T</span>ype <span class=\"title-first-letter\">M</span>apping</span></h3>\n" +
+    "                    <h4>This project is a collection of datasets that provides a snapshot of California's vegetation in the early 20th century.</h4>\n" +
     "                </div>\n" +
     "            </div> <!-- end second level row -->\n" +
     "\n" +
@@ -334,33 +336,30 @@ angular.module("home/home.tpl.html", []).run(["$templateCache", function($templa
     "\n" +
     "</div> <!-- end banner -->\n" +
     "\n" +
-    "\n" +
-    "<div class=\"container\">\n" +
-    "\n" +
     "    <div class=\"row\">\n" +
     "        <div class=\"col-md-4 section\">\n" +
     "            <a href ui-sref=\"data.overview\" class=\"section-link\">\n" +
+    "                <div class=\"section-content\">\n" +
+    "                    <h4><span class=\"title\">Data Access</span></h4>\n" +
+    "                    <p>View and download vegetation maps, plot data and photos. </p>\n" +
+    "                </div>\n" +
     "                <div class=\"overlay\">\n" +
     "                    <div class=\"overlay-content\">\n" +
     "                        <i class=\"fa fa-search-plus fa-3x\"></i>\n" +
     "                    </div>\n" +
-    "                </div>\n" +
-    "                <div class=\"section-content\">\n" +
-    "                    <h4><span class=\"title\">Data Access</span></h4>\n" +
-    "                    <p>View and download vegetation maps, plot data and photos. </p>\n" +
     "                </div>\n" +
     "            </a>\n" +
     "        </div>\n" +
     "        <div class=\"col-md-4 section\">\n" +
     "            <a href ui-sref=\"about\" class=\"section-link\">\n" +
+    "                <div class=\"section-content\">\n" +
+    "                    <h4><span class=\"title\">Learn More</span></h4>\n" +
+    "                    <p>Learn more about the Wieslander's Vegetation Type Mapping project. </p>\n" +
+    "                </div>\n" +
     "                <div class=\"overlay\">\n" +
     "                    <div class=\"overlay-content\">\n" +
     "                        <i class=\"fa fa-search-plus fa-3x\"></i>\n" +
     "                    </div>\n" +
-    "                </div>\n" +
-    "                <div class=\"section-content\">\n" +
-    "                    <h4><span class=\"title\">Learn More</span></h4>\n" +
-    "                    <p>Learn more about the Wieslander's Vegetation Type Mapping project. </p>\n" +
     "                </div>\n" +
     "            </a>\n" +
     "        </div>\n" +
@@ -378,6 +377,8 @@ angular.module("home/home.tpl.html", []).run(["$templateCache", function($templa
     "            </a>\n" +
     "        </div>\n" +
     "    </div>\n" +
+    "\n" +
+    "</div>\n" +
     "\n" +
     "");
 }]);
