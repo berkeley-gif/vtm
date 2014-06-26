@@ -1,0 +1,121 @@
+/* BANNER */
+.banner {
+  height: 40em;
+  margin-bottom: 8em;
+  text-align: left;
+  color: #ffffff;
+  text-shadow: 1px 2px 3px #000000;
+}
+.banner .title {
+  color: #ffffff;
+  text-shadow: 1px 2px 3px #000000;
+  font-weight: 400;
+}
+.banner #portrait {
+  height: 18em;
+  margin-top: -18em;
+}
+.banner #slogan {
+  margin-top: -18em;
+}
+.banner #portrait img {
+  height: 100%;
+  box-shadow: 0 0 6px 4px #F4F4C0;
+}
+
+
+
+@media (max-width: 767px) {
+  .banner {
+      height: auto;
+      text-align: center;
+      padding: 1em 0;
+      margin-bottom: 0;
+   }
+   .banner #portrait {
+      height: 14em;
+      margin-top: -35em;
+   }
+   .banner #slogan {
+      max-width: 480px;
+      margin: 1em auto;
+  }
+  .vtm-carousel img {
+    height: 100%;
+  }
+  .title {
+    font-size: 1.2em;
+  }
+  .title-first-letter {
+    font-size: 1.5em;
+    top: .15em;
+  }
+}
+
+/* 
+* CAROUSEL 
+*/
+.vtm-carousel .carousel-indicators {
+  display: none;
+}
+.vtm-carousel img {
+  height: 100%;
+  width: 100%;
+}
+
+
+
+/* SECTION BOXES */
+.section .section-link {
+  text-decoration: none;
+  color: inherit;
+}
+.section-content {
+  border-top-left-radius: 20px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 30px;
+  border-bottom-left-radius: 0;
+  background-color: #D0CB93;
+  padding: 8px;
+  text-align: center;
+  height: 15em;
+  margin-bottom: 5px;
+}
+.section-content p {
+  font-size: 1.4em;
+}
+ .overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    border-top-left-radius: 20px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 30px;
+  border-bottom-left-radius: 0;
+    background: rgba(255,254,198,.5);
+    -webkit-transition: all ease .5s;
+    -moz-transition: all ease .5s;
+    transition: all ease .5s;
+}
+ .overlay:hover {
+    opacity: 1;
+}
+ .overlay  .overlay-content {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    height: 20px;
+    margin-top: -12px;
+    text-align: center;
+    font-size: 20px;
+    color: #ffffff;
+}
+ .overlay  .overlay-content i {
+    margin-top: -12px;
+}
+ .overlay  .overlay-content h3,
+ .overlay  .overlay-content h4 {
+    margin: 0;
+}
+
