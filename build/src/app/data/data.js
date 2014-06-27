@@ -71,7 +71,7 @@ angular.module( 'vtm.data', [
   var center = {
     lat: 37,
     lng: -122,
-    zoom: 10
+    zoom: 6 
   };
 
   var maxBounds = {
@@ -136,9 +136,35 @@ angular.module( 'vtm.data', [
       }
     },
     defaults : {
-      scrollWheelZoom: false
+      scrollWheelZoom: true 
     }
   });
+  
+  // Set up DownloadFeaturesControl
+  $scope.controls = {
+    custom: []
+  };
+  var downloadFeaturesControl = L.control();
+	downloadFeaturesControl.setPosition('bottomright');
+	downloadFeaturesControl.onAdd = function (map) {
+      var div = L.DomUtil.create('div','download-features');
+      div.innerHTML = '<button type="button" class="btn btn-primary">Download features in view</button>';
+      L.DomEvent
+		.on(div, 'click', L.DomEvent.stopPropagation)
+		.on(div, 'click', L.DomEvent.preventDefault)
+		.on(div, 'click', function() {
+			leafletData.getMap().then(function(map) {
+				var apiURL = "https://dev-ecoengine.berkeley.edu/api/vtmveg/?bbox="+map.getBounds().toBBoxString()+"&format=geojson";
+				//console.log("BBox: " + map.getBounds().toBBoxString());
+				window.open(apiURL);
+			});
+		})
+		.on(div, 'dblclick', L.DomEvent.stopPropagation);
+      
+      return div;
+    };
+  $scope.controls.custom.push(downloadFeaturesControl);
+
 
   //On map click event
   function style(feature) {
@@ -149,7 +175,6 @@ angular.module( 'vtm.data', [
       fillOpacity: 0
     };
   }
- 
 
   $scope.$on('leafletDirectiveMap.click', function(event, args) {
 
@@ -176,18 +201,12 @@ angular.module( 'vtm.data', [
                 latlngs.push(L.GeoJSON.coordsToLatLng(coord[j]));
             }
         }
-        map.fitBounds(latlngs);
-      });
+        map.fitBounds(latlngs, {maxZoom:13});
 
+      });
     }); //end $http.get
 
 
   }); //end map click event
 
-  //Download features click event
-  $scope.downloadFeaturesJSON = function (){
-    $log.log('download features button clicked');
-  };
-
-})
-;
+});

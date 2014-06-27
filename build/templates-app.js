@@ -228,7 +228,7 @@ angular.module("data/data.vegetation.tpl.html", []).run(["$templateCache", funct
     "\n" +
     "<div class=\"row\">\n" +
     "    <div class=\"col-md-9\">\n" +
-    "        <leaflet id=\"veg-map\" center=\"center\" layers=\"layers\" geojson=\"geojson\" defaults=\"defaults\" style=\"height: 600px\"></leaflet>\n" +
+    "        <leaflet id=\"veg-map\" center=\"center\" layers=\"layers\" geojson=\"geojson\" defaults=\"defaults\" controls=\"controls\" style=\"height: 600px\"></leaflet>\n" +
     "    </div>\n" +
     "    <div class=\"col-md-3\">\n" +
     "        <h2>Info box</h2>\n" +
@@ -272,22 +272,18 @@ angular.module("data/data.vegetation.tpl.html", []).run(["$templateCache", funct
     "<div class=\"row\">\n" +
     "    <div class=\"col-md-4\">\n" +
     "        <h2>Summary</h2>\n" +
-    "        <p>Something about this map.</p>\n" +
+    "        <p>What is this map about? When was this map produced? Who produced it? Who digitized it? How to assess accuracy?</p>\n" +
     "    </div>\n" +
     "    <div class=\"col-md-4\">\n" +
     "        <h2>Suggested citation</h2>\n" +
-    " 					<p>If you are using the vegetation data in your study, please cite the following papers:</p>\n" +
-    "					<ul>\n" +
-    "						<li>Jim Thorn, maybe?</li>\n" +
-    "						<li>Kelly, M., B. Allen-Diaz, and N. Kobzina. Digitization of a historic dataset: the Wieslander California vegetation type mapping project. Accepted in Madrono.</li>\n" +
-    "						<li>Keeley, J.E., 2004. VTM plots as evidence of historical change: goldmine or landmine? Madrono 51(4): 372-378.</li>\n" +
-    "						<li>Maybe others???</li>\n" +
-    "					</ul>\n" +
-    "       <p>Papers that are written for the mapping process.</p>\n" +
+    " 		<p>If you are using the VTM digital vegetation data downloaded from this site in your study, please cite the following papers in your work:</p>\n" +
+    "		<ul>\n" +
+    "		<li><a href=\"http://kellylab.berkeley.edu/publications/2005/9/30/digitization-of-the-wieslander-california-vegetation-type-ma.html\" target=\"_blank\">Kelly, M., B. Allen-Diaz, and N. Kobzina. 2005. Digitization of a historic dataset: the Wieslander California vegetation type mapping project. Madroño 52(3):191-201</a></li>\n" +
+    "		<li><a href=\"http://kellylab.berkeley.edu/publications/2008/10/31/historic-map-analysis-spatial-error-in-the-ca-vtm-dataset.html\" target=\"_blank\">Kelly, M., K. Ueda and B. Allen-Diaz. 2008. Considerations for ecological reconstruction of historic vegetation: Analysis of the spatial uncertainties in the California Vegetation Type Map dataset. Plant Ecology 194 (1): 37-49.</a></li>\n" +
+    "		</ul>\n" +
     "    </div>\n" +
     "    <div class=\"col-md-4\">\n" +
     "		<h2>Download</h2>\n" +
-    "		<p>Download features displaying on the map: <button type=\"button\" ng-click=\"downloadFeaturesJSON()\" class=\"btn btn-info\">JSON</button></p>\n" +
     "		<p>Download vegetation layer in shapefile. </p>\n" +
     "		<p><img src=\"assets/img/vtmveg.png\" width=\"200px\" height=\"200px\" class=\"img-responsive img-thumbnail\"/></p>\n" +
     "		<a href=\"https://dev-ecoengine.berkeley.edu/data/Wieslander_Statewide_CANAD83.zip\" class=\"btn btn-primary\">Shapefile</a>\n" +
