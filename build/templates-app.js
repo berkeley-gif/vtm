@@ -93,7 +93,7 @@ angular.module("data/data.overview.tpl.html", []).run(["$templateCache", functio
     "    <div class=\"col-xs-12 col-sm-6 col-md-6\">\n" +
     "        <div class=\"thumbnail\">\n" +
     "            <a href ui-sref=\"data.vegetation\">\n" +
-    "                <img class=\"img-polaroid\" ph-img=\"260x196\" />\n" +
+    "                <img class=\"img-polaroid\" src=\"assets/img/data_vegpolygons.png\" />\n" +
     "                <div class=\"caption\">\n" +
     "                    <h4>Vegetation Polygons</h3>\n" +
     "                </div>\n" +
@@ -103,7 +103,7 @@ angular.module("data/data.overview.tpl.html", []).run(["$templateCache", functio
     "    <div class=\"col-xs-12 col-sm-6 col-md-6\">\n" +
     "        <div class=\"thumbnail\">\n" +
     "            <a href ui-sref=\"data.plots\">\n" +
-    "                <img class=\"img-polaroid\" ph-img=\"260x196\" />\n" +
+    "                <img class=\"img-polaroid\" src=\"assets/img/plots.jpg\" />\n" +
     "                <div class=\"caption\">\n" +
     "                    <h4>Plot Boundaries</h3>\n" +
     "                </div>\n" +
@@ -113,7 +113,7 @@ angular.module("data/data.overview.tpl.html", []).run(["$templateCache", functio
     "    <div class=\"col-xs-12 col-sm-6 col-md-6\">\n" +
     "        <div class=\"thumbnail\">\n" +
     "            <a href ui-sref=\"data.photos\">\n" +
-    "                <img class=\"img-polaroid\" ph-img=\"260x196\" />\n" +
+    "                <img class=\"img-polaroid\" src=\"assets/img/data_photolocations.png\" />\n" +
     "                <div class=\"caption\">\n" +
     "                    <h4>Photo Locations</h3>\n" +
     "                </div>\n" +
@@ -123,7 +123,7 @@ angular.module("data/data.overview.tpl.html", []).run(["$templateCache", functio
     "    <div class=\"col-xs-12 col-sm-6 col-md-6\">\n" +
     "        <div class=\"thumbnail\">\n" +
     "            <a href ui-sref=\"data.mapsheets\">\n" +
-    "                <img class=\"img-polaroid\" ph-img=\"260x196\" />\n" +
+    "                <img class=\"img-polaroid\" src=\"assets/img/data_mapsheets.png\" />\n" +
     "                <div class=\"caption\">\n" +
     "                    <h4>Original Mapsheet Images</h3>\n" +
     "                </div>\n" +
