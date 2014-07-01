@@ -29,43 +29,57 @@ angular.module( 'vtm.data', [
     url: '/data',
     views: {
       "main": {
-        controller: 'DataCtrl',
         templateUrl: 'data/data.tpl.html'
       }
-    },
-    data:{ pageTitle: 'Data' }
+    }
   })
-    .state( 'data.overview', {
-      url: '/',
-      templateUrl: 'data/data.overview.tpl.html'
-
-    })
-    .state( 'data.vegetation', {
-      url: '/vegetation',
-      templateUrl: 'data/data.vegetation.tpl.html'
-    })
-    .state( 'data.plots', {
-      url: '/plots',
-      templateUrl: 'data/data.plots.tpl.html'
-    })
-    .state( 'data.photos', {
-      url: '/photos',
-      templateUrl: 'data/data.photos.tpl.html'
-    })
-    .state( 'data.mapsheets', {
-      url: '/mapsheets',
-      templateUrl: 'data/data.mapsheets.tpl.html'
-    })
-
-  ;
-
-
+  .state( 'data.overview', {
+	url: '/',
+    templateUrl: 'data/data.overview.tpl.html',
+    data:{ pageTitle: 'Available Datasets' }
+  })
+  .state( 'data.vegetation', {
+    url: '/vegetation',
+    templateUrl: 'data/data.vegetation.tpl.html',
+    controller: 'DataCtrl',
+    data:{ 
+      pageTitle: 'Vegetation Type Map',
+      apiUrl: '/api/vtmveg'
+    }
+  })
+  .state( 'data.plots', {
+    url: '/plots',
+    controller: 'DataCtrl',
+    templateUrl: 'data/data.plots.tpl.html',
+    data:{ 
+      pageTitle: 'Plots Map',
+      apiUrl: '/api/vtmplots'
+    }
+  })
+  .state( 'data.photos', {
+    url: '/photos',
+    templateUrl: 'data/data.photos.tpl.html',
+    data:{ pageTitle: 'Photos Map' }
+  })
+  .state( 'data.mapsheets', {
+    url: '/mapsheets',
+    templateUrl: 'data/data.mapsheets.tpl.html',
+    data:{ pageTitle: 'Mapsheets' }
+  });
 })
+
+/**
+ * Defining the domain name as a constant
+ */
+.constant('ROOT', 'http://dev-ecoengine.berkeley.edu')
 
 /**
  * And of course we define a controller for our route.
  */
-.controller( 'DataCtrl', function DataController($scope, $log, $http, leafletData) {
+.controller( 'DataCtrl', function DataController($scope, $log, $http, $state, leafletData, ROOT) {
+
+  // API URL in Ecoengine
+  var apiUrl = $state.current.data.apiUrl;
 
   // Map setup
   var center = {
@@ -98,29 +112,49 @@ angular.module( 'vtm.data', [
     }
   };
 
+  var plots = {
+    name: 'Plots',
+    type: 'xyz',
+    url: ROOT + '/tiles/vtmplots/{z}/{x}/{y}.png',
+    visible: true
+  };
 
   var vegetation = {
     name: 'Vegetation',
     type: 'xyz',
-    url: 'https://dev-ecoengine.berkeley.edu/tiles/vtmveg/{z}/{x}/{y}.png',
+    url: ROOT + '/tiles/vtmveg/{z}/{x}/{y}.png',
     visible: true
   };
 
   var quads = {
     name: 'Quads',
     type: 'xyz',
-    url: 'https://dev-ecoengine.berkeley.edu/tiles/vtmquads/{z}/{x}/{y}.png',
+    url: ROOT + '/tiles/vtmquads/{z}/{x}/{y}.png',
     visible: true
   };
 
   var counties = {
     name: 'Counties',
     type: 'xyz',
-    url: 'https://dev-ecoengine.berkeley.edu/tiles/counties/{z}/{x}/{y}.png',
+    url: ROOT + '/tiles/counties/{z}/{x}/{y}.png',
     visible: true
   };
 
-  var geojsonLayer = {};
+  var overlays = {};
+  if (apiUrl == '/api/vtmveg') {
+    overlays = {
+        vegetation: vegetation,
+        quads: quads,
+        counties: counties
+    };
+  } else {
+    overlays =  {
+        vegetation: vegetation,
+        quads: quads,
+        counties: counties,
+		plots: plots
+    };
+  }
 
   angular.extend($scope, {
     center : center,
@@ -129,17 +163,20 @@ angular.module( 'vtm.data', [
       baselayers: {
         grayscale: grayscale
       },
-      overlays: {
+      overlays: overlays
+/*
+      {
         vegetation: vegetation,
         quads: quads,
         counties: counties
       }
+*/
     },
     defaults : {
       scrollWheelZoom: true 
     }
   });
-  
+
   // Set up DownloadFeaturesControl
   $scope.controls = {
     custom: []
@@ -154,9 +191,9 @@ angular.module( 'vtm.data', [
 		.on(div, 'click', L.DomEvent.preventDefault)
 		.on(div, 'click', function() {
 			leafletData.getMap().then(function(map) {
-				var apiURL = "https://dev-ecoengine.berkeley.edu/api/vtmveg/?bbox="+map.getBounds().toBBoxString()+"&format=geojson";
+				var url = ROOT + apiUrl + "/?bbox="+map.getBounds().toBBoxString()+"&format=geojson";
 				//console.log("BBox: " + map.getBounds().toBBoxString());
-				window.open(apiURL);
+				window.open(url);
 			});
 		})
 		.on(div, 'dblclick', L.DomEvent.stopPropagation);
@@ -178,7 +215,7 @@ angular.module( 'vtm.data', [
 
   $scope.$on('leafletDirectiveMap.click', function(event, args) {
 
-    var url = 'https://dev-ecoengine.berkeley.edu/api/vtmveg/?g={"type":"point","coordinates":[' + args.leafletEvent.latlng.lng + ',' + args.leafletEvent.latlng.lat + ']}&format=geojson';
+    var url = ROOT + apiUrl + '/?g={"type":"point","coordinates":[' + args.leafletEvent.latlng.lng + ',' + args.leafletEvent.latlng.lat + ']}&format=geojson';
     
     //Get geojson feature for point clicked on map
     $http.get(url).success(function(data, status) {
@@ -193,7 +230,7 @@ angular.module( 'vtm.data', [
       $log.log($scope.layerProp);
 
       //Get native leaflet map object
-      leafletData.getMap('veg-map').then(function(map) {
+      leafletData.getMap('map').then(function(map) {
         var latlngs = [];
         for (var i in $scope.geojson.data.features[0].geometry.coordinates) {
             var coord = $scope.geojson.data.features[0].geometry.coordinates[i];

@@ -93,7 +93,7 @@ angular.module("data/data.overview.tpl.html", []).run(["$templateCache", functio
     "    <div class=\"col-xs-12 col-sm-6 col-md-6\">\n" +
     "        <div class=\"thumbnail\">\n" +
     "            <a href ui-sref=\"data.vegetation\">\n" +
-    "                <img class=\"img-polaroid\" src=\"assets/img/data_vegpolygons.png\" />\n" +
+    "                <img class=\"img-polaroid img-datasets\" src=\"assets/img/data_vegpolygons.png\" />\n" +
     "                <div class=\"caption\">\n" +
     "                    <h4>Vegetation Polygons</h3>\n" +
     "                </div>\n" +
@@ -103,9 +103,9 @@ angular.module("data/data.overview.tpl.html", []).run(["$templateCache", functio
     "    <div class=\"col-xs-12 col-sm-6 col-md-6\">\n" +
     "        <div class=\"thumbnail\">\n" +
     "            <a href ui-sref=\"data.plots\">\n" +
-    "                <img class=\"img-polaroid\" src=\"assets/img/plots.jpg\" />\n" +
+    "                <img class=\"img-polaroid img-datasets\" src=\"assets/img/data_plots.png\" />\n" +
     "                <div class=\"caption\">\n" +
-    "                    <h4>Plot Boundaries</h3>\n" +
+    "                    <h4>VTM Plots</h3>\n" +
     "                </div>\n" +
     "            </a>\n" +
     "        </div>\n" +
@@ -113,7 +113,7 @@ angular.module("data/data.overview.tpl.html", []).run(["$templateCache", functio
     "    <div class=\"col-xs-12 col-sm-6 col-md-6\">\n" +
     "        <div class=\"thumbnail\">\n" +
     "            <a href ui-sref=\"data.photos\">\n" +
-    "                <img class=\"img-polaroid\" src=\"assets/img/data_photolocations.png\" />\n" +
+    "                <img class=\"img-polaroid img-datasets\" src=\"assets/img/data_photolocations.png\" />\n" +
     "                <div class=\"caption\">\n" +
     "                    <h4>Photo Locations</h3>\n" +
     "                </div>\n" +
@@ -123,7 +123,7 @@ angular.module("data/data.overview.tpl.html", []).run(["$templateCache", functio
     "    <div class=\"col-xs-12 col-sm-6 col-md-6\">\n" +
     "        <div class=\"thumbnail\">\n" +
     "            <a href ui-sref=\"data.mapsheets\">\n" +
-    "                <img class=\"img-polaroid\" src=\"assets/img/data_mapsheets.png\" />\n" +
+    "                <img class=\"img-polaroid img-datasets\" src=\"assets/img/data_mapsheets.png\" />\n" +
     "                <div class=\"caption\">\n" +
     "                    <h4>Original Mapsheet Images</h3>\n" +
     "                </div>\n" +
@@ -176,59 +176,13 @@ angular.module("data/data.plots.tpl.html", []).run(["$templateCache", function($
   $templateCache.put("data/data.plots.tpl.html",
     "<div class=\"row\">\n" +
     "    <div class=\"page-header\">\n" +
-    "            <h3><span class=\"title\">Plots</span></h3>\n" +
+    "            <h3><span class=\"title\">Plots Map</span></h3>\n" +
     "    </div>\n" +
     "</div>\n" +
     "\n" +
     "<div class=\"row\">\n" +
     "    <div class=\"col-md-9\">\n" +
-    "        <div id=\"map\" style=\"height: 600px\"></div>\n" +
-    "    </div>\n" +
-    "    <div class=\"col-md-3\">\n" +
-    "        <h2>Info box</h2>\n" +
-    "        <p><div id=\"info-box\">Please click on the map to get more information about the vegetation map.</div></p>\n" +
-    "    </div>\n" +
-    "</div>\n" +
-    "\n" +
-    "<div class=\"row\">\n" +
-    "    <div class=\"col-md-4\">\n" +
-    "        <h2>Summary</h2>\n" +
-    "        <p>Something about this map.</p>\n" +
-    "    </div>\n" +
-    "    <div class=\"col-md-4\">\n" +
-    "        <h2>Suggested citation</h2>\n" +
-    "        <p>Papers that are written for the mapping process.</p>\n" +
-    "    </div>\n" +
-    "    <div class=\"col-md-4\">\n" +
-    "        <h2>Method</h2>\n" +
-    "        <p>How did we create this map?</p>\n" +
-    "    </div>\n" +
-    "</div>\n" +
-    "\n" +
-    "\n" +
-    "");
-}]);
-
-angular.module("data/data.tpl.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("data/data.tpl.html",
-    "<div class=\"container\" id=\"data-grid\">\n" +
-    "\n" +
-    "    <div ui-view></div>\n" +
-    "\n" +
-    "</div>");
-}]);
-
-angular.module("data/data.vegetation.tpl.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("data/data.vegetation.tpl.html",
-    "<div class=\"row\">\n" +
-    "    <div class=\"page-header\">\n" +
-    "            <h3><span class=\"title\">Vegetation Type Map</span></h3>\n" +
-    "    </div>\n" +
-    "</div>\n" +
-    "\n" +
-    "<div class=\"row\">\n" +
-    "    <div class=\"col-md-9\">\n" +
-    "        <leaflet id=\"veg-map\" center=\"center\" layers=\"layers\" geojson=\"geojson\" defaults=\"defaults\" controls=\"controls\" style=\"height: 600px\"></leaflet>\n" +
+    "        <leaflet id=\"map\" center=\"center\" layers=\"layers\" geojson=\"geojson\" defaults=\"defaults\" controls=\"controls\" style=\"height: 600px\"></leaflet>\n" +
     "    </div>\n" +
     "    <div class=\"col-md-3\">\n" +
     "        <h2>Info box</h2>\n" +
@@ -270,23 +224,108 @@ angular.module("data/data.vegetation.tpl.html", []).run(["$templateCache", funct
     "</div>\n" +
     "\n" +
     "<div class=\"row\">\n" +
-    "    <div class=\"col-md-4\">\n" +
-    "        <h2>Summary</h2>\n" +
-    "        <p>What is this map about? When was this map produced? Who produced it? Who digitized it? How to assess accuracy?</p>\n" +
+    "    <div class=\"col-md-5\">\n" +
+    "        <h2>General information</h2>\n" +
+    "        <p>What is this map about? When was this map produced (1920s-1940s)? Who produced it? Who digitized it? How was it digitized? How to assess accuracy?</p>\n" +
     "    </div>\n" +
     "    <div class=\"col-md-4\">\n" +
-    "        <h2>Suggested citation</h2>\n" +
+    "        <h2>Suggested citations</h2>\n" +
     " 		<p>If you are using the VTM digital vegetation data downloaded from this site in your study, please cite the following papers in your work:</p>\n" +
     "		<ul>\n" +
-    "		<li><a href=\"http://kellylab.berkeley.edu/publications/2005/9/30/digitization-of-the-wieslander-california-vegetation-type-ma.html\" target=\"_blank\">Kelly, M., B. Allen-Diaz, and N. Kobzina. 2005. Digitization of a historic dataset: the Wieslander California vegetation type mapping project. Madroño 52(3):191-201</a></li>\n" +
+    "		<li><a href=\"http://kellylab.berkeley.edu/publications/2005/9/30/digitization-of-the-wieslander-california-vegetation-type-ma.html\" target=\"_blank\">Kelly, M., B. Allen-Diaz, and N. Kobzina. 2005. Digitization of a historic dataset: the Wieslander California vegetation type mapping project. Madro&ntilde;o 52(3):191-201</a></li>\n" +
     "		<li><a href=\"http://kellylab.berkeley.edu/publications/2008/10/31/historic-map-analysis-spatial-error-in-the-ca-vtm-dataset.html\" target=\"_blank\">Kelly, M., K. Ueda and B. Allen-Diaz. 2008. Considerations for ecological reconstruction of historic vegetation: Analysis of the spatial uncertainties in the California Vegetation Type Map dataset. Plant Ecology 194 (1): 37-49.</a></li>\n" +
     "		</ul>\n" +
     "    </div>\n" +
-    "    <div class=\"col-md-4\">\n" +
+    "    <div class=\"col-md-3\">\n" +
     "		<h2>Download</h2>\n" +
-    "		<p>Download vegetation layer in shapefile. </p>\n" +
+    "		<p>Download all plots data in shapefile. </p>\n" +
     "		<p><img src=\"assets/img/vtmveg.png\" width=\"200px\" height=\"200px\" class=\"img-responsive img-thumbnail\"/></p>\n" +
-    "		<a href=\"https://dev-ecoengine.berkeley.edu/data/Wieslander_Statewide_CANAD83.zip\" class=\"btn btn-primary\">Shapefile</a>\n" +
+    "		<a href=\"https://dev-ecoengine.berkeley.edu/data/vtm-plots.zip\" class=\"btn btn-primary\">Click here</a>\n" +
+    "    </div>\n" +
+    "</div>\n" +
+    "\n" +
+    "\n" +
+    "");
+}]);
+
+angular.module("data/data.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("data/data.tpl.html",
+    "<div class=\"container\" id=\"data-grid\">\n" +
+    "\n" +
+    "    <div ui-view></div>\n" +
+    "\n" +
+    "</div>");
+}]);
+
+angular.module("data/data.vegetation.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("data/data.vegetation.tpl.html",
+    "<div class=\"row\">\n" +
+    "    <div class=\"page-header\">\n" +
+    "            <h3><span class=\"title\">Vegetation Type Map</span></h3>\n" +
+    "    </div>\n" +
+    "</div>\n" +
+    "\n" +
+    "<div class=\"row\">\n" +
+    "    <div class=\"col-md-9\">\n" +
+    "        <leaflet id=\"map\" center=\"center\" layers=\"layers\" geojson=\"geojson\" defaults=\"defaults\" controls=\"controls\" style=\"height: 600px\"></leaflet>\n" +
+    "    </div>\n" +
+    "    <div class=\"col-md-3\">\n" +
+    "        <h2>Info box</h2>\n" +
+    "        <div class=\"info-box\" ng-hide=\"layerProp\">Additional information about hte vegetation polygons will be displayed here when you click on them on the map.</div>\n" +
+    "        <div class=\"info-box\" ng-show=\"layerProp\">\n" +
+    "            <p><b>Vegetation name</b>:\n" +
+    "                <br/>\n" +
+    "                {{layerProp.mcv}}\n" +
+    "            </p>\n" +
+    "            <p><b>Primary species</b>:\n" +
+    "                <br/>\n" +
+    "                {{layerProp.primary_species}}\n" +
+    "            </p>\n" +
+    "            <p><b>Associated species</b>:\n" +
+    "                <span ng-hide=\"layerProp.observations.length\">\n" +
+    "                    <br />\n" +
+    "                    No associated species found\n" +
+    "                </span>\n" +
+    "                <span ng-show=\"layerProp.observations.length\">\n" +
+    "                    <ul>\n" +
+    "                        <li ng-repeat=\"obs in layerProp.observations\">\n" +
+    "                            {{obs.scientific_name}}\n" +
+    "                        </li>\n" +
+    "                    </ul>\n" +
+    "                </span>\n" +
+    "\n" +
+    "            </p>\n" +
+    "            <p><b>API URL</b>:\n" +
+    "                <br/>\n" +
+    "                <a ng-href=\"{{layerProp.url}}\" target=\"_blank\">{{layerProp.url}}</a>\n" +
+    "            </p>\n" +
+    "            <p><b>WHR</b>:\n" +
+    "                <br/>\n" +
+    "                {{layerProp.whr}}\n" +
+    "            </p>\n" +
+    "        </div>\n" +
+    "\n" +
+    "    </div>\n" +
+    "</div>\n" +
+    "\n" +
+    "<div class=\"row\">\n" +
+    "    <div class=\"col-md-5\">\n" +
+    "        <h2>General information</h2>\n" +
+    "        <p>What is this map about? When was this map produced (1920s-1940s)? Who produced it? Who digitized it? How was it digitized? How to assess accuracy?</p>\n" +
+    "    </div>\n" +
+    "    <div class=\"col-md-4\">\n" +
+    "        <h2>Suggested citations</h2>\n" +
+    " 		<p>If you are using the VTM digital vegetation data downloaded from this site in your study, please cite the following papers in your work:</p>\n" +
+    "		<ul>\n" +
+    "		<li><a href=\"http://kellylab.berkeley.edu/publications/2005/9/30/digitization-of-the-wieslander-california-vegetation-type-ma.html\" target=\"_blank\">Kelly, M., B. Allen-Diaz, and N. Kobzina. 2005. Digitization of a historic dataset: the Wieslander California vegetation type mapping project. Madro&ntilde;o 52(3):191-201</a></li>\n" +
+    "		<li><a href=\"http://kellylab.berkeley.edu/publications/2008/10/31/historic-map-analysis-spatial-error-in-the-ca-vtm-dataset.html\" target=\"_blank\">Kelly, M., K. Ueda and B. Allen-Diaz. 2008. Considerations for ecological reconstruction of historic vegetation: Analysis of the spatial uncertainties in the California Vegetation Type Map dataset. Plant Ecology 194 (1): 37-49.</a></li>\n" +
+    "		</ul>\n" +
+    "    </div>\n" +
+    "    <div class=\"col-md-3\">\n" +
+    "		<h2>Download</h2>\n" +
+    "		<p>Download the entire vegetation layer in shapefile (~1.3G). </p>\n" +
+    "		<p><img src=\"assets/img/vtmveg.png\" width=\"200px\" height=\"200px\" class=\"img-responsive img-thumbnail\"/></p>\n" +
+    "		<a href=\"https://dev-ecoengine.berkeley.edu/data/Wieslander_Statewide_CANAD83.zip\" class=\"btn btn-primary\">Click here</a>\n" +
     "    </div>\n" +
     "</div>\n" +
     "\n" +
