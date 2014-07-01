@@ -1,43 +1,102 @@
-angular.module('templates-app', ['about/about.tpl.html', 'data/data.mapsheets.tpl.html', 'data/data.overview.tpl.html', 'data/data.photos.tpl.html', 'data/data.plots.tpl.html', 'data/data.tpl.html', 'data/data.vegetation.tpl.html', 'home/home.tpl.html']);
+angular.module('templates-app', ['about/about.citations.tpl.html', 'about/about.overview.tpl.html', 'about/about.publications.tpl.html', 'about/about.tpl.html', 'data/data.mapsheets.tpl.html', 'data/data.overview.tpl.html', 'data/data.photos.tpl.html', 'data/data.plots.tpl.html', 'data/data.tpl.html', 'data/data.vegetation.tpl.html', 'home/home.tpl.html']);
+
+angular.module("about/about.citations.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("about/about.citations.tpl.html",
+    "<div class=\"row\">\n" +
+    "    <div class=\"page-header\">\n" +
+    "            <h3><span class=\"title\">Suggested Citations</span></h3>\n" +
+    "            <h5 class=\"sub-nav-links\">\n" +
+    "            	<a href ui-sref=\"about.overview\">History</a> |\n" +
+    "            	<a href ui-sref=\"about.publications\">Publications</a> |\n" +
+    "            	<a href ui-sref=\"about.citations\">Suggested Citations</a>\n" +
+    "        	</h5>\n" +
+    "    </div>\n" +
+    "</div>\n" +
+    "<div class=\"row\" id=\"citation\">\n" +
+    "	<div class=\"col-sm-12\">\n" +
+    "	    <p>If you are using the VTM digital vegetation data downloaded from this site in your study, please cite the following papers in your work:</p>\n" +
+    "\n" +
+    "	    <p>Kelly, M., B. Allen-Diaz, and N. Kobzina. 2005. <a href=\"http://kellylab.berkeley.edu/publications/2005/9/30/digitization-of-the-wieslander-california-vegetation-type-ma.html\" target=\"_blank\">Digitization of a historic dataset: the Wieslander California vegetation type mapping project.</a> Madro&ntildeo 52(3):191-201.</p>\n" +
+    "\n" +
+    "	    <p>Kelly, M., K. Ueda and B. Allen-Diaz. 2008. <a href=\"http://kellylab.berkeley.edu/publications/2008/10/31/historic-map-analysis-spatial-error-in-the-ca-vtm-dataset.html\" target=\"_blank\"> Considerations for ecological reconstruction of historic vegetation: Analysis of the spatial uncertainties in the California Vegetation Type Map dataset.</a> Plant Ecology 194 (1): 37-49.</p>\n" +
+    "	</div>\n" +
+    "</div>");
+}]);
+
+angular.module("about/about.overview.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("about/about.overview.tpl.html",
+    "<div class=\"row\">\n" +
+    "    <div class=\"page-header\">\n" +
+    "            <h3>\n" +
+    "            	<span class=\"title\">History</span>\n" +
+    "            </h3>\n" +
+    "            <h5 class=\"sub-nav-links\">\n" +
+    "            	<a href ui-sref=\"about.overview\">History</a> |\n" +
+    "            	<a href ui-sref=\"about.publications\">Publications</a> |\n" +
+    "            	<a href ui-sref=\"about.citations\">Suggested Citations</a>\n" +
+    "        	</h5>\n" +
+    "\n" +
+    "    </div>\n" +
+    "</div>\n" +
+    "<div class=\"row\" id=\"#about\">\n" +
+    "    <div class=\"col-sm-12\">\n" +
+    "\n" +
+    "        <p>In the 1930s, forester A. E. Wieslander spearheaded a U. S. Forest Service survey of California vegetation, called the Vegetation Type Mapping Project. Originally, the project was slated to include detailed vegetation type maps of 220 USGS quadrangles, but the survey was halted by World War II, and only 23 maps were published. The project continued after the war under state funding, but no more quads were published. However, much of the unpublished data survives today and exists in storage at the University of California, Berkeley, and at other map libraries and research labs around California. The VTM dataset has been recognized as an invaluable window into the state of California flora in the early 20th century, has provided data for several graduate theses at several Universities, and has been the focus of numerous journal articles. However, the dataset's physical fragility has made it largely inaccessible to the broader scientific community. Researchers at U. C. Berkeley Department of Environmental Science, Policy, and Management (ESPM), in conjunction with the Marian Koshland Bioscience and Natural Resources Library, sought funding to digitize all of the published and unpublished dataset, for use in modern geographic information systems and to facilitate its distribution via the Internet.</p>           \n" +
+    "\n" +
+    "        <p>The ultimate goal of the original VTM project was to create vegetation type maps, but in the process the surveyors collected several other kinds of data as well. In order to validate some of the broad zones of vegetation they designated from high vantage points, the surveyors also ran vegetation transects, collecting data on species composition, depth of leaf litter, and tree size, among other things. They marked the location of these plots on USGS topographic maps, which today provide us with point occurrences of the individual species they found. Addtionally, they collected sample specimens and placed them in the University Herbarium (now the Jepson Herbarium), many of which remain there today. They also took photos of many vegetatively distinct locations, and marked the locations of these photos on maps (unfortunately most of these photos maps have been lost). And finally, of course, they created vegetation maps, drawing broad zones of single or mixed stands in crayon over USGS topographic quads.</p>\n" +
+    "\n" +
+    "        <p>The VTM collection - vegetation maps, plot data, plot maps, and photographs have been digitized and are being served as a complete collection via the new UC Berkeley <a href=\"http://holos.berkeley.edu/\" target=\"_blank\">HOLOS ecoengine</a>. The digitization of the parts of the collection was a multi-lab effort. The VTM photo digitization was led by the <a href=\"http://www.lib.berkeley.edu/BIOS/\" target=\"_blank\">Marian Koshland Bioscience and Natural Resources Library</a>, and is complete. The <a href=\"http://kellylab.berkeley.edu/\">Kelly Lab</a> in ESPM led the plot map digitization and georeferencing. The <a href=\"http://nature.berkeley.edu/allen-diazlab/\" target=\"_blank\">Allen-Diaz Lab</a> in ESPM led the entering all of the plot data, which the original surveyors recorded by hand, in the field, on thin sheets of paper in faint pencil. Researchers at the <a href=\"http://ice.ucdavis.edu/\" target=\"_blank\">Information Center for the Environment</a> at U. C. Davis led the digitization of all the unpublished vegetation maps.</p>\n" +
+    "    </div>\n" +
+    "</div>\n" +
+    "\n" +
+    "");
+}]);
+
+angular.module("about/about.publications.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("about/about.publications.tpl.html",
+    "\n" +
+    "<div class=\"row\">\n" +
+    "    <div class=\"page-header\">\n" +
+    "            <h3>\n" +
+    "                <span class=\"title\">Publications</span>\n" +
+    "            </h3>\n" +
+    "            <h5 class=\"sub-nav-links\">\n" +
+    "                <a href ui-sref=\"about.overview\">History</a> |\n" +
+    "                <a href ui-sref=\"about.publications\">Publications</a> |\n" +
+    "                <a href ui-sref=\"about.citations\">Suggested Citations</a>\n" +
+    "            </h5>\n" +
+    "\n" +
+    "    </div>\n" +
+    "</div>\n" +
+    "<div class=\"row\" id=\"#about\">\n" +
+    "    <div class=\"col-sm-12\">\n" +
+    "\n" +
+    "                <p>Kelly, M., 2005  VTM Newsletter 2005.  <a href=\"media/docs/VTMnewsletter7-2005.pdf\">PDF</a>.</p>\n" +
+    "    \n" +
+    "        <p>Kelly, M., B. Allen-Diaz, and N. Kobzina. 2005. <a href=\"http://kellylab.berkeley.edu/publications/2005/9/30/digitization-of-the-wieslander-california-vegetation-type-ma.html\" target=\"_blank\">Digitization of a historic dataset: the Wieslander California vegetation type mapping project.</a> Madro&ntildeo 52(3):191-201.</p>\n" +
+    "\n" +
+    "        <p>Kelly, M., K. Ueda and B. Allen-Diaz. 2008. <a href=\"http://kellylab.berkeley.edu/publications/2008/10/31/historic-map-analysis-spatial-error-in-the-ca-vtm-dataset.html\" target=\"_blank\"> Considerations for ecological reconstruction of historic vegetation: Analysis of the spatial uncertainties in the California Vegetation Type Map dataset.</a> Plant Ecology 194 (1): 37-49.</p>\n" +
+    "\n" +
+    "        <p>Ertter, B., 2000. Our undiscovered heritage: Past and future prospects for species-level botanical inventory. Madro&ntildeo , 47(4): 237-252.</p>\n" +
+    "\n" +
+    "        <p>Allen, B.H., Holzman, C.A. and Evett, R.R., 1991. A classification system for California's hardwood rangelands. Hilgardia, 59(2): 1-45. Allen-Diaz, B.H. and B.A. Holzman., 1991. Blue oak communities in California. Madro&ntildeo , 38: 80-95.</p>\n" +
+    "\n" +
+    "        <p>Wieslander, A.E., 1961. California's vegetation maps: Recent advances in botany, University of Toronto Press, Toronto.</p>\n" +
+    "\n" +
+    "        <p>Wieslander, A.E., 1935. A vegetation type map of California. Madro&ntildeo , 3(3): 140-144.</p>\n" +
+    "    </div>\n" +
+    "</div>\n" +
+    "\n" +
+    "\n" +
+    "\n" +
+    "");
+}]);
 
 angular.module("about/about.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("about/about.tpl.html",
     "<div class=\"container learn-more\">\n" +
     "\n" +
-    "    <div class=\"row\" id=\"#about\">\n" +
-    "        <div class=\"page-header\">\n" +
-    "            <h3><span class=\"title\">About VTM</span></h3>\n" +
-    "        </div>\n" +
-    "        <div class=\"col-sm-12\">\n" +
-    "            <p><span class=\"title title-first-letter\">I</span>n the 1930s, forester A. E. Wieslander spearheaded a U. S. Forest Service survey of California vegetation, called the Vegetation Type Mapping Project. Originally, the project was slated to include detailed vegetation type maps of 220 USGS quadrangles, but the survey was halted by World War II, and only 23 maps were published. The project continued after the war under state funding, but no more quads were published. However, much of the unpublished data survives today and exists in storage at the University of California, Berkeley, and at other map libraries and research labs around California. The VTM dataset has been recognized as an invaluable window into the state of California flora in the early 20th century, has provided data for several graduate theses at several Universities, and has been the focus of numerous journal articles. However, the dataset's physical fragility has made it largely inaccessible to the broader scientific community. Researchers at U. C. Berkeley Department of Environmental Science, Policy, and Management (ESPM), in conjunction with the Marian Koshland Bioscience and Natural Resources Library, sought funding to digitize all of the published and unpublished dataset, for use in modern geographic information systems and to facilitate its distribution via the Internet.</p>\n" +
-    "        </div>\n" +
-    "        <div class=\"col-sm-12\">\n" +
-    "            <p><span class=\"title title-first-letter\">T</span>he ultimate goal of the original VTM project was to create vegetation type maps, but in the process the surveyors collected several other kinds of data as well. In order to validate some of the broad zones of vegetation they designated from high vantage points, the surveyors also ran vegetation transects, collecting data on species composition, depth of leaf litter, and tree size, among other things. They marked the location of these plots on USGS topographic maps, which today provide us with point occurrences of the individual species they found. Addtionally, they collected sample specimens and placed them in the University Herbarium (now the Jepson Herbarium), many of which remain there today. They also took photos of many vegetatively distinct locations, and marked the locations of these photos on maps (unfortunately most of these photos maps have been lost). And finally, of course, they created vegetation maps, drawing broad zones of single or mixed stands in crayon over USGS topographic quads.</p>\n" +
-    "        </div>\n" +
-    "        <div class=\"col-sm-12\">\n" +
-    "            <p><span class=\"title title-first-letter\">T</span>he VTM collection - vegetation maps, plot data, plot maps, and photographs have been digitized and are being served as a complete collection via the new UC Berkeley <a href=\"http://holos.berkeley.edu/\" target=\"_blank\">HOLOS ecoengine</a>. The digitization of the parts of the collection was a multi-lab effort. The VTM photo digitization was led by the <a href=\"http://www.lib.berkeley.edu/BIOS/\" target=\"_blank\">Marian Koshland Bioscience and Natural Resources Library</a>, and is complete. The <a href=\"http://kellylab.berkeley.edu/\">Kelly Lab</a> in ESPM led the plot map digitization and georeferencing. The <a href=\"http://nature.berkeley.edu/allen-diazlab/\" target=\"_blank\">Allen-Diaz Lab</a> in ESPM led the entering all of the plot data, which the original surveyors recorded by hand, in the field, on thin sheets of paper in faint pencil. Researchers at the <a href=\"http://ice.ucdavis.edu/\" target=\"_blank\">Information Center for the Environment</a> at U. C. Davis led the digitization of all the unpublished vegetation maps.</p>\n" +
-    "        </div>\n" +
-    "    </div>\n" +
-    "    \n" +
-    "    <div class=\"row\" id=\"publications\">\n" +
-    "        <div class=\"page-header\">\n" +
-    "            <h3><span class=\"title\">Publications</span></h3>\n" +
-    "        </div>\n" +
-    "        <div class=\"col-sm-12\">\n" +
-    "            <p>Kelly, M., 2005  VTM Newsletter 2005.  <a href=\"media/docs/VTMnewsletter7-2005.pdf\">PDF</a>.</p>\n" +
-    "            \n" +
-    "            <p>Kelly, M., B. Allen-Diaz, and N. Kobzina. 2005. Digitization of a historic dataset: the Wieslander California vegetation type mapping project. Madro&ntildeo 52(3):191-201. weblink: <a href=\"http://kellylab.berkeley.edu/publications/2005/9/30/digitization-of-the-wieslander-california-vegetation-type-ma.html\" target=\"_blank\">http://kellylab.berkeley.edu/publications/2005/9/30/digitization-of-the-wieslander-california-vegetation-type-ma.html</a></p>\n" +
-    "\n" +
-    "            <p>Ertter, B., 2000. Our undiscovered heritage: Past and future prospects for species-level botanical inventory. Madroño , 47(4): 237-252.</p>\n" +
-    "\n" +
-    "            <p>Allen, B.H., Holzman, C.A. and Evett, R.R., 1991. A classification system for California's hardwood rangelands. Hilgardia, 59(2): 1-45. Allen-Diaz, B.H. and B.A. Holzman., 1991. Blue oak communities in California. Madroño , 38: 80-95.</p>\n" +
-    "\n" +
-    "            <p>Wieslander, A.E., 1961. California's vegetation maps: Recent advances in botany, University of Toronto Press, Toronto.</p>\n" +
-    "\n" +
-    "            <p>Wieslander, A.E., 1935. A vegetation type map of California. Madro&ntildeo , 3(3): 140-144.</p>\n" +
-    "\n" +
-    "        </div>\n" +
-    "    </div>\n" +
+    "    <div ui-view></div>\n" +
     "\n" +
     "</div>\n" +
     "\n" +
@@ -49,6 +108,12 @@ angular.module("data/data.mapsheets.tpl.html", []).run(["$templateCache", functi
     "<div class=\"row\">\n" +
     "    <div class=\"page-header\">\n" +
     "            <h3><span class=\"title\">Mapsheets</span></h3>\n" +
+    "            <h5 class=\"sub-nav-links\">\n" +
+    "                <a href ui-sref=\"data.vegetation\">Vegetation</a> |\n" +
+    "                <a href ui-sref=\"data.plots\">Plots</a> |\n" +
+    "                <a href ui-sref=\"data.photos\">Photos</a> |\n" +
+    "                <a href ui-sref=\"data.mapsheets\">Mapsheets</a>\n" +
+    "            </h5>\n" +
     "    </div>\n" +
     "</div>\n" +
     "\n" +
@@ -140,6 +205,12 @@ angular.module("data/data.photos.tpl.html", []).run(["$templateCache", function(
     "<div class=\"row\">\n" +
     "    <div class=\"page-header\">\n" +
     "            <h3><span class=\"title\">Photos</span></h3>\n" +
+    "            <h5 class=\"sub-nav-links\">\n" +
+    "                <a href ui-sref=\"data.vegetation\">Vegetation</a> |\n" +
+    "                <a href ui-sref=\"data.plots\">Plots</a> |\n" +
+    "                <a href ui-sref=\"data.photos\">Photos</a> |\n" +
+    "                <a href ui-sref=\"data.mapsheets\">Mapsheets</a>\n" +
+    "            </h5>\n" +
     "    </div>\n" +
     "</div>\n" +
     "\n" +
@@ -176,7 +247,17 @@ angular.module("data/data.plots.tpl.html", []).run(["$templateCache", function($
   $templateCache.put("data/data.plots.tpl.html",
     "<div class=\"row\">\n" +
     "    <div class=\"page-header\">\n" +
+    "<<<<<<< Updated upstream\n" +
     "            <h3><span class=\"title\">Plots Map</span></h3>\n" +
+    "=======\n" +
+    "            <h3><span class=\"title\">Plots</span></h3>\n" +
+    "            <h5 class=\"sub-nav-links\">\n" +
+    "                <a href ui-sref=\"data.vegetation\">Vegetation</a> |\n" +
+    "                <a href ui-sref=\"data.plots\">Plots</a> |\n" +
+    "                <a href ui-sref=\"data.photos\">Photos</a> |\n" +
+    "                <a href ui-sref=\"data.mapsheets\">Mapsheets</a>\n" +
+    "            </h5>\n" +
+    ">>>>>>> Stashed changes\n" +
     "    </div>\n" +
     "</div>\n" +
     "\n" +
@@ -262,6 +343,12 @@ angular.module("data/data.vegetation.tpl.html", []).run(["$templateCache", funct
     "<div class=\"row\">\n" +
     "    <div class=\"page-header\">\n" +
     "            <h3><span class=\"title\">Vegetation Type Map</span></h3>\n" +
+    "            <h5 class=\"sub-nav-links\">\n" +
+    "                <a href ui-sref=\"data.vegetation\">Vegetation</a> |\n" +
+    "                <a href ui-sref=\"data.plots\">Plots</a> |\n" +
+    "                <a href ui-sref=\"data.photos\">Photos</a> |\n" +
+    "                <a href ui-sref=\"data.mapsheets\">Mapsheets</a>\n" +
+    "            </h5>\n" +
     "    </div>\n" +
     "</div>\n" +
     "\n" +
@@ -374,27 +461,27 @@ angular.module("home/home.tpl.html", []).run(["$templateCache", function($templa
     "    <div class=\"row\">\n" +
     "        <div class=\"col-md-4 section\">\n" +
     "            <a href ui-sref=\"data.overview\" class=\"section-link\">\n" +
+    "                <div class=\"overlay\">\n" +
+    "                    <div class=\"overlay-content\">\n" +
+    "                        <i class=\"fa fa-search-plus fa-3x\"></i>\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
     "                <div class=\"section-content\">\n" +
     "                    <h4><span class=\"title\">Data Access</span></h4>\n" +
     "                    <p>View and download vegetation maps, plot data and photos. </p>\n" +
     "                </div>\n" +
-    "                <div class=\"overlay\">\n" +
-    "                    <div class=\"overlay-content\">\n" +
-    "                        <i class=\"fa fa-search-plus fa-3x\"></i>\n" +
-    "                    </div>\n" +
-    "                </div>\n" +
     "            </a>\n" +
     "        </div>\n" +
     "        <div class=\"col-md-4 section\">\n" +
-    "            <a href ui-sref=\"about\" class=\"section-link\">\n" +
-    "                <div class=\"section-content\">\n" +
-    "                    <h4><span class=\"title\">Learn More</span></h4>\n" +
-    "                    <p>Learn more about the Wieslander's Vegetation Type Mapping project. </p>\n" +
-    "                </div>\n" +
+    "            <a href ui-sref=\"about.overview\" class=\"section-link\">\n" +
     "                <div class=\"overlay\">\n" +
     "                    <div class=\"overlay-content\">\n" +
     "                        <i class=\"fa fa-search-plus fa-3x\"></i>\n" +
     "                    </div>\n" +
+    "                </div>\n" +
+    "                <div class=\"section-content\">\n" +
+    "                    <h4><span class=\"title\">Learn More</span></h4>\n" +
+    "                    <p>Learn more about the Wieslander's Vegetation Type Mapping project. </p>\n" +
     "                </div>\n" +
     "            </a>\n" +
     "        </div>\n" +

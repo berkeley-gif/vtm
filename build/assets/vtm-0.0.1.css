@@ -95,6 +95,10 @@ pre {
   color: #ffffff;
   background-color: #5A4959;
 }
+.sub-nav-links,
+.sub-nav-links a {
+  color: #999;
+}
 /**
  * FOOTER
  */
@@ -210,11 +214,7 @@ a:visited {
   background-color: #D0CB93;
   padding: 8px;
   text-align: center;
-  height: 15em;
   margin-bottom: 5px;
-}
-.section-content p {
-  font-size: 1.4em;
 }
 .overlay {
   padding: 8px;
@@ -256,6 +256,15 @@ a:visited {
 }
 .learn-more {
   margin-top: 5em;
+}
+.well {
+  border: 1px solid #f1f1f1;
+  background-color: #f6f6f6;
+  border-radius: 0px;
+}
+.sub-nav-links,
+.sub-nav-links a {
+  color: #999;
 }
 /* 
 *DATA GRID 
