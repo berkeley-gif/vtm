@@ -31,23 +31,23 @@ angular.module("about/about.overview.tpl.html", []).run(["$templateCache", funct
 
 angular.module("about/about.publications.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("about/about.publications.tpl.html",
-    "\n" +
     "<div class=\"row\" id=\"#about\">\n" +
     "    <div class=\"col-sm-12\">\n" +
     "\n" +
-    "                <p>Kelly, M., 2005  VTM Newsletter 2005.  <a href=\"media/docs/VTMnewsletter7-2005.pdf\">PDF</a>.</p>\n" +
+    "        <p>Allen, B.H., Holzman, C.A. and Evett, R.R., 1991. A classification system for California's hardwood rangelands. Hilgardia, 59(2): 1-45. Allen-Diaz, B.H. and B.A. Holzman., 1991. Blue oak communities in California. Madro&ntilde;o , 38: 80-95.</p>\n" +
+    "        \n" +
+    "        <p>Ertter, B., 2000. Our undiscovered heritage: Past and future prospects for species-level botanical inventory. Madro&ntilde;o , 47(4): 237-252.</p>\n" +
+    "<p>Kelly, M., 2005  VTM Newsletter 2005.  <a href=\"media/docs/VTMnewsletter7-2005.pdf\">PDF</a>.</p>\n" +
     "    \n" +
-    "        <p>Kelly, M., B. Allen-Diaz, and N. Kobzina. 2005. <a href=\"http://kellylab.berkeley.edu/publications/2005/9/30/digitization-of-the-wieslander-california-vegetation-type-ma.html\" target=\"_blank\">Digitization of a historic dataset: the Wieslander California vegetation type mapping project.</a> Madro&ntildeo 52(3):191-201.</p>\n" +
+    "        <p>Kelly, M., B. Allen-Diaz, and N. Kobzina. 2005. <a href=\"http://kellylab.berkeley.edu/publications/2005/9/30/digitization-of-the-wieslander-california-vegetation-type-ma.html\" target=\"_blank\">Digitization of a historic dataset: the Wieslander California vegetation type mapping project.</a> Madro&ntilde;o 52(3):191-201.</p>\n" +
     "\n" +
     "        <p>Kelly, M., K. Ueda and B. Allen-Diaz. 2008. <a href=\"http://kellylab.berkeley.edu/publications/2008/10/31/historic-map-analysis-spatial-error-in-the-ca-vtm-dataset.html\" target=\"_blank\"> Considerations for ecological reconstruction of historic vegetation: Analysis of the spatial uncertainties in the California Vegetation Type Map dataset.</a> Plant Ecology 194 (1): 37-49.</p>\n" +
     "\n" +
-    "        <p>Ertter, B., 2000. Our undiscovered heritage: Past and future prospects for species-level botanical inventory. Madro&ntildeo , 47(4): 237-252.</p>\n" +
-    "\n" +
-    "        <p>Allen, B.H., Holzman, C.A. and Evett, R.R., 1991. A classification system for California's hardwood rangelands. Hilgardia, 59(2): 1-45. Allen-Diaz, B.H. and B.A. Holzman., 1991. Blue oak communities in California. Madro&ntildeo , 38: 80-95.</p>\n" +
+    "		<p>TThorne, J. H., Kelsey, R., Honig, J., and Morgan, B. 2006. The development of 70-year-old Wieslander vegetation type maps and an assessment of landscape change in the central Sierra Nevada. <em>University of California, Davis, and California Energy Commission, CED-500-2006-107</em>.</p>\n" +
     "\n" +
     "        <p>Wieslander, A.E., 1961. California's vegetation maps: Recent advances in botany, University of Toronto Press, Toronto.</p>\n" +
     "\n" +
-    "        <p>Wieslander, A.E., 1935. A vegetation type map of California. Madro&ntildeo , 3(3): 140-144.</p>\n" +
+    "        <p>Wieslander, A.E., 1935. A vegetation type map of California. Madro&ntilde;o , 3(3): 140-144.</p>\n" +
     "    </div>\n" +
     "</div>\n" +
     "\n" +
@@ -272,7 +272,7 @@ angular.module("data/data.plots.tpl.html", []).run(["$templateCache", function($
     "<div class=\"row\">\n" +
     "    <div class=\"col-md-5\">\n" +
     "        <h2>General information</h2>\n" +
-    "        <p>What is this map about? When was this map produced (1920s-1940s)? Who produced it? Who digitized it? How was it digitized? How to assess accuracy?</p>\n" +
+    "		<p>Statewide there are approximately 18,000 VTM plots, concentrated along the central and southern coastal ranges, and along the Sierra Nevada. These plots were surveyed by the VTM field crews as a check on the vegetation polygons, and also to provide details on species composition, size and stand density of trees and shrubs and depth of leaf litter.  The rectangular sample plots (800 m<sup>2</sup> in forests, 400 m<sup>2</sup> in scrub and chaparral communities) run upslope and were divided into milacre sampling units in which dominant species and height characteristics was recorded. Trees greater than 10 cm in dbh within 10 m of either side of the center-line were tallied by species and diameter class. In both forest and understory plots slope, soil characteristics and year of last burn was recorded. The plots cover a gradient of vegetation types and include data regarding tree stand structure (number per diameter class), percent cover of dominant overstory and understory vegetation by species, soil type, parent material, leaf litter, elevation, slope, aspect, parent material, and other environmental variables.  All plot data was stored on paper data sheets, and individual plots were numbered according to U.S. Geological Survey (USGS) topographic quadrangle map name, quad section number and plot number. For more information on the plots, please see: Kelly et al. 2005 Madro&ntilde;o article on the <a ng-href=\"#/about/publications\">Publications</a> page.</p>\n" +
     "    </div>\n" +
     "    <div class=\"col-md-4\">\n" +
     "        <h2>Suggested Citations</h2>\n" +
@@ -359,7 +359,7 @@ angular.module("data/data.vegetation.tpl.html", []).run(["$templateCache", funct
     "<div class=\"row\">\n" +
     "    <div class=\"col-md-5\">\n" +
     "        <h2>General information</h2>\n" +
-    "        <p>What is this map about? When was this map produced (1920s-1940s)? Who produced it? Who digitized it? How was it digitized? How to assess accuracy?</p>\n" +
+    "		<p>Dominant vegetation type maps were mapped with a minimum mapping unit of 16 ha by direct observation \"from ridges, peaks, and other vantage points\" in the field by VTM crews, directly upon 15-minute (1: 62,500-scale) topographic quadrangles, and supplemented by sample plots. At sample plots, information on overstory and understory vegetation were collected. According to his reports, it took a two-man crew from six to eight weeks to complete the fieldwork for a 15-minute quad of about 6,070 ha.  The vegetation mapping scheme was driven by \"the dominant vegetation visible externally\", in other words, by overstory species recognition, and included \"mosaic types\" - complex vegetation conditions that resulted from fire or other disturbances, and pure and mixed stand conditions which they associated with \"natural plant associations\".  The mapped products include 215 maps with the major vegetation types shown in different colors and separated by ink lines. These are over printed in color on 7.5-minute, 15-minute, and 30-minute USGS topographic quadrangles. For more information on the vegetation maps, please see: <a ng-href=\"#/about/publications\">Publications</a> page.</p>\n" +
     "    </div>\n" +
     "    <div class=\"col-md-4\">\n" +
     "        <h2>Suggested Citations</h2>\n" +
@@ -399,7 +399,7 @@ angular.module("home/home.tpl.html", []).run(["$templateCache", function($templa
     "\n" +
     "            <div class=\"row\">\n" +
     "                <div class=\"col-sm-2 col-sm-offset-1\" id=\"portrait\">\n" +
-    "                    <img  src=\"assets/img/Wieslander_Portrait.png\"></img>\n" +
+    "                    <img  src=\"assets/img/wieslander.png\"></img>\n" +
     "                </div>\n" +
     "                <div class=\"col-sm-8 col-sm-offset-3\" id=\"slogan\">\n" +
     "                    <h3><span class=\"title\"><span class=\"title-first-letter\">W</span>ieslander <span class=\"title-first-letter\">V</span>egetation <span class=\"title-first-letter\">T</span>ype <span class=\"title-first-letter\">M</span>apping</span></h3>\n" +
