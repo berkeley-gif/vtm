@@ -10,38 +10,31 @@
     </div>
     <div class="col-md-3">
         <h2>Info box</h2>
-        <div class="info-box" ng-hide="layerProp">Additional information about hte vegetation polygons will be displayed here when you click on them on the map.</div>
+        <div class="info-box" ng-hide="layerProp">Information about a plot point will be displayed here when you click on one of them.</div>
         <div class="info-box" ng-show="layerProp">
-            <p><b>Vegetation name</b>:
-                <br/>
-                {{layerProp.mcv}}
-            </p>
-            <p><b>Primary species</b>:
-                <br/>
-                {{layerProp.primary_species}}
-            </p>
-            <p><b>Associated species</b>:
-                <span ng-hide="layerProp.observations.length">
-                    <br />
-                    No associated species found
-                </span>
-                <span ng-show="layerProp.observations.length">
-                    <ul>
-                        <li ng-repeat="obs in layerProp.observations">
-                            {{obs.scientific_name}}
-                        </li>
-                    </ul>
-                </span>
-
-            </p>
-            <p><b>API URL</b>:
-                <br/>
-                <a ng-href="{{layerProp.url}}" target="_blank">{{layerProp.url}}</a>
-            </p>
-            <p><b>WHR</b>:
-                <br/>
-                {{layerProp.whr}}
-            </p>
+			
+            <div ng-show="layerProp.trees">
+			<p><b>Trees</b>:</p>
+			<ul>
+				<li ng-repeat="tree in layerProp.trees">
+					<a ng-href="{{tree.url}}">{{tree.scientific_name}}</a>
+				</li>
+			</ul>
+			</div>
+			<div ng-show="layerProp.brushes">
+            <p><b>Brushes</b>:</p>
+            <ul>
+				<li ng-repeat="brush in layerProp.brushes">
+					<a ng-href="{{brush.url}}">{{brush.scientific_name}}</a>
+				</li>
+			</ul>
+			</div>
+            <p><b>For more info</b>:</p>
+            <ul>
+				<li>
+					<a ng-href="{{layerProp.url}}" target="_blank">{{layerProp.url}}</a>
+				</li>
+			</ul>
         </div>
 
     </div>
