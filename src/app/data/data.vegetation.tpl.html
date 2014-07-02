@@ -16,16 +16,16 @@
     </div>
     <div class="col-md-3">
         <h2>Info box</h2>
-        <div class="info-box" ng-hide="layerProp">Additional information about hte vegetation polygons will be displayed here when you click on them on the map.</div>
+        <div class="info-box" ng-hide="layerProp">Additional information about the vegetation polygons will be displayed here when you click on them on the map.</div>
         <div class="info-box" ng-show="layerProp">
-            <p><b>Vegetation name</b>:
-                <br/>
-                {{layerProp.mcv}}
-            </p>
-            <p><b>Primary species</b>:
-                <br/>
-                {{layerProp.primary_species}}
-            </p>
+            <p><b>Vegetation name</b>:</p>
+            <ul>
+                <li>{{layerProp.mcv}}</li>
+            </ul>
+            <p><b>Primary species</b>:</p>
+            <ul>
+                <li>{{layerProp.primary_species}}</li>
+            </ul>
             <p><b>Associated species</b>:
                 <span ng-hide="layerProp.observations.length">
                     <br />
@@ -40,14 +40,14 @@
                 </span>
 
             </p>
-            <p><b>API URL</b>:
-                <br/>
-                <a ng-href="{{layerProp.url}}" target="_blank">{{layerProp.url}}</a>
-            </p>
-            <p><b>WHR</b>:
-                <br/>
-                {{layerProp.whr}}
-            </p>
+            <p><b>Ecoengine API Link (source)</b>:</p>
+            <ul>
+                <li><a ng-href="{{layerProp.url}}" target="_blank">{{layerProp.url}}</a></li>
+            </ul>
+            <p><b>WHR</b>:</p>
+            <ul>
+                <li>{{layerProp.whr}}</li>
+            </ul>
         </div>
 
     </div>

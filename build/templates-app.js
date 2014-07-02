@@ -239,38 +239,31 @@ angular.module("data/data.plots.tpl.html", []).run(["$templateCache", function($
     "    </div>\n" +
     "    <div class=\"col-md-3\">\n" +
     "        <h2>Info box</h2>\n" +
-    "        <div class=\"info-box\" ng-hide=\"layerProp\">Additional information about hte vegetation polygons will be displayed here when you click on them on the map.</div>\n" +
+    "        <div class=\"info-box\" ng-hide=\"layerProp\">Information about a plot point will be displayed here when you click on one of them.</div>\n" +
     "        <div class=\"info-box\" ng-show=\"layerProp\">\n" +
-    "            <p><b>Vegetation name</b>:\n" +
-    "                <br/>\n" +
-    "                {{layerProp.mcv}}\n" +
-    "            </p>\n" +
-    "            <p><b>Primary species</b>:\n" +
-    "                <br/>\n" +
-    "                {{layerProp.primary_species}}\n" +
-    "            </p>\n" +
-    "            <p><b>Associated species</b>:\n" +
-    "                <span ng-hide=\"layerProp.observations.length\">\n" +
-    "                    <br />\n" +
-    "                    No associated species found\n" +
-    "                </span>\n" +
-    "                <span ng-show=\"layerProp.observations.length\">\n" +
-    "                    <ul>\n" +
-    "                        <li ng-repeat=\"obs in layerProp.observations\">\n" +
-    "                            {{obs.scientific_name}}\n" +
-    "                        </li>\n" +
-    "                    </ul>\n" +
-    "                </span>\n" +
-    "\n" +
-    "            </p>\n" +
-    "            <p><b>API URL</b>:\n" +
-    "                <br/>\n" +
-    "                <a ng-href=\"{{layerProp.url}}\" target=\"_blank\">{{layerProp.url}}</a>\n" +
-    "            </p>\n" +
-    "            <p><b>WHR</b>:\n" +
-    "                <br/>\n" +
-    "                {{layerProp.whr}}\n" +
-    "            </p>\n" +
+    "			\n" +
+    "            <div ng-show=\"layerProp.trees\">\n" +
+    "			<p><b>Trees</b>:</p>\n" +
+    "			<ul>\n" +
+    "				<li ng-repeat=\"tree in layerProp.trees\">\n" +
+    "					<a ng-href=\"{{tree.url}}\">{{tree.scientific_name}}</a>\n" +
+    "				</li>\n" +
+    "			</ul>\n" +
+    "			</div>\n" +
+    "			<div ng-show=\"layerProp.brushes\">\n" +
+    "            <p><b>Brushes</b>:</p>\n" +
+    "            <ul>\n" +
+    "				<li ng-repeat=\"brush in layerProp.brushes\">\n" +
+    "					<a ng-href=\"{{brush.url}}\">{{brush.scientific_name}}</a>\n" +
+    "				</li>\n" +
+    "			</ul>\n" +
+    "			</div>\n" +
+    "            <p><b>For more info</b>:</p>\n" +
+    "            <ul>\n" +
+    "				<li>\n" +
+    "					<a ng-href=\"{{layerProp.url}}\" target=\"_blank\">{{layerProp.url}}</a>\n" +
+    "				</li>\n" +
+    "			</ul>\n" +
     "        </div>\n" +
     "\n" +
     "    </div>\n" +
@@ -326,16 +319,16 @@ angular.module("data/data.vegetation.tpl.html", []).run(["$templateCache", funct
     "    </div>\n" +
     "    <div class=\"col-md-3\">\n" +
     "        <h2>Info box</h2>\n" +
-    "        <div class=\"info-box\" ng-hide=\"layerProp\">Additional information about hte vegetation polygons will be displayed here when you click on them on the map.</div>\n" +
+    "        <div class=\"info-box\" ng-hide=\"layerProp\">Additional information about the vegetation polygons will be displayed here when you click on them on the map.</div>\n" +
     "        <div class=\"info-box\" ng-show=\"layerProp\">\n" +
-    "            <p><b>Vegetation name</b>:\n" +
-    "                <br/>\n" +
-    "                {{layerProp.mcv}}\n" +
-    "            </p>\n" +
-    "            <p><b>Primary species</b>:\n" +
-    "                <br/>\n" +
-    "                {{layerProp.primary_species}}\n" +
-    "            </p>\n" +
+    "            <p><b>Vegetation name</b>:</p>\n" +
+    "            <ul>\n" +
+    "                <li>{{layerProp.mcv}}</li>\n" +
+    "            </ul>\n" +
+    "            <p><b>Primary species</b>:</p>\n" +
+    "            <ul>\n" +
+    "                <li>{{layerProp.primary_species}}</li>\n" +
+    "            </ul>\n" +
     "            <p><b>Associated species</b>:\n" +
     "                <span ng-hide=\"layerProp.observations.length\">\n" +
     "                    <br />\n" +
@@ -350,14 +343,14 @@ angular.module("data/data.vegetation.tpl.html", []).run(["$templateCache", funct
     "                </span>\n" +
     "\n" +
     "            </p>\n" +
-    "            <p><b>API URL</b>:\n" +
-    "                <br/>\n" +
-    "                <a ng-href=\"{{layerProp.url}}\" target=\"_blank\">{{layerProp.url}}</a>\n" +
-    "            </p>\n" +
-    "            <p><b>WHR</b>:\n" +
-    "                <br/>\n" +
-    "                {{layerProp.whr}}\n" +
-    "            </p>\n" +
+    "            <p><b>Ecoengine API Link (source)</b>:</p>\n" +
+    "            <ul>\n" +
+    "                <li><a ng-href=\"{{layerProp.url}}\" target=\"_blank\">{{layerProp.url}}</a></li>\n" +
+    "            </ul>\n" +
+    "            <p><b>WHR</b>:</p>\n" +
+    "            <ul>\n" +
+    "                <li>{{layerProp.whr}}</li>\n" +
+    "            </ul>\n" +
     "        </div>\n" +
     "\n" +
     "    </div>\n" +

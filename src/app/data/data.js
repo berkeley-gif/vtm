@@ -18,6 +18,11 @@ angular.module( 'vtm.data', [
 ])
 
 /**
+ * Defining the domain name as a constant
+ */
+.constant('ROOT', 'https://dev-ecoengine.berkeley.edu')
+
+/**
  * Each section or module of the site can also have its own routes. AngularJS
  * will handle ensuring they are all available at run-time, but splitting it
  * this way makes each module more "self-contained".
@@ -39,20 +44,20 @@ angular.module( 'vtm.data', [
   .state( 'data.vegetation', {
     url: '/vegetation',
     templateUrl: 'data/data.vegetation.tpl.html',
-    controller: 'DataCtrl',
+	controller: 'DataCtrl',
     data:{ 
       pageTitle: 'Vegetation Type Map',
       apiUrl: '/api/vtmveg'
-    }
+	}
   })
   .state( 'data.plots', {
     url: '/plots',
-    controller: 'DataCtrl',
     templateUrl: 'data/data.plots.tpl.html',
+	controller: 'DataCtrl',
     data:{ 
       pageTitle: 'Plots Map',
       apiUrl: '/api/vtmplots'
-    }
+	}
   })
   .state( 'data.photos', {
     url: '/photos',
@@ -67,17 +72,12 @@ angular.module( 'vtm.data', [
 })
 
 /**
- * Defining the domain name as a constant
- */
-.constant('ROOT', 'http://dev-ecoengine.berkeley.edu')
-
-/**
  * And of course we define a controller for our route.
  */
 .controller( 'DataCtrl', function DataController($scope, $log, $http, $state, leafletData, ROOT) {
 
   // API URL in Ecoengine
-  var apiUrl = $state.current.data.apiUrl;
+  var apiUrl  = $state.current.data.apiUrl;
 
   // Map setup
   var center = {
@@ -135,56 +135,28 @@ angular.module( 'vtm.data', [
     name: 'Counties',
     type: 'xyz',
     url: ROOT + '/tiles/counties/{z}/{x}/{y}.png',
-    visible: true
+    visible: false
   };
 
-  var overlays = {};
+  var overlays =  {
+	vegetation: vegetation,
+	quads: quads,
+	counties: counties,
+	plots: plots
+  };
+
+  // Remove plot layer when it's in the vegetation type map page 
   if (apiUrl == '/api/vtmveg') {
-    overlays = {
-        vegetation: vegetation,
-        quads: quads,
-        counties: counties
-    };
-  } else {
-    overlays =  {
-        vegetation: vegetation,
-        quads: quads,
-        counties: counties,
-		plots: plots
-    };
+    delete overlays.plots;
   }
 
-  angular.extend($scope, {
-    center : center,
-    maxBounds: maxBounds,
-    layers: {
-      baselayers: {
-        grayscale: grayscale
-      },
-      overlays: overlays
-/*
-      {
-        vegetation: vegetation,
-        quads: quads,
-        counties: counties
-      }
-*/
-    },
-    defaults : {
-      scrollWheelZoom: true 
-    }
-  });
-
   // Set up DownloadFeaturesControl
-  $scope.controls = {
-    custom: []
-  };
   var downloadFeaturesControl = L.control();
 	downloadFeaturesControl.setPosition('bottomright');
 	downloadFeaturesControl.onAdd = function (map) {
-      var div = L.DomUtil.create('div','download-features');
-      div.innerHTML = '<button type="button" class="btn btn-primary">Download features in view</button>';
-      L.DomEvent
+    var div = L.DomUtil.create('div','download-features');
+    div.innerHTML = '<button type="button" class="btn btn-primary">Download features in view</button>';
+    L.DomEvent
 		.on(div, 'click', L.DomEvent.stopPropagation)
 		.on(div, 'click', L.DomEvent.preventDefault)
 		.on(div, 'click', function() {
@@ -195,11 +167,26 @@ angular.module( 'vtm.data', [
 			});
 		})
 		.on(div, 'dblclick', L.DomEvent.stopPropagation);
-      
-      return div;
-    };
-  $scope.controls.custom.push(downloadFeaturesControl);
+    return div;
+  };
 
+  // Putting all the map parameters together
+  angular.extend($scope, {
+    center : center,
+    maxBounds: maxBounds,
+    layers: {
+      baselayers: {
+        grayscale: grayscale
+      },
+      overlays: overlays
+    },
+    defaults : {
+      scrollWheelZoom: true 
+    },
+	controls : {
+      custom: [ downloadFeaturesControl ]
+	}
+  });
 
   //On map click event
   function style(feature) {
@@ -213,34 +200,62 @@ angular.module( 'vtm.data', [
 
   $scope.$on('leafletDirectiveMap.click', function(event, args) {
 
-    var url = ROOT + apiUrl + '/?g={"type":"point","coordinates":[' + args.leafletEvent.latlng.lng + ',' + args.leafletEvent.latlng.lat + ']}&format=geojson';
-    
-    //Get geojson feature for point clicked on map
-    $http.get(url).success(function(data, status) {
-      angular.extend($scope, {
-        geojson: {
-            data: data,
-            style: style,
-            resetStyleOnMouseout: false
-        }
-      });
-      $scope.layerProp = $scope.geojson.data.features[0].properties;
-      $log.log($scope.layerProp);
+	// Construct query url
+	var url;
+	if (apiUrl == '/api/vtmveg') {
+		url = ROOT + apiUrl + '/?g={"type":"point","coordinates":[' + args.leafletEvent.latlng.lng + ',' + args.leafletEvent.latlng.lat + ']}&format=geojson';
+		//Get geojson feature for point clicked on map
+        $http.get(url).success(function(data, status) {
+			angular.extend($scope, {
+				geojson: {
+					data: data,
+					style: style,
+					resetStyleOnMouseout: false
+				}
+			});
+			$scope.layerProp = $scope.geojson.data.features[0].properties;
+			//$log.log($scope.layerProp);
 
-      //Get native leaflet map object
-      leafletData.getMap('map').then(function(map) {
-        var latlngs = [];
-        for (var i in $scope.geojson.data.features[0].geometry.coordinates) {
-            var coord = $scope.geojson.data.features[0].geometry.coordinates[i];
-            for (var j in coord) {
-                latlngs.push(L.GeoJSON.coordsToLatLng(coord[j]));
-            }
-        }
-        map.fitBounds(latlngs, {maxZoom:13});
-
-      });
-    }); //end $http.get
-
+			//Get native leaflet map object
+			leafletData.getMap('map').then(function(map) {
+				var latlngs = [];
+				for (var i in $scope.geojson.data.features[0].geometry.coordinates) {
+					var coord = $scope.geojson.data.features[0].geometry.coordinates[i];
+					for (var j in coord) {
+						latlngs.push(L.GeoJSON.coordsToLatLng(coord[j]));
+					}
+				}
+				map.fitBounds(latlngs, {maxZoom:13});
+			});
+		}); //end $http.get
+	} else {
+		// Create a bounding box around the clicked point.
+		var BUFFER = 0.001;
+		var cor1 = { lng: args.leafletEvent.latlng.lng-BUFFER, lat: args.leafletEvent.latlng.lat+BUFFER };
+		var cor2 = { lng: args.leafletEvent.latlng.lng-BUFFER, lat: args.leafletEvent.latlng.lat-BUFFER };
+		var cor3 = { lng: args.leafletEvent.latlng.lng+BUFFER, lat: args.leafletEvent.latlng.lat-BUFFER };
+		var cor4 = { lng: args.leafletEvent.latlng.lng+BUFFER, lat: args.leafletEvent.latlng.lat+BUFFER };
+	
+		url = ROOT + apiUrl + '/?g={"type":"polygon","coordinates":[['+
+				'['+cor1.lng+','+cor1.lat+'],'+ '['+cor2.lng+','+cor2.lat+'],'+
+				'['+cor3.lng+','+cor3.lat+'],'+ '['+cor4.lng+','+cor4.lat+'],'+
+				'['+cor1.lng+','+cor1.lat+'],'+ ']]}&format=geojson';
+	
+		//Get geojson feature for point clicked on map
+		$http.get(url).success(function(data, status) {
+			angular.extend($scope, {
+				geojson: {
+					data: data,
+					style: style,
+					resetStyleOnMouseout: false
+				}
+			});
+			//$log.log($scope.geojson.data);
+			if (data.count > 0) { 
+				$scope.layerProp = $scope.geojson.data.features[0].properties;
+			}
+		}); //end $http.get
+	}
 
   }); //end map click event
 
