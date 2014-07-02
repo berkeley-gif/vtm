@@ -27,11 +27,9 @@ angular.module( 'vtm.data', [
   .state( 'data', {
     abstract: true,
     url: '/data',
-    views: {
-      "main": {
-        templateUrl: 'data/data.tpl.html'
-      }
-    }
+    controller: 'DataCtrl',
+    templateUrl: 'data/data.tpl.html',
+    data:{ pageTitle: 'Data' }
   })
   .state( 'data.overview', {
 	url: '/',

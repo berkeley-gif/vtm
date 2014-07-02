@@ -27,17 +27,9 @@ angular.module( 'vtm.data', [
   .state( 'data', {
     abstract: true,
     url: '/data',
-<<<<<<< Updated upstream
-    views: {
-      "main": {
-        templateUrl: 'data/data.tpl.html'
-      }
-    }
-=======
     controller: 'DataCtrl',
     templateUrl: 'data/data.tpl.html',
     data:{ pageTitle: 'Data' }
->>>>>>> Stashed changes
   })
   .state( 'data.overview', {
 	url: '/',

@@ -2,16 +2,6 @@ angular.module('templates-app', ['about/about.citations.tpl.html', 'about/about.
 
 angular.module("about/about.citations.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("about/about.citations.tpl.html",
-    "<div class=\"row\">\n" +
-    "    <div class=\"page-header\">\n" +
-    "            <h3><span class=\"title\">Suggested Citations</span></h3>\n" +
-    "            <h5 class=\"sub-nav-links\">\n" +
-    "            	<a href ui-sref=\"about.overview\">History</a> |\n" +
-    "            	<a href ui-sref=\"about.publications\">Publications</a> |\n" +
-    "            	<a href ui-sref=\"about.citations\">Suggested Citations</a>\n" +
-    "        	</h5>\n" +
-    "    </div>\n" +
-    "</div>\n" +
     "<div class=\"row\" id=\"citation\">\n" +
     "	<div class=\"col-sm-12\">\n" +
     "	    <p>If you are using the VTM digital vegetation data downloaded from this site in your study, please cite the following papers in your work:</p>\n" +
@@ -25,19 +15,6 @@ angular.module("about/about.citations.tpl.html", []).run(["$templateCache", func
 
 angular.module("about/about.overview.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("about/about.overview.tpl.html",
-    "<div class=\"row\">\n" +
-    "    <div class=\"page-header\">\n" +
-    "            <h3>\n" +
-    "            	<span class=\"title\">History</span>\n" +
-    "            </h3>\n" +
-    "            <h5 class=\"sub-nav-links\">\n" +
-    "            	<a href ui-sref=\"about.overview\">History</a> |\n" +
-    "            	<a href ui-sref=\"about.publications\">Publications</a> |\n" +
-    "            	<a href ui-sref=\"about.citations\">Suggested Citations</a>\n" +
-    "        	</h5>\n" +
-    "\n" +
-    "    </div>\n" +
-    "</div>\n" +
     "<div class=\"row\" id=\"#about\">\n" +
     "    <div class=\"col-sm-12\">\n" +
     "\n" +
@@ -55,19 +32,6 @@ angular.module("about/about.overview.tpl.html", []).run(["$templateCache", funct
 angular.module("about/about.publications.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("about/about.publications.tpl.html",
     "\n" +
-    "<div class=\"row\">\n" +
-    "    <div class=\"page-header\">\n" +
-    "            <h3>\n" +
-    "                <span class=\"title\">Publications</span>\n" +
-    "            </h3>\n" +
-    "            <h5 class=\"sub-nav-links\">\n" +
-    "                <a href ui-sref=\"about.overview\">History</a> |\n" +
-    "                <a href ui-sref=\"about.publications\">Publications</a> |\n" +
-    "                <a href ui-sref=\"about.citations\">Suggested Citations</a>\n" +
-    "            </h5>\n" +
-    "\n" +
-    "    </div>\n" +
-    "</div>\n" +
     "<div class=\"row\" id=\"#about\">\n" +
     "    <div class=\"col-sm-12\">\n" +
     "\n" +
@@ -95,7 +59,19 @@ angular.module("about/about.publications.tpl.html", []).run(["$templateCache", f
 angular.module("about/about.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("about/about.tpl.html",
     "<div class=\"container learn-more\">\n" +
+    "    <div class=\"row\">\n" +
+    "        <div class=\"page-header\">\n" +
+    "                <h3>\n" +
+    "                    <span class=\"title\">{{pageTitle | split:'|':0}}</span>\n" +
+    "                </h3>\n" +
+    "                <h5 class=\"sub-nav-links\">\n" +
+    "                    <a href ui-sref=\"about.overview\">History</a> |\n" +
+    "                    <a href ui-sref=\"about.publications\">Publications</a> |\n" +
+    "                    <a href ui-sref=\"about.citations\">Suggested Citations</a>\n" +
+    "                </h5>\n" +
     "\n" +
+    "        </div>\n" +
+    "    </div>\n" +
     "    <div ui-view></div>\n" +
     "\n" +
     "</div>\n" +
@@ -133,8 +109,8 @@ angular.module("data/data.mapsheets.tpl.html", []).run(["$templateCache", functi
     "        <p>Something about this map.</p>\n" +
     "    </div>\n" +
     "    <div class=\"col-md-4\">\n" +
-    "        <h2>Suggested citation</h2>\n" +
-    "        <p>Papers that are written for the mapping process.</p>\n" +
+    "        <h2>Suggested Citations</h2>\n" +
+    "        <ng-include src=\"'about/about.citations.tpl.html'\"></ng-inlcude>\n" +
     "    </div>\n" +
     "    <div class=\"col-md-4\">\n" +
     "        <h2>Method</h2>\n" +
@@ -230,8 +206,8 @@ angular.module("data/data.photos.tpl.html", []).run(["$templateCache", function(
     "        <p>Something about this map.</p>\n" +
     "    </div>\n" +
     "    <div class=\"col-md-4\">\n" +
-    "        <h2>Suggested citation</h2>\n" +
-    "        <p>Papers that are written for the mapping process.</p>\n" +
+    "        <h2>Suggested Citations</h2>\n" +
+    "        <ng-include src=\"'about/about.citations.tpl.html'\"></ng-inlcude>\n" +
     "    </div>\n" +
     "    <div class=\"col-md-4\">\n" +
     "        <h2>Method</h2>\n" +
@@ -247,17 +223,13 @@ angular.module("data/data.plots.tpl.html", []).run(["$templateCache", function($
   $templateCache.put("data/data.plots.tpl.html",
     "<div class=\"row\">\n" +
     "    <div class=\"page-header\">\n" +
-    "<<<<<<< Updated upstream\n" +
-    "            <h3><span class=\"title\">Plots Map</span></h3>\n" +
-    "=======\n" +
-    "            <h3><span class=\"title\">Plots</span></h3>\n" +
-    "            <h5 class=\"sub-nav-links\">\n" +
-    "                <a href ui-sref=\"data.vegetation\">Vegetation</a> |\n" +
-    "                <a href ui-sref=\"data.plots\">Plots</a> |\n" +
-    "                <a href ui-sref=\"data.photos\">Photos</a> |\n" +
-    "                <a href ui-sref=\"data.mapsheets\">Mapsheets</a>\n" +
-    "            </h5>\n" +
-    ">>>>>>> Stashed changes\n" +
+    "        <h3><span class=\"title\">Plots</span></h3>\n" +
+    "        <h5 class=\"sub-nav-links\">\n" +
+    "            <a href ui-sref=\"data.vegetation\">Vegetation</a> |\n" +
+    "            <a href ui-sref=\"data.plots\">Plots</a> |\n" +
+    "            <a href ui-sref=\"data.photos\">Photos</a> |\n" +
+    "            <a href ui-sref=\"data.mapsheets\">Mapsheets</a>\n" +
+    "        </h5>\n" +
     "    </div>\n" +
     "</div>\n" +
     "\n" +
@@ -310,12 +282,8 @@ angular.module("data/data.plots.tpl.html", []).run(["$templateCache", function($
     "        <p>What is this map about? When was this map produced (1920s-1940s)? Who produced it? Who digitized it? How was it digitized? How to assess accuracy?</p>\n" +
     "    </div>\n" +
     "    <div class=\"col-md-4\">\n" +
-    "        <h2>Suggested citations</h2>\n" +
-    " 		<p>If you are using the VTM digital vegetation data downloaded from this site in your study, please cite the following papers in your work:</p>\n" +
-    "		<ul>\n" +
-    "		<li><a href=\"http://kellylab.berkeley.edu/publications/2005/9/30/digitization-of-the-wieslander-california-vegetation-type-ma.html\" target=\"_blank\">Kelly, M., B. Allen-Diaz, and N. Kobzina. 2005. Digitization of a historic dataset: the Wieslander California vegetation type mapping project. Madro&ntilde;o 52(3):191-201</a></li>\n" +
-    "		<li><a href=\"http://kellylab.berkeley.edu/publications/2008/10/31/historic-map-analysis-spatial-error-in-the-ca-vtm-dataset.html\" target=\"_blank\">Kelly, M., K. Ueda and B. Allen-Diaz. 2008. Considerations for ecological reconstruction of historic vegetation: Analysis of the spatial uncertainties in the California Vegetation Type Map dataset. Plant Ecology 194 (1): 37-49.</a></li>\n" +
-    "		</ul>\n" +
+    "        <h2>Suggested Citations</h2>\n" +
+    "        <ng-include src=\"'about/about.citations.tpl.html'\"></ng-inlcude>\n" +
     "    </div>\n" +
     "    <div class=\"col-md-3\">\n" +
     "		<h2>Download</h2>\n" +
@@ -401,12 +369,8 @@ angular.module("data/data.vegetation.tpl.html", []).run(["$templateCache", funct
     "        <p>What is this map about? When was this map produced (1920s-1940s)? Who produced it? Who digitized it? How was it digitized? How to assess accuracy?</p>\n" +
     "    </div>\n" +
     "    <div class=\"col-md-4\">\n" +
-    "        <h2>Suggested citations</h2>\n" +
-    " 		<p>If you are using the VTM digital vegetation data downloaded from this site in your study, please cite the following papers in your work:</p>\n" +
-    "		<ul>\n" +
-    "		<li><a href=\"http://kellylab.berkeley.edu/publications/2005/9/30/digitization-of-the-wieslander-california-vegetation-type-ma.html\" target=\"_blank\">Kelly, M., B. Allen-Diaz, and N. Kobzina. 2005. Digitization of a historic dataset: the Wieslander California vegetation type mapping project. Madro&ntilde;o 52(3):191-201</a></li>\n" +
-    "		<li><a href=\"http://kellylab.berkeley.edu/publications/2008/10/31/historic-map-analysis-spatial-error-in-the-ca-vtm-dataset.html\" target=\"_blank\">Kelly, M., K. Ueda and B. Allen-Diaz. 2008. Considerations for ecological reconstruction of historic vegetation: Analysis of the spatial uncertainties in the California Vegetation Type Map dataset. Plant Ecology 194 (1): 37-49.</a></li>\n" +
-    "		</ul>\n" +
+    "        <h2>Suggested Citations</h2>\n" +
+    "        <ng-include src=\"'about/about.citations.tpl.html'\"></ng-inlcude>\n" +
     "    </div>\n" +
     "    <div class=\"col-md-3\">\n" +
     "		<h2>Download</h2>\n" +

@@ -1,5 +1,6 @@
 angular.module( 'vtm.about', [
-  'ui.router'
+  'ui.router',
+  'vtmFilters'
 ])
 
 .config(function config( $stateProvider ) {
@@ -9,7 +10,7 @@ angular.module( 'vtm.about', [
     url: '/about',
     controller: 'AboutCtrl',
     templateUrl: 'about/about.tpl.html',
-    data:{ pageTitle: 'About' }
+    data:{ pageTitle: 'History' }
   })
     .state( 'about.overview', {
       url: '/',
@@ -18,11 +19,13 @@ angular.module( 'vtm.about', [
     })
     .state( 'about.publications', {
       url: '/publications',
-      templateUrl: 'about/about.publications.tpl.html'
+      templateUrl: 'about/about.publications.tpl.html',
+      data:{ pageTitle: 'Publications' }
     })
     .state( 'about.citations', {
       url: '/citations',
-      templateUrl: 'about/about.citations.tpl.html'
+      templateUrl: 'about/about.citations.tpl.html',
+      data:{ pageTitle: 'Suggested Citations' }
     });
 })
 
