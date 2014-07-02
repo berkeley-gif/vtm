@@ -281,7 +281,7 @@ angular.module("data/data.plots.tpl.html", []).run(["$templateCache", function($
     "    <div class=\"col-md-3\">\n" +
     "		<h2>Download</h2>\n" +
     "		<p>Download all plots data in shapefile. </p>\n" +
-    "		<p><img src=\"assets/img/vtmveg.png\" width=\"200px\" height=\"200px\" class=\"img-responsive img-thumbnail\"/></p>\n" +
+    "		<p><img src=\"assets/img/download_plots.png\" class=\"img-responsive img-thumbnail\"/></p>\n" +
     "		<a href=\"https://dev-ecoengine.berkeley.edu/data/vtm-plots.zip\" class=\"btn btn-primary\">Click here</a>\n" +
     "    </div>\n" +
     "</div>\n" +
@@ -343,15 +343,15 @@ angular.module("data/data.vegetation.tpl.html", []).run(["$templateCache", funct
     "                </span>\n" +
     "\n" +
     "            </p>\n" +
-    "            <p><b>Ecoengine API Link (source)</b>:</p>\n" +
-    "            <ul>\n" +
-    "                <li><a ng-href=\"{{layerProp.url}}\" target=\"_blank\">{{layerProp.url}}</a></li>\n" +
-    "            </ul>\n" +
-    "            <p><b>WHR</b>:</p>\n" +
+    "             <p><b>Vegetation Type</b>:</p>\n" +
     "            <ul>\n" +
     "                <li>{{layerProp.whr}}</li>\n" +
     "            </ul>\n" +
-    "        </div>\n" +
+    "            <p><b>For more information</b>:</p>\n" +
+    "            <ul>\n" +
+    "                <li><a ng-href=\"{{layerProp.url}}\" target=\"_blank\">{{layerProp.url}}</a></li>\n" +
+    "            </ul>\n" +
+    "       </div>\n" +
     "\n" +
     "    </div>\n" +
     "</div>\n" +
@@ -368,7 +368,7 @@ angular.module("data/data.vegetation.tpl.html", []).run(["$templateCache", funct
     "    <div class=\"col-md-3\">\n" +
     "		<h2>Download</h2>\n" +
     "		<p>Download the entire vegetation layer in shapefile (~1.3G). </p>\n" +
-    "		<p><img src=\"assets/img/vtmveg.png\" width=\"200px\" height=\"200px\" class=\"img-responsive img-thumbnail\"/></p>\n" +
+    "		<p><img src=\"assets/img/download_veg.png\" class=\"img-responsive img-thumbnail\"/></p>\n" +
     "		<a href=\"https://dev-ecoengine.berkeley.edu/data/Wieslander_Statewide_CANAD83.zip\" class=\"btn btn-primary\">Click here</a>\n" +
     "    </div>\n" +
     "</div>\n" +

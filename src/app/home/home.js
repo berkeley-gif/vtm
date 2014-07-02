@@ -52,19 +52,19 @@ angular.module( 'vtm.home', [
 
   slides.push(
     {
-      image: 'assets/img/VTM_Photo_Before-Big-Tree.jpg',
+      image: 'assets/img/banner_bigtree_1140x560.jpg',
       text: ''
     },
     {
-      image: 'assets/img/VTM_Photo_Eldorado_Clipped.jpg',
+      image: 'assets/img/banner_eldorado_1140x560.jpg',
       text: ''
     },
     {
-      image: 'assets/img/VTM_Photo_Looking-Out_600px.jpg',
+      image: 'assets/img/banner_lookout_1140x560.jpg',
       text: ''
     },
     {
-      image: 'assets/img/VTM_Photo_Slope_590px.jpg',
+      image: 'assets/img/banner_yosemite_1140x560.jpg',
       text: ''
     }
   );
