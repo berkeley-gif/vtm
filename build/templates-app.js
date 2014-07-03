@@ -19,250 +19,224 @@ angular.module("about/about.faq.tpl.html", []).run(["$templateCache", function($
   $templateCache.put("about/about.faq.tpl.html",
     "<div class=\"row\" id=\"#about\">\n" +
     "	<div class=\"col-sm-12\">\n" +
-    "		<h1>Frequently Asked Questions</h1>\n" +
+    "		<h2>What is an \"Unmatched species code\"?</h2>\n" +
+    "		<p>An \"Unmatched species code\" refers to a code that we haven't been able to associate with a species.  When the original VTM surveyors recorded their data, they used 1-3 letter codes to refer to different species.  They listed most of these codes and their corresponding species in the VTM field manual, or along with the original data sheets, but not all of them.  Sometimes they also recorded irregular codes, or made typos, neither of which match to a species given the listings in the manual.</p>\n" +
+    "		<h2>What is an \"Ambiguous species code\"?</h2>\n" +
+    "		<p>An \"Ambiguous species code\" refers to a code that could refer to multiple different species.  Sometimes the original surveyors used the same code to refer to different species when they were working in different places.  Several of the species code crosswalks they left behind are quad specific, so if a code means one thing in the Napa quad and another in the Placerville quad, we can distinguish them.  However, several ambiguous codes are not quad specific, so given an ambiguous code in an area where none of the quad-specific crosswalks apply, we just report all the species to which the code could refer.</p>\n" +
+    "		<h2>What do you mean by \"<em>Probable</em> Species\"?</h2>\n" +
+    "		<p>Given the above complications in translating the species codes to full species names, and the errors inherent in the original data and those contributed by modern data entry,  we don't consider all our translations to be completely accurate.  Next to each name, you should see a link that will pop up a window showing you all the code-to-species matches from the various translation tables included in the original VTM data.</p>\n" +
+    "		<h2>How do you translate the species codes to actual species names?</h2>\n" +
+    "		<p>The VTM data come with several lists of occasionally contradictory code-to-species translations, covering different areas of the state.</p>\n" +
+    "				\n" +
+    "		<div class=\"fig_center\">\n" +
+    "			<table>\n" +
+    "				<thead>\n" +
+    "					<tr>\n" +
+    "						<th>Source</th>\n" +
+    "						<th>Reference</th>\n" +
+    "					</tr>\n" +
+    "				</thead>\n" +
+    "				\n" +
+    "				<tbody>\n" +
+    "					<tr id=\"1\">\n" +
+    "						<td><strong>1</strong></td>\n" +
+    "						<td>\n" +
+    "							Wieslander, A.E., H.A. Jensen, H.S. Yates. 1933.  \"California Vegetative Type Map: Instructions for the Preparation of the Vegetative Type Map of California.\"  Unpublished report for US Dept of Agriculture, Forest Service.  Approximately 58 pp.\n" +
+    "							\n" +
+    "							<p>List 1 appears at the end of the report. It includes approximately 912 species codes for trees, shrubs, and herbs.</p>\n" +
+    "							\n" +
+    "						</td>\n" +
+    "					</tr>\n" +
+    "					<tr>\n" +
+    "						<td><strong>2</strong></td>\n" +
+    "						<td>\n" +
+    "							1938.  \"List of Plant Symbols for Use on the Vegetation Type Survey of California and Western Nevada.\"  Unpublished report for US Dept of Agriculture, Forest Service.\n" +
+    "							\n" +
+    "							<p>List 2 is the first list in the report and includes approximately 1,492 species codes for plants other than grasses.</p>\n" +
+    "						</td>\n" +
+    "					</tr>\n" +
+    "					<tr>\n" +
+    "						<td><strong>3</strong></td>\n" +
+    "						<td>\n" +
+    "							1938.  \"List of Plant Symbols for Use on the Vegetation Type Survey of California and Western Nevada.\"  Unpublished report for US Dept of Agriculture, Forest Service.  \n" +
+    "							\n" +
+    "							<p>List 3 is the second list in the report and includes approximately 1,495 species codes for plants other than grasses, most are duplicated in list 2.</p>\n" +
+    "						</td>\n" +
+    "					</tr>\n" +
+    "					<tr>\n" +
+    "						<td><strong>4</strong></td>\n" +
+    "						<td>\n" +
+    "							Wieslander, A.E., H.S. Yates, H.A. Jensen, and P.L Johannsen. (no date) \"Manual of Field Instructions for Vegetation Type Map of California.\" Unpublished report for US Dept of Agriculture, Forest Service. 196 pp.\n" +
+    "							\n" +
+    "							<p>We  refer to this document as \"the field manual\".  It includes approximately 1,675 species codes for trees, shrubs, and herbs.</p>\n" +
+    "						</td>\n" +
+    "					</tr>\n" +
+    "					<tr>\n" +
+    "						<td><strong>5</strong></td>\n" +
+    "						<td>\n" +
+    "							1938.  \"List of Plant Symbols for Use on the Vegetation Type Survey of California and Western Nevada.\"  Unpublished report for US Dept of Agriculture, Forest Service.\n" +
+    "							\n" +
+    "							<p>List 5 is the third list in the report and includes approximately 246 species codes for grasses.</p>\n" +
+    "						</td>\n" +
+    "					</tr>\n" +
+    "					<tr>\n" +
+    "						<td><strong>6</strong></td>\n" +
+    "						<td>\n" +
+    "							1938.  \"List of Plant Symbols for Use on the Vegetation Type Survey of California and Western Nevada.\"  Unpublished report for US Dept of Agriculture, Forest Service.\n" +
+    "							\n" +
+    "							<p>Reference is the same for list 2.  List 6 is the fourth list in the report and includes approximately 247 species codes for grasses, most are duplicated in list 5.</p>\n" +
+    "						</td>\n" +
+    "					</tr>\n" +
+    "					<tr>\n" +
+    "						<td><strong>common name</strong></td>\n" +
+    "						<td>Common name recorded on the datasheet without a code that can only correctly code to one particular genus, as in \"Juniper\" for <i>Juniperus sp.</i></td>\n" +
+    "					</tr>\n" +
+    "					<tr>\n" +
+    "						<td><strong>datasheet notations</strong></td>\n" +
+    "						<td>Code translations recorded on one or more plot datasheets and do not appear on a species list.</td>\n" +
+    "					</tr>\n" +
+    "					<tr>\n" +
+    "						<td><strong>Jensen1947</strong></td>\n" +
+    "						<td>Jensen, Herbert A. 1947. A system for classifying vegetation in California.  <i>California Fish and Game</i> 33(4): 199-266.</td>\n" +
+    "					</tr>\n" +
+    "					<tr>\n" +
+    "						<td><strong>suggestion</strong></td>\n" +
+    "						<td>A code translation that does not appear on any species lists nor on any of the plot datasheets but we think is very likely to be correct.  Examples of suggestions are \"Arcto Sp.\" translated to <i>Arctostaphylos sp.</i> and \"Sym\" translated to <i>Symphoricarpus sp.</i></td>\n" +
+    "					</tr>\n" +
+    "					<tr>\n" +
+    "						<td><strong>Vegetation Type Map</strong></td>\n" +
+    "						<td>A code for a vegetation type from the vegetation type maps.</td>\n" +
+    "					</tr>\n" +
+    "				</tbody>\n" +
+    "			</table>\n" +
+    "		</div>\n" +
     "		\n" +
-    "		<ol>\n" +
-    "			<li>\n" +
-    "				<h3>What is an \"Unmatched species code\"?</h3>\n" +
-    "				An \"Unmatched species code\" refers to a code that we haven't been able to associate with a species.  When the original VTM surveyors recorded their data, they used 1-3 letter codes to refer to different species.  They listed most of these codes and their corresponding species in the VTM field manual, or along with the original data sheets, but not all of them.  Sometimes they also recorded irregular codes, or made typos, neither of which match to a species given the listings in the manual.\n" +
-    "			</li>\n" +
-    "			<li>\n" +
-    "				<h3>What is an \"Ambiguous species code\"?</h3>\n" +
-    "				An \"Ambiguous species code\" refers to a code that could refer to multiple different species.  Sometimes the original surveyors used the same code to refer to different species when they were working in different places.  Several of the species code crosswalks they left behind are quad specific, so if a code means one thing in the Napa quad and another in the Placerville quad, we can distinguish them.  However, several ambiguous codes are not quad specific, so given an ambiguous code in an area where none of the quad-specific crosswalks apply, we just report all the species to which the code could refer.\n" +
-    "			</li>\n" +
-    "			<a name=\"3\"/>\n" +
-    "			<li>\n" +
-    "				<h3>What do you mean by \"<em>Probable</em> Species\"?</h3>\n" +
-    "				Given the above complications in translating the species codes to full species names, and the errors inherent in the original data and those contributed by modern data entry,  we don't consider all our translations to be completely accurate.  Next to each name, you should see a link that will pop up a window showing you all the code-to-species matches from the various translation tables included in the original VTM data.\n" +
-    "			</li>\n" +
-    "			<a name=\"4\"/>\n" +
-    "			<li>\n" +
-    "				<h3>How do you translate the species codes to actual species names?</h3>\n" +
-    "				<p>The VTM data come with several lists of occasionally contradictory code-to-species translations, covering different areas of the state.</p>\n" +
-    "				\n" +
-    "				<div class=\"fig_center\">\n" +
-    "					<table>\n" +
-    "						<thead>\n" +
-    "							<tr>\n" +
-    "								<th>Source</th>\n" +
-    "								<th>Reference</th>\n" +
-    "							</tr>\n" +
-    "						</thead>\n" +
-    "						\n" +
-    "						<tbody>\n" +
-    "							<tr id=\"1\">\n" +
-    "								<td><strong>1</strong></td>\n" +
-    "								<td>\n" +
-    "									Wieslander, A.E., H.A. Jensen, H.S. Yates. 1933.  \"California Vegetative Type Map: Instructions for the Preparation of the Vegetative Type Map of California.\"  Unpublished report for US Dept of Agriculture, Forest Service.  Approximately 58 pp.\n" +
-    "									\n" +
-    "									<p>List 1 appears at the end of the report. It includes approximately 912 species codes for trees, shrubs, and herbs.</p>\n" +
-    "									\n" +
-    "								</td>\n" +
-    "							</tr>\n" +
-    "							<tr>\n" +
-    "								<td><strong>2</strong></td>\n" +
-    "								<td>\n" +
-    "									1938.  \"List of Plant Symbols for Use on the Vegetation Type Survey of California and Western Nevada.\"  Unpublished report for US Dept of Agriculture, Forest Service.\n" +
-    "									\n" +
-    "									<p>List 2 is the first list in the report and includes approximately 1,492 species codes for plants other than grasses.</p>\n" +
-    "								</td>\n" +
-    "							</tr>\n" +
-    "							<tr>\n" +
-    "								<td><strong>3</strong></td>\n" +
-    "								<td>\n" +
-    "									1938.  \"List of Plant Symbols for Use on the Vegetation Type Survey of California and Western Nevada.\"  Unpublished report for US Dept of Agriculture, Forest Service.  \n" +
-    "									\n" +
-    "									<p>List 3 is the second list in the report and includes approximately 1,495 species codes for plants other than grasses, most are duplicated in list 2.</p>\n" +
-    "								</td>\n" +
-    "							</tr>\n" +
-    "							<tr>\n" +
-    "								<td><strong>4</strong></td>\n" +
-    "								<td>\n" +
-    "									Wieslander, A.E., H.S. Yates, H.A. Jensen, and P.L Johannsen. (no date) \"Manual of Field Instructions for Vegetation Type Map of California.\" Unpublished report for US Dept of Agriculture, Forest Service. 196 pp.\n" +
-    "									\n" +
-    "									<p>We  refer to this document as \"the field manual\".  It includes approximately 1,675 species codes for trees, shrubs, and herbs.</p>\n" +
-    "								</td>\n" +
-    "							</tr>\n" +
-    "							<tr>\n" +
-    "								<td><strong>5</strong></td>\n" +
-    "								<td>\n" +
-    "									1938.  \"List of Plant Symbols for Use on the Vegetation Type Survey of California and Western Nevada.\"  Unpublished report for US Dept of Agriculture, Forest Service.\n" +
-    "									\n" +
-    "									<p>List 5 is the third list in the report and includes approximately 246 species codes for grasses.</p>\n" +
-    "								</td>\n" +
-    "							</tr>\n" +
-    "							<tr>\n" +
-    "								<td><strong>6</strong></td>\n" +
-    "								<td>\n" +
-    "									1938.  \"List of Plant Symbols for Use on the Vegetation Type Survey of California and Western Nevada.\"  Unpublished report for US Dept of Agriculture, Forest Service.\n" +
-    "									\n" +
-    "									<p>Reference is the same for list 2.  List 6 is the fourth list in the report and includes approximately 247 species codes for grasses, most are duplicated in list 5.</p>\n" +
-    "								</td>\n" +
-    "							</tr>\n" +
-    "							<tr>\n" +
-    "								<td><strong>common name</strong></td>\n" +
-    "								<td>Common name recorded on the datasheet without a code that can only correctly code to one particular genus, as in \"Juniper\" for <i>Juniperus sp.</i></td>\n" +
-    "							</tr>\n" +
-    "							<tr>\n" +
-    "								<td><strong>datasheet notations</strong></td>\n" +
-    "								<td>Code translations recorded on one or more plot datasheets and do not appear on a species list.</td>\n" +
-    "							</tr>\n" +
-    "							<tr>\n" +
-    "								<td><strong>Jensen1947</strong></td>\n" +
-    "								<td>Jensen, Herbert A. 1947. A system for classifying vegetation in California.  <i>California Fish and Game</i> 33(4): 199-266.</td>\n" +
-    "							</tr>\n" +
-    "							<tr>\n" +
-    "								<td><strong>suggestion</strong></td>\n" +
-    "								<td>A code translation that does not appear on any species lists nor on any of the plot datasheets but we think is very likely to be correct.  Examples of suggestions are \"Arcto Sp.\" translated to <i>Arctostaphylos sp.</i> and \"Sym\" translated to <i>Symphoricarpus sp.</i></td>\n" +
-    "							</tr>\n" +
-    "							<tr>\n" +
-    "								<td><strong>Vegetation Type Map</strong></td>\n" +
-    "								<td>A code for a vegetation type from the vegetation type maps.</td>\n" +
-    "							</tr>\n" +
-    "						</tbody>\n" +
-    "					</table>\n" +
-    "				</div>\n" +
-    "				\n" +
-    "				<p>All other lists are quad specific lists.  They are typed or written on one or more small pieces of paper and were found with their corresponding quad's vegetation plot data sheets.  They include the following lists:</p>\n" +
-    "				\n" +
-    "				<div class=\"fig_center\">\n" +
-    "					<table>\n" +
-    "						<thead>\n" +
-    "							<tr>\n" +
-    "								<th>List</th>\n" +
-    "								<th>Quad/Map No.</th>\n" +
-    "								<th>Quality</th>\n" +
-    "							</tr>\n" +
-    "						</thead>\n" +
-    "						\n" +
-    "						<tbody>\n" +
-    "							<tr>\n" +
-    "								<td>Markleeville</td>\n" +
-    "								<td>54</td>\n" +
-    "								<td>handwritten</td>\n" +
-    "							</tr>\n" +
-    "							<tr>\n" +
-    "								<td>Pyramid Peak</td>\n" +
-    "								<td>55</td>\n" +
-    "								<td>typed</td>\n" +
-    "							</tr>\n" +
-    "							<tr>\n" +
-    "								<td>Placerville</td>\n" +
-    "								<td>56</td>\n" +
-    "								<td>typed</td>\n" +
-    "							</tr>\n" +
-    "							<tr>\n" +
-    "								<td>Petaluma</td>\n" +
-    "								<td>64D</td>\n" +
-    "								<td>handwritten</td>\n" +
-    "							</tr>\n" +
-    "							<tr>\n" +
-    "								<td>Carquinez</td>\n" +
-    "								<td>65</td>\n" +
-    "								<td>handwritten</td>\n" +
-    "							</tr>\n" +
-    "							<tr>\n" +
-    "								<td>Hollister</td>\n" +
-    "								<td>104B</td>\n" +
-    "								<td>typed</td>\n" +
-    "							</tr>\n" +
-    "							<tr>\n" +
-    "								<td>Metz</td>\n" +
-    "								<td>107A</td>\n" +
-    "								<td>typed</td>\n" +
-    "							</tr>\n" +
-    "							<tr>\n" +
-    "								<td>Soledad</td>\n" +
-    "								<td>107B</td>\n" +
-    "								<td>typed</td>\n" +
-    "							</tr>\n" +
-    "							<tr>\n" +
-    "								<td>Priest Valley</td>\n" +
-    "								<td>108</td>\n" +
-    "								<td>handwritten</td>\n" +
-    "							</tr>\n" +
-    "							<tr>\n" +
-    "								<td>Coalinga</td>\n" +
-    "								<td>109</td>\n" +
-    "								<td>handwritten</td>\n" +
-    "							</tr>\n" +
-    "							<tr>\n" +
-    "								<td>Cholame</td>\n" +
-    "								<td>129</td>\n" +
-    "								<td>handwritten</td>\n" +
-    "							</tr>\n" +
-    "							<tr>\n" +
-    "								<td>McKittrick</td>\n" +
-    "								<td>134</td>\n" +
-    "								<td>handwritten</td>\n" +
-    "							</tr>\n" +
-    "							<tr>\n" +
-    "								<td>Tejon</td>\n" +
-    "								<td>154</td>\n" +
-    "								<td>handwritten</td>\n" +
-    "							</tr>\n" +
-    "							<tr>\n" +
-    "								<td>Mt Pinos</td>\n" +
-    "								<td>155</td>\n" +
-    "								<td>handwritten</td>\n" +
-    "							</tr>\n" +
-    "							<tr>\n" +
-    "								<td>Pasadena</td>\n" +
-    "								<td>162D</td>\n" +
-    "								<td>handwritten</td>\n" +
-    "							</tr>\n" +
-    "							<tr>\n" +
-    "								<td>Deep Creek</td>\n" +
-    "								<td>164A</td>\n" +
-    "								<td>handwritten</td>\n" +
-    "							</tr>\n" +
-    "							<tr>\n" +
-    "								<td>Capistrano</td>\n" +
-    "								<td>179A</td>\n" +
-    "								<td>typed</td>\n" +
-    "							</tr>\n" +
-    "							<tr>\n" +
-    "								<td>San Luis Rey</td>\n" +
-    "								<td>180</td>\n" +
-    "								<td>typed</td>\n" +
-    "							</tr>\n" +
-    "							<tr>\n" +
-    "								<td>La Jolla-El Cajon-San Diego</td>\n" +
-    "								<td>191, 192A</td>\n" +
-    "								<td>handwritten</td>\n" +
-    "							</tr>\n" +
-    "							<tr>\n" +
-    "								<td>El Cajon</td>\n" +
-    "								<td>191</td>\n" +
-    "								<td>handwritten</td>\n" +
-    "							</tr>\n" +
-    "							<tr>\n" +
-    "								<td>La Jolla</td>\n" +
-    "								<td>192A</td>\n" +
-    "								<td>typed</td>\n" +
-    "							</tr>\n" +
-    "						</tbody>\n" +
-    "					</table>\n" +
-    "				</div>\n" +
-    "			</li>\n" +
-    "				\n" +
-    "			<a name=\"5\"/>\n" +
-    "			<li>\n" +
-    "				<h3>Why do some species appear in areas where they couldn't possibly have been found?</h3>\n" +
-    "				\n" +
-    "				<p>As mentioned above, some species codes are ambiguous, and we do our best to report that ambiguity when it occurs.  There is also some error in the data, originating both from the original surveyors and from the modern digitization effort.  We have made no attempt to correct potentially erroneous codes in the original data, but we have reported the levels of modern data entry errors in the <a href ui-sref=\"about.plotdata\">description of the plot data</a>.</p>\n" +
-    "			\n" +
-    "			</li>\n" +
-    "			\n" +
-    "			<a name=\"6\"/>\n" +
-    "			<li>\n" +
-    "				<h3>Do you plan to provide scans of the original plot datasheets?</h3>\n" +
-    "				\n" +
-    "				<p>We are very interested in providing scans of the original datasheets on this site, but currently (as of May 2006) lack the appropriate funding.</p>\n" +
-    "			\n" +
-    "			</li>\n" +
+    "		<p>All other lists are quad specific lists.  They are typed or written on one or more small pieces of paper and were found with their corresponding quad's vegetation plot data sheets.  They include the following lists:</p>\n" +
     "		\n" +
-    "		</ol>\n" +
+    "		<div class=\"fig_center\">\n" +
+    "			<table>\n" +
+    "				<thead>\n" +
+    "					<tr>\n" +
+    "						<th>List</th>\n" +
+    "						<th>Quad/Map No.</th>\n" +
+    "						<th>Quality</th>\n" +
+    "					</tr>\n" +
+    "				</thead>\n" +
+    "				\n" +
+    "				<tbody>\n" +
+    "					<tr>\n" +
+    "						<td>Markleeville</td>\n" +
+    "						<td>54</td>\n" +
+    "						<td>handwritten</td>\n" +
+    "					</tr>\n" +
+    "					<tr>\n" +
+    "						<td>Pyramid Peak</td>\n" +
+    "						<td>55</td>\n" +
+    "						<td>typed</td>\n" +
+    "					</tr>\n" +
+    "					<tr>\n" +
+    "						<td>Placerville</td>\n" +
+    "						<td>56</td>\n" +
+    "						<td>typed</td>\n" +
+    "					</tr>\n" +
+    "					<tr>\n" +
+    "						<td>Petaluma</td>\n" +
+    "						<td>64D</td>\n" +
+    "						<td>handwritten</td>\n" +
+    "					</tr>\n" +
+    "					<tr>\n" +
+    "						<td>Carquinez</td>\n" +
+    "						<td>65</td>\n" +
+    "						<td>handwritten</td>\n" +
+    "					</tr>\n" +
+    "					<tr>\n" +
+    "						<td>Hollister</td>\n" +
+    "						<td>104B</td>\n" +
+    "						<td>typed</td>\n" +
+    "					</tr>\n" +
+    "					<tr>\n" +
+    "						<td>Metz</td>\n" +
+    "						<td>107A</td>\n" +
+    "						<td>typed</td>\n" +
+    "					</tr>\n" +
+    "					<tr>\n" +
+    "						<td>Soledad</td>\n" +
+    "						<td>107B</td>\n" +
+    "						<td>typed</td>\n" +
+    "					</tr>\n" +
+    "					<tr>\n" +
+    "						<td>Priest Valley</td>\n" +
+    "						<td>108</td>\n" +
+    "						<td>handwritten</td>\n" +
+    "					</tr>\n" +
+    "					<tr>\n" +
+    "						<td>Coalinga</td>\n" +
+    "						<td>109</td>\n" +
+    "						<td>handwritten</td>\n" +
+    "					</tr>\n" +
+    "					<tr>\n" +
+    "						<td>Cholame</td>\n" +
+    "						<td>129</td>\n" +
+    "						<td>handwritten</td>\n" +
+    "					</tr>\n" +
+    "					<tr>\n" +
+    "						<td>McKittrick</td>\n" +
+    "						<td>134</td>\n" +
+    "						<td>handwritten</td>\n" +
+    "					</tr>\n" +
+    "					<tr>\n" +
+    "						<td>Tejon</td>\n" +
+    "						<td>154</td>\n" +
+    "						<td>handwritten</td>\n" +
+    "					</tr>\n" +
+    "					<tr>\n" +
+    "						<td>Mt Pinos</td>\n" +
+    "						<td>155</td>\n" +
+    "						<td>handwritten</td>\n" +
+    "					</tr>\n" +
+    "					<tr>\n" +
+    "						<td>Pasadena</td>\n" +
+    "						<td>162D</td>\n" +
+    "						<td>handwritten</td>\n" +
+    "					</tr>\n" +
+    "					<tr>\n" +
+    "						<td>Deep Creek</td>\n" +
+    "						<td>164A</td>\n" +
+    "						<td>handwritten</td>\n" +
+    "					</tr>\n" +
+    "					<tr>\n" +
+    "						<td>Capistrano</td>\n" +
+    "						<td>179A</td>\n" +
+    "						<td>typed</td>\n" +
+    "					</tr>\n" +
+    "					<tr>\n" +
+    "						<td>San Luis Rey</td>\n" +
+    "						<td>180</td>\n" +
+    "						<td>typed</td>\n" +
+    "					</tr>\n" +
+    "					<tr>\n" +
+    "						<td>La Jolla-El Cajon-San Diego</td>\n" +
+    "						<td>191, 192A</td>\n" +
+    "						<td>handwritten</td>\n" +
+    "					</tr>\n" +
+    "					<tr>\n" +
+    "						<td>El Cajon</td>\n" +
+    "						<td>191</td>\n" +
+    "						<td>handwritten</td>\n" +
+    "					</tr>\n" +
+    "					<tr>\n" +
+    "						<td>La Jolla</td>\n" +
+    "						<td>192A</td>\n" +
+    "						<td>typed</td>\n" +
+    "					</tr>\n" +
+    "				</tbody>\n" +
+    "			</table>\n" +
+    "		</div>\n" +
+    "		<h2>Why do some species appear in areas where they couldn't possibly have been found?</h2>\n" +
+    "		\n" +
+    "		<p>As mentioned above, some species codes are ambiguous, and we do our best to report that ambiguity when it occurs.  There is also some error in the data, originating both from the original surveyors and from the modern digitization effort.  We have made no attempt to correct potentially erroneous codes in the original data, but we have reported the levels of modern data entry errors in the <a href ui-sref=\"about.plotdata\">description of the plot data</a>.</p>\n" +
+    "		<h2>Do you plan to provide scans of the original plot datasheets?</h2>\n" +
+    "		<p>We are very interested in providing scans of the original datasheets on this site, but currently (as of May 2006) lack the appropriate funding.</p>\n" +
     "	</div>\n" +
     "</div>\n" +
     "");
@@ -288,8 +262,6 @@ angular.module("about/about.plotdata.tpl.html", []).run(["$templateCache", funct
   $templateCache.put("about/about.plotdata.tpl.html",
     "<div class=\"row\" id=\"#about\">\n" +
     "    <div class=\"col-sm-12\">\n" +
-    "\n" +
-    "		<h1>About the VTM Plot Data</h1>\n" +
     "\n" +
     "		<p>The plot data consists of about 18,000 datasheets of recorded vegetation and environmental data from plots located throughout California and nearby areas of Nevada and Oregon.  Most plots were recorded in the 1930's and some as early as the 1920's.  Much of the data was collected in timberland since the objective of the VTM project was to survey forest resources (<a href=\"http://digitalassets.lib.berkeley.edu/vtm/ucb/text/cubio_vtm_fm.pdf\">Manual of Field Instructions for Vegetation Type Map of California</a>, pg.1); however, plots were also located in non-timber forests and woodlands, shrublands, and grasslands.</p>\n" +
     "\n" +
@@ -1126,8 +1098,6 @@ angular.module("about/about.plotmaps.tpl.html", []).run(["$templateCache", funct
     "<div class=\"row\" id=\"#about\">\n" +
     "    <div class=\"col-sm-12\">\n" +
     "\n" +
-    "		<h1>About the VTM Plot Maps and Plot Points</h1>\n" +
-    "				\n" +
     "		<p>The VTM plot maps show the locations of plots surveyed during the original VTM project.  The original surveyors ran vegetation transects at each plot, collecting species richness and abundance data for trees and ground cover.  The VTM plot maps mark the location of the plots with red numbered circles.  To our knowledge these circles were stamped, and thus their size has no meaning.</p>\n" +
     "\n" +
     "		<h2>NAMING CONVENTIONS</h2>\n" +
