@@ -14,7 +14,8 @@
  */
 angular.module( 'vtm.home', [
   'ui.router',
-  'ui.bootstrap'
+  'ui.bootstrap',
+  'customDirectives'
 ])
 
 /**

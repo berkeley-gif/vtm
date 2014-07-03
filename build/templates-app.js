@@ -1231,49 +1231,59 @@ angular.module("data/data.overview.tpl.html", []).run(["$templateCache", functio
     "</div>\n" +
     "\n" +
     "<div class=\"row\">\n" +
-    "    <div class=\"col-xs-12 col-sm-6 col-md-6\">\n" +
-    "        <div class=\"thumbnail\">\n" +
+    "    <div class=\"item col-md-6 col-sm-6 col-xs-12 text-center\">\n" +
+    "        <div class=\"features\">\n" +
     "            <a href ui-sref=\"data.vegetation\">\n" +
-    "                <img class=\"img-polaroid img-datasets\" src=\"assets/img/data_vegpolygons.png\" />\n" +
-    "                <div class=\"caption\">\n" +
-    "                    <h4>Vegetation Polygons</h3>\n" +
-    "                </div>\n" +
-    "            </a>\n" +
-    "        </div>\n" +
+    "                <div class=\"icon animated fadeIn delayp1\" style=\"opacity: 0;\">\n" +
+    "                    <img class=\"img-rounded\" src=\"assets/img/data_vegpolygons.png\" />\n" +
+    "                </div><!--//icon-->\n" +
+    "                <div class=\"content\">\n" +
+    "                    <h2 class=\"title\">Vegetation Polygons</h2>\n" +
+    "                    <p>View and download vegetation maps, plot data and photos. </p>  \n" +
+    "                </div><!--//content-->  \n" +
+    "            </a>        \n" +
+    "        </div>     \n" +
     "    </div>\n" +
-    "    <div class=\"col-xs-12 col-sm-6 col-md-6\">\n" +
-    "        <div class=\"thumbnail\">\n" +
+    "    <div class=\"item col-md-6 col-sm-6 col-xs-12 text-center\">\n" +
+    "        <div class=\"features\">\n" +
     "            <a href ui-sref=\"data.plots\">\n" +
-    "                <img class=\"img-polaroid img-datasets\" src=\"assets/img/data_plots.png\" />\n" +
-    "                <div class=\"caption\">\n" +
-    "                    <h4>VTM Plots</h3>\n" +
-    "                </div>\n" +
-    "            </a>\n" +
-    "        </div>\n" +
+    "                <div class=\"icon animated fadeIn delayp1\" style=\"opacity: 0;\">\n" +
+    "                    <img class=\"img-rounded\" src=\"assets/img/data_plots.png\" />\n" +
+    "                </div><!--//icon-->\n" +
+    "                <div class=\"content\">\n" +
+    "                    <h2 class=\"title\">Plot Data</h2>\n" +
+    "                    <p>Learn more about Wieslander's Vegetation Type mapping project. </p>  \n" +
+    "                </div><!--//content--> \n" +
+    "            </a>    \n" +
+    "        </div>           \n" +
     "    </div>\n" +
-    "    <div class=\"col-xs-12 col-sm-6 col-md-6\">\n" +
-    "        <div class=\"thumbnail\">\n" +
+    "    <div class=\"item col-md-6 col-sm-6 col-xs-12 text-center\">\n" +
+    "        <div class=\"features\">\n" +
     "            <a href ui-sref=\"data.photos\">\n" +
-    "                <img class=\"img-polaroid img-datasets\" src=\"assets/img/data_photolocations.png\" />\n" +
-    "                <div class=\"caption\">\n" +
-    "                    <h4>Photo Locations</h3>\n" +
-    "                </div>\n" +
+    "                <div class=\"icon animated fadeIn delayp1\" style=\"opacity: 0;\">\n" +
+    "                    <img class=\"img-rounded\" src=\"assets/img/data_photolocations.png\" />               \n" +
+    "                </div><!--//icon-->\n" +
+    "                <div class=\"content\">\n" +
+    "                    <h2 class=\"title\">Photo Locations</h2>\n" +
+    "                    <p>Explore the VTM photo collection using the Historic Photo Hunt app. </p>  \n" +
+    "                </div><!--//content-->  \n" +
     "            </a>\n" +
-    "        </div>\n" +
+    "        </div>              \n" +
     "    </div>\n" +
-    "    <div class=\"col-xs-12 col-sm-6 col-md-6\">\n" +
-    "        <div class=\"thumbnail\">\n" +
+    "    <div class=\"item col-md-6 col-sm-6 col-xs-12 text-center\">\n" +
+    "        <div class=\"features\">\n" +
     "            <a href ui-sref=\"data.mapsheets\">\n" +
-    "                <img class=\"img-polaroid img-datasets\" src=\"assets/img/data_mapsheets.png\" />\n" +
-    "                <div class=\"caption\">\n" +
-    "                    <h4>Original Mapsheet Images</h3>\n" +
-    "                </div>\n" +
+    "                <div class=\"icon animated fadeIn delayp1\" style=\"opacity: 0;\">\n" +
+    "                    <img class=\"img-rounded\" src=\"assets/img/data_mapsheets.png\" />        \n" +
+    "                </div><!--//icon-->\n" +
+    "                <div class=\"content\">\n" +
+    "                    <h2 class=\"title\">Plot Maps</h2>\n" +
+    "                    <p>Explore the VTM photo collection using the Historic Photo Hunt app. </p>  \n" +
+    "                </div><!--//content-->  \n" +
     "            </a>\n" +
-    "        </div>\n" +
+    "        </div>              \n" +
     "    </div>\n" +
-    "</div>\n" +
-    "\n" +
-    "");
+    "</div>");
 }]);
 
 angular.module("data/data.photos.tpl.html", []).run(["$templateCache", function($templateCache) {
@@ -1516,46 +1526,47 @@ angular.module("home/home.tpl.html", []).run(["$templateCache", function($templa
     "</div> <!-- end banner -->\n" +
     "\n" +
     "    <div class=\"row\">\n" +
-    "        <div class=\"col-md-4 section\">\n" +
-    "            <a href ui-sref=\"data.overview\" class=\"section-link\">\n" +
-    "                <div class=\"overlay\">\n" +
-    "                    <div class=\"overlay-content\">\n" +
-    "                        <i class=\"fa fa-search-plus fa-3x\"></i>\n" +
-    "                    </div>\n" +
-    "                </div>\n" +
-    "                <div class=\"section-content\">\n" +
-    "                    <h4><span class=\"title\">Data Access</span></h4>\n" +
-    "                    <p>View and download vegetation maps, plot data and photos. </p>\n" +
-    "                </div>\n" +
-    "            </a>\n" +
+    "        <div class=\"item col-md-4 col-sm-4 col-xs-12 text-center\">\n" +
+    "            <div class=\"features\">\n" +
+    "                <a href ui-sref=\"data.overview\">\n" +
+    "                    <div class=\"icon animated fadeIn delayp1\" style=\"opacity: 0;\">\n" +
+    "                        <i class=\"fa fa-cloud-download\"></i>                \n" +
+    "                    </div><!--//icon-->\n" +
+    "                    <div class=\"content\">\n" +
+    "                        <h2 class=\"title\">Data Access</h2>\n" +
+    "                        <p>View and download vegetation maps, plot data and photos. </p>  \n" +
+    "                    </div><!--//content-->  \n" +
+    "                </a>        \n" +
+    "            </div>     \n" +
     "        </div>\n" +
-    "        <div class=\"col-md-4 section\">\n" +
-    "            <a href ui-sref=\"about.overview\" class=\"section-link\">\n" +
-    "                <div class=\"overlay\">\n" +
-    "                    <div class=\"overlay-content\">\n" +
-    "                        <i class=\"fa fa-search-plus fa-3x\"></i>\n" +
-    "                    </div>\n" +
-    "                </div>\n" +
-    "                <div class=\"section-content\">\n" +
-    "                    <h4><span class=\"title\">Learn More</span></h4>\n" +
-    "                    <p>Learn more about the Wieslander's Vegetation Type Mapping project. </p>\n" +
-    "                </div>\n" +
-    "            </a>\n" +
+    "        <div class=\"item col-md-4 col-sm-4 col-xs-12 text-center\">\n" +
+    "            <div class=\"features\">\n" +
+    "                <a href ui-sref=\"about.overview\">\n" +
+    "                    <div class=\"icon animated fadeIn delayp1\" style=\"opacity: 0;\">\n" +
+    "                        <i class=\"fa fa-info-circle\"></i>                \n" +
+    "                    </div><!--//icon-->\n" +
+    "                    <div class=\"content\">\n" +
+    "                        <h2 class=\"title\">Learn More</h2>\n" +
+    "                        <p>Learn more about Wieslander's Vegetation Type mapping project. </p>  \n" +
+    "                    </div><!--//content--> \n" +
+    "                </a>      \n" +
+    "            </div>           \n" +
     "        </div>\n" +
-    "        <div class=\"col-md-4 section\">\n" +
-    "            <a href class=\"section-link\">\n" +
-    "                <div class=\"overlay\">\n" +
-    "                    <div class=\"overlay-content\">\n" +
-    "                        <i class=\"fa fa-search-plus fa-3x\"></i>\n" +
-    "                    </div>\n" +
-    "                </div>\n" +
-    "                <div class=\"section-content\">\n" +
-    "                  <h4><span class=\"title\">Explore</span></h4>\n" +
-    "                  <p>Explore the VTM photo collection using the Historic Photo Hunt app.</p>\n" +
-    "                </div>\n" +
-    "            </a>\n" +
+    "        <div class=\"item col-md-4 col-sm-4 col-xs-12 text-center\">\n" +
+    "            <div class=\"features\">\n" +
+    "                <a href=\"#\">\n" +
+    "                    <div class=\"icon animated fadeIn delayp1\" style=\"opacity: 0;\">\n" +
+    "                        <i class=\"fa fa-camera-retro\"></i>                \n" +
+    "                    </div><!--//icon-->\n" +
+    "                    <div class=\"content\">\n" +
+    "                        <h2 class=\"title\">Apps</h2>\n" +
+    "                        <p>Explore the VTM photo collection using the Historic Photo Hunt app. </p>  \n" +
+    "                    </div><!--//content-->  \n" +
+    "                </a>  \n" +
+    "            </div>              \n" +
     "        </div>\n" +
     "    </div>\n" +
+    "\n" +
     "\n" +
     "</div>\n" +
     "\n" +

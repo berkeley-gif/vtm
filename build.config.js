@@ -64,6 +64,7 @@ module.exports = {
     js: [
       'vendor/jquery/dist/jquery.min.js',
       'vendor/angular/angular.js',
+      'vendor/angular-animate/angular-animate.js',
       'vendor/angular-bootstrap/ui-bootstrap-tpls.min.js',
       'vendor/placeholders/angular-placeholders-0.0.1-SNAPSHOT.min.js',
       'vendor/angular-ui-router/release/angular-ui-router.js',
@@ -72,7 +73,8 @@ module.exports = {
     ],
     css: [
      'vendor/bootstrap/dist/css/bootstrap.css',
-     'vendor/leaflet-dist/leaflet.css'
+     'vendor/leaflet-dist/leaflet.css',
+     'vendor/animate.css/animate.css'
     ],
     assets: [
     ]
