@@ -1,18 +1,18 @@
 <div class="container learn-more">
     <div class="row">
         <div class="page-header">
-                <h3>
-                    <span class="title">{{pageTitle | split:'|':0}}</span>
-                </h3>
-                <h5 class="sub-nav-links">
-                    <a href ui-sref="about.overview">History</a> |
-                    <a href ui-sref="about.publications">Publications</a> |
-                    <a href ui-sref="about.citations">Suggested Citations</a>
-                </h5>
-
+			<h3>
+				<span class="title">{{pageTitle | split:'|':0}}</span>
+			</h3>
+			<h5 class="sub-nav-links">
+				<a href ui-sref="about.overview">History</a> |
+				<a href ui-sref="about.plotdata">Plot Data</a> |
+				<a href ui-sref="about.plotmaps">Plot Maps</a> |
+				<a href ui-sref="about.faq">FAQ</a> |
+				<a href ui-sref="about.publications">Publications</a> |
+				<a href ui-sref="about.citations">Suggested Citations</a>
+			</h5>
         </div>
     </div>
     <div ui-view></div>
-
 </div>
-
