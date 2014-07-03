@@ -1239,7 +1239,7 @@ angular.module("data/data.overview.tpl.html", []).run(["$templateCache", functio
     "                </div><!--//icon-->\n" +
     "                <div class=\"content\">\n" +
     "                    <h2 class=\"title\">Vegetation Polygons</h2>\n" +
-    "                    <p>View and download vegetation maps, plot data and photos. </p>  \n" +
+    "                    <p>Learn more about this data set. </p>  \n" +
     "                </div><!--//content-->  \n" +
     "            </a>        \n" +
     "        </div>     \n" +
@@ -1252,7 +1252,7 @@ angular.module("data/data.overview.tpl.html", []).run(["$templateCache", functio
     "                </div><!--//icon-->\n" +
     "                <div class=\"content\">\n" +
     "                    <h2 class=\"title\">Plot Data</h2>\n" +
-    "                    <p>Learn more about Wieslander's Vegetation Type mapping project. </p>  \n" +
+    "                    <p>Learn more about this data set. </p>  \n" +
     "                </div><!--//content--> \n" +
     "            </a>    \n" +
     "        </div>           \n" +
@@ -1265,7 +1265,7 @@ angular.module("data/data.overview.tpl.html", []).run(["$templateCache", functio
     "                </div><!--//icon-->\n" +
     "                <div class=\"content\">\n" +
     "                    <h2 class=\"title\">Photo Locations</h2>\n" +
-    "                    <p>Explore the VTM photo collection using the Historic Photo Hunt app. </p>  \n" +
+    "                    <p>Learn more about this data set. </p>   \n" +
     "                </div><!--//content-->  \n" +
     "            </a>\n" +
     "        </div>              \n" +
@@ -1278,7 +1278,7 @@ angular.module("data/data.overview.tpl.html", []).run(["$templateCache", functio
     "                </div><!--//icon-->\n" +
     "                <div class=\"content\">\n" +
     "                    <h2 class=\"title\">Plot Maps</h2>\n" +
-    "                    <p>Explore the VTM photo collection using the Historic Photo Hunt app. </p>  \n" +
+    "                    <p>Learn more about this data set. </p>   \n" +
     "                </div><!--//content-->  \n" +
     "            </a>\n" +
     "        </div>              \n" +
