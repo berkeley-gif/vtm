@@ -52,14 +52,14 @@ angular.module( 'vtm.home', [
   }*/
 
   slides.push(
-    {
-      image: 'assets/img/banner_yosemite_1140x560.jpg',
-      text: ''
-    },
 	{
       image: 'assets/img/banner_sfbay_1140x560.jpg',
       text: ''
-	},
+	},    
+	{
+      image: 'assets/img/banner_yosemite_1140x560.jpg',
+      text: ''
+    },
 	{
       image: 'assets/img/banner_drawer_1140x560.jpg',
       text: ''
