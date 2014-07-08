@@ -53,6 +53,18 @@ angular.module( 'vtm.home', [
 
   slides.push(
     {
+      image: 'assets/img/banner_yosemite_1140x560.jpg',
+      text: ''
+    },
+	{
+      image: 'assets/img/banner_sfbay_1140x560.jpg',
+      text: ''
+	},
+	{
+      image: 'assets/img/banner_drawer_1140x560.jpg',
+      text: ''
+	},
+    {
       image: 'assets/img/banner_bigtree_1140x560.jpg',
       text: ''
     },
@@ -60,15 +72,20 @@ angular.module( 'vtm.home', [
       image: 'assets/img/banner_eldorado_1140x560.jpg',
       text: ''
     },
+	{
+      image: 'assets/img/banner_placer_1140x560.jpg',
+      text: ''
+	},	
+	{
+      image: 'assets/img/banner_placer-plot_1140x560.jpg',
+      text: ''
+	},
+
     {
       image: 'assets/img/banner_lookout_1140x560.jpg',
       text: ''
-    },
-    {
-      image: 'assets/img/banner_yosemite_1140x560.jpg',
-      text: ''
     }
-  );
+ );
 
 })
 

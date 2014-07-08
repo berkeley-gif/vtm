@@ -17,19 +17,22 @@ angular.module("about/about.citations.tpl.html", []).run(["$templateCache", func
 
 angular.module("about/about.faq.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("about/about.faq.tpl.html",
-    "<div class=\"row\" id=\"#about\">\n" +
+    "<div class=\"row\">\n" +
     "	<div class=\"col-sm-12\">\n" +
-    "		<h2>What is an \"Unmatched species code\"?</h2>\n" +
+    "		<h3>What is an \"Unmatched species code\"?</h3>\n" +
     "		<p>An \"Unmatched species code\" refers to a code that we haven't been able to associate with a species.  When the original VTM surveyors recorded their data, they used 1-3 letter codes to refer to different species.  They listed most of these codes and their corresponding species in the VTM field manual, or along with the original data sheets, but not all of them.  Sometimes they also recorded irregular codes, or made typos, neither of which match to a species given the listings in the manual.</p>\n" +
-    "		<h2>What is an \"Ambiguous species code\"?</h2>\n" +
+    "\n" +
+    "		<h3>What is an \"Ambiguous species code\"?</h3>\n" +
     "		<p>An \"Ambiguous species code\" refers to a code that could refer to multiple different species.  Sometimes the original surveyors used the same code to refer to different species when they were working in different places.  Several of the species code crosswalks they left behind are quad specific, so if a code means one thing in the Napa quad and another in the Placerville quad, we can distinguish them.  However, several ambiguous codes are not quad specific, so given an ambiguous code in an area where none of the quad-specific crosswalks apply, we just report all the species to which the code could refer.</p>\n" +
-    "		<h2>What do you mean by \"<em>Probable</em> Species\"?</h2>\n" +
+    "\n" +
+    "		<h3>What do you mean by \"<em>Probable</em> Species\"?</h3>\n" +
     "		<p>Given the above complications in translating the species codes to full species names, and the errors inherent in the original data and those contributed by modern data entry,  we don't consider all our translations to be completely accurate.  Next to each name, you should see a link that will pop up a window showing you all the code-to-species matches from the various translation tables included in the original VTM data.</p>\n" +
-    "		<h2>How do you translate the species codes to actual species names?</h2>\n" +
+    "\n" +
+    "		<h3>How do you translate the species codes to actual species names?</h3>\n" +
     "		<p>The VTM data come with several lists of occasionally contradictory code-to-species translations, covering different areas of the state.</p>\n" +
     "				\n" +
-    "		<div class=\"fig_center\">\n" +
-    "			<table>\n" +
+    "		<div>\n" +
+    "			<table class=\"table table-hover\">\n" +
     "				<thead>\n" +
     "					<tr>\n" +
     "						<th>Source</th>\n" +
@@ -39,7 +42,7 @@ angular.module("about/about.faq.tpl.html", []).run(["$templateCache", function($
     "				\n" +
     "				<tbody>\n" +
     "					<tr id=\"1\">\n" +
-    "						<td><strong>1</strong></td>\n" +
+    "						<td>1</td>\n" +
     "						<td>\n" +
     "							Wieslander, A.E., H.A. Jensen, H.S. Yates. 1933.  \"California Vegetative Type Map: Instructions for the Preparation of the Vegetative Type Map of California.\"  Unpublished report for US Dept of Agriculture, Forest Service.  Approximately 58 pp.\n" +
     "							\n" +
@@ -48,7 +51,7 @@ angular.module("about/about.faq.tpl.html", []).run(["$templateCache", function($
     "						</td>\n" +
     "					</tr>\n" +
     "					<tr>\n" +
-    "						<td><strong>2</strong></td>\n" +
+    "						<td>2</td>\n" +
     "						<td>\n" +
     "							1938.  \"List of Plant Symbols for Use on the Vegetation Type Survey of California and Western Nevada.\"  Unpublished report for US Dept of Agriculture, Forest Service.\n" +
     "							\n" +
@@ -56,7 +59,7 @@ angular.module("about/about.faq.tpl.html", []).run(["$templateCache", function($
     "						</td>\n" +
     "					</tr>\n" +
     "					<tr>\n" +
-    "						<td><strong>3</strong></td>\n" +
+    "						<td>3</td>\n" +
     "						<td>\n" +
     "							1938.  \"List of Plant Symbols for Use on the Vegetation Type Survey of California and Western Nevada.\"  Unpublished report for US Dept of Agriculture, Forest Service.  \n" +
     "							\n" +
@@ -64,7 +67,7 @@ angular.module("about/about.faq.tpl.html", []).run(["$templateCache", function($
     "						</td>\n" +
     "					</tr>\n" +
     "					<tr>\n" +
-    "						<td><strong>4</strong></td>\n" +
+    "						<td>4</td>\n" +
     "						<td>\n" +
     "							Wieslander, A.E., H.S. Yates, H.A. Jensen, and P.L Johannsen. (no date) \"Manual of Field Instructions for Vegetation Type Map of California.\" Unpublished report for US Dept of Agriculture, Forest Service. 196 pp.\n" +
     "							\n" +
@@ -72,7 +75,7 @@ angular.module("about/about.faq.tpl.html", []).run(["$templateCache", function($
     "						</td>\n" +
     "					</tr>\n" +
     "					<tr>\n" +
-    "						<td><strong>5</strong></td>\n" +
+    "						<td>5</td>\n" +
     "						<td>\n" +
     "							1938.  \"List of Plant Symbols for Use on the Vegetation Type Survey of California and Western Nevada.\"  Unpublished report for US Dept of Agriculture, Forest Service.\n" +
     "							\n" +
@@ -80,7 +83,7 @@ angular.module("about/about.faq.tpl.html", []).run(["$templateCache", function($
     "						</td>\n" +
     "					</tr>\n" +
     "					<tr>\n" +
-    "						<td><strong>6</strong></td>\n" +
+    "						<td>6</td>\n" +
     "						<td>\n" +
     "							1938.  \"List of Plant Symbols for Use on the Vegetation Type Survey of California and Western Nevada.\"  Unpublished report for US Dept of Agriculture, Forest Service.\n" +
     "							\n" +
@@ -88,23 +91,23 @@ angular.module("about/about.faq.tpl.html", []).run(["$templateCache", function($
     "						</td>\n" +
     "					</tr>\n" +
     "					<tr>\n" +
-    "						<td><strong>common name</strong></td>\n" +
+    "						<td>common name</td>\n" +
     "						<td>Common name recorded on the datasheet without a code that can only correctly code to one particular genus, as in \"Juniper\" for <i>Juniperus sp.</i></td>\n" +
     "					</tr>\n" +
     "					<tr>\n" +
-    "						<td><strong>datasheet notations</strong></td>\n" +
+    "						<td>datasheet notations</td>\n" +
     "						<td>Code translations recorded on one or more plot datasheets and do not appear on a species list.</td>\n" +
     "					</tr>\n" +
     "					<tr>\n" +
-    "						<td><strong>Jensen1947</strong></td>\n" +
+    "						<td>Jensen1947</td>\n" +
     "						<td>Jensen, Herbert A. 1947. A system for classifying vegetation in California.  <i>California Fish and Game</i> 33(4): 199-266.</td>\n" +
     "					</tr>\n" +
     "					<tr>\n" +
-    "						<td><strong>suggestion</strong></td>\n" +
+    "						<td>suggestion</td>\n" +
     "						<td>A code translation that does not appear on any species lists nor on any of the plot datasheets but we think is very likely to be correct.  Examples of suggestions are \"Arcto Sp.\" translated to <i>Arctostaphylos sp.</i> and \"Sym\" translated to <i>Symphoricarpus sp.</i></td>\n" +
     "					</tr>\n" +
     "					<tr>\n" +
-    "						<td><strong>Vegetation Type Map</strong></td>\n" +
+    "						<td>Vegetation Type Map</td>\n" +
     "						<td>A code for a vegetation type from the vegetation type maps.</td>\n" +
     "					</tr>\n" +
     "				</tbody>\n" +
@@ -113,8 +116,8 @@ angular.module("about/about.faq.tpl.html", []).run(["$templateCache", function($
     "		\n" +
     "		<p>All other lists are quad specific lists.  They are typed or written on one or more small pieces of paper and were found with their corresponding quad's vegetation plot data sheets.  They include the following lists:</p>\n" +
     "		\n" +
-    "		<div class=\"fig_center\">\n" +
-    "			<table>\n" +
+    "		<div>\n" +
+    "			<table class=\"table table-hover\">\n" +
     "				<thead>\n" +
     "					<tr>\n" +
     "						<th>List</th>\n" +
@@ -232,11 +235,13 @@ angular.module("about/about.faq.tpl.html", []).run(["$templateCache", function($
     "				</tbody>\n" +
     "			</table>\n" +
     "		</div>\n" +
-    "		<h2>Why do some species appear in areas where they couldn't possibly have been found?</h2>\n" +
-    "		\n" +
+    "\n" +
+    "		<h3>Why do some species appear in areas where they couldn't possibly have been found?</h3>		\n" +
     "		<p>As mentioned above, some species codes are ambiguous, and we do our best to report that ambiguity when it occurs.  There is also some error in the data, originating both from the original surveyors and from the modern digitization effort.  We have made no attempt to correct potentially erroneous codes in the original data, but we have reported the levels of modern data entry errors in the <a href ui-sref=\"about.plotdata\">description of the plot data</a>.</p>\n" +
-    "		<h2>Do you plan to provide scans of the original plot datasheets?</h2>\n" +
+    "\n" +
+    "		<h3>Do you plan to provide scans of the original plot datasheets?</h3>\n" +
     "		<p>We are very interested in providing scans of the original datasheets on this site, but currently (as of May 2006) lack the appropriate funding.</p>\n" +
+    "\n" +
     "	</div>\n" +
     "</div>\n" +
     "");
@@ -260,36 +265,36 @@ angular.module("about/about.overview.tpl.html", []).run(["$templateCache", funct
 
 angular.module("about/about.plotdata.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("about/about.plotdata.tpl.html",
-    "<div class=\"row\" id=\"#about\">\n" +
+    "<div class=\"row\">\n" +
     "    <div class=\"col-sm-12\">\n" +
     "\n" +
-    "		<p>The plot data consists of about 18,000 datasheets of recorded vegetation and environmental data from plots located throughout California and nearby areas of Nevada and Oregon.  Most plots were recorded in the 1930's and some as early as the 1920's.  Much of the data was collected in timberland since the objective of the VTM project was to survey forest resources (<a href=\"http://digitalassets.lib.berkeley.edu/vtm/ucb/text/cubio_vtm_fm.pdf\">Manual of Field Instructions for Vegetation Type Map of California</a>, pg.1); however, plots were also located in non-timber forests and woodlands, shrublands, and grasslands.</p>\n" +
+    "		<p>The plot data consists of about 18,000 datasheets of recorded vegetation and environmental data from plots located throughout California and nearby areas of Nevada and Oregon.  Most plots were recorded in the 1930's and some as early as the 1920's.  Much of the data was collected in timberland since the objective of the VTM project was to survey forest resources (<a target=\"_blank\" href=\"http://digitalassets.lib.berkeley.edu/vtm/ucb/text/cubio_vtm_fm.pdf\">Manual of Field Instructions for Vegetation Type Map of California, pg.1</a>); however, plots were also located in non-timber forests and woodlands, shrublands, and grasslands.</p>\n" +
     "\n" +
-    "		<h2>A BRIEF SUMMARY OF THE METHODS</h2>\n" +
+    "		<h3>A Brief Summary of the Methods</h3>\n" +
     "\n" +
     "		<p>The Brush and Ground Cover plots were 2 x 0.5 chains in size (132 x 33ft or roughly 40 x 10m). VTM field biologists divided the rectangular plot into 100 equal sections and recorded the one herb or shrub species that was dominant in each subplot. They then calculated percent cover for each species by summing the number of subplots containing each dominant species. They also recorded the average height of each species and the depth of the litter.</p>\n" +
     "\n" +
     "		<p>Trees were sampled in a 1 chain wide strip whose center line coincided with one of the midline edges of the Brush and Ground Cover plot, thus Tree Tally plots were 2 x 1 chains in size (132 x 66ft or roughly 40 x 20m).  All trees with a DBH (diameter breast height) of at least 4\" were tallied by species into DBH size classes.</p>\n" +
     "\n" +
-    "		<p>In addition to herb, shrub, and tree data, they also recorded: vegetation type, exposure, slope, year of last burn, soil depth and character, parent rock, site index (an index of soil productivity measured by estimating the height attainable by the average dominant trees at 300 years), additional ground cover species, and remarks about the plot.  A complete description of the methods for the plot data can be viewed in the VTM field manual (<a href=\"http://digitalassets.lib.berkeley.edu/vtm/ucb/text/cubio_vtm_fm.pdf\">Manual of Field Instructions for Vegetation Type Map of California</a>), by A.E. Wieslander.  VTM vegetation plots are referred to as \"Vegetation Type Sample Plots\" or just \"Sample Plots\" in VTM documents.</p>\n" +
+    "		<p>In addition to herb, shrub, and tree data, they also recorded: vegetation type, exposure, slope, year of last burn, soil depth and character, parent rock, site index (an index of soil productivity measured by estimating the height attainable by the average dominant trees at 300 years), additional ground cover species, and remarks about the plot.  A complete description of the methods for the plot data can be viewed in the VTM field manual <a target=\"_blank\" href=\"http://digitalassets.lib.berkeley.edu/vtm/ucb/text/cubio_vtm_fm.pdf\">Manual of Field Instructions for Vegetation Type Map of California</a>, by A.E. Wieslander.  VTM vegetation plots are referred to as \"Vegetation Type Sample Plots\" or just \"Sample Plots\" in VTM documents.</p>\n" +
     "\n" +
-    "		<h2>NAMING CONVENTIONS</h2>\n" +
+    "		<h3>Naming Conventions</h3>\n" +
     "\n" +
     "		<p>Each VTM plot map was divided into a grid, labeled alphabetically down the side and numerically across the top. The plots were numbered within each section of the grid, for example A13 for grid section A 1, plot 3. We assign each plot a unique identifier by prepending the quad number, i.e. 65A13 for quad 65, grid section A 1, plot 3.</p>\n" +
     "\n" +
-    "		<h2>ENTERING THE DATA</h2>\n" +
+    "		<h3>Entering the Data</h3>\n" +
     "\n" +
-    "		<p>The plot datasheets were entered by the <a href=\"http://nature.berkeley.edu/allen-diazlab/\">Allen-Diaz lab</a> into an MS Access database developed by staff at the USDA Forest Service, Pacific Northwest Research Station, Forest Inventory and Analysis Program.  Each section on the datasheets corresponds to a field in the database.  The only field that does not occur on the datasheets is the Miscellaneous Notes field.  This field contains additional information about the datasheet that does not fall into one of the standard sections on the datasheet such as notes written on the margins, condition of the datasheet, or other noteworthy comments about the datasheet. </p>\n" +
+    "		<p>The plot datasheets were entered by the <a target=\"_blank\" href=\"http://nature.berkeley.edu/allen-diazlab/\">Allen-Diaz Lab</a> into an MS Access database developed by staff at the USDA Forest Service, Pacific Northwest Research Station, Forest Inventory and Analysis Program.  Each section on the datasheets corresponds to a field in the database.  The only field that does not occur on the datasheets is the Miscellaneous Notes field.  This field contains additional information about the datasheet that does not fall into one of the standard sections on the datasheet such as notes written on the margins, condition of the datasheet, or other noteworthy comments about the datasheet. </p>\n" +
     "\n" +
-    "		<h2>QUALITY CONTROL</h2>\n" +
+    "		<h3>Quality Control</h3>\n" +
     "\n" +
     "		<p>The VTM plot collection is a large dataset that required over a thousand data entry hours to transform almost 18,000 handwritten datasheets from the 1930's into a usable format for the public.  Needless to say, this enormous task also involved countless hours of quality control to find and correct data entry errors. We report error rates from quality assurance (QA) tests that should help users gauge the usefulness of the data for their own purposes.</p>\n" +
     "\n" +
-    "		<p>To test the database for accuracy, we (the Allen-Diaz Lab) randomly selected two non-overlapping samples of 100 plots from the collection and compared what was entered to what was written on the datasheets.  Each field in the database corresponds to a section on the datasheet.  We documented errors we found for each field so we could calculate a percent error per field.  Errors were counted if it resulted in an incorrect or missing value.  If what was written was slightly different than what was entered but did not change the meaning, it was not counted as an error.  For example, in the geographic location field, if \"1/2 mile\" was changed to \"0.5 mile\" it was not counted as an error.  Results from the QA tests are shown in the table below.</p>\n" +
+    "		<p>To test the database for accuracy, we (the <a target=\"_blank\" href=\"http://nature.berkeley.edu/allen-diazlab/\">Allen-Diaz Lab</a>) randomly selected two non-overlapping samples of 100 plots from the collection and compared what was entered to what was written on the datasheets.  Each field in the database corresponds to a section on the datasheet.  We documented errors we found for each field so we could calculate a percent error per field.  Errors were counted if it resulted in an incorrect or missing value.  If what was written was slightly different than what was entered but did not change the meaning, it was not counted as an error.  For example, in the geographic location field, if \"1/2 mile\" was changed to \"0.5 mile\" it was not counted as an error.  Results from the QA tests are shown in the table below.</p>\n" +
     "\n" +
-    "		<div id=\"plotdata_qa_table\">\n" +
-    "		<table>\n" +
-    "			<colgroup id=\"col1\" span=\"1\"></colgroup><colgroup id=\"col2\" span=\"3\"></colgroup>\n" +
+    "		<table class=\"table table-hover\">\n" +
+    "			<colgroup id=\"col1\" span=\"1\"></colgroup>\n" +
+    "			<colgroup id=\"col2\" span=\"3\"></colgroup>\n" +
     "			<tr>\n" +
     "				<th rowspan=\"2\">Field</th>\n" +
     "				<th colspan=\"3\">Random Subsample</th>\n" +
@@ -390,31 +395,31 @@ angular.module("about/about.plotdata.tpl.html", []).run(["$templateCache", funct
     "				<td>1.0%</td>\n" +
     "			</tr>\n" +
     "			<tr>\n" +
-    "				<td>Veg. Type</td>\n" +
+    "				<td>Vegetation Type</td>\n" +
     "				<td>0.6%</td>\n" +
     "				<td>2.8%</td>\n" +
     "				<td>1.7%</td>\n" +
     "			</tr>\n" +
     "			<tr>\n" +
-    "				<td>Ground Cover_Species Code</td>\n" +
+    "				<td>Ground Cover (Species Code)</td>\n" +
     "				<td>2.0%</td>\n" +
     "				<td>2.7%</td>\n" +
     "				<td>2.4%</td>\n" +
     "			</tr>\n" +
     "			<tr>\n" +
-    "				<td>Ground Cover_% Cover</td>\n" +
+    "				<td>Ground Cover (% Cover)</td>\n" +
     "				<td>0.9%</td>\n" +
     "				<td>1.4%</td>\n" +
     "				<td>1.1%</td>\n" +
     "			</tr>\n" +
     "			<tr>\n" +
-    "				<td>Ground Cover_Height (ft)</td>\n" +
+    "				<td>Ground Cover Height (ft)</td>\n" +
     "				<td>0.5%</td>\n" +
     "				<td>0.5%</td>\n" +
     "				<td>0.5%</td>\n" +
     "			</tr>\n" +
     "			<tr>\n" +
-    "				<td>Ground Cover_Litter Depth (in)</td>\n" +
+    "				<td>Ground Cover Litter Depth (in)</td>\n" +
     "				<td>0.0%</td>\n" +
     "				<td>1.0%</td>\n" +
     "				<td>0.5%</td>\n" +
@@ -426,31 +431,25 @@ angular.module("about/about.plotdata.tpl.html", []).run(["$templateCache", funct
     "				<td>1.9%</td>\n" +
     "			</tr>\n" +
     "			<tr>\n" +
-    "				<td>Tree_Species Code</td>\n" +
+    "				<td>Tree Species Code</td>\n" +
     "				<td>1.6%</td>\n" +
     "				<td>4.4%</td>\n" +
     "				<td>2.7%</td>\n" +
     "			</tr>\n" +
     "			<tr>\n" +
-    "				<td>Tree_DBH</td>\n" +
+    "				<td>Tree DBH</td>\n" +
     "				<td>0.8%</td>\n" +
     "				<td>2.9%</td>\n" +
     "				<td>1.9%</td>\n" +
     "			</tr>\n" +
     "			<tr>\n" +
-    "		<!--\n" +
-    "				<td>Tree_Total</td>\n" +
-    "				<td>3.2%</td>\n" +
-    "				<td>8.0%</td>\n" +
-    "				<td>5.7%</td>\n" +
-    "		-->\n" +
-    "				<td>Tree_Total</td>\n" +
+    "				<td>Tree Total</td>\n" +
     "				<td>0%</td>\n" +
     "				<td>0%</td>\n" +
     "				<td>0%</td>\n" +
     "			</tr>\n" +
     "			<tr>\n" +
-    "				<td>Tree_Height (ft)</td>\n" +
+    "				<td>Tree Height (ft)</td>\n" +
     "				<td>0.0%</td>\n" +
     "				<td>2.2%</td>\n" +
     "				<td>1.1%</td>\n" +
@@ -461,128 +460,67 @@ angular.module("about/about.plotdata.tpl.html", []).run(["$templateCache", funct
     "				<td>11.0%</td>\n" +
     "				<td>11.0%</td>\n" +
     "			</tr>\n" +
-    "		 <tr>\n" +
-    "		  <td>\n" +
-    "		  Soil Origin\n" +
-    "		  </td>\n" +
-    "		  <td>\n" +
-    "\n" +
-    "		  3.0%\n" +
-    "		  </td>\n" +
-    "		  <td>\n" +
-    "		  1.0%\n" +
-    "		  </td>\n" +
-    "		  <td>\n" +
-    "		  2.0%\n" +
-    "\n" +
-    "		  </td>\n" +
-    "		 </tr>\n" +
-    "		 <tr>\n" +
-    "		  <td>\n" +
-    "		  Soil Depth\n" +
-    "		  </td>\n" +
-    "		  <td>\n" +
-    "		  1.0%\n" +
-    "\n" +
-    "		  </td>\n" +
-    "		  <td>\n" +
-    "		  0.0%\n" +
-    "		  </td>\n" +
-    "		  <td>\n" +
-    "		  0.5%\n" +
-    "		  </td>\n" +
-    "		 </tr>\n" +
-    "\n" +
-    "		 <tr>\n" +
-    "		  <td>\n" +
-    "		  Soil Character\n" +
-    "		  </td>\n" +
-    "		  <td>\n" +
-    "		  2.0%\n" +
-    "		  </td>\n" +
-    "		  <td>\n" +
-    "\n" +
-    "		  3.0%\n" +
-    "		  </td>\n" +
-    "		  <td>\n" +
-    "		  2.5%\n" +
-    "		  </td>\n" +
-    "		 </tr>\n" +
-    "		 <tr>\n" +
-    "		  <td>\n" +
-    "\n" +
-    "		  Excessive Erosion Evidence\n" +
-    "		  </td>\n" +
-    "		  <td>\n" +
-    "		  1.0%\n" +
-    "		  </td>\n" +
-    "		  <td>\n" +
-    "		  0.0%\n" +
-    "\n" +
-    "		  </td>\n" +
-    "		  <td>\n" +
-    "		  0.5%\n" +
-    "		  </td>\n" +
-    "		 </tr>\n" +
-    "		 <tr>\n" +
-    "		  <td>\n" +
-    "		  Remarks\n" +
-    "\n" +
-    "		  </td>\n" +
-    "		  <td>\n" +
-    "		  2.0%\n" +
-    "		  </td>\n" +
-    "		  <td>\n" +
-    "		  1.0%\n" +
-    "		  </td>\n" +
-    "		  <td>\n" +
-    "\n" +
-    "		  1.5%\n" +
-    "		  </td>\n" +
-    "		 </tr>\n" +
-    "		 <tr>\n" +
-    "		  <td>\n" +
-    "		  Misc Notes\n" +
-    "		  </td>\n" +
-    "		  <td>\n" +
-    "\n" +
-    "		  1.0%\n" +
-    "		  </td>\n" +
-    "		  <td>\n" +
-    "		  6.0%\n" +
-    "		  </td>\n" +
-    "		  <td>\n" +
-    "		  3.5%\n" +
-    "\n" +
-    "		  </td>\n" +
-    "		 </tr>\n" +
+    "		 	<tr>\n" +
+    "		  		<td>Soil Origin</td>\n" +
+    "		  		<td>3.0%</td>\n" +
+    "		  		<td>1.0%</td>\n" +
+    "				<td>2.0%</td>\n" +
+    "			</tr>\n" +
+    "			<tr>\n" +
+    "				<td>Soil Depth</td>\n" +
+    "				<td>1.0%</td>\n" +
+    "				<td>0.0%</td>\n" +
+    "				<td>0.5%</td>\n" +
+    "			</tr>\n" +
+    "			<tr>\n" +
+    "				<td>Soil Character</td>\n" +
+    "				<td>2.0%</td>\n" +
+    "				<td>3.0%</td>\n" +
+    "				<td>2.5%</td>\n" +
+    "			</tr>\n" +
+    "			<tr>\n" +
+    "				<td>Excessive Erosion Evidence</td>\n" +
+    "				<td>1.0%</td>\n" +
+    "				<td>0.0%</td>\n" +
+    "				<td>0.5%</td>\n" +
+    "			</tr>\n" +
+    "			<tr>\n" +
+    "				<td>Remarks</td>\n" +
+    "				<td>2.0%</td>\n" +
+    "				<td>1.0%</td>\n" +
+    "				<td>1.5%</td>\n" +
+    "			</tr>\n" +
+    "			<tr>\n" +
+    "				<td>Misc Notes</td>\n" +
+    "				<td>1.0%</td>\n" +
+    "				<td>6.0%</td>\n" +
+    "				<td>3.5%</td>\n" +
+    "			</tr>\n" +
     "		</table>\n" +
-    "\n" +
-    "		</div>\n" +
     "\n" +
     "		<p>All errors in parent rock field were errors of omission, ie, no data was in the field when data were actually available.  In the slope field, 55% of the errors were errors of omission.  These occurred when the value on the datasheet was text rather than a numeric value.  These entries were left blank and the text was entered in the miscellaneous field.</p>\n" +
     "\n" +
-    "		<h2>DATABASE</h2>\n" +
+    "		<h3>Database</h3>\n" +
     "\n" +
     "		<p>We converted the database Access to MySQL, a freely available and powerful database system.  This conversion was done to facilitate publishing the data in the various web tools and web browsing applications we have developed to analyze and display the data.  MySQL is well supported by other software critical to the development of these tools (Apache web server software, PHP and Perl programming languages, etc.).  Having the data in an SQL language compliant database also enhances the complexity of the searches we can conduct.  </p>\n" +
     "\n" +
-    "		<p>The database for the VTM project is maintained at the College of Natural Resources Statistics and Bioinformatics Consulting Service  (<a href=\"http://nature.berkeley.edu/sbcs\">http://nature.berkeley.edu/sbcs</a>). </p>\n" +
+    "		<p>The database for the VTM project is maintained at the <a target=\"_blank\" href=\"http://nature.berkeley.edu/sbcs\">College of Natural Resources Statistics and Bioinformatics Consulting Service </a>. </p>\n" +
     "\n" +
-    "		<h2>CAUTIONARY NOTES</h2>\n" +
+    "		<h3>Cautionary Notes</h3>\n" +
     "\n" +
     "		<p>Although we have taken great pains to ensure the accuracy of the data, there are some aspects of the data of which we feel the user should be aware.  Firstly, our objective in making the plot data available was simply to transcribe what was recorded on the VTM plot datasheets into a usable digital format.  We corrected obvious spelling errors, but we did not try to interpret ambiguous or possibly incorrect data recorded on the datasheets by the VTM field recorders.  We cannot make an estimate of the accuracy of the data recorded by the VTM personnel.</p>\n" +
     "\n" +
-    "		<p>All species names in the plot database are consistent with the time period of the VTM data collection (mainly 1930's) during which time the first Jepson manual (Jepson 1925) was widely used in California.  Since that time many taxonomic changes have occurred along with the publications of the Munz manual (Munz and Keck 1968) and the second Jepson manual (Hickman 1993), among others.  It is important to understand that not all revisions are a straightforward replacement of the old name with the current name.  Taxonomic changes can also include lumping and splitting of taxa, changes in rank, and circumscription changes.  We did not update any of the names in the plot collection to current names.  We have provided a link in the <a href ui-sref=\"data.plots\">plot data query tool</a> that provides historical synonyms, but users should be aware of the complexities of certain taxonomic changes and be judicious in their use. </p>\n" +
+    "		<p>All species names in the plot database are consistent with the time period of the VTM data collection (mainly 1930's) during which time the first Jepson manual (Jepson 1925) was widely used in California.  Since that time many taxonomic changes have occurred along with the publications of the Munz manual (Munz and Keck 1968) and the second Jepson manual (Hickman 1993), among others.  It is important to understand that not all revisions are a straightforward replacement of the old name with the current name.  Taxonomic changes can also include lumping and splitting of taxa, changes in rank, and circumscription changes.  We did not update any of the names in the plot collection to current names.  We have provided a link in the <a target=\"_blank\" href ui-sref=\"data.plots\">plot data query tool</a> that provides historical synonyms, but users should be aware of the complexities of certain taxonomic changes and be judicious in their use. </p>\n" +
     "\n" +
-    "		<p>There are some especially troublesome species codes that may provide a challenge to users of the plot data.  Sometimes the same species code in the VTM species lists can code for two different species.  For example, one of the species lists shows A2 as the code for <i>Agrostis sp</i>. as well as <i>Alnus rhombifolius</i>.  In cases such as these, the web site is designed to show all possible species names that apply to a code if more than one exists (<a href ui-sref=\"about.faq\">an ambiguous species code</a>).  In another example, the code R was often used to denote the presence of rock, although R is also the code for <i>Sequoia sempervirens</i>.  Many of these cases can be decided by the user just by the location of the entry on the datasheet.  For example, if R is recorded in the tree tally section and has dbh values, then it is most certainly referring to the tree and not to rock.</p>\n" +
+    "		<p>There are some especially troublesome species codes that may provide a challenge to users of the plot data.  Sometimes the same species code in the VTM species lists can code for two different species.  For example, one of the species lists shows A2 as the code for <i>Agrostis sp</i>. as well as <i>Alnus rhombifolius</i>.  In cases such as these, the web site is designed to show all possible species names that apply to a code if more than one exists (<a target=\"_blank\" href ui-sref=\"about.faq\">an ambiguous species code</a>).  In another example, the code R was often used to denote the presence of rock, although R is also the code for <i>Sequoia sempervirens</i>.  Many of these cases can be decided by the user just by the location of the entry on the datasheet.  For example, if R is recorded in the tree tally section and has dbh values, then it is most certainly referring to the tree and not to rock.</p>\n" +
     "\n" +
-    "		<p>Also, many species codes are different in slight but important ways which may have been overlooked by the data entry person or by the VTM field recorder.  If one letter or symbol of the code was incorrectly entered or recorded it could translate into a different species or an <a href ui-sref=\"about.faq\">unidentified species code</a>.  For example, species codes for grasses were underlined.  During data entry those codes were entered with a 2 following the code to denote the underline.  If, for example, the data entry person did not notice that the code LP was underlined it would translate to <i>Pinus flexilis</i> (LP) instead of <i>Leptochloa sp</i>. (LP2).  Also, codes that depend on the case of the second letter can be problematic.  For instance, depending on the VTM recorder's handwriting it may be difficult to distinguish a lowercase l with the number 1, which again could lead to an incorrect translation from code to species name.  If the data entry person could not read the VTM field recorder's handwriting, the entry was entered as \"illegible\".</p>\n" +
+    "		<p>Also, many species codes are different in slight but important ways which may have been overlooked by the data entry person or by the VTM field recorder.  If one letter or symbol of the code was incorrectly entered or recorded it could translate into a different species or an <a target=\"_blank\" href ui-sref=\"about.faq\">unidentified species code</a>.  For example, species codes for grasses were underlined.  During data entry those codes were entered with a 2 following the code to denote the underline.  If, for example, the data entry person did not notice that the code LP was underlined it would translate to <i>Pinus flexilis</i> (LP) instead of <i>Leptochloa sp</i>. (LP2).  Also, codes that depend on the case of the second letter can be problematic.  For instance, depending on the VTM recorder's handwriting it may be difficult to distinguish a lowercase l with the number 1, which again could lead to an incorrect translation from code to species name.  If the data entry person could not read the VTM field recorder's handwriting, the entry was entered as \"illegible\".</p>\n" +
     "\n" +
     "		<p>Many entries recorded in the Vegetation Type section of the plot datasheets are not the same as the mapped vegetation type on the corresponding Vegetation Type Map.  Most of the time the vegetation type was recorded in words, like \"Sagebrush\", which is straightforward; but VTM field recorders often recorded the vegetation type instead as a string of species codes, like \"AtrGr2\", to denote the dominant species in the area.  Atr is code for <i>Artemisia tridentata</i> and Gr2 is code for <i>Grass</i>, so in this case the database would show <i>Artemisia tridentata</i> and <i>Grass</i> as the entry for this plot.   These species codes would have been later interpreted by VTM personnel to fall into one of the vegetation types and the plot would have been mapped accordingly.  However, if a user queries the Vegetation Type field of the database for all the Sagebrush vegetation type plots, only the plots that actually have the word \"Sagebrush\" in the Type field would be included in the query results, even though the \"<i>Artemisia tridentata</i> and Grass\" plot may have been mapped as a Sagebrush type.  </p>\n" +
     "\n" +
     "		<p>The species code \"W\" or \"w\" is of special concern when it appears in the Vegetation Type field.  The lowercase w always follows an uppercase letter such as \"Dw\".  D is the code for Douglas fir (1930's name was <i>Pseudotsuga taxifolia</i>)*; and W is the code for <i>Quercus wislizenii</i>.  It appears that when used in the type field, W and w may sometimes refer to the species <i>Abies concolor</i> (species code W1).  We think this may be true because in some cases it is recorded in plots that 1) list W1 in the tree tally section and not W, and 2) these plots are also outside of the elevational range of <i>Quercus wislizenii</i>.  In other cases it does appear to code for <i>Quercus wislizenii</i>.  In either case, the database will translate W to <i>Quercus wislizenii</i> because we have found no documented source (no official VTM species list or other official VTM source) that W can also refer to <i>Abies concolor</i>.</p>\n" +
     "\n" +
-    "		<p>Our task was to provide what was written on the datasheets in a digital format.  The type field as it exists may not be the best way to answer research questions about vegetation types, since the type field data on the datasheets is often in a raw species list format.  The order of the species codes listed in this field was important in translating to a vegetation type (<a href=\"http://digitalassets.lib.berkeley.edu/vtm/ucb/text/cubio_vtm_fm.pdf\">Manual of Field Instructions for Vegetation Type Map of California</a>), and this was done by VTM personnel for the preparation of the Vegetation Type Map.  Therefore, data from existing digitized Vegetation Type Maps (digitization is currently in progress) are the best source of classifying vegetation of particular plots using the VTM method of classification.</p>\n" +
+    "		<p>Our task was to provide what was written on the datasheets in a digital format.  The type field as it exists may not be the best way to answer research questions about vegetation types, since the type field data on the datasheets is often in a raw species list format.  The order of the species codes listed in this field was important in translating to a vegetation type (<a target=\"_blank\" href=\"http://digitalassets.lib.berkeley.edu/vtm/ucb/text/cubio_vtm_fm.pdf\">Manual of Field Instructions for Vegetation Type Map of California</a>), and this was done by VTM personnel for the preparation of the Vegetation Type Map.  Therefore, data from existing digitized Vegetation Type Maps (digitization is currently in progress) are the best source of classifying vegetation of particular plots using the VTM method of classification.</p>\n" +
     "\n" +
     "		<p><small><sup>*</sup>D is the species code for <i>Quercus douglasii</i> in certain quadrangles, as is documented in quadrangle specific species lists.  When translating codes into species names, the database defers first to the quadrangle specific list if one exists, but not all quadrangles have their own species list.  All other codes come from global species lists, ie, official VTM species lists that are not particular to one specific quadrangle.</small></p>\n" +
     "\n" +
@@ -663,7 +601,7 @@ angular.module("about/about.plotdata.tpl.html", []).run(["$templateCache", funct
     "<ul>\n" +
     "  <li>Corresponds to location on plot map.  For example, A-1-1 plot number is located in the A1 section on the plot map, and is located where the circled 1 is written in this section.\n" +
     "  </li>\n" +
-    "  <li>The plot number we entered is different from the number that is written on the datasheet next to the heading \"Plot No.\", which is written in pencil and not in red ink.  Wieslander's <a href=\"http://digitalassets.lib.berkeley.edu/vtm/ucb/text/cubio_vtm_fm.pdf\">Manual of Field Instructions for Vegetation Type Map of California</a> cites on p.76 that plots are numbered consecutively for each quadrangle, and this number was written next to \"Plot No.\" in pencil.  However, this number does not correspond directly to the location on the plot map.  Whenever the field recorder referred to the \"Plot No.\" (the number written in pencil) on the form, the data enterer also typed the corresponding Plot Key in parentheses.\n" +
+    "  <li>The plot number we entered is different from the number that is written on the datasheet next to the heading \"Plot No.\", which is written in pencil and not in red ink.  Wieslander's <a target=\"_blank\" href=\"http://digitalassets.lib.berkeley.edu/vtm/ucb/text/cubio_vtm_fm.pdf\">Manual of Field Instructions for Vegetation Type Map of California</a> cites on p.76 that plots are numbered consecutively for each quadrangle, and this number was written next to \"Plot No.\" in pencil.  However, this number does not correspond directly to the location on the plot map.  Whenever the field recorder referred to the \"Plot No.\" (the number written in pencil) on the form, the data enterer also typed the corresponding Plot Key in parentheses.\n" +
     "  </li>\n" +
     "</ul>\n" +
     "<h4>\n" +
@@ -755,7 +693,7 @@ angular.module("about/about.plotdata.tpl.html", []).run(["$templateCache", funct
     "  Ex: ADC may also appear as A  D  C.\n" +
     "</p>\n" +
     "<ul>\n" +
-    "  <li>On some datasheets, a circled number was written in the upper right hand corner of the back of the datasheet, which is in the same area as the Type section.  In most cases this number was not entered.  In some cases a reference to this number was entered in the Miscellaneous_Notes field, or in the Type field.  The <a href=\"http://digitalassets.lib.berkeley.edu/vtm/ucb/text/cubio_vtm_fm.pdf\">VTM Field Manual</a> may explain what this number refers to.\n" +
+    "  <li>On some datasheets, a circled number was written in the upper right hand corner of the back of the datasheet, which is in the same area as the Type section.  In most cases this number was not entered.  In some cases a reference to this number was entered in the Miscellaneous_Notes field, or in the Type field.  The <a target=\"_blank\" href=\"http://digitalassets.lib.berkeley.edu/vtm/ucb/text/cubio_vtm_fm.pdf\">VTM Field Manual</a> may explain what this number refers to.\n" +
     "  </li>\n" +
     "</ul>\n" +
     "<h4>\n" +
@@ -1006,7 +944,7 @@ angular.module("about/about.plotdata.tpl.html", []).run(["$templateCache", funct
     "  </li>\n" +
     "  <li>Litter depths written in feet were usually converted to inches.\n" +
     "  </li>\n" +
-    "  <li>The field recorder sometimes included the species components of the litter alongside the depth for \"Litt\" entries in the Species field (or other codes meaning litter, like \"Lit\").  In these cases the species components were moved to the Species field.  This was done to be consistent with instructions in the <a href=\"http://digitalassets.lib.berkeley.edu/vtm/ucb/text/cubio_vtm_fm.pdf\">VTM Field Manual</a> and the majority of other field recorders that recorded litter component information.  For ex., if the datasheet had \"0.75 mixture of Y S\" written for the litter depth of the species code \"Litt\", then it was entered as \"0.75\" for the litter depth of species code \"Litt mixture of Y S\".\n" +
+    "  <li>The field recorder sometimes included the species components of the litter alongside the depth for \"Litt\" entries in the Species field (or other codes meaning litter, like \"Lit\").  In these cases the species components were moved to the Species field.  This was done to be consistent with instructions in the <a target=\"_blank\" href=\"http://digitalassets.lib.berkeley.edu/vtm/ucb/text/cubio_vtm_fm.pdf\">VTM Field Manual</a> and the majority of other field recorders that recorded litter component information.  For ex., if the datasheet had \"0.75 mixture of Y S\" written for the litter depth of the species code \"Litt\", then it was entered as \"0.75\" for the litter depth of species code \"Litt mixture of Y S\".\n" +
     "  </li>\n" +
     "</ul>\n" +
     "<h3>\n" +
@@ -1095,33 +1033,33 @@ angular.module("about/about.plotdata.tpl.html", []).run(["$templateCache", funct
 
 angular.module("about/about.plotmaps.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("about/about.plotmaps.tpl.html",
-    "<div class=\"row\" id=\"#about\">\n" +
+    "<div class=\"row\">\n" +
     "    <div class=\"col-sm-12\">\n" +
     "\n" +
     "		<p>The VTM plot maps show the locations of plots surveyed during the original VTM project.  The original surveyors ran vegetation transects at each plot, collecting species richness and abundance data for trees and ground cover.  The VTM plot maps mark the location of the plots with red numbered circles.  To our knowledge these circles were stamped, and thus their size has no meaning.</p>\n" +
     "\n" +
-    "		<h2>NAMING CONVENTIONS</h2>\n" +
+    "		<h3>Naming Convenstions</h2>\n" +
     "\n" +
     "		<p>Each VTM plot map was divided into a grid, labeled alphabetically down the side and numerically across the top.  The plots were numbered within each section of the grid, for example A13 for grid section A 1, plot 3.  We assign each plot a unique identifier by prepending the quad number, i.e. 65A13 for quad 65, grid section A 1, plot 3.</p>\n" +
     "\n" +
-    "		<h2>SCANNING</h2>\n" +
+    "		<h3>Scanning</h3>\n" +
     "			<p>We scanned all VTM plot maps on an Epson Perfection flatbed scanner at 600 dpi.  We cropped and rotated the scans in Adobe Photoshop to prepare them for rectification.</p>\n" +
     "\n" +
-    "		<h2>GEOREFERENCING</h2>\n" +
+    "		<h3>Georeferencing</h3>\n" +
     "		<p>The original VTM surveyors marked the plot locations on USGS topographic maps, which have a polyconic projection centered at the center of the map (Birdseye 1928).  We first registered the historic uncut maps of the same vintage as the VTM cut maps to modern maps (1:24,000-scale USGS Digital Raster Graphic digital images of modern USGS quadrangles) of a known projection and coordinate system using stable tie points such as roads and peaks. We used between eight and 16 tie points per map. Next, the uncut scanned VTM maps were georeferenced to the georeferenced historic uncut maps using common map features as the tie points. We used a minimum of six tie points per segment and first order polynomial transformations for each step. Average RMSE for the process was around 60 m. All plot locations were digitized manually and their location attributed to the plot ID.</p>\n" +
     "\n" +
-    "		<h2>ERROR</h2>\n" +
+    "		<h3>Error</h3>\n" +
     "		<p>Geospatial data is of little value without some knowledge of the spatial uncertainty or error associated with it, and this is especially true of historical geospatial data.  Spatial error in the VTM plot maps begins with the USGS topographic maps the original surveyors used to mark their plots.  We were unable to discover any USGS standards in spatial uncertainty prior to the <a href=\"http://rockyweb.cr.usgs.gov/nmpstds/nmas647.html\">National Map Accuracy Standards</a> (NMAS) of 1947, so we have assumed that maps produced before then are at most as accurate.  The USGS DRGs that we used as a reference when georeferencing the historical maps do follow the NMAS, and thus contribute about 20.32 m.</p>\n" +
     "		<p>The VTM surveyors also introduced uncertainty in marking their plots on the maps.  This is impossible to quantify since no one who might have remembered the locations of individual plots in the field is still alive.  Instead, we use the size of the red circle as a proxy.  We know that the size of the circle was not intended for this use, but we think it represents a maximum degree of error in the placement of the plot on the map.  We selected plots at random from the set of georeferenced maps in December of 2004, 20 from the 30' maps and 20 from 15' maps, and averaged the radii of their red circles.  15' plots had an average circle radius of 112.46 m, and 30' plots had an average circle radius of 215.73 m.</p>\n" +
     "		<p>The process of rectification also introduces error, but it does so in a quantifiable way.  We recorded the total root mean squared (RMS) error for each rectification event (each base map, each VTM plot section).  This was highly variable for the base maps, but amounted to about 2 pixels on average for the VTM plot sections.</p>\n" +
     "		<p>We gauged error in manually digitizing each plot point by testing technicians involved in the georeferencing process for their ability to place single pixel at the center of a circle 39 pixels in diameter, the approximate size of the plot circle on a scanned VTM plot section.  We measured the Euclidian distance of their point relative to the true center of the circle, averaged the error across technicians, and converted to meters for 30' and 15' maps.</p>\n" +
     "		<p>We combined all sources of error by taking root of the sum of the squared error from all sources, as per Thapa and Bossler 1992<sup><a href=\"#/about/plotmaps#ref2\">2</a></sup>.  Since each individual plot section has its own error, this means that all the plot points on a particular VTM plot section have the same error value.</p>\n" +
-    "		<h2>Works Cited</h2>\n" +
-    "		<ol>\n" +
-    "		<li><a name=\"ref1\"></a>Birdseye, C.H.  <u>Topographic Instructions of the United States Geological Survey</u>.  Washington: United States Government Printing Office, 1928.</li>\n" +
     "\n" +
-    "		<li><a name=\"ref2\"></a>Thapa, Khagendra and John Bossler.  \"Accuracy of Spatial Data Used in Geographic Information Systems.\"  <u>Photogrammetric Engineering and Remote Sensing</u> 58:6 (1992): 835-841.</li>\n" +
-    "		</ol>	\n" +
+    "		<h3>Works Cited</h3>\n" +
+    "		<ul>\n" +
+    "			<li><a name=\"ref1\"></a>Birdseye, C.H.  <u>Topographic Instructions of the United States Geological Survey</u>.  Washington: United States Government Printing Office, 1928.</li>\n" +
+    "			<li><a name=\"ref2\"></a>Thapa, Khagendra and John Bossler.  \"Accuracy of Spatial Data Used in Geographic Information Systems.\"  <u>Photogrammetric Engineering and Remote Sensing</u> 58:6 (1992): 835-841.</li>\n" +
+    "		</ul>	\n" +
     "\n" +
     "   </div>\n" +
     "</div>\n" +
