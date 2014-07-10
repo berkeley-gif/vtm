@@ -1,21 +1,15 @@
-<div class="container">
+<div class="container" ng-controller="HomeCtrl">
 
     <div class="banner">
     <div class="row">
         <div class="col-md-12">
 
             <div class="vtm-carousel">
-              <div ng-controller="AboutCtrl">
-                <div>
-                  <carousel interval="myInterval">
-                    <slide ng-repeat="slide in slides" active="slide.active">
-                      <img class="img-responsive" ng-src="{{slide.image}}" style="margin:auto;height:40em;">
-                    </slide>
-                  </carousel>
-                </div>
-              </div>
+              <animated-banner ng-model="image">
+                <img ng-src="{{ image.source }}"
+                        title="{{ image.title }}" style="height:600px;" />
+              </animated-banner>
             </div>
-
             <div class="row">
                 <div class="col-sm-2 col-sm-offset-1" id="portrait">
                     <img  src="assets/img/wieslander.png"></img>

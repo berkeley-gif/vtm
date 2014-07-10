@@ -4,7 +4,8 @@ angular.module( 'vtm', [
   'vtm.home',
   'vtm.about',
   'vtm.data',
-  'ui.router'
+  'ui.router',
+  'ngAnimate'
 ])
 
 .config( function myAppConfig ( $stateProvider, $urlRouterProvider ) {

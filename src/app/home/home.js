@@ -33,37 +33,24 @@ angular.module( 'vtm.home', [
 })
 
 /**
- * And of course we define a controller for our route.
+ * Controller for our route.
  */
-.controller( 'HomeCtrl', function HomeController( $scope ) {
+.controller( 'HomeCtrl', function HomeController( $scope, $timeout ) {
 
-  $scope.myInterval = 9000;
-  var slides = $scope.slides = [];
-/*  $scope.addSlide = function() {
-    var newWidth = 600 + slides.length;
-    slides.push({
-      image: 'http://placekitten.com/' + newWidth + '/300',
-      text: ['More','Extra','Lots of','Surplus'][slides.length % 4] + ' ' +
-        ['Cats', 'Kittys', 'Felines', 'Cutes'][slides.length % 4]
-    });
-  };
-  for (var i=0; i<4; i++) {
-    $scope.addSlide();
-  }*/
-
-  slides.push(
-	{
+  //Collection of banner images
+  $scope.images = [
+  {
       image: 'assets/img/banner_sfbay_1140x560.jpg',
       text: ''
-	},    
-	{
+  },    
+  {
       image: 'assets/img/banner_yosemite_1140x560.jpg',
       text: ''
     },
-	{
+  {
       image: 'assets/img/banner_drawer_1140x560.jpg',
       text: ''
-	},
+  },
     {
       image: 'assets/img/banner_bigtree_1140x560.jpg',
       text: ''
@@ -72,20 +59,41 @@ angular.module( 'vtm.home', [
       image: 'assets/img/banner_eldorado_1140x560.jpg',
       text: ''
     },
-	{
+  {
       image: 'assets/img/banner_placer_1140x560.jpg',
       text: ''
-	},	
-	{
+  },  
+  {
       image: 'assets/img/banner_placer-plot_1140x560.jpg',
       text: ''
-	},
+  },
 
     {
       image: 'assets/img/banner_lookout_1140x560.jpg',
       text: ''
     }
- );
+  ];
+
+
+  // Default to a random image.
+  var imageCount = $scope.images.length;
+  var index = Math.floor((Math.random() * imageCount * 2 ) % imageCount);
+  $scope.image = $scope.images[ index ];
+
+  //Public method
+/*  $scope.showImage = function( index ) {
+    $scope.image = $scope.images[ index - 1 ];
+  };*/
+
+  var slideImage = (function() {
+    var loop = $timeout(function changePic() {
+        index = (index + 1) % imageCount;
+        $scope.image = $scope.images[ index ];
+        loop = $timeout(changePic, 10000);
+    },5000);
+  }());
+
+  //Private method : return random image from current collection
 
 })
 

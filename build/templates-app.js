@@ -6,9 +6,9 @@ angular.module("about/about.citations.tpl.html", []).run(["$templateCache", func
     "	<div class=\"col-sm-12\">\n" +
     "	    <p>If you are using the VTM digital vegetation data downloaded from this site in your study, please cite the following papers in your work:</p>\n" +
     "		<ul>\n" +
-    "	    <li>Kelly, M., B. Allen-Diaz, and N. Kobzina. 2005. <a href=\"http://kellylab.berkeley.edu/publications/2005/9/30/digitization-of-the-wieslander-california-vegetation-type-ma.html\" target=\"_blank\">Digitization of a historic dataset: the Wieslander California vegetation type mapping project.</a> Madro&ntilde;o 52(3):191-201.</li>\n" +
+    "		    <li>Kelly, M., B. Allen-Diaz, and N. Kobzina. 2005. <a href=\"http://kellylab.berkeley.edu/publications/2005/9/30/digitization-of-the-wieslander-california-vegetation-type-ma.html\" target=\"_blank\">Digitization of a historic dataset: the Wieslander California vegetation type mapping project.</a> Madro&ntilde;o 52(3):191-201.</li>\n" +
     "\n" +
-    "	    <li>Kelly, M., K. Ueda and B. Allen-Diaz. 2008. <a href=\"http://kellylab.berkeley.edu/publications/2008/10/31/historic-map-analysis-spatial-error-in-the-ca-vtm-dataset.html\" target=\"_blank\"> Considerations for ecological reconstruction of historic vegetation: Analysis of the spatial uncertainties in the California Vegetation Type Map dataset.</a> Plant Ecology 194 (1): 37-49.</li>\n" +
+    "		    <li>Kelly, M., K. Ueda and B. Allen-Diaz. 2008. <a href=\"http://kellylab.berkeley.edu/publications/2008/10/31/historic-map-analysis-spatial-error-in-the-ca-vtm-dataset.html\" target=\"_blank\"> Considerations for ecological reconstruction of historic vegetation: Analysis of the spatial uncertainties in the California Vegetation Type Map dataset.</a> Plant Ecology 194 (1): 37-49.</li>\n" +
     "		</ul>\n" +
     "	</div>\n" +
     "</div>\n" +
@@ -1075,13 +1075,14 @@ angular.module("about/about.publications.tpl.html", []).run(["$templateCache", f
     "        <p>Allen, B.H., Holzman, C.A. and Evett, R.R., 1991. A classification system for California's hardwood rangelands. Hilgardia, 59(2): 1-45. Allen-Diaz, B.H. and B.A. Holzman., 1991. Blue oak communities in California. Madro&ntilde;o , 38: 80-95.</p>\n" +
     "        \n" +
     "        <p>Ertter, B., 2000. Our undiscovered heritage: Past and future prospects for species-level botanical inventory. Madro&ntilde;o , 47(4): 237-252.</p>\n" +
-    "<p>Kelly, M., 2005  VTM Newsletter 2005.  <a href=\"media/docs/VTMnewsletter7-2005.pdf\">PDF</a>.</p>\n" +
+    "		\n" +
+    "		<p>Kelly, M., 2005  VTM Newsletter 2005.  <a href=\"media/docs/VTMnewsletter7-2005.pdf\" target=\"_blank\">PDF</a>.</p>\n" +
     "    \n" +
     "        <p>Kelly, M., B. Allen-Diaz, and N. Kobzina. 2005. <a href=\"http://kellylab.berkeley.edu/publications/2005/9/30/digitization-of-the-wieslander-california-vegetation-type-ma.html\" target=\"_blank\">Digitization of a historic dataset: the Wieslander California vegetation type mapping project.</a> Madro&ntilde;o 52(3):191-201.</p>\n" +
     "\n" +
     "        <p>Kelly, M., K. Ueda and B. Allen-Diaz. 2008. <a href=\"http://kellylab.berkeley.edu/publications/2008/10/31/historic-map-analysis-spatial-error-in-the-ca-vtm-dataset.html\" target=\"_blank\"> Considerations for ecological reconstruction of historic vegetation: Analysis of the spatial uncertainties in the California Vegetation Type Map dataset.</a> Plant Ecology 194 (1): 37-49.</p>\n" +
     "\n" +
-    "		<p>TThorne, J. H., Kelsey, R., Honig, J., and Morgan, B. 2006. The development of 70-year-old Wieslander vegetation type maps and an assessment of landscape change in the central Sierra Nevada. <em>University of California, Davis, and California Energy Commission, CED-500-2006-107</em>.</p>\n" +
+    "		<p>Thorne, J. H., Kelsey, R., Honig, J., and Morgan, B. 2006. <a href=\"http://www.energy.ca.gov/2006publications/CEC-500-2006-107/CEC-500-2006-107.PDF\" target=\"_blank\">The development of 70-year-old Wieslander vegetation type maps and an assessment of landscape change in the central Sierra Nevada.</a> University of California, Davis, and California Energy Commission, CED-500-2006-107.</p>\n" +
     "\n" +
     "        <p>Wieslander, A.E., 1961. California's vegetation maps: Recent advances in botany, University of Toronto Press, Toronto.</p>\n" +
     "\n" +
@@ -1427,24 +1428,18 @@ angular.module("data/data.vegetation.tpl.html", []).run(["$templateCache", funct
 
 angular.module("home/home.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("home/home.tpl.html",
-    "<div class=\"container\">\n" +
+    "<div class=\"container\" ng-controller=\"HomeCtrl\">\n" +
     "\n" +
     "    <div class=\"banner\">\n" +
     "    <div class=\"row\">\n" +
     "        <div class=\"col-md-12\">\n" +
     "\n" +
     "            <div class=\"vtm-carousel\">\n" +
-    "              <div ng-controller=\"AboutCtrl\">\n" +
-    "                <div>\n" +
-    "                  <carousel interval=\"myInterval\">\n" +
-    "                    <slide ng-repeat=\"slide in slides\" active=\"slide.active\">\n" +
-    "                      <img class=\"img-responsive\" ng-src=\"{{slide.image}}\" style=\"margin:auto;height:40em;\">\n" +
-    "                    </slide>\n" +
-    "                  </carousel>\n" +
-    "                </div>\n" +
-    "              </div>\n" +
+    "              <animated-banner ng-model=\"image\">\n" +
+    "                <img ng-src=\"{{ image.source }}\"\n" +
+    "                        title=\"{{ image.title }}\" style=\"height:600px;\" />\n" +
+    "              </animated-banner>\n" +
     "            </div>\n" +
-    "\n" +
     "            <div class=\"row\">\n" +
     "                <div class=\"col-sm-2 col-sm-offset-1\" id=\"portrait\">\n" +
     "                    <img  src=\"assets/img/wieslander.png\"></img>\n" +
