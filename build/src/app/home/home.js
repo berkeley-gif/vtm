@@ -40,36 +40,36 @@ angular.module( 'vtm.home', [
   //Collection of banner images
   $scope.images = [
   {
-      image: 'assets/img/banner_sfbay_1140x560.jpg',
+      source: 'assets/img/banner_sfbay_1140x560.jpg',
       text: ''
   },    
   {
-      image: 'assets/img/banner_yosemite_1140x560.jpg',
+      source: 'assets/img/banner_yosemite_1140x560.jpg',
       text: ''
     },
   {
-      image: 'assets/img/banner_drawer_1140x560.jpg',
+      source: 'assets/img/banner_drawer_1140x560.jpg',
       text: ''
   },
     {
-      image: 'assets/img/banner_bigtree_1140x560.jpg',
+      source: 'assets/img/banner_bigtree_1140x560.jpg',
       text: ''
     },
     {
-      image: 'assets/img/banner_eldorado_1140x560.jpg',
+      source: 'assets/img/banner_eldorado_1140x560.jpg',
       text: ''
     },
   {
-      image: 'assets/img/banner_placer_1140x560.jpg',
+      source: 'assets/img/banner_placer_1140x560.jpg',
       text: ''
   },  
   {
-      image: 'assets/img/banner_placer-plot_1140x560.jpg',
+      source: 'assets/img/banner_placer-plot_1140x560.jpg',
       text: ''
   },
 
     {
-      image: 'assets/img/banner_lookout_1140x560.jpg',
+      source: 'assets/img/banner_lookout_1140x560.jpg',
       text: ''
     }
   ];
@@ -79,11 +79,7 @@ angular.module( 'vtm.home', [
   var imageCount = $scope.images.length;
   var index = Math.floor((Math.random() * imageCount * 2 ) % imageCount);
   $scope.image = $scope.images[ index ];
-
-  //Public method
-/*  $scope.showImage = function( index ) {
-    $scope.image = $scope.images[ index - 1 ];
-  };*/
+  console.log('image', $scope.image);
 
   var slideImage = (function() {
     var loop = $timeout(function changePic() {
@@ -93,7 +89,7 @@ angular.module( 'vtm.home', [
     },5000);
   }());
 
-  //Private method : return random image from current collection
+  
 
 })
 

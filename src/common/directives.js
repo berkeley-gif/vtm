@@ -45,7 +45,6 @@ customDirectives.directive('animatedBanner', function($animate, $window, $timeou
 		restrict: 'E',
 		link: function(scope, element, attrs) {
 			var image = scope.image;
-			console.log(image);
 
 			scope.$watch('image', function(newVal) {
 				if (newVal) {
