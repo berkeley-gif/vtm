@@ -1,11 +1,18 @@
 /* BANNER */
+.fullwidthbanner-container {
+  padding: 0;
+  overflow: hidden;
+  position: relative;
+  width: 100% !important;
+  max-height: 600px !important;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
 .banner {
-  height: 40em;
-  margin-top: 5em;
-  margin-bottom: 8em;
   text-align: left;
   color: #ffffff;
   text-shadow: 1px 2px 3px #000000;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.22);
 }
 .banner .title {
   color: #ffffff;
@@ -33,6 +40,11 @@
 
 
 @media (max-width: 767px) {
+
+  .fullwidthbanner-container {
+    margin-top: 3px;
+    margin-bottom: 5px;
+  }
   .banner {
       height: auto;
       text-align: center;
@@ -57,17 +69,6 @@
     font-size: 1.5em;
     top: .15em;
   }
-}
-
-/* 
-* CAROUSEL 
-*/
-.vtm-carousel .carousel-indicators {
-  display: none;
-}
-.vtm-carousel img {
-  height: 100%;
-  width: 100%;
 }
 
 

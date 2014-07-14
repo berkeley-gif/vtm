@@ -1,32 +1,32 @@
-<div class="container" ng-controller="HomeCtrl">
+<div class="container" id="home" ng-controller="HomeCtrl">
+
+    <div class="fullwidthbanner-container">
 
     <div class="banner">
-    <div class="row">
-        <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-12">
 
-            <div class="vtm-carousel">
-              <animated-banner ng-model="image">
-                <img ng-src="{{ image.source }}"
-                        title="{{ image.title }}" style="height:600px;" />
-              </animated-banner>
-            </div>
-            <div class="row">
-                <div class="col-sm-2 col-sm-offset-1" id="portrait">
-                    <img  src="assets/img/wieslander.png"></img>
+                <div>
+                  <animated-banner ng-model="image">
+                    <img ng-src="{{ image.source }}"
+                            title="{{ image.title }}" style="height:600px;" />
+                  </animated-banner>
                 </div>
-                <div class="col-sm-8 col-sm-offset-3" id="slogan">
-                    <h3><span class="title"><span class="title-first-letter">W</span>ieslander <span class="title-first-letter">V</span>egetation <span class="title-first-letter">T</span>ype <span class="title-first-letter">M</span>apping</span></h3>
-                    <h4>This project is a collection of datasets that provides a snapshot of California's vegetation in the early 20th century.</h4>
-                </div>
-            </div> <!-- end second level row -->
+                <div class="row">
+                    <div class="col-sm-2 col-sm-offset-1" id="portrait">
+                        <img  src="assets/img/wieslander.png"></img>
+                    </div>
+                    <div class="col-sm-8 col-sm-offset-3" id="slogan">
+                        <h3><span class="title"><span class="title-first-letter">W</span>ieslander <span class="title-first-letter">V</span>egetation <span class="title-first-letter">T</span>ype <span class="title-first-letter">M</span>apping</span></h3>
+                        <h4>This project is a collection of datasets that provides a snapshot of California's vegetation in the early 20th century.</h4>
+                    </div>
+                </div> <!-- end second level row -->
 
-        </div> <!-- end col-md-12 -->
+            </div> <!-- end col-md-12 -->
+        </div> <!-- end first level row -->
+    </div> <!-- end banner -->
 
-
-    </div> <!-- end first level row -->
-    
-
-</div> <!-- end banner -->
+    </div>
 
     <div class="row">
         <div class="item col-md-4 col-sm-4 col-xs-12 text-center">

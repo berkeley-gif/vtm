@@ -28,51 +28,103 @@
     <link rel="stylesheet" type="text/css" href="assets/vtm-0.0.1.css" />
 
   </head>
-  <body>
+  <body class="boxed-layout container">
+
+    <div class="wrapper">
 
     <!-- Navigation -->
-    <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#page-top">
-                    VTM
-                </a>
-            </div>
-
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
-                  <li ui-sref-active="active">
-                    <a href ui-sref="home">
-                      <i class="fa fa-home"></i>
-                      Home
-                    </a>
-                  </li>
-                  <li ui-sref-active="active">
-                    <a href ui-sref="about.overview">
-                      <i class="fa fa-info-circle"></i>
-                      Learn More
-                    </a>
-                  </li>
-                  <li ui-sref-active="active">
-                    <a href ui-sref="data.overview">
-                      <i class="fa fa-cloud-download"></i>
-                      Data
-                    </a>
-                  </li>
+    <div class="header">
+        <!-- Topbar -->
+        <div class="topbar">
+            <div class="container">
+                <!-- Topbar Navigation -->
+                <ul class="loginbar pull-right">
+                    <li>
+                        <i class="fa fa-globe"></i>
+                        <a>Languages</a>
+                        <ul class="languages">
+                            <li class="active">
+                                <a href="#">English <i class="fa fa-check"></i></a> 
+                            </li>
+                            <li><a href="#">Spanish</a></li>
+                            <li><a href="#">Russian</a></li>
+                            <li><a href="#">German</a></li>
+                        </ul>
+                    </li>
+                    <li class="topbar-devider"></li>   
+                    <li><a href="page_faq.html">Help</a></li>  
+                    <li class="topbar-devider"></li>   
+                    <li><a href="page_login.html">Login</a></li>   
                 </ul>
+                <!-- End Topbar Navigation -->
             </div>
-            <!-- /.navbar-collapse -->
         </div>
-        <!-- /.container-fluid -->
-    </nav>
+        <!-- End Topbar -->
+    
+        <!-- Navbar -->
+        <div class="navbar navbar-default" role="navigation">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="fa fa-bars"></span>
+                    </button>
+                    <a class="navbar-brand" href="index.html">
+                        VTM
+                    </a>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse navbar-responsive-collapse">
+                    <ul class="nav navbar-nav">
+                        <!-- Home -->
+                        <li ui-sref-active="active">
+                          <a href ui-sref="home">
+                            <i class="fa fa-home"></i>
+                            Home
+                          </a>
+                        </li>
+                        <!-- End Home -->
+
+                        <!-- Learn More -->
+                        <li class="dropdown" ui-sref-active="active">
+                            <a href ui-sref="about.overview" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-info-circle"></i>
+                                Learn More
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href ui-sref="about.faq">FAQ</a></li>
+                                <li><a href ui-sref="about.publications">Publications</a></li>
+                                <li><a href ui-sref="about.citations">Suggested Citations</a></li>
+                                <li><a href ui-sref="about.plotdata">Metadata</a></li>
+                                <li><a href ui-sref="about.plotmaps">Description</a></li>
+                            </ul>
+                        </li>
+                        <!-- End Learn More -->
+
+                        <!-- Data -->
+                        <li class="dropdown" ui-sref-active="active">
+                            <a href ui-sref="data.overview" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-cloud-download"></i>
+                                Data
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href ui-sref="data.vegetation">Vegetation</a></li>
+                                <li><a href ui-sref="data.plots">Plot Data</a></li>
+                                <li><a href ui-sref="data.photos">Photos</a></li>
+                                <li><a href ui-sref="data.mapsheets">Plot Maps</a></li>
+                            </ul>
+                        </li>
+                        <!-- End Data -->
+
+                    </ul>
+                </div><!--/navbar-collapse-->
+            </div>    
+        </div>            
+        <!-- End Navbar -->
+    </div>
+
 
     <div ui-view></div>
 
@@ -97,6 +149,7 @@
       </div>
     </footer>
 
+  </div>
 
     <!-- compiled JavaScript -->
     <script type="text/javascript" src="vendor/jquery/dist/jquery.min.js"></script>

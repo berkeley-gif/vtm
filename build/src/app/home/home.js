@@ -79,7 +79,6 @@ angular.module( 'vtm.home', [
   var imageCount = $scope.images.length;
   var index = Math.floor((Math.random() * imageCount * 2 ) % imageCount);
   $scope.image = $scope.images[ index ];
-  console.log('image', $scope.image);
 
   var slideImage = (function() {
     var loop = $timeout(function changePic() {

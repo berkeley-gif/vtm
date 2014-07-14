@@ -1428,35 +1428,35 @@ angular.module("data/data.vegetation.tpl.html", []).run(["$templateCache", funct
 
 angular.module("home/home.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("home/home.tpl.html",
-    "<div class=\"container\" ng-controller=\"HomeCtrl\">\n" +
+    "<div class=\"container\" id=\"home\" ng-controller=\"HomeCtrl\">\n" +
+    "\n" +
+    "    <div class=\"fullwidthbanner-container\">\n" +
     "\n" +
     "    <div class=\"banner\">\n" +
-    "    <div class=\"row\">\n" +
-    "        <div class=\"col-md-12\">\n" +
+    "        <div class=\"row\">\n" +
+    "            <div class=\"col-md-12\">\n" +
     "\n" +
-    "            <div class=\"vtm-carousel\">\n" +
-    "              <animated-banner ng-model=\"image\">\n" +
-    "                <img ng-src=\"{{ image.source }}\"\n" +
-    "                        title=\"{{ image.title }}\" style=\"height:600px;\" />\n" +
-    "              </animated-banner>\n" +
-    "            </div>\n" +
-    "            <div class=\"row\">\n" +
-    "                <div class=\"col-sm-2 col-sm-offset-1\" id=\"portrait\">\n" +
-    "                    <img  src=\"assets/img/wieslander.png\"></img>\n" +
+    "                <div>\n" +
+    "                  <animated-banner ng-model=\"image\">\n" +
+    "                    <img ng-src=\"{{ image.source }}\"\n" +
+    "                            title=\"{{ image.title }}\" style=\"height:600px;\" />\n" +
+    "                  </animated-banner>\n" +
     "                </div>\n" +
-    "                <div class=\"col-sm-8 col-sm-offset-3\" id=\"slogan\">\n" +
-    "                    <h3><span class=\"title\"><span class=\"title-first-letter\">W</span>ieslander <span class=\"title-first-letter\">V</span>egetation <span class=\"title-first-letter\">T</span>ype <span class=\"title-first-letter\">M</span>apping</span></h3>\n" +
-    "                    <h4>This project is a collection of datasets that provides a snapshot of California's vegetation in the early 20th century.</h4>\n" +
-    "                </div>\n" +
-    "            </div> <!-- end second level row -->\n" +
+    "                <div class=\"row\">\n" +
+    "                    <div class=\"col-sm-2 col-sm-offset-1\" id=\"portrait\">\n" +
+    "                        <img  src=\"assets/img/wieslander.png\"></img>\n" +
+    "                    </div>\n" +
+    "                    <div class=\"col-sm-8 col-sm-offset-3\" id=\"slogan\">\n" +
+    "                        <h3><span class=\"title\"><span class=\"title-first-letter\">W</span>ieslander <span class=\"title-first-letter\">V</span>egetation <span class=\"title-first-letter\">T</span>ype <span class=\"title-first-letter\">M</span>apping</span></h3>\n" +
+    "                        <h4>This project is a collection of datasets that provides a snapshot of California's vegetation in the early 20th century.</h4>\n" +
+    "                    </div>\n" +
+    "                </div> <!-- end second level row -->\n" +
     "\n" +
-    "        </div> <!-- end col-md-12 -->\n" +
+    "            </div> <!-- end col-md-12 -->\n" +
+    "        </div> <!-- end first level row -->\n" +
+    "    </div> <!-- end banner -->\n" +
     "\n" +
-    "\n" +
-    "    </div> <!-- end first level row -->\n" +
-    "    \n" +
-    "\n" +
-    "</div> <!-- end banner -->\n" +
+    "    </div>\n" +
     "\n" +
     "    <div class=\"row\">\n" +
     "        <div class=\"item col-md-4 col-sm-4 col-xs-12 text-center\">\n" +
