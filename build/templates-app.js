@@ -1449,7 +1449,7 @@ angular.module("home/home.tpl.html", []).run(["$templateCache", function($templa
     "                        <i class=\"fa fa-cloud-download\"></i>                \n" +
     "                    </div><!--//icon-->\n" +
     "                    <div class=\"content\">\n" +
-    "                        <h2 class=\"title\">Download</h2>\n" +
+    "                        <h2 class=\"title\">Explore Data</h2>\n" +
     "                        <p>View and download vegetation maps, plot data and photos. </p>  \n" +
     "                    </div><!--//content-->  \n" +
     "                </a>        \n" +
@@ -1472,11 +1472,11 @@ angular.module("home/home.tpl.html", []).run(["$templateCache", function($templa
     "            <div class=\"features\">\n" +
     "                <a href ui-sref=\"use.overview\">\n" +
     "                    <div class=\"icon animated fadeIn delayp1\" style=\"opacity: 0;\">\n" +
-    "                        <i class=\"fa fa-camera-retro\"></i>                \n" +
+    "                        <i class=\"fa fa-user\"></i>                \n" +
     "                    </div><!--//icon-->\n" +
     "                    <div class=\"content\">\n" +
-    "                        <h2 class=\"title\">Data Use</h2>\n" +
-    "                        <p>View usage guidelines and explore how others have used this data. </p>  \n" +
+    "                        <h2 class=\"title\">How To</h2>\n" +
+    "                        <p>View usage guidelines and learn how you can use this data. </p>  \n" +
     "                    </div><!--//content-->  \n" +
     "                </a>  \n" +
     "            </div>              \n" +
