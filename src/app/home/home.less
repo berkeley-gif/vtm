@@ -4,79 +4,47 @@
   overflow: hidden;
   position: relative;
   width: 100% !important;
-  max-height: 600px !important;
   margin-top: 10px;
-  margin-bottom: 10px;
 }
 .banner {
-  text-align: left;
-  color: #ffffff;
-  text-shadow: 1px 2px 3px #000000;
+  max-height: 450px !important;
+}
+#header {
+    background-color: #EBEAE6;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.22);
+}
+#title-box {
+  text-align: center;
+  margin-top: -15px;  
+  text-shadow: 1px 2px 3px #B8B7B3;
+}
+#description-box {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: #D2D1CD;
+  vertical-align: middle;
+}
+#portrait {
+    text-align: center;
+}
+#portrait img {
+  height: 12em;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.22);
 }
-.banner .title {
-  color: #ffffff;
-  text-shadow: 1px 2px 3px #000000;
-  font-weight: 400;
-}
-.banner #portrait {
-  height: 20em;
-  margin-top: -16em;
-}
-.banner #slogan {
-  margin-top: -18em;
-  color: #ffffff;
-  text-shadow: 1px 2px #000000;
-  padding-left: 2em;
-}
-.banner #slogan h4 {
-  text-shadow: 1px 2px 1px #000000;
-}
-.banner #portrait img {
-  height: 100%;
-  box-shadow: 0 0 6px 4px #F4F4C0;
-}
+#tagline {
 
-
-
-@media (max-width: 767px) {
-
-  .fullwidthbanner-container {
-    margin-top: 3px;
-    margin-bottom: 5px;
-  }
-  .banner {
-      height: auto;
-      text-align: center;
-      padding: 1em 0;
-      margin-bottom: 0;
-   }
-   .banner #portrait {
-      height: 14em;
-      margin-top: -35em;
-   }
-   .banner #slogan {
-      max-width: 480px;
-      margin: 1em auto;
-  }
-  .vtm-carousel img {
-    height: 100%;
-  }
-  .title {
-    font-size: 1.2em;
-  }
-  .title-first-letter {
-    font-size: 1.5em;
-    top: .15em;
-  }
 }
-
-
+#tagline p {
+  font-size: 18px;
+  line-height: 1.5;
+  font-family: Raleway
+}
 
 /* SECTION BOXES */
 .features {
   background-color: #EBEAE6;
   padding: 5px;
+  margin-top: 25px;
   margin-bottom: 25px;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.22);
 }
@@ -148,22 +116,16 @@
 
 /* Extra small devices (phones, less than 768px) */
 @media (max-width: 767px) {
-  .banner {
-      height: auto;
-      text-align: center;
-      padding: 1em 0;
-      margin-bottom: 0;
-   }
-   .banner #portrait {
-      height: 14em;
-      margin-top: -35em;
-   }
-   .banner #slogan {
-      max-width: 480px;
-      margin: 1em auto;
+  
+  .fullwidthbanner-container {
+    margin-top: 3px;
+    margin-bottom: 5px;
   }
-  .vtm-carousel img {
-    height: 100%;
+  .banner {
+    max-height: 400px !important;
+  }
+  #portrait img {
+    height: 8em;
   }
   .title {
     font-size: 1.2em;

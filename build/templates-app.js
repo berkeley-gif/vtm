@@ -1,4 +1,4 @@
-angular.module('templates-app', ['about/about.citations.tpl.html', 'about/about.faq.tpl.html', 'about/about.overview.tpl.html', 'about/about.plotdata.tpl.html', 'about/about.plotmaps.tpl.html', 'about/about.publications.tpl.html', 'about/about.tpl.html', 'data/data.mapsheets.tpl.html', 'data/data.overview.tpl.html', 'data/data.photos.tpl.html', 'data/data.plots.tpl.html', 'data/data.tpl.html', 'data/data.vegetation.tpl.html', 'home/home.tpl.html']);
+angular.module('templates-app', ['about/about.citations.tpl.html', 'about/about.description.tpl.html', 'about/about.faq.tpl.html', 'about/about.metadata.tpl.html', 'about/about.overview.tpl.html', 'about/about.plotdata.tpl.html', 'about/about.plotmaps.tpl.html', 'about/about.publications.tpl.html', 'about/about.tpl.html', 'data/data.overview.tpl.html', 'data/data.photos.tpl.html', 'data/data.plotdata.tpl.html', 'data/data.plotmaps.tpl.html', 'data/data.tpl.html', 'data/data.vegetation.tpl.html', 'home/home.tpl.html']);
 
 angular.module("about/about.citations.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("about/about.citations.tpl.html",
@@ -11,6 +11,29 @@ angular.module("about/about.citations.tpl.html", []).run(["$templateCache", func
     "		    <li>Kelly, M., K. Ueda and B. Allen-Diaz. 2008. <a href=\"http://kellylab.berkeley.edu/publications/2008/10/31/historic-map-analysis-spatial-error-in-the-ca-vtm-dataset.html\" target=\"_blank\"> Considerations for ecological reconstruction of historic vegetation: Analysis of the spatial uncertainties in the California Vegetation Type Map dataset.</a> Plant Ecology 194 (1): 37-49.</li>\n" +
     "		</ul>\n" +
     "	</div>\n" +
+    "</div>\n" +
+    "");
+}]);
+
+angular.module("about/about.description.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("about/about.description.tpl.html",
+    "<div class=\"row\">\n" +
+    "    <div class=\"col-sm-12\">\n" +
+    "\n" +
+    "    	<accordion close-others=\"oneAtATime\">\n" +
+    "\n" +
+    "    		<accordion-group heading=\"Plot Data\">\n" +
+    "    			<ng-include src=\"'about/about.plotdata.tpl.html'\">\n" +
+    "    			</ng-include>\n" +
+    "    		</accordion-group>\n" +
+    "    		<accordion-group heading=\"Plot Maps\">\n" +
+    "    			<ng-include src=\"'about/about.plotmaps.tpl.html'\">\n" +
+    "    			</ng-include>\n" +
+    "    		</accordion-group>\n" +
+    "\n" +
+    "    	</accordion>\n" +
+    "    	\n" +
+    "    </div>\n" +
     "</div>\n" +
     "");
 }]);
@@ -247,6 +270,470 @@ angular.module("about/about.faq.tpl.html", []).run(["$templateCache", function($
     "");
 }]);
 
+angular.module("about/about.metadata.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("about/about.metadata.tpl.html",
+    "<div class=\"row\">\n" +
+    "    <div class=\"col-sm-12\">\n" +
+    "\n" +
+    "    	<p>\n" +
+    "		  This document contains field descriptions for the VTM plot data. For quality control and assurance activities, including standardization/lumping processes, see <a href=\"about.description\">Plot Data description</a>.\n" +
+    "		</p>\n" +
+    "\n" +
+    "		<h3>\n" +
+    "		  Terms used in this document\n" +
+    "		</h3>\n" +
+    "		<p>\n" +
+    "		  <b>Datasheet</b>: original VTM plot datasheet (either Brush and Tree Plot datasheet or Grass Plot datasheet)\n" +
+    "		</p>\n" +
+    "		<p>\n" +
+    "		  <b>Data enterer</b>: person that entered data into Access database in 2004\n" +
+    "		</p>\n" +
+    "		<p>\n" +
+    "		  <b>Field recorder</b>: original VTM personnel that recorded plot data on datasheet\n" +
+    "		</p>\n" +
+    "		<p>\n" +
+    "		  <b>Truth table</b>: lumping table/grouping table to allow for grouping of certain data into broader categories than what was entered.  Not everything that was entered in a field needed to be grouped.  Mainly used to standardize variations in text that had the same meaning.\n" +
+    "		</p>\n" +
+    "\n" +
+    "		<h3>\n" +
+    "		  Field Descriptions\n" +
+    "		</h3>\n" +
+    "		<p>Fields are listed according to the order that they appear on datasheets.\n" +
+    "		</p>\n" +
+    "\n" +
+    "    	<accordion close-others=\"oneAtATime\">\n" +
+    "\n" +
+    "    		<accordion-group is-open=\"status.open\">\n" +
+    "    			<accordion-heading>Plot <i class=\"pull-right fa\" ng-class=\"{'fa-sort-desc': status.open, 'fa-sort-up': !status.open}\"></i></accordion-heading>\n" +
+    "    			<h4>\n" +
+    "				  Plot_ID\n" +
+    "				</h4>\n" +
+    "				<p>\n" +
+    "				  An automated number was assigned to each datasheet entered in the database.\n" +
+    "				</p>\n" +
+    "				<h4>\n" +
+    "				  Quadrangle\n" +
+    "				</h4>\n" +
+    "				<p>\n" +
+    "				  Name of quadrangle as written on datasheet.\n" +
+    "				</p>\n" +
+    "				<ul>\n" +
+    "				  <li>Entries for this field were standardized via the Quadrangle truth table.\n" +
+    "				  </li>\n" +
+    "				</ul>\n" +
+    "				<h4>\n" +
+    "				  Map\n" +
+    "				</h4>\n" +
+    "				<p>\n" +
+    "				  Plot map number as written on datasheet.\n" +
+    "				</p>\n" +
+    "				<ul>\n" +
+    "				  <li>The location of each plot is drawn on a topo map that is folded and stored with the associated datasheets.  This map has a number on it, which is also written on the tab top index card (along with the quad name) that organizes the datasheets in the drawers where they are stored.\n" +
+    "				  </li>\n" +
+    "				</ul>\n" +
+    "				<h4>\n" +
+    "				  Plot No.\n" +
+    "				</h4>\n" +
+    "				<p>\n" +
+    "				  Letter and number combination written in red ink at top of front page on datasheet.\n" +
+    "				</p>\n" +
+    "				<ul>\n" +
+    "				  <li>Corresponds to location on plot map.  For example, A-1-1 plot number is located in the A1 section on the plot map, and is located where the circled 1 is written in this section.\n" +
+    "				  </li>\n" +
+    "				  <li>The plot number we entered is different from the number that is written on the datasheet next to the heading \"Plot No.\", which is written in pencil and not in red ink.  Wieslander's <a target=\"_blank\" href=\"http://digitalassets.lib.berkeley.edu/vtm/ucb/text/cubio_vtm_fm.pdf\">Manual of Field Instructions for Vegetation Type Map of California</a> cites on p.76 that plots are numbered consecutively for each quadrangle, and this number was written next to \"Plot No.\" in pencil.  However, this number does not correspond directly to the location on the plot map.  Whenever the field recorder referred to the \"Plot No.\" (the number written in pencil) on the form, the data enterer also typed the corresponding Plot Key in parentheses.\n" +
+    "				  </li>\n" +
+    "				</ul>\n" +
+    "				<h4>\n" +
+    "				  Plot Key\n" +
+    "				</h4>\n" +
+    "				<p>\n" +
+    "				  Combination of map number and plot number without spaces or dashes.\n" +
+    "				</p>\n" +
+    "				<ul>\n" +
+    "				  <li>The Plot Key is a construct of the database management process, which necessitated a way to assign a unique but meaningful identifier for each datasheet entered.  Plot key was entered by hand during data entry of each datasheet; it was not an automated field.\n" +
+    "				  </li>\n" +
+    "				</ul>\n" +
+    "				<h4>\n" +
+    "				  Geographic Location\n" +
+    "				</h4>\n" +
+    "				<p>\n" +
+    "				  Plot location as written on datasheet, exceptions noted below. \n" +
+    "				</p>\n" +
+    "				<ul>\n" +
+    "				  <li>This field often includes mileage information, for ex. \"2 miles South of Mason Flat\".  If miles were written as fractions, these were usually converted to a decimal when entered.  Also, if miles were written in abbreviated form (such as Mi. or mi.) it was sometimes entered in unabbreviated form.  For ex. \"2S Mi. South of Mason Flat\" may have been entered as \"2.33 miles South of Mason Flat\". Some common conversions include:\n" +
+    "				    <p>\n" +
+    "				      <sup>1</sup>/<sub>16 </sub> = .06<br>\n" +
+    "				      <sup>1</sup>/<sub>8  </sub> = .125 or .13<br>\n" +
+    "				      <sup>1</sup>/<sub>6  </sub> = .167 or .17<br>\n" +
+    "				      <sup>5</sup>/<sub>8  </sub> = .625 or .63<br>\n" +
+    "				      <sup>2</sup>/<sub>3  </sub> = .667 or .67<br>\n" +
+    "				      <sup>5</sup>/<sub>6  </sub> = .83<br>\n" +
+    "				      <sup>7</sup>/<sub>8  </sub> = .875\n" +
+    "				    </p>\n" +
+    "				  </li>\n" +
+    "				  <li>Sometimes plot location was described geographically in relation to a symbol or word on the plot map.  For ex., \"2.5 miles S of (triangle symbol with a dot in it) of Mt. Hamilton.\" Refers to the mountain top marker on the map that looks like a triangle with a small dot in the center of it and often has an elevation written next to it to indicate the elevation of the mountain peak.   Or for ex., \"0.2 miles S of \"S\" in Santa Rosa\"  refers to the letter S in the word Santa Rosa that appears on the plot map.\n" +
+    "				  </li>\n" +
+    "				</ul>\n" +
+    "				<h4>\n" +
+    "				  Date\n" +
+    "				</h4>\n" +
+    "				<p>\n" +
+    "				  Date as written on datasheet, exceptions noted below.\n" +
+    "				</p>\n" +
+    "				<ul>\n" +
+    "				  <li>The date field would only allow entries in a format of mm/dd/yyyy, and did not allow missing data. \n" +
+    "				  </li>\n" +
+    "				  <li>Dates with missing days were entered by entering \"01\" for the missing day.  Dates with missing years were entered by entering the year that other nearby plots were recorded in that quad (see QA Write up.doc).\n" +
+    "				  </li>\n" +
+    "				</ul>\n" +
+    "				<h4>\n" +
+    "				  Section\n" +
+    "				</h4>\n" +
+    "				<p>\n" +
+    "				  Section number as written on datasheet, exceptions noted below.\n" +
+    "				</p>\n" +
+    "				<ul>\n" +
+    "				  <li>Occasionally, the field size was too small to enter all that was written, ie, anything other than the standard one or two digit number that usually indicates the section number.  For ex., Section was sometimes written as \"grants\" or \"unsurveyed\".  Section was also sometimes written with hyphenated values to indicate multiple section numbers, for ex., \"12-14\".  Since this data did not fit in this field it was also entered in Miscellaneous_Notes field.\n" +
+    "				  </li>\n" +
+    "				</ul>\n" +
+    "				<h4>\n" +
+    "				  Township\n" +
+    "				</h4>\n" +
+    "				<p>\n" +
+    "				  Township as written on datasheet.\n" +
+    "				</p>\n" +
+    "				<h4>\n" +
+    "				  Range\n" +
+    "				</h4>\n" +
+    "				<p>\n" +
+    "				  Range as written on datasheet, exceptions noted below. \n" +
+    "				</p>\n" +
+    "				<ul>\n" +
+    "				  <li>Sometimes range was written in parentheses on the datasheet.  The database field would not allow parentheses, so in these cases it was either entered in the Miscellaneous_Notes field or it was entered without parenthesis in the range field with a note in the Miscellaneous_Notes field indicating that the range was written in parentheses.\n" +
+    "				  </li>\n" +
+    "				  <li>Sometimes range was written with two or three letters following it.  For ex. \"8SBM\" or \"12AES\".  These seem to be the initials of VTM personnel that made a change or confirmation to the range written on the datasheet.  Initials were removed in the QC process via the Range truth table.\n" +
+    "				  </li>\n" +
+    "				  <li>The range was sometimes written with an \"R\" before the range number.  For ex. \"R8S\".  R occurrences were removed in the QC process via the Range truth table.\n" +
+    "				  </li>\n" +
+    "				</ul>\n" +
+    "				<h4>\n" +
+    "				  Taken By\n" +
+    "				</h4>\n" +
+    "				<p>\n" +
+    "				  Field recorder's name, usually entered as written on datasheet.  Although the policy was to enter the name exactly as it appeared on the datasheet, first and last names were not necessarily entered in the same order as they were written on the datasheet, and initials were sometimes entered instead of the full name as written on the datasheet.    All entries for this field were standardized via the Taken By truth table.\n" +
+    "				</p>\n" +
+    "				<h4>\n" +
+    "				  Type\n" +
+    "				</h4>\n" +
+    "				<p>\n" +
+    "				  Vegetation type as written on datasheet, either as one or more species codes or as the name of the vegetation type, and sometimes both.  Species codes were entered as written, either with spaces between codes or without spaces between species codes.\n" +
+    "				</p>\n" +
+    "				<p>\n" +
+    "				  Ex: ADC may also appear as A  D  C.\n" +
+    "				</p>\n" +
+    "				<ul>\n" +
+    "				  <li>On some datasheets, a circled number was written in the upper right hand corner of the back of the datasheet, which is in the same area as the Type section.  In most cases this number was not entered.  In some cases a reference to this number was entered in the Miscellaneous_Notes field, or in the Type field.  The <a target=\"_blank\" href=\"http://digitalassets.lib.berkeley.edu/vtm/ucb/text/cubio_vtm_fm.pdf\">VTM Field Manual</a> may explain what this number refers to.\n" +
+    "				  </li>\n" +
+    "				</ul>\n" +
+    "				<h4>\n" +
+    "				  Exposure\n" +
+    "				</h4>\n" +
+    "				<p>\n" +
+    "				  Plot exposure as written on datasheet (see exceptions below), either as abbreviation of cardinal direction or as the name of the direction (For ex. \"Southerly\")\n" +
+    "				</p>\n" +
+    "				<ul>\n" +
+    "				  <li>There may be cases when the data enterer did not enter exposure exactly as written on datasheet.  For ex. if \"So.\" was written on the datasheet, the data enterer could have entered \"S\" or \"South\".  In all cases however, the meaning of what was entered should never be different than what was written on the datasheet.\n" +
+    "				  </li>\n" +
+    "				</ul>\n" +
+    "				<h4>\n" +
+    "				  Slope Percent\n" +
+    "				</h4>\n" +
+    "				<p>\n" +
+    "				  Numerical slope of plot as written on datasheet (unless written as text)\n" +
+    "				</p>\n" +
+    "				<ul>\n" +
+    "				  <li>This field did not allow text, so when slope was written on datasheet as text (for ex. \"very steep\") it was entered in the Miscellaneous_Notes field\n" +
+    "				  </li>\n" +
+    "				</ul>\n" +
+    "				<h4>\n" +
+    "				  Elevation\n" +
+    "				</h4>\n" +
+    "				<p>\n" +
+    "				  Elevation of plot as written on datasheet.  This field had an upper bound of 15,000 ft.\n" +
+    "				</p>\n" +
+    "				<h4>\n" +
+    "				  Year of last burn\n" +
+    "				</h4>\n" +
+    "				<p>\n" +
+    "				  Entered as written on datasheet\n" +
+    "				</p>\n" +
+    "				<h4>\n" +
+    "				  Site\n" +
+    "				</h4>\n" +
+    "				<p>\n" +
+    "				  Entered as written on datasheet\n" +
+    "				</p>\n" +
+    "				<ul>\n" +
+    "				  <li>When a roman numeral was written in this section, the number that the roman numeral represents was entered and a note was added to the Miscellaneous_Notes field to indicate that the number was written as a roman numeral.\n" +
+    "				  </li>\n" +
+    "				</ul>\n" +
+    "				<h4>\n" +
+    "				  Penetrability\n" +
+    "				</h4>\n" +
+    "				<p>\n" +
+    "				  Entered as written on datasheet (if it fit within the field size)\n" +
+    "				</p>\n" +
+    "				<ul>\n" +
+    "				  <li>This field was a drop down menu (Easy, Medium, Difficult, or Impenetrable) but also allowed text entry.  However the field size was sometimes too small to enter all that was written.  In this case it was entered in the Miscellaneous_Notes field.\n" +
+    "				  </li>\n" +
+    "				</ul>\n" +
+    "				<h4>\n" +
+    "				  Soil depth\n" +
+    "				</h4>\n" +
+    "				<p>\n" +
+    "				  Entered as written on datasheet (if it fit within the field size)\n" +
+    "				</p>\n" +
+    "				<ul>\n" +
+    "				  <li>This field was a drop down menu (Shallow, Medium, Deep)  but also allowed text entry.  However the field size was sometimes too small to enter all that was written.  In this case it was entered in the Miscellaneous_Notes field.\n" +
+    "				  </li>\n" +
+    "				  <li>One of the two versions of the datasheet did not have a soil depth section.  Therefore no data was entered about soil depth for these datasheets.\n" +
+    "				  </li>\n" +
+    "				  <li>Occasionally hyphenated values or values that did not match one of the drop down choices were entered by choosing the drop down value that was essentially the same in meaning, and a note was entered in Miscellaneous Notes field to reference what was exactly written on datasheet.\n" +
+    "				  </li>\n" +
+    "				</ul>\n" +
+    "				<h4>\n" +
+    "				  Parent Rock\n" +
+    "				</h4>\n" +
+    "				<p>\n" +
+    "				  Entered as written on datasheet, except as noted below.\n" +
+    "				</p>\n" +
+    "				<ul>\n" +
+    "				  <li>This field was a drop down menu (Igneous, Metamorphic, Sedimentary) but also allowed text entry.  However the field size was sometimes too small to enter all that was written.  In this case it was entered in the Miscellaneous_Notes field.\n" +
+    "				  </li>\n" +
+    "				  <li>There were two versions of the \"tree plot\" datasheets.  One of the two versions of the datasheet did not have a soil depth section.  Therefore no data was entered about soil depth for these datasheets.\n" +
+    "				  </li>\n" +
+    "				  <li>Occasionally hyphenated values or values that did not match one of the drop down choices were entered by choosing the drop down value that was essentially the same in meaning, and a note was entered in Miscellaneous_Notes field to reference what was exactly written on datasheet.\n" +
+    "				  </li>\n" +
+    "				</ul>\n" +
+    "				<h4>\n" +
+    "				  Soil Character field\n" +
+    "				</h4>\n" +
+    "				<p>\n" +
+    "				  Entered as written on datasheet, except as noted below.\n" +
+    "				</p>\n" +
+    "				<ul>\n" +
+    "				  <li>This section on the datasheet consists of 7 checkboxes (for ex. Rocky, Gravelly, Sandy, etc).  The database entry form had the same checkboxes.  If any other additional information was written on the datasheet (for ex., text written next to the checkboxes) it was entered in the Miscellaneous_Notes field.\n" +
+    "				  </li>\n" +
+    "				  <li>Occasionally hyphenated values or values that did not match one of the drop down choices were entered by choosing the drop down value that was essentially the same in meaning, and a note was entered in Miscellaneous Notes field to reference what was exactly written on datasheet.\n" +
+    "				  </li>\n" +
+    "				</ul>\n" +
+    "				<h4>\n" +
+    "				  Soil_Origin\n" +
+    "				</h4>\n" +
+    "				<p>\n" +
+    "				  Entered as written on datasheet, except as noted below.\n" +
+    "				</p>\n" +
+    "				<ul>\n" +
+    "				  <li>There were two versions of the \"Brush and Tree Plot\" datasheets.  One version listed 16 different soil origin types, so the field recorder could either check one or more or write in an origin not on the list.  The other datasheet version did not list soil origin types.  There were was a wide range of soil origin types recorded (varying from \"brown soil\" to \"Alluvium of granitics and basalt\") each datasheet.  Some soil origin types recorded are technically not a soil origin type (for ex. \"poor soil\").  These were still entered as they appeared on datasheet, unless it was an obvious spelling error, in which case the spelling error was corrected (see \"Other\" section at end of this document).\n" +
+    "				  </li>\n" +
+    "				  <li>Occasionally hyphenated values or values that did not match one of the drop down choices were entered by choosing the drop down value that was essentially the same in meaning, and a note was entered in Miscellaneous Notes field to reference what was exactly written on datasheet.\n" +
+    "				  </li>\n" +
+    "				</ul>\n" +
+    "				<h4>\n" +
+    "				  Excessive Erosion Evidence\n" +
+    "				</h4>\n" +
+    "				<p>\n" +
+    "				  Entered as written on datasheet (if it fit within the field size)\n" +
+    "				</p>\n" +
+    "				<ul>\n" +
+    "				  <li>In rare cases the field size was not large enough to enter all that was written on the datasheet.  In these cases the remainder was entered in the Miscellaneous_Notes field.\n" +
+    "				  </li>\n" +
+    "				</ul>\n" +
+    "				<h4>\n" +
+    "				  Additional_Ground_Cover-species\n" +
+    "				</h4>\n" +
+    "				<p>\n" +
+    "				  Each species or species code was entered on a separate line in this field.  Species names and species codes were entered as written on datasheet.  Abundance information for a particular species (\"x\" or \"xx\" or \"xxx\", etc.) was entered after the species name or code and on the same line, with either a space or a hyphen between the species name and its abundance.  Although this was the policy, data enterers sometimes entered the abundance information (\"x\", \"xx\", etc) before the species name, as written on the datasheet.  Also, one of the databases was set to automatically sort species names alphabetically.\n" +
+    "				</p>\n" +
+    "				<h4>\n" +
+    "				  Special Fire Hazards\n" +
+    "				</h4>\n" +
+    "				<p>\n" +
+    "				  Entered as written on datasheet\n" +
+    "				</p>\n" +
+    "				<ul>\n" +
+    "				  <li>Sometimes the VTM data recorder underlined a word in the heading for this section (\"Special Fire Hazards (dead brush, snags, etc.)\" instead of writing it.  For ex., dead brush or snags may have been underlined.  In these cases the word that was underlined was entered in this field.\n" +
+    "				  </li>\n" +
+    "				</ul>\n" +
+    "				<h4>\n" +
+    "				  Remarks\n" +
+    "				</h4>\n" +
+    "				<p>\n" +
+    "				  Entered as written on datasheet (if it fit within the field size)\n" +
+    "				</p>\n" +
+    "				<ul>\n" +
+    "				  <li>In rare cases the field size was not large enough to write in all that was written on the datasheet.  In these cases the remainder was entered in the Miscellaneous_Notes field.\n" +
+    "				  </li>\n" +
+    "				</ul>\n" +
+    "				<h4>\n" +
+    "				  Miscellaneous_Notes\n" +
+    "				</h4>\n" +
+    "				<p>\n" +
+    "				  IMPORTANT - The Miscellaneous_Notes field includes both actual data recorded at time of the original VTM survey as well as 2004 data enterers' comments about the datasheet.  The Miscellaneous_Notes field is NOT a section on the datasheet.\n" +
+    "				</p>\n" +
+    "				<p>\n" +
+    "				  This field contains the following types of information:\n" +
+    "				</p>\n" +
+    "				<ul>\n" +
+    "				  <li>Remarks written on the datasheet that were not written in a particular section, For ex., stray remarks written in margins of the datasheet, or references to species codes: \"Ap = Apc\" or \"Gr2= At2 and Bh2\", or \"Cpo = Ceanothus prostrates\"\n" +
+    "				  </li>\n" +
+    "				  <li>Observations about the condition of the datasheet.  For ex., if the datasheet was torn, if the datasheet is blank, or if the datasheet has additional information attached to it such as a grass plot datasheet for the same plot.\n" +
+    "				  </li>\n" +
+    "				  <li>Other potentially important observations about the datasheet.  For ex., if the datasheet looks like it may contain resurvey data, or if some data was crossed out and changed to something else in a different color pencil or pen.\n" +
+    "				  </li>\n" +
+    "				  <li>This field also served as a holding place for data that did not fit the format requirements of the database fields. \n" +
+    "				  </li>\n" +
+    "				</ul>\n" +
+    "    		</accordion-group>\n" +
+    "\n" +
+    "    		<accordion-group heading=\"Brush and Ground Cover\">\n" +
+    "				<h4>\n" +
+    "				  Species\n" +
+    "				</h4>\n" +
+    "				<p>\n" +
+    "				  Species code as written on datasheet, except as noted below.\n" +
+    "				</p>\n" +
+    "				<ul>\n" +
+    "				  <li>\n" +
+    "				    <b>Symbol conversion with species codes:</b>\n" +
+    "				    <ul>\n" +
+    "				      <li>Codes with a ^ over text were entered with a 1 following text. For ex. A with a ^ over the A was entered as A1\n" +
+    "				      </li>\n" +
+    "				      <li>Underlined codes were entered with a 2 following text. For ex., <u>Gr</u>  was entered as Gr2\n" +
+    "				      </li>\n" +
+    "				      <li>Codes with a line over the top of text were entered with a 3 following text. For ex. H with a line over the H (like H) was entered as H3\n" +
+    "				      </li>\n" +
+    "				      <li>  Codes with an apostrophe after the text were entered with a 4 following text. For ex. S' was entered as S4\n" +
+    "				      </li>\n" +
+    "				    </ul>\n" +
+    "				  </li>\n" +
+    "				  <li>\n" +
+    "				    <b>Other notes about species codes:</b>\n" +
+    "				    <ul>\n" +
+    "				      <li>  Any symbol drawn on the datasheet that could not be entered were entered in its text equivalent.  For example:\n" +
+    "				      </li>\n" +
+    "				      <li>A species code with a circle drawn around it was entered as the code name then circled.  For ex., a R with a circle drawn around it was entered as \"R circled\" or \"R circle\".\n" +
+    "				      </li>\n" +
+    "				      <li>A species code with a square drawn around it was entered as, for ex. \"R square\" or \"R boxed\"\n" +
+    "				      </li>\n" +
+    "				      <li>A pi symbol ( ) drawn next to the code entered as, for ex. \"R pi\"\n" +
+    "				      </li>\n" +
+    "				      <li>Other symbols like sigma and spiral were entered as \"sigma\" and \"spiral\".\n" +
+    "				      </li>\n" +
+    "				      <li>   If a number followed the code, it was entered as it was written.  For ex. \"W40\" was entered as \"W40\". \n" +
+    "				      </li>\n" +
+    "				      <li>   Sometimes two codes were written on the datasheet for one species.  For ex. \"Qdo=Qd\".  In these cases only one code was entered and a note of what was written was entered in the Miscellaneous_Notes field.\n" +
+    "				      </li>\n" +
+    "				    </ul>\n" +
+    "				  </li>\n" +
+    "				  <li>\n" +
+    "				    <b>Litter species codes:</b>\n" +
+    "				    <ul>\n" +
+    "				      <li>Litter was usually written on datasheet as Lit and then the species code(s) that comprised the litter.  Sometimes the species codes were written first and then Lit.  Data entry standardized litter to be entered as Lit and then species codes.  Although this was the rule, it was not always entered in this order and data can be found in either notation.    \n" +
+    "				      </li>\n" +
+    "				      <li>For ex. \"Lit A\" or \"A lit\" were entered as \"Lit A\"\n" +
+    "				      </li>\n" +
+    "				      <li>The field recorder occasionally recorded the percent cover of litter in the Summary of Brush and Ground Cover section but recorded the components of the litter (ie what species made up the litter) in the Remarks section (in which case it was entered in the Remarks field), or in margins on the datasheet (in which case it was entered in the Miscellaneous Notes field).\n" +
+    "				      </li>\n" +
+    "				    </ul>\n" +
+    "				  </li>\n" +
+    "				</ul>\n" +
+    "				<h4>\n" +
+    "				  Percent\n" +
+    "				</h4>\n" +
+    "				<p>\n" +
+    "				  % Cover number as written on datasheet\n" +
+    "				</p>\n" +
+    "				<ul>\n" +
+    "				  <li>Occasionally the % Covers of all species did not add up to 100.  In these cases it was still entered as written on datasheet.\n" +
+    "				  </li>\n" +
+    "				  <li>In rare cases the field recorded did not record the % cover of a species but did fill out the plot diagram completely, allowing the data enterer to calculate and enter the missing cover data.\n" +
+    "				  </li>\n" +
+    "				</ul>\n" +
+    "				<h4>\n" +
+    "				  Height\n" +
+    "				</h4>\n" +
+    "				<p>\n" +
+    "				  Plant height in feet as written on datasheet (except when written in inches).\n" +
+    "				</p>\n" +
+    "				<ul>\n" +
+    "				  <li>When the datasheet had inches information (for ex. \"2 in.\" or '2\" ', the number in inches was converted to feet.  There may be instances however where the data enterer did not convert to feet and entered it as the way it was written.\n" +
+    "				  </li>\n" +
+    "				</ul>\n" +
+    "				<h4>\n" +
+    "				  Litter_Depth\n" +
+    "				</h4>\n" +
+    "				<p>\n" +
+    "				  Depth of species litter in inches as written on datasheet.\n" +
+    "				</p>\n" +
+    "				<ul>\n" +
+    "				  <li>\"T\" or \"t\" was sometimes written on datasheet to indicate \"trace amount\".  In these cases the T or t (whatever was written on the datasheet) was entered. \n" +
+    "				  </li>\n" +
+    "				  <li>Fractions were usually converted to decimal amount.\n" +
+    "				  </li>\n" +
+    "				  <li>Litter depths written in feet were usually converted to inches.\n" +
+    "				  </li>\n" +
+    "				  <li>The field recorder sometimes included the species components of the litter alongside the depth for \"Litt\" entries in the Species field (or other codes meaning litter, like \"Lit\").  In these cases the species components were moved to the Species field.  This was done to be consistent with instructions in the <a target=\"_blank\" href=\"http://digitalassets.lib.berkeley.edu/vtm/ucb/text/cubio_vtm_fm.pdf\">VTM Field Manual</a> and the majority of other field recorders that recorded litter component information.  For ex., if the datasheet had \"0.75 mixture of Y S\" written for the litter depth of the species code \"Litt\", then it was entered as \"0.75\" for the litter depth of species code \"Litt mixture of Y S\".\n" +
+    "				  </li>\n" +
+    "				</ul>\n" +
+    "    		</accordion-group>\n" +
+    "\n" +
+    "    		<accordion-group heading=\"Trees\">	\n" +
+    "				<h4>\n" +
+    "				  Species\n" +
+    "				</h4>\n" +
+    "				<p>\n" +
+    "				  Species code as written on datasheet. See notes under <b>Brush and Ground Cover</b> above for details.\n" +
+    "				</p>\n" +
+    "				<h4>\n" +
+    "				  Diameter Class fields\n" +
+    "				</h4>\n" +
+    "				<p>\n" +
+    "				  Number as written on datasheet, except as noted below.\n" +
+    "				</p>\n" +
+    "				<ul>\n" +
+    "				  <li>Occasionally the VTM data taker recorded data on diameter classes that did not fit into the set classes on the datasheet.  For ex. \"&lt;4 inches\".  In these cases the information was entered in the Miscellaneous_Notes field.\n" +
+    "				  </li>\n" +
+    "				  <li>This was a numeric field that did not allow text.  If the number was hyphenated it was entered in the Miscellaneous_Notes field.\n" +
+    "				  </li>\n" +
+    "				</ul>\n" +
+    "				<h4>\n" +
+    "				  Total\n" +
+    "				</h4>\n" +
+    "				<p>\n" +
+    "				  Number as written on datasheet.  This field was later converted to a calculated field that was the sum of dbh counts recorded on the datasheet.  The original version of this field (ie non-calculated) was archived in case it was wanted in the future.\n" +
+    "				</p>\n" +
+    "				<h4>\n" +
+    "				  HT feet\n" +
+    "				</h4>\n" +
+    "				<p>\n" +
+    "				  Number as written on datasheet (unless hyphenated).\n" +
+    "				</p>\n" +
+    "				<ul>\n" +
+    "				  <li>This field did not allow hyphenated values.   Hyphenated values were entered in the Miscellaneous_Notes field.\n" +
+    "				  </li>\n" +
+    "				  <li>One of the two versions of the brush and tree datasheets does not have a column for tree height.  On these forms, either height was not recorded, or height was  recorded in a drawn in column (often a drawn line split the total column into two columns with total data on the left and height data on the right). When it was clear that these were heights (ie either the word height was written or both totals and heights were recorded), this information was recorded in the height column.  If it was unclear, a note was added in the Miscellaneous_Notes field indicating that additional numbers that are possibly height data were recorded on the datasheet.\n" +
+    "				  </li>\n" +
+    "				</ul>\n" +
+    "    		</accordion-group>\n" +
+    "\n" +
+    "    	</accordion>\n" +
+    "\n" +
+    "    </div>\n" +
+    "</div>\n" +
+    "");
+}]);
+
 angular.module("about/about.overview.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("about/about.overview.tpl.html",
     "<div class=\"row\" id=\"#about\">\n" +
@@ -395,31 +882,31 @@ angular.module("about/about.plotdata.tpl.html", []).run(["$templateCache", funct
     "				<td>1.0%</td>\n" +
     "			</tr>\n" +
     "			<tr>\n" +
-    "				<td>Vegetation Type</td>\n" +
+    "				<td>Veg. Type</td>\n" +
     "				<td>0.6%</td>\n" +
     "				<td>2.8%</td>\n" +
     "				<td>1.7%</td>\n" +
     "			</tr>\n" +
     "			<tr>\n" +
-    "				<td>Ground Cover (Species Code)</td>\n" +
+    "				<td>Ground Cover_Species Code</td>\n" +
     "				<td>2.0%</td>\n" +
     "				<td>2.7%</td>\n" +
     "				<td>2.4%</td>\n" +
     "			</tr>\n" +
     "			<tr>\n" +
-    "				<td>Ground Cover (% Cover)</td>\n" +
+    "				<td>Ground Cover_% Cover</td>\n" +
     "				<td>0.9%</td>\n" +
     "				<td>1.4%</td>\n" +
     "				<td>1.1%</td>\n" +
     "			</tr>\n" +
     "			<tr>\n" +
-    "				<td>Ground Cover Height (ft)</td>\n" +
+    "				<td>Ground Cover_Height (ft)</td>\n" +
     "				<td>0.5%</td>\n" +
     "				<td>0.5%</td>\n" +
     "				<td>0.5%</td>\n" +
     "			</tr>\n" +
     "			<tr>\n" +
-    "				<td>Ground Cover Litter Depth (in)</td>\n" +
+    "				<td>Ground Cover_Litter Depth (in)</td>\n" +
     "				<td>0.0%</td>\n" +
     "				<td>1.0%</td>\n" +
     "				<td>0.5%</td>\n" +
@@ -431,25 +918,25 @@ angular.module("about/about.plotdata.tpl.html", []).run(["$templateCache", funct
     "				<td>1.9%</td>\n" +
     "			</tr>\n" +
     "			<tr>\n" +
-    "				<td>Tree Species Code</td>\n" +
+    "				<td>Tree_Species Code</td>\n" +
     "				<td>1.6%</td>\n" +
     "				<td>4.4%</td>\n" +
     "				<td>2.7%</td>\n" +
     "			</tr>\n" +
     "			<tr>\n" +
-    "				<td>Tree DBH</td>\n" +
+    "				<td>Tree_DBH</td>\n" +
     "				<td>0.8%</td>\n" +
     "				<td>2.9%</td>\n" +
     "				<td>1.9%</td>\n" +
     "			</tr>\n" +
     "			<tr>\n" +
-    "				<td>Tree Total</td>\n" +
+    "				<td>Tree_Total</td>\n" +
     "				<td>0%</td>\n" +
     "				<td>0%</td>\n" +
     "				<td>0%</td>\n" +
     "			</tr>\n" +
     "			<tr>\n" +
-    "				<td>Tree Height (ft)</td>\n" +
+    "				<td>Tree_Height (ft)</td>\n" +
     "				<td>0.0%</td>\n" +
     "				<td>2.2%</td>\n" +
     "				<td>1.1%</td>\n" +
@@ -524,506 +1011,42 @@ angular.module("about/about.plotdata.tpl.html", []).run(["$templateCache", funct
     "\n" +
     "		<p><small><sup>*</sup>D is the species code for <i>Quercus douglasii</i> in certain quadrangles, as is documented in quadrangle specific species lists.  When translating codes into species names, the database defers first to the quadrangle specific list if one exists, but not all quadrangles have their own species list.  All other codes come from global species lists, ie, official VTM species lists that are not particular to one specific quadrangle.</small></p>\n" +
     "\n" +
+    "		<h3>Notes on Data Entry</h3>\n" +
+    "		<ul>\n" +
+    "		  <li>\n" +
+    "		    <b>Illegible writing on datasheet</b>\n" +
+    "		    <p>\n" +
+    "		      In any field, if a word was not written legibly enough to understand, it was entered as \"(illegible word)\" (in parentheses or brackets) or \"illegible\", sometimes with a suggestion for what the word might mean.  For ex., if in the Excessive Erosion Evidence section the datasheet contained something like \"Shet erosion on hillsides\", where the \"Shet\" was written poorly enough that we could not even be certain that it was written as \"Shet\", the data enterer would enter \"(Illegible word, looks like \"Shet\") erosion on hillsides\" or \"(Illegible word, possibly \"Sheet\") erosion on hillsides\".  If the word was totally indecipherable the data enterer would enter \"(illegible word) erosion on hillsides\".\n" +
+    "		    </p>\n" +
+    "		  </li>\n" +
+    "		  <li>\n" +
+    "		    <b>Hyphens, blanks, and checkmarks</b>\n" +
+    "		    <p>\n" +
+    "		      In general, if a hyphen or checkmark was written on the datasheet it was entered as a hyphen (-) or, for checkmarks it was entered as \"check\" or \"checked\" or \"check mark\".  This rule is probably not entirely consistent, however.  Sections on the datasheet that were left blank, have a checkmark in them, or have a hyphen to indicate that no information was taken were sometimes left blank by the data enterers.\n" +
+    "		    </p>\n" +
+    "		  </li>\n" +
+    "		  <li>\n" +
+    "		    <b>Spelling errors</b>\n" +
+    "		    <p>\n" +
+    "		      If obvious spelling errors were found on datasheets (ie spelling errors made by VTM personnel) they were corrected during data entry. \n" +
+    "		    </p>\n" +
+    "		  </li>\n" +
+    "		  <li>\n" +
+    "		    <b>Blank datasheets and placeholder sheets</b>\n" +
+    "		    <p>\n" +
+    "		      All datasheets had a map number and plot number written on them, but some had very little or no other information recorded on them.  In these cases blank fields were left blank.  Sometimes instead of a datasheet a piece of paper (not a datasheet) had the map number and plot number and sometimes other remarks written on it, but no data.   We called these \"placeholders\", as they seemed to take the place of a  datasheet. They appear to be original VTM forms, because they are on the same type of paper and use the same typeset as other VTM datasheets.  We are not sure if these plots were ever sampled.  In any case, the data enterer entered all information written on the sheet.  The data enterer also noted in the Miscellaneous_Notes field that it was a placeholder sheet that did not have any data recorded on it.\n" +
+    "		    </p>\n" +
+    "		  </li>\n" +
+    "		</ul>\n" +
     "\n" +
-    "<h1>\n" +
-    "  Plot Data Metadata and Notes on Data Entry\n" +
-    "</h1>\n" +
-    "<p>\n" +
-    "  This document contains descriptions of\n" +
-    "</p>\n" +
-    "<ul>\n" +
-    "  <li>field descriptions for the VTM plot data\n" +
-    "  </li>\n" +
-    "  <li>notes on the plot data entry process\n" +
-    "  </li>\n" +
-    "  <li>observations about irregular, unusual, and/or unobvious details that arose during the data entry process\n" +
-    "  </li>\n" +
-    "</ul>\n" +
-    "<p>\n" +
-    "  For quality control and assurance activities, including standardization/lumping processes, see the \"About the Plot Data\" section above.\n" +
-    "</p>\n" +
-    "<h3>\n" +
-    "  Terms used in this document\n" +
-    "</h3>\n" +
-    "<p>\n" +
-    "  <b>Datasheet</b>: original VTM plot datasheet (either Brush and Tree Plot datasheet or Grass Plot datasheet)\n" +
-    "</p>\n" +
-    "<p>\n" +
-    "  <b>Data enterer</b>: person that entered data into Access database in 2004\n" +
-    "</p>\n" +
-    "<p>\n" +
-    "  <b>Field recorder</b>: original VTM personnel that recorded plot data on datasheet\n" +
-    "</p>\n" +
-    "<p>\n" +
-    "  <b>Truth table</b>: lumping table/grouping table to allow for grouping of certain data into broader categories than what was entered.  Not everything that was entered in a field needed to be grouped.  Mainly used to standardize variations in text that had the same meaning.\n" +
-    "</p>\n" +
-    "<h2>\n" +
-    "  FIELDS DESCRIPTIONS\n" +
-    "</h2>\n" +
-    "<p>\n" +
-    "  Note: Fields are listed according to the order that they appear on datasheets.\n" +
-    "</p>\n" +
-    "<h3>\n" +
-    "  Plot\n" +
-    "</h3>\n" +
-    "<h4>\n" +
-    "  Plot_ID\n" +
-    "</h4>\n" +
-    "<p>\n" +
-    "  An automated number was assigned to each datasheet entered in the database.\n" +
-    "</p>\n" +
-    "<h4>\n" +
-    "  Quadrangle\n" +
-    "</h4>\n" +
-    "<p>\n" +
-    "  Name of quadrangle as written on datasheet.\n" +
-    "</p>\n" +
-    "<ul>\n" +
-    "  <li>Entries for this field were standardized via the Quadrangle truth table.\n" +
-    "  </li>\n" +
-    "</ul>\n" +
-    "<h4>\n" +
-    "  Map\n" +
-    "</h4>\n" +
-    "<p>\n" +
-    "  Plot map number as written on datasheet.\n" +
-    "</p>\n" +
-    "<ul>\n" +
-    "  <li>The location of each plot is drawn on a topo map that is folded and stored with the associated datasheets.  This map has a number on it, which is also written on the tab top index card (along with the quad name) that organizes the datasheets in the drawers where they are stored.\n" +
-    "  </li>\n" +
-    "</ul>\n" +
-    "<h4>\n" +
-    "  Plot No.\n" +
-    "</h4>\n" +
-    "<p>\n" +
-    "  Letter and number combination written in red ink at top of front page on datasheet.\n" +
-    "</p>\n" +
-    "<ul>\n" +
-    "  <li>Corresponds to location on plot map.  For example, A-1-1 plot number is located in the A1 section on the plot map, and is located where the circled 1 is written in this section.\n" +
-    "  </li>\n" +
-    "  <li>The plot number we entered is different from the number that is written on the datasheet next to the heading \"Plot No.\", which is written in pencil and not in red ink.  Wieslander's <a target=\"_blank\" href=\"http://digitalassets.lib.berkeley.edu/vtm/ucb/text/cubio_vtm_fm.pdf\">Manual of Field Instructions for Vegetation Type Map of California</a> cites on p.76 that plots are numbered consecutively for each quadrangle, and this number was written next to \"Plot No.\" in pencil.  However, this number does not correspond directly to the location on the plot map.  Whenever the field recorder referred to the \"Plot No.\" (the number written in pencil) on the form, the data enterer also typed the corresponding Plot Key in parentheses.\n" +
-    "  </li>\n" +
-    "</ul>\n" +
-    "<h4>\n" +
-    "  Plot Key\n" +
-    "</h4>\n" +
-    "<p>\n" +
-    "  Combination of map number and plot number without spaces or dashes.\n" +
-    "</p>\n" +
-    "<ul>\n" +
-    "  <li>The Plot Key is a construct of the database management process, which necessitated a way to assign a unique but meaningful identifier for each datasheet entered.  Plot key was entered by hand during data entry of each datasheet; it was not an automated field.\n" +
-    "  </li>\n" +
-    "</ul>\n" +
-    "<h4>\n" +
-    "  Geographic Location\n" +
-    "</h4>\n" +
-    "<p>\n" +
-    "  Plot location as written on datasheet, exceptions noted below. \n" +
-    "</p>\n" +
-    "<ul>\n" +
-    "  <li>This field often includes mileage information, for ex. \"2 miles South of Mason Flat\".  If miles were written as fractions, these were usually converted to a decimal when entered.  Also, if miles were written in abbreviated form (such as Mi. or mi.) it was sometimes entered in unabbreviated form.  For ex. \"2S Mi. South of Mason Flat\" may have been entered as \"2.33 miles South of Mason Flat\". Some common conversions include:\n" +
-    "    <p>\n" +
-    "      <sup>1</sup>/<sub>16 </sub> = .06<br>\n" +
-    "      <sup>1</sup>/<sub>8  </sub> = .125 or .13<br>\n" +
-    "      <sup>1</sup>/<sub>6  </sub> = .167 or .17<br>\n" +
-    "      <sup>5</sup>/<sub>8  </sub> = .625 or .63<br>\n" +
-    "      <sup>2</sup>/<sub>3  </sub> = .667 or .67<br>\n" +
-    "      <sup>5</sup>/<sub>6  </sub> = .83<br>\n" +
-    "      <sup>7</sup>/<sub>8  </sub> = .875\n" +
-    "    </p>\n" +
-    "  </li>\n" +
-    "  <li>Sometimes plot location was described geographically in relation to a symbol or word on the plot map.  For ex., \"2.5 miles S of (triangle symbol with a dot in it) of Mt. Hamilton.\" Refers to the mountain top marker on the map that looks like a triangle with a small dot in the center of it and often has an elevation written next to it to indicate the elevation of the mountain peak.   Or for ex., \"0.2 miles S of \"S\" in Santa Rosa\"  refers to the letter S in the word Santa Rosa that appears on the plot map.\n" +
-    "  </li>\n" +
-    "</ul>\n" +
-    "<h4>\n" +
-    "  Date\n" +
-    "</h4>\n" +
-    "<p>\n" +
-    "  Date as written on datasheet, exceptions noted below.\n" +
-    "</p>\n" +
-    "<ul>\n" +
-    "  <li>The date field would only allow entries in a format of mm/dd/yyyy, and did not allow missing data. \n" +
-    "  </li>\n" +
-    "  <li>Dates with missing days were entered by entering \"01\" for the missing day.  Dates with missing years were entered by entering the year that other nearby plots were recorded in that quad (see QA Write up.doc).\n" +
-    "  </li>\n" +
-    "</ul>\n" +
-    "<h4>\n" +
-    "  Section\n" +
-    "</h4>\n" +
-    "<p>\n" +
-    "  Section number as written on datasheet, exceptions noted below.\n" +
-    "</p>\n" +
-    "<ul>\n" +
-    "  <li>Occasionally, the field size was too small to enter all that was written, ie, anything other than the standard one or two digit number that usually indicates the section number.  For ex., Section was sometimes written as \"grants\" or \"unsurveyed\".  Section was also sometimes written with hyphenated values to indicate multiple section numbers, for ex., \"12-14\".  Since this data did not fit in this field it was also entered in Miscellaneous_Notes field.\n" +
-    "  </li>\n" +
-    "</ul>\n" +
-    "<h4>\n" +
-    "  Township\n" +
-    "</h4>\n" +
-    "<p>\n" +
-    "  Township as written on datasheet.\n" +
-    "</p>\n" +
-    "<h4>\n" +
-    "  Range\n" +
-    "</h4>\n" +
-    "<p>\n" +
-    "  Range as written on datasheet, exceptions noted below. \n" +
-    "</p>\n" +
-    "<ul>\n" +
-    "  <li>Sometimes range was written in parentheses on the datasheet.  The database field would not allow parentheses, so in these cases it was either entered in the Miscellaneous_Notes field or it was entered without parenthesis in the range field with a note in the Miscellaneous_Notes field indicating that the range was written in parentheses.\n" +
-    "  </li>\n" +
-    "  <li>Sometimes range was written with two or three letters following it.  For ex. \"8SBM\" or \"12AES\".  These seem to be the initials of VTM personnel that made a change or confirmation to the range written on the datasheet.  Initials were removed in the QC process via the Range truth table.\n" +
-    "  </li>\n" +
-    "  <li>The range was sometimes written with an \"R\" before the range number.  For ex. \"R8S\".  R occurrences were removed in the QC process via the Range truth table.\n" +
-    "  </li>\n" +
-    "</ul>\n" +
-    "<h4>\n" +
-    "  Taken By\n" +
-    "</h4>\n" +
-    "<p>\n" +
-    "  Field recorder's name, usually entered as written on datasheet.  Although the policy was to enter the name exactly as it appeared on the datasheet, first and last names were not necessarily entered in the same order as they were written on the datasheet, and initials were sometimes entered instead of the full name as written on the datasheet.    All entries for this field were standardized via the Taken By truth table.\n" +
-    "</p>\n" +
-    "<h4>\n" +
-    "  Type\n" +
-    "</h4>\n" +
-    "<p>\n" +
-    "  Vegetation type as written on datasheet, either as one or more species codes or as the name of the vegetation type, and sometimes both.  Species codes were entered as written, either with spaces between codes or without spaces between species codes.\n" +
-    "</p>\n" +
-    "<p>\n" +
-    "  Ex: ADC may also appear as A  D  C.\n" +
-    "</p>\n" +
-    "<ul>\n" +
-    "  <li>On some datasheets, a circled number was written in the upper right hand corner of the back of the datasheet, which is in the same area as the Type section.  In most cases this number was not entered.  In some cases a reference to this number was entered in the Miscellaneous_Notes field, or in the Type field.  The <a target=\"_blank\" href=\"http://digitalassets.lib.berkeley.edu/vtm/ucb/text/cubio_vtm_fm.pdf\">VTM Field Manual</a> may explain what this number refers to.\n" +
-    "  </li>\n" +
-    "</ul>\n" +
-    "<h4>\n" +
-    "  Exposure\n" +
-    "</h4>\n" +
-    "<p>\n" +
-    "  Plot exposure as written on datasheet (see exceptions below), either as abbreviation of cardinal direction or as the name of the direction (For ex. \"Southerly\")\n" +
-    "</p>\n" +
-    "<ul>\n" +
-    "  <li>There may be cases when the data enterer did not enter exposure exactly as written on datasheet.  For ex. if \"So.\" was written on the datasheet, the data enterer could have entered \"S\" or \"South\".  In all cases however, the meaning of what was entered should never be different than what was written on the datasheet.\n" +
-    "  </li>\n" +
-    "</ul>\n" +
-    "<h4>\n" +
-    "  Slope Percent\n" +
-    "</h4>\n" +
-    "<p>\n" +
-    "  Numerical slope of plot as written on datasheet (unless written as text)\n" +
-    "</p>\n" +
-    "<ul>\n" +
-    "  <li>This field did not allow text, so when slope was written on datasheet as text (for ex. \"very steep\") it was entered in the Miscellaneous_Notes field\n" +
-    "  </li>\n" +
-    "</ul>\n" +
-    "<h4>\n" +
-    "  Elevation\n" +
-    "</h4>\n" +
-    "<p>\n" +
-    "  Elevation of plot as written on datasheet.  This field had an upper bound of 15,000 ft.\n" +
-    "</p>\n" +
-    "<h4>\n" +
-    "  Year of last burn\n" +
-    "</h4>\n" +
-    "<p>\n" +
-    "  Entered as written on datasheet\n" +
-    "</p>\n" +
-    "<h4>\n" +
-    "  Site\n" +
-    "</h4>\n" +
-    "<p>\n" +
-    "  Entered as written on datasheet\n" +
-    "</p>\n" +
-    "<ul>\n" +
-    "  <li>When a roman numeral was written in this section, the number that the roman numeral represents was entered and a note was added to the Miscellaneous_Notes field to indicate that the number was written as a roman numeral.\n" +
-    "  </li>\n" +
-    "</ul>\n" +
-    "<h4>\n" +
-    "  Penetrability\n" +
-    "</h4>\n" +
-    "<p>\n" +
-    "  Entered as written on datasheet (if it fit within the field size)\n" +
-    "</p>\n" +
-    "<ul>\n" +
-    "  <li>This field was a drop down menu (Easy, Medium, Difficult, or Impenetrable) but also allowed text entry.  However the field size was sometimes too small to enter all that was written.  In this case it was entered in the Miscellaneous_Notes field.\n" +
-    "  </li>\n" +
-    "</ul>\n" +
-    "<h4>\n" +
-    "  Soil depth\n" +
-    "</h4>\n" +
-    "<p>\n" +
-    "  Entered as written on datasheet (if it fit within the field size)\n" +
-    "</p>\n" +
-    "<ul>\n" +
-    "  <li>This field was a drop down menu (Shallow, Medium, Deep)  but also allowed text entry.  However the field size was sometimes too small to enter all that was written.  In this case it was entered in the Miscellaneous_Notes field.\n" +
-    "  </li>\n" +
-    "  <li>One of the two versions of the datasheet did not have a soil depth section.  Therefore no data was entered about soil depth for these datasheets.\n" +
-    "  </li>\n" +
-    "  <li>Occasionally hyphenated values or values that did not match one of the drop down choices were entered by choosing the drop down value that was essentially the same in meaning, and a note was entered in Miscellaneous Notes field to reference what was exactly written on datasheet.\n" +
-    "  </li>\n" +
-    "</ul>\n" +
-    "<h4>\n" +
-    "  Parent Rock\n" +
-    "</h4>\n" +
-    "<p>\n" +
-    "  Entered as written on datasheet, except as noted below.\n" +
-    "</p>\n" +
-    "<ul>\n" +
-    "  <li>This field was a drop down menu (Igneous, Metamorphic, Sedimentary) but also allowed text entry.  However the field size was sometimes too small to enter all that was written.  In this case it was entered in the Miscellaneous_Notes field.\n" +
-    "  </li>\n" +
-    "  <li>There were two versions of the \"tree plot\" datasheets.  One of the two versions of the datasheet did not have a soil depth section.  Therefore no data was entered about soil depth for these datasheets.\n" +
-    "  </li>\n" +
-    "  <li>Occasionally hyphenated values or values that did not match one of the drop down choices were entered by choosing the drop down value that was essentially the same in meaning, and a note was entered in Miscellaneous_Notes field to reference what was exactly written on datasheet.\n" +
-    "  </li>\n" +
-    "</ul>\n" +
-    "<h4>\n" +
-    "  Soil Character field\n" +
-    "</h4>\n" +
-    "<p>\n" +
-    "  Entered as written on datasheet, except as noted below.\n" +
-    "</p>\n" +
-    "<ul>\n" +
-    "  <li>This section on the datasheet consists of 7 checkboxes (for ex. Rocky, Gravelly, Sandy, etc).  The database entry form had the same checkboxes.  If any other additional information was written on the datasheet (for ex., text written next to the checkboxes) it was entered in the Miscellaneous_Notes field.\n" +
-    "  </li>\n" +
-    "  <li>Occasionally hyphenated values or values that did not match one of the drop down choices were entered by choosing the drop down value that was essentially the same in meaning, and a note was entered in Miscellaneous Notes field to reference what was exactly written on datasheet.\n" +
-    "  </li>\n" +
-    "</ul>\n" +
-    "<h4>\n" +
-    "  Soil_Origin\n" +
-    "</h4>\n" +
-    "<p>\n" +
-    "  Entered as written on datasheet, except as noted below.\n" +
-    "</p>\n" +
-    "<ul>\n" +
-    "  <li>There were two versions of the \"Brush and Tree Plot\" datasheets.  One version listed 16 different soil origin types, so the field recorder could either check one or more or write in an origin not on the list.  The other datasheet version did not list soil origin types.  There were was a wide range of soil origin types recorded (varying from \"brown soil\" to \"Alluvium of granitics and basalt\") each datasheet.  Some soil origin types recorded are technically not a soil origin type (for ex. \"poor soil\").  These were still entered as they appeared on datasheet, unless it was an obvious spelling error, in which case the spelling error was corrected (see \"Other\" section at end of this document).\n" +
-    "  </li>\n" +
-    "  <li>Occasionally hyphenated values or values that did not match one of the drop down choices were entered by choosing the drop down value that was essentially the same in meaning, and a note was entered in Miscellaneous Notes field to reference what was exactly written on datasheet.\n" +
-    "  </li>\n" +
-    "</ul>\n" +
-    "<h4>\n" +
-    "  Excessive Erosion Evidence\n" +
-    "</h4>\n" +
-    "<p>\n" +
-    "  Entered as written on datasheet (if it fit within the field size)\n" +
-    "</p>\n" +
-    "<ul>\n" +
-    "  <li>In rare cases the field size was not large enough to enter all that was written on the datasheet.  In these cases the remainder was entered in the Miscellaneous_Notes field.\n" +
-    "  </li>\n" +
-    "</ul>\n" +
-    "<h4>\n" +
-    "  Additional_Ground_Cover-species\n" +
-    "</h4>\n" +
-    "<p>\n" +
-    "  Each species or species code was entered on a separate line in this field.  Species names and species codes were entered as written on datasheet.  Abundance information for a particular species (\"x\" or \"xx\" or \"xxx\", etc.) was entered after the species name or code and on the same line, with either a space or a hyphen between the species name and its abundance.  Although this was the policy, data enterers sometimes entered the abundance information (\"x\", \"xx\", etc) before the species name, as written on the datasheet.  Also, one of the databases was set to automatically sort species names alphabetically.\n" +
-    "</p>\n" +
-    "<h4>\n" +
-    "  Special Fire Hazards\n" +
-    "</h4>\n" +
-    "<p>\n" +
-    "  Entered as written on datasheet\n" +
-    "</p>\n" +
-    "<ul>\n" +
-    "  <li>Sometimes the VTM data recorder underlined a word in the heading for this section (\"Special Fire Hazards (dead brush, snags, etc.)\" instead of writing it.  For ex., dead brush or snags may have been underlined.  In these cases the word that was underlined was entered in this field.\n" +
-    "  </li>\n" +
-    "</ul>\n" +
-    "<h4>\n" +
-    "  Remarks\n" +
-    "</h4>\n" +
-    "<p>\n" +
-    "  Entered as written on datasheet (if it fit within the field size)\n" +
-    "</p>\n" +
-    "<ul>\n" +
-    "  <li>In rare cases the field size was not large enough to write in all that was written on the datasheet.  In these cases the remainder was entered in the Miscellaneous_Notes field.\n" +
-    "  </li>\n" +
-    "</ul>\n" +
-    "<h4>\n" +
-    "  Miscellaneous_Notes\n" +
-    "</h4>\n" +
-    "<p>\n" +
-    "  IMPORTANT - The Miscellaneous_Notes field includes both actual data recorded at time of the original VTM survey as well as 2004 data enterers' comments about the datasheet.  The Miscellaneous_Notes field is NOT a section on the datasheet.\n" +
-    "</p>\n" +
-    "<p>\n" +
-    "  This field contains the following types of information:\n" +
-    "</p>\n" +
-    "<ul>\n" +
-    "  <li>Remarks written on the datasheet that were not written in a particular section, For ex., stray remarks written in margins of the datasheet, or references to species codes: \"Ap = Apc\" or \"Gr2= At2 and Bh2\", or \"Cpo = Ceanothus prostrates\"\n" +
-    "  </li>\n" +
-    "  <li>Observations about the condition of the datasheet.  For ex., if the datasheet was torn, if the datasheet is blank, or if the datasheet has additional information attached to it such as a grass plot datasheet for the same plot.\n" +
-    "  </li>\n" +
-    "  <li>Other potentially important observations about the datasheet.  For ex., if the datasheet looks like it may contain resurvey data, or if some data was crossed out and changed to something else in a different color pencil or pen.\n" +
-    "  </li>\n" +
-    "  <li>This field also served as a holding place for data that did not fit the format requirements of the database fields. \n" +
-    "  </li>\n" +
-    "</ul>\n" +
-    "<h3>\n" +
-    "  Brush and Ground Cover\n" +
-    "</h3>\n" +
-    "<h4>\n" +
-    "  Species\n" +
-    "</h4>\n" +
-    "<p>\n" +
-    "  Species code as written on datasheet, except as noted below.\n" +
-    "</p>\n" +
-    "<ul>\n" +
-    "  <li>\n" +
-    "    <b>Symbol conversion with species codes:</b>\n" +
-    "    <ul>\n" +
-    "      <li>Codes with a ^ over text were entered with a 1 following text. For ex. A with a ^ over the A was entered as A1\n" +
-    "      </li>\n" +
-    "      <li>Underlined codes were entered with a 2 following text. For ex., <u>Gr</u>  was entered as Gr2\n" +
-    "      </li>\n" +
-    "      <li>Codes with a line over the top of text were entered with a 3 following text. For ex. H with a line over the H (like H) was entered as H3\n" +
-    "      </li>\n" +
-    "      <li>  Codes with an apostrophe after the text were entered with a 4 following text. For ex. S' was entered as S4\n" +
-    "      </li>\n" +
-    "    </ul>\n" +
-    "  </li>\n" +
-    "  <li>\n" +
-    "    <b>Other notes about species codes:</b>\n" +
-    "    <ul>\n" +
-    "      <li>  Any symbol drawn on the datasheet that could not be entered were entered in its text equivalent.  For example:\n" +
-    "      </li>\n" +
-    "      <li>A species code with a circle drawn around it was entered as the code name then circled.  For ex., a R with a circle drawn around it was entered as \"R circled\" or \"R circle\".\n" +
-    "      </li>\n" +
-    "      <li>A species code with a square drawn around it was entered as, for ex. \"R square\" or \"R boxed\"\n" +
-    "      </li>\n" +
-    "      <li>A pi symbol ( ) drawn next to the code entered as, for ex. \"R pi\"\n" +
-    "      </li>\n" +
-    "      <li>Other symbols like sigma and spiral were entered as \"sigma\" and \"spiral\".\n" +
-    "      </li>\n" +
-    "      <li>   If a number followed the code, it was entered as it was written.  For ex. \"W40\" was entered as \"W40\". \n" +
-    "      </li>\n" +
-    "      <li>   Sometimes two codes were written on the datasheet for one species.  For ex. \"Qdo=Qd\".  In these cases only one code was entered and a note of what was written was entered in the Miscellaneous_Notes field.\n" +
-    "      </li>\n" +
-    "    </ul>\n" +
-    "  </li>\n" +
-    "  <li>\n" +
-    "    <b>Litter species codes:</b>\n" +
-    "    <ul>\n" +
-    "      <li>Litter was usually written on datasheet as Lit and then the species code(s) that comprised the litter.  Sometimes the species codes were written first and then Lit.  Data entry standardized litter to be entered as Lit and then species codes.  Although this was the rule, it was not always entered in this order and data can be found in either notation.    \n" +
-    "      </li>\n" +
-    "      <li>For ex. \"Lit A\" or \"A lit\" were entered as \"Lit A\"\n" +
-    "      </li>\n" +
-    "      <li>The field recorder occasionally recorded the percent cover of litter in the Summary of Brush and Ground Cover section but recorded the components of the litter (ie what species made up the litter) in the Remarks section (in which case it was entered in the Remarks field), or in margins on the datasheet (in which case it was entered in the Miscellaneous Notes field).\n" +
-    "      </li>\n" +
-    "    </ul>\n" +
-    "  </li>\n" +
-    "</ul>\n" +
-    "<h4>\n" +
-    "  Percent\n" +
-    "</h4>\n" +
-    "<p>\n" +
-    "  % Cover number as written on datasheet\n" +
-    "</p>\n" +
-    "<ul>\n" +
-    "  <li>Occasionally the % Covers of all species did not add up to 100.  In these cases it was still entered as written on datasheet.\n" +
-    "  </li>\n" +
-    "  <li>In rare cases the field recorded did not record the % cover of a species but did fill out the plot diagram completely, allowing the data enterer to calculate and enter the missing cover data.\n" +
-    "  </li>\n" +
-    "</ul>\n" +
-    "<h4>\n" +
-    "  Height\n" +
-    "</h4>\n" +
-    "<p>\n" +
-    "  Plant height in feet as written on datasheet (except when written in inches).\n" +
-    "</p>\n" +
-    "<ul>\n" +
-    "  <li>When the datasheet had inches information (for ex. \"2 in.\" or '2\" ', the number in inches was converted to feet.  There may be instances however where the data enterer did not convert to feet and entered it as the way it was written.\n" +
-    "  </li>\n" +
-    "</ul>\n" +
-    "<h4>\n" +
-    "  Litter_Depth\n" +
-    "</h4>\n" +
-    "<p>\n" +
-    "  Depth of species litter in inches as written on datasheet.\n" +
-    "</p>\n" +
-    "<ul>\n" +
-    "  <li>\"T\" or \"t\" was sometimes written on datasheet to indicate \"trace amount\".  In these cases the T or t (whatever was written on the datasheet) was entered. \n" +
-    "  </li>\n" +
-    "  <li>Fractions were usually converted to decimal amount.\n" +
-    "  </li>\n" +
-    "  <li>Litter depths written in feet were usually converted to inches.\n" +
-    "  </li>\n" +
-    "  <li>The field recorder sometimes included the species components of the litter alongside the depth for \"Litt\" entries in the Species field (or other codes meaning litter, like \"Lit\").  In these cases the species components were moved to the Species field.  This was done to be consistent with instructions in the <a target=\"_blank\" href=\"http://digitalassets.lib.berkeley.edu/vtm/ucb/text/cubio_vtm_fm.pdf\">VTM Field Manual</a> and the majority of other field recorders that recorded litter component information.  For ex., if the datasheet had \"0.75 mixture of Y S\" written for the litter depth of the species code \"Litt\", then it was entered as \"0.75\" for the litter depth of species code \"Litt mixture of Y S\".\n" +
-    "  </li>\n" +
-    "</ul>\n" +
-    "<h3>\n" +
-    "  Trees\n" +
-    "</h3>\n" +
-    "<h4>\n" +
-    "  Species\n" +
-    "</h4>\n" +
-    "<p>\n" +
-    "  Species code as written on datasheet. See notes under <b>Brush and Ground Cover</b> above for details.\n" +
-    "</p>\n" +
-    "<h4>\n" +
-    "  Diameter Class fields\n" +
-    "</h4>\n" +
-    "<p>\n" +
-    "  Number as written on datasheet, except as noted below.\n" +
-    "</p>\n" +
-    "<ul>\n" +
-    "  <li>Occasionally the VTM data taker recorded data on diameter classes that did not fit into the set classes on the datasheet.  For ex. \"&lt;4 inches\".  In these cases the information was entered in the Miscellaneous_Notes field.\n" +
-    "  </li>\n" +
-    "  <li>This was a numeric field that did not allow text.  If the number was hyphenated it was entered in the Miscellaneous_Notes field.\n" +
-    "  </li>\n" +
-    "</ul>\n" +
-    "<h4>\n" +
-    "  Total\n" +
-    "</h4>\n" +
-    "<p>\n" +
-    "  Number as written on datasheet.  This field was later converted to a calculated field that was the sum of dbh counts recorded on the datasheet.  The original version of this field (ie non-calculated) was archived in case it was wanted in the future.\n" +
-    "</p>\n" +
-    "<h4>\n" +
-    "  HT feet\n" +
-    "</h4>\n" +
-    "<p>\n" +
-    "  Number as written on datasheet (unless hyphenated).\n" +
-    "</p>\n" +
-    "<ul>\n" +
-    "  <li>This field did not allow hyphenated values.   Hyphenated values were entered in the Miscellaneous_Notes field.\n" +
-    "  </li>\n" +
-    "  <li>One of the two versions of the brush and tree datasheets does not have a column for tree height.  On these forms, either height was not recorded, or height was  recorded in a drawn in column (often a drawn line split the total column into two columns with total data on the left and height data on the right). When it was clear that these were heights (ie either the word height was written or both totals and heights were recorded), this information was recorded in the height column.  If it was unclear, a note was added in the Miscellaneous_Notes field indicating that additional numbers that are possibly height data were recorded on the datasheet.\n" +
-    "  </li>\n" +
-    "</ul>\n" +
-    "<h2>\n" +
-    "  OTHER NOTES ABOUT DATA ENTRY\n" +
-    "</h2>\n" +
-    "<ul>\n" +
-    "  <li>\n" +
-    "    <b>Illegible writing on datasheet</b>\n" +
-    "    <p>\n" +
-    "      In any field, if a word was not written legibly enough to understand, it was entered as \"(illegible word)\" (in parentheses or brackets) or \"illegible\", sometimes with a suggestion for what the word might mean.  For ex., if in the Excessive Erosion Evidence section the datasheet contained something like \"Shet erosion on hillsides\", where the \"Shet\" was written poorly enough that we could not even be certain that it was written as \"Shet\", the data enterer would enter \"(Illegible word, looks like \"Shet\") erosion on hillsides\" or \"(Illegible word, possibly \"Sheet\") erosion on hillsides\".  If the word was totally indecipherable the data enterer would enter \"(illegible word) erosion on hillsides\".\n" +
-    "    </p>\n" +
-    "  </li>\n" +
-    "  <li>\n" +
-    "    <b>Hyphens, blanks, and checkmarks</b>\n" +
-    "    <p>\n" +
-    "      In general, if a hyphen or checkmark was written on the datasheet it was entered as a hyphen (-) or, for checkmarks it was entered as \"check\" or \"checked\" or \"check mark\".  This rule is probably not entirely consistent, however.  Sections on the datasheet that were left blank, have a checkmark in them, or have a hyphen to indicate that no information was taken were sometimes left blank by the data enterers.\n" +
-    "    </p>\n" +
-    "  </li>\n" +
-    "  <li>\n" +
-    "    <b>Spelling errors</b>\n" +
-    "    <p>\n" +
-    "      If obvious spelling errors were found on datasheets (ie spelling errors made by VTM personnel) they were corrected during data entry. \n" +
-    "    </p>\n" +
-    "  </li>\n" +
-    "  <li>\n" +
-    "    <b>Blank datasheets and placeholder sheets</b>\n" +
-    "    <p>\n" +
-    "      All datasheets had a map number and plot number written on them, but some had very little or no other information recorded on them.  In these cases blank fields were left blank.  Sometimes instead of a datasheet a piece of paper (not a datasheet) had the map number and plot number and sometimes other remarks written on it, but no data.   We called these \"placeholders\", as they seemed to take the place of a  datasheet. They appear to be original VTM forms, because they are on the same type of paper and use the same typeset as other VTM datasheets.  We are not sure if these plots were ever sampled.  In any case, the data enterer entered all information written on the sheet.  The data enterer also noted in the Miscellaneous_Notes field that it was a placeholder sheet that did not have any data recorded on it.\n" +
-    "    </p>\n" +
-    "  </li>\n" +
-    "</ul>\n" +
-    "\n" +
-    "<!-- A MARKER HERE -->\n" +
-    "		<h2>Works Cited</h2>\n" +
-    "		<ol>\n" +
+    "		<h3>Works Cited</h3>\n" +
+    "		<ul>\n" +
     "			<li><a name=\"ref1\"></a>Hickman, James C. (editor),  1993.  <u>The Jepson Manual: Higher Plants of California</u>. Berkeley: University of California Press, 1400 pp.</li>\n" +
     "\n" +
     "			<li><a name=\"ref2\"></a>Jepson, Willis Linn, 1925.  <u>Manual of the Flowering Plants of California</u>. Berkeley: University of California Press, 1238 pp. </li>\n" +
+    "\n" +
     "			<li><a name=\"ref3\"></a>Munz, Philip A. and David D. Keck, 1968.  <u>A California Flora and Supplement</u>.  Berkeley: University of California Press, 1681 pp.</li>\n" +
-    "		</ol>	\n" +
+    "		</ul>	\n" +
     "\n" +
     "   </div>\n" +
     "</div>\n" +
@@ -1097,78 +1120,30 @@ angular.module("about/about.publications.tpl.html", []).run(["$templateCache", f
 
 angular.module("about/about.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("about/about.tpl.html",
-    "<div class=\"container learn-more\">\n" +
+    "<div class=\"container\" id=\"learn-more\" ng-controller=\"AboutCtrl\">\n" +
     "    <div class=\"row\">\n" +
-    "        <div class=\"page-header\">\n" +
+    "        <div class=\"col-md-12\">\n" +
     "			<h3>\n" +
     "				<span class=\"title\">{{pageTitle | split:'|':0}}</span>\n" +
     "			</h3>\n" +
     "			<h5 class=\"sub-nav-links\">\n" +
     "				<a href ui-sref=\"about.overview\">History</a> |\n" +
-    "				<a href ui-sref=\"about.plotdata\">Plot Data</a> |\n" +
-    "				<a href ui-sref=\"about.plotmaps\">Plot Maps</a> |\n" +
+    "				<a href ui-sref=\"about.description\">Data Description</a> |\n" +
+    "				<a href ui-sref=\"about.metadata\">Metadata</a> |\n" +
     "				<a href ui-sref=\"about.faq\">FAQ</a> |\n" +
     "				<a href ui-sref=\"about.publications\">Publications</a> |\n" +
     "				<a href ui-sref=\"about.citations\">Suggested Citations</a>\n" +
     "			</h5>\n" +
     "        </div>\n" +
     "    </div>\n" +
+    "    <hr/>\n" +
     "    <div ui-view></div>\n" +
     "</div>\n" +
     "");
 }]);
 
-angular.module("data/data.mapsheets.tpl.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("data/data.mapsheets.tpl.html",
-    "<div class=\"row\">\n" +
-    "    <div class=\"page-header\">\n" +
-    "            <h3><span class=\"title\">Mapsheets</span></h3>\n" +
-    "            <h5 class=\"sub-nav-links\">\n" +
-    "                <a href ui-sref=\"data.vegetation\">Vegetation</a> |\n" +
-    "                <a href ui-sref=\"data.plots\">Plots</a> |\n" +
-    "                <a href ui-sref=\"data.photos\">Photos</a> |\n" +
-    "                <a href ui-sref=\"data.mapsheets\">Mapsheets</a>\n" +
-    "            </h5>\n" +
-    "    </div>\n" +
-    "</div>\n" +
-    "\n" +
-    "<div class=\"row\">\n" +
-    "    <div class=\"col-md-9\">\n" +
-    "        <div id=\"map\" style=\"height: 600px\"></div>\n" +
-    "    </div>\n" +
-    "    <div class=\"col-md-3\">\n" +
-    "        <h2>Info box</h2>\n" +
-    "        <p><div id=\"info-box\">Please click on the map to get more information about the vegetation map.</div></p>\n" +
-    "    </div>\n" +
-    "</div>\n" +
-    "\n" +
-    "<div class=\"row\">\n" +
-    "    <div class=\"col-md-4\">\n" +
-    "        <h2>Summary</h2>\n" +
-    "        <p>Something about this map.</p>\n" +
-    "    </div>\n" +
-    "    <div class=\"col-md-4\">\n" +
-    "        <h2>Suggested Citations</h2>\n" +
-    "        <ng-include src=\"'about/about.citations.tpl.html'\"></ng-inlcude>\n" +
-    "    </div>\n" +
-    "    <div class=\"col-md-4\">\n" +
-    "        <h2>Method</h2>\n" +
-    "        <p>How did we create this map?</p>\n" +
-    "    </div>\n" +
-    "</div>\n" +
-    "\n" +
-    "\n" +
-    "");
-}]);
-
 angular.module("data/data.overview.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("data/data.overview.tpl.html",
-    "<div class=\"row\">\n" +
-    "    <div class=\"page-header\">\n" +
-    "            <h3><span class=\"title\">Available Datasets</span></h3>\n" +
-    "    </div>\n" +
-    "</div>\n" +
-    "\n" +
     "<div class=\"row\">\n" +
     "    <div class=\"item col-md-6 col-sm-6 col-xs-12 text-center\">\n" +
     "        <div class=\"features\">\n" +
@@ -1177,7 +1152,7 @@ angular.module("data/data.overview.tpl.html", []).run(["$templateCache", functio
     "                    <img class=\"img-rounded\" src=\"assets/img/data_vegpolygons.png\" />\n" +
     "                </div><!--//icon-->\n" +
     "                <div class=\"content\">\n" +
-    "                    <h2 class=\"title\">Vegetation Polygons</h2>\n" +
+    "                    <h2 class=\"title\">Vegetation Map</h2>\n" +
     "                    <p>Learn more about this data set. </p>  \n" +
     "                </div><!--//content-->  \n" +
     "            </a>        \n" +
@@ -1185,7 +1160,7 @@ angular.module("data/data.overview.tpl.html", []).run(["$templateCache", functio
     "    </div>\n" +
     "    <div class=\"item col-md-6 col-sm-6 col-xs-12 text-center\">\n" +
     "        <div class=\"features\">\n" +
-    "            <a href ui-sref=\"data.plots\">\n" +
+    "            <a href ui-sref=\"data.plotdata\">\n" +
     "                <div class=\"icon animated fadeIn delayp1\" style=\"opacity: 0;\">\n" +
     "                    <img class=\"img-rounded\" src=\"assets/img/data_plots.png\" />\n" +
     "                </div><!--//icon-->\n" +
@@ -1195,6 +1170,19 @@ angular.module("data/data.overview.tpl.html", []).run(["$templateCache", functio
     "                </div><!--//content--> \n" +
     "            </a>    \n" +
     "        </div>           \n" +
+    "    </div>\n" +
+    "    <div class=\"item col-md-6 col-sm-6 col-xs-12 text-center\">\n" +
+    "        <div class=\"features\">\n" +
+    "            <a href ui-sref=\"data.plotmaps\">\n" +
+    "                <div class=\"icon animated fadeIn delayp1\" style=\"opacity: 0;\">\n" +
+    "                    <img class=\"img-rounded\" src=\"assets/img/data_mapsheets.png\" />        \n" +
+    "                </div><!--//icon-->\n" +
+    "                <div class=\"content\">\n" +
+    "                    <h2 class=\"title\">Plot Maps</h2>\n" +
+    "                    <p>Learn more about this data set. </p>   \n" +
+    "                </div><!--//content-->  \n" +
+    "            </a>\n" +
+    "        </div>              \n" +
     "    </div>\n" +
     "    <div class=\"item col-md-6 col-sm-6 col-xs-12 text-center\">\n" +
     "        <div class=\"features\">\n" +
@@ -1209,36 +1197,11 @@ angular.module("data/data.overview.tpl.html", []).run(["$templateCache", functio
     "            </a>\n" +
     "        </div>              \n" +
     "    </div>\n" +
-    "    <div class=\"item col-md-6 col-sm-6 col-xs-12 text-center\">\n" +
-    "        <div class=\"features\">\n" +
-    "            <a href ui-sref=\"data.mapsheets\">\n" +
-    "                <div class=\"icon animated fadeIn delayp1\" style=\"opacity: 0;\">\n" +
-    "                    <img class=\"img-rounded\" src=\"assets/img/data_mapsheets.png\" />        \n" +
-    "                </div><!--//icon-->\n" +
-    "                <div class=\"content\">\n" +
-    "                    <h2 class=\"title\">Plot Maps</h2>\n" +
-    "                    <p>Learn more about this data set. </p>   \n" +
-    "                </div><!--//content-->  \n" +
-    "            </a>\n" +
-    "        </div>              \n" +
-    "    </div>\n" +
     "</div>");
 }]);
 
 angular.module("data/data.photos.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("data/data.photos.tpl.html",
-    "<div class=\"row\">\n" +
-    "    <div class=\"page-header\">\n" +
-    "            <h3><span class=\"title\">Photos</span></h3>\n" +
-    "            <h5 class=\"sub-nav-links\">\n" +
-    "                <a href ui-sref=\"data.vegetation\">Vegetation</a> |\n" +
-    "                <a href ui-sref=\"data.plots\">Plots</a> |\n" +
-    "                <a href ui-sref=\"data.photos\">Photos</a> |\n" +
-    "                <a href ui-sref=\"data.mapsheets\">Mapsheets</a>\n" +
-    "            </h5>\n" +
-    "    </div>\n" +
-    "</div>\n" +
-    "\n" +
     "<div class=\"row\">\n" +
     "    <div class=\"col-md-9\">\n" +
     "        <div id=\"map\" style=\"height: 600px\"></div>\n" +
@@ -1268,20 +1231,8 @@ angular.module("data/data.photos.tpl.html", []).run(["$templateCache", function(
     "");
 }]);
 
-angular.module("data/data.plots.tpl.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("data/data.plots.tpl.html",
-    "<div class=\"row\">\n" +
-    "    <div class=\"page-header\">\n" +
-    "        <h3><span class=\"title\">Plots</span></h3>\n" +
-    "        <h5 class=\"sub-nav-links\">\n" +
-    "            <a href ui-sref=\"data.vegetation\">Vegetation</a> |\n" +
-    "            <a href ui-sref=\"data.plots\">Plots</a> |\n" +
-    "            <a href ui-sref=\"data.photos\">Photos</a> |\n" +
-    "            <a href ui-sref=\"data.mapsheets\">Mapsheets</a>\n" +
-    "        </h5>\n" +
-    "    </div>\n" +
-    "</div>\n" +
-    "\n" +
+angular.module("data/data.plotdata.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("data/data.plotdata.tpl.html",
     "<div class=\"row\">\n" +
     "    <div class=\"col-md-9\">\n" +
     "        <leaflet id=\"map\" center=\"center\" layers=\"layers\" geojson=\"geojson\" defaults=\"defaults\" controls=\"controls\" style=\"height: 600px\"></leaflet>\n" +
@@ -1339,29 +1290,60 @@ angular.module("data/data.plots.tpl.html", []).run(["$templateCache", function($
     "");
 }]);
 
+angular.module("data/data.plotmaps.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("data/data.plotmaps.tpl.html",
+    "<div class=\"row\">\n" +
+    "    <div class=\"col-md-9\">\n" +
+    "        <div id=\"map\" style=\"height: 600px\"></div>\n" +
+    "    </div>\n" +
+    "    <div class=\"col-md-3\">\n" +
+    "        <h2>Info box</h2>\n" +
+    "        <p><div id=\"info-box\">Please click on the map to get more information about the vegetation map.</div></p>\n" +
+    "    </div>\n" +
+    "</div>\n" +
+    "\n" +
+    "<div class=\"row\">\n" +
+    "    <div class=\"col-md-4\">\n" +
+    "        <h2>Summary</h2>\n" +
+    "        <p>Something about this map.</p>\n" +
+    "    </div>\n" +
+    "    <div class=\"col-md-4\">\n" +
+    "        <h2>Suggested Citations</h2>\n" +
+    "        <ng-include src=\"'about/about.citations.tpl.html'\"></ng-inlcude>\n" +
+    "    </div>\n" +
+    "    <div class=\"col-md-4\">\n" +
+    "        <h2>Method</h2>\n" +
+    "        <p>How did we create this map?</p>\n" +
+    "    </div>\n" +
+    "</div>\n" +
+    "\n" +
+    "\n" +
+    "");
+}]);
+
 angular.module("data/data.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("data/data.tpl.html",
     "<div class=\"container\" id=\"data-grid\">\n" +
-    "\n" +
+    "    <div class=\"row\">\n" +
+    "        <div class=\"col-md-12\">\n" +
+    "			<h3>\n" +
+    "				<span class=\"title\">{{pageTitle | split:'|':0}}</span>\n" +
+    "			</h3>\n" +
+    "			<h5 class=\"sub-nav-links\">\n" +
+    "				<a href ui-sref=\"data.vegetation\">Vegetation Map</a> |\n" +
+    "				<a href ui-sref=\"data.plotdata\">Plot Data</a> |\n" +
+    "				<a href ui-sref=\"data.plotmaps\">Plot Maps</a> |\n" +
+    "				<a href ui-sref=\"data.photos\">Photo Locations</a>\n" +
+    "			</h5>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "    <hr/>\n" +
     "    <div ui-view></div>\n" +
-    "\n" +
     "</div>");
 }]);
 
 angular.module("data/data.vegetation.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("data/data.vegetation.tpl.html",
-    "<div class=\"row\">\n" +
-    "    <div class=\"page-header\">\n" +
-    "            <h3><span class=\"title\">Vegetation Type Map</span></h3>\n" +
-    "            <h5 class=\"sub-nav-links\">\n" +
-    "                <a href ui-sref=\"data.vegetation\">Vegetation</a> |\n" +
-    "                <a href ui-sref=\"data.plots\">Plots</a> |\n" +
-    "                <a href ui-sref=\"data.photos\">Photos</a> |\n" +
-    "                <a href ui-sref=\"data.mapsheets\">Mapsheets</a>\n" +
-    "            </h5>\n" +
-    "    </div>\n" +
-    "</div>\n" +
-    "\n" +
     "<div class=\"row\">\n" +
     "    <div class=\"col-md-9\">\n" +
     "        <leaflet id=\"map\" center=\"center\" layers=\"layers\" geojson=\"geojson\" defaults=\"defaults\" controls=\"controls\" style=\"height: 600px\"></leaflet>\n" +
@@ -1429,35 +1411,36 @@ angular.module("data/data.vegetation.tpl.html", []).run(["$templateCache", funct
 angular.module("home/home.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("home/home.tpl.html",
     "<div class=\"container\" id=\"home\" ng-controller=\"HomeCtrl\">\n" +
-    "\n" +
+    "    <div id=\"header\">\n" +
     "    <div class=\"fullwidthbanner-container\">\n" +
-    "\n" +
-    "    <div class=\"banner\">\n" +
-    "        <div class=\"row\">\n" +
-    "            <div class=\"col-md-12\">\n" +
-    "\n" +
-    "                <div>\n" +
-    "                  <animated-banner ng-model=\"image\">\n" +
+    "        <div class=\"banner\">\n" +
+    "            <div>\n" +
+    "                <animated-banner ng-model=\"image\">\n" +
     "                    <img ng-src=\"{{ image.source }}\"\n" +
-    "                            title=\"{{ image.title }}\" style=\"height:600px;\" />\n" +
-    "                  </animated-banner>\n" +
-    "                </div>\n" +
-    "                <div class=\"row\">\n" +
-    "                    <div class=\"col-sm-2 col-sm-offset-1\" id=\"portrait\">\n" +
+    "                        title=\"{{ image.title }}\" />\n" +
+    "                </animated-banner>\n" +
+    "            </div> \n" +
+    "        </div> <!-- end banner -->\n" +
+    "    </div>\n" +
+    "    <div id=\"title-box\">\n" +
+    "        <h3><span class=\"title\"><span class=\"title-first-letter\">W</span>IESLANDER <span class=\"title-first-letter\">V</span>EGETATION <span class=\"title-first-letter\">T</span>YPE <span class=\"title-first-letter\">M</span>APPING</span></h3>\n" +
+    "    </div>\n" +
+    "    <div id=\"description-box\">\n" +
+    "        <div class=\"row\">\n" +
+    "                <div class=\"col-sm-3\">\n" +
+    "                    <div id=\"portrait\">\n" +
     "                        <img  src=\"assets/img/wieslander.png\"></img>\n" +
     "                    </div>\n" +
-    "                    <div class=\"col-sm-8 col-sm-offset-3\" id=\"slogan\">\n" +
-    "                        <h3><span class=\"title\"><span class=\"title-first-letter\">W</span>ieslander <span class=\"title-first-letter\">V</span>egetation <span class=\"title-first-letter\">T</span>ype <span class=\"title-first-letter\">M</span>apping</span></h3>\n" +
-    "                        <h4>This project is a collection of datasets that provides a snapshot of California's vegetation in the early 20th century.</h4>\n" +
+    "                </div>\n" +
+    "                <div class=\"col-sm-8\" > \n" +
+    "                    <div id=\"tagline\">          \n" +
+    "                        <p>In the 1920s and 1930s Albert Everett Wieslander and several others explored much of California's wilderness sampling vegetation, taking photographs, collecting specimens, and drawing detailed maps of what they found. These data represent a valuable resource for comparative and conservation ecology. Explore and download the Wieslander Vegetation Type Mapping project collection to get a snapshot of California's vegetation in the early 20th century.</p>\n" +
     "                    </div>\n" +
-    "                </div> <!-- end second level row -->\n" +
-    "\n" +
-    "            </div> <!-- end col-md-12 -->\n" +
-    "        </div> <!-- end first level row -->\n" +
-    "    </div> <!-- end banner -->\n" +
-    "\n" +
+    "                </div>\n" +
+    "                <div class=\"col-sm-1\"></div>\n" +
+    "        </div>\n" +
     "    </div>\n" +
-    "\n" +
+    "</div>\n" +
     "    <div class=\"row\">\n" +
     "        <div class=\"item col-md-4 col-sm-4 col-xs-12 text-center\">\n" +
     "            <div class=\"features\">\n" +
@@ -1480,7 +1463,7 @@ angular.module("home/home.tpl.html", []).run(["$templateCache", function($templa
     "                    </div><!--//icon-->\n" +
     "                    <div class=\"content\">\n" +
     "                        <h2 class=\"title\">Learn More</h2>\n" +
-    "                        <p>Learn more about Wieslander's Vegetation Type mapping project. </p>  \n" +
+    "                        <p>Learn more about Wieslander's Vegetation Type Mapping project. </p>  \n" +
     "                    </div><!--//content--> \n" +
     "                </a>      \n" +
     "            </div>           \n" +

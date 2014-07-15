@@ -5,27 +5,28 @@
 
     <!-- social media tags -->
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:site" content="@joshdmiller">
-    <meta name="twitter:title" content="ngBoilerplate">
-    <meta name="twitter:description" content="Non-Trivial AngularJS Made Easy: Everything you need to kickstart AngularJS projects: a best-practice directory structure, an intelligent build system, and the best web design libraries around.">
-    <meta name="twitter:creator" content="@joshdmiller">
+    <meta name="twitter:site" content="@berkeleyGIF">
+    <meta name="twitter:title" content="vtm">
+    <meta name="twitter:description" content="Wieslander Vegetation Type Mapping project is a collection of datasets that provides a snapshot of California's vegetation in the early 20th century.">
+    <meta name="twitter:creator" content="@berkeleyGIF">
     <meta name="twitter:image:src" content="https://a248.e.akamai.net/assets.github.com/images/modules/logos_page/Octocat.png?1366128846">
-    <meta property="og:title" content="ngBoilerplate" />
+    <meta property="og:title" content="vtm" />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="http://bit.ly/ngBoilerplate" />
+    <meta property="og:url" content="http://vtm.berkeley.edu" />
     <meta property="og:image" content="https://a248.e.akamai.net/assets.github.com/images/modules/logos_page/Octocat.png?1366128846" />
-    <meta property="og:description" content="Non-Trivial AngularJS Made Easy: Everything you need to kickstart AngularJS projects: a best-practice directory structure, an intelligent build system, and the best web design libraries around.">
+    <meta property="og:description" content="Wieslander Vegetation Type Mapping project is a collection of datasets that provides a snapshot of California's vegetation in the early 20th century.">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- font awesome from BootstrapCDN -->
     <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
 
     <!-- compiled CSS --><% styles.forEach( function ( file ) { %>
     <link rel="stylesheet" type="text/css" href="<%= file %>" /><% }); %>
 
   </head>
-  <body class="boxed-layout container">
+  <body >
 
     <div class="wrapper">
 
@@ -36,22 +37,17 @@
             <div class="container">
                 <!-- Topbar Navigation -->
                 <ul class="loginbar pull-right">
-                    <li>
-                        <i class="fa fa-globe"></i>
-                        <a>Languages</a>
-                        <ul class="languages">
-                            <li class="active">
-                                <a href="#">English <i class="fa fa-check"></i></a> 
-                            </li>
-                            <li><a href="#">Spanish</a></li>
-                            <li><a href="#">Russian</a></li>
-                            <li><a href="#">German</a></li>
-                        </ul>
+                    <li>                        
+                        <a href="#"><i class="fa fa-twitter"></i></a>
                     </li>
                     <li class="topbar-devider"></li>   
-                    <li><a href="page_faq.html">Help</a></li>  
+                    <li>                        
+                        <a href="#"><i class="fa fa-facebook"></i></a>
+                    </li>
                     <li class="topbar-devider"></li>   
-                    <li><a href="page_login.html">Login</a></li>   
+                    <li>                        
+                        <a href="#"><i class="fa fa-linkedin"></i></a>
+                    </li>
                 </ul>
                 <!-- End Topbar Navigation -->
             </div>
@@ -68,7 +64,7 @@
                         <span class="fa fa-bars"></span>
                     </button>
                     <a class="navbar-brand" href="index.html">
-                        VTM
+                        <span class="title">VTM</span>
                     </a>
                 </div>
 
@@ -91,6 +87,7 @@
                                 Learn More
                             </a>
                             <ul class="dropdown-menu">
+                                <li><a href ui-sref="about.history">History</a></li>
                                 <li><a href ui-sref="about.faq">FAQ</a></li>
                                 <li><a href ui-sref="about.publications">Publications</a></li>
                                 <li><a href ui-sref="about.citations">Suggested Citations</a></li>
@@ -102,16 +99,10 @@
 
                         <!-- Data -->
                         <li class="dropdown" ui-sref-active="active">
-                            <a href ui-sref="data.overview" class="dropdown-toggle" data-toggle="dropdown">
+                            <a href ui-sref="data.overview">
                                 <i class="fa fa-cloud-download"></i>
                                 Data
                             </a>
-                            <ul class="dropdown-menu">
-                                <li><a href ui-sref="data.vegetation">Vegetation</a></li>
-                                <li><a href ui-sref="data.plots">Plot Data</a></li>
-                                <li><a href ui-sref="data.photos">Photos</a></li>
-                                <li><a href ui-sref="data.mapsheets">Plot Maps</a></li>
-                            </ul>
                         </li>
                         <!-- End Data -->
 

@@ -1,5 +1,17 @@
 <div class="container" id="data-grid">
-
+    <div class="row">
+        <div class="col-md-12">
+			<h3>
+				<span class="title">{{pageTitle | split:'|':0}}</span>
+			</h3>
+			<h5 class="sub-nav-links">
+				<a href ui-sref="data.vegetation">Vegetation Map</a> |
+				<a href ui-sref="data.plotdata">Plot Data</a> |
+				<a href ui-sref="data.plotmaps">Plot Maps</a> |
+				<a href ui-sref="data.photos">Photo Locations</a>
+			</h5>
+        </div>
+    </div>
+    <hr/>
     <div ui-view></div>
-
 </div>

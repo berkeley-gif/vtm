@@ -128,31 +128,31 @@
 				<td>1.0%</td>
 			</tr>
 			<tr>
-				<td>Vegetation Type</td>
+				<td>Veg. Type</td>
 				<td>0.6%</td>
 				<td>2.8%</td>
 				<td>1.7%</td>
 			</tr>
 			<tr>
-				<td>Ground Cover (Species Code)</td>
+				<td>Ground Cover_Species Code</td>
 				<td>2.0%</td>
 				<td>2.7%</td>
 				<td>2.4%</td>
 			</tr>
 			<tr>
-				<td>Ground Cover (% Cover)</td>
+				<td>Ground Cover_% Cover</td>
 				<td>0.9%</td>
 				<td>1.4%</td>
 				<td>1.1%</td>
 			</tr>
 			<tr>
-				<td>Ground Cover Height (ft)</td>
+				<td>Ground Cover_Height (ft)</td>
 				<td>0.5%</td>
 				<td>0.5%</td>
 				<td>0.5%</td>
 			</tr>
 			<tr>
-				<td>Ground Cover Litter Depth (in)</td>
+				<td>Ground Cover_Litter Depth (in)</td>
 				<td>0.0%</td>
 				<td>1.0%</td>
 				<td>0.5%</td>
@@ -164,25 +164,25 @@
 				<td>1.9%</td>
 			</tr>
 			<tr>
-				<td>Tree Species Code</td>
+				<td>Tree_Species Code</td>
 				<td>1.6%</td>
 				<td>4.4%</td>
 				<td>2.7%</td>
 			</tr>
 			<tr>
-				<td>Tree DBH</td>
+				<td>Tree_DBH</td>
 				<td>0.8%</td>
 				<td>2.9%</td>
 				<td>1.9%</td>
 			</tr>
 			<tr>
-				<td>Tree Total</td>
+				<td>Tree_Total</td>
 				<td>0%</td>
 				<td>0%</td>
 				<td>0%</td>
 			</tr>
 			<tr>
-				<td>Tree Height (ft)</td>
+				<td>Tree_Height (ft)</td>
 				<td>0.0%</td>
 				<td>2.2%</td>
 				<td>1.1%</td>
@@ -257,506 +257,42 @@
 
 		<p><small><sup>*</sup>D is the species code for <i>Quercus douglasii</i> in certain quadrangles, as is documented in quadrangle specific species lists.  When translating codes into species names, the database defers first to the quadrangle specific list if one exists, but not all quadrangles have their own species list.  All other codes come from global species lists, ie, official VTM species lists that are not particular to one specific quadrangle.</small></p>
 
+		<h3>Notes on Data Entry</h3>
+		<ul>
+		  <li>
+		    <b>Illegible writing on datasheet</b>
+		    <p>
+		      In any field, if a word was not written legibly enough to understand, it was entered as "(illegible word)" (in parentheses or brackets) or "illegible", sometimes with a suggestion for what the word might mean.  For ex., if in the Excessive Erosion Evidence section the datasheet contained something like "Shet erosion on hillsides", where the "Shet" was written poorly enough that we could not even be certain that it was written as "Shet", the data enterer would enter "(Illegible word, looks like "Shet") erosion on hillsides" or "(Illegible word, possibly "Sheet") erosion on hillsides".  If the word was totally indecipherable the data enterer would enter "(illegible word) erosion on hillsides".
+		    </p>
+		  </li>
+		  <li>
+		    <b>Hyphens, blanks, and checkmarks</b>
+		    <p>
+		      In general, if a hyphen or checkmark was written on the datasheet it was entered as a hyphen (-) or, for checkmarks it was entered as "check" or "checked" or "check mark".  This rule is probably not entirely consistent, however.  Sections on the datasheet that were left blank, have a checkmark in them, or have a hyphen to indicate that no information was taken were sometimes left blank by the data enterers.
+		    </p>
+		  </li>
+		  <li>
+		    <b>Spelling errors</b>
+		    <p>
+		      If obvious spelling errors were found on datasheets (ie spelling errors made by VTM personnel) they were corrected during data entry. 
+		    </p>
+		  </li>
+		  <li>
+		    <b>Blank datasheets and placeholder sheets</b>
+		    <p>
+		      All datasheets had a map number and plot number written on them, but some had very little or no other information recorded on them.  In these cases blank fields were left blank.  Sometimes instead of a datasheet a piece of paper (not a datasheet) had the map number and plot number and sometimes other remarks written on it, but no data.   We called these "placeholders", as they seemed to take the place of a  datasheet. They appear to be original VTM forms, because they are on the same type of paper and use the same typeset as other VTM datasheets.  We are not sure if these plots were ever sampled.  In any case, the data enterer entered all information written on the sheet.  The data enterer also noted in the Miscellaneous_Notes field that it was a placeholder sheet that did not have any data recorded on it.
+		    </p>
+		  </li>
+		</ul>
 
-<h1>
-  Plot Data Metadata and Notes on Data Entry
-</h1>
-<p>
-  This document contains descriptions of
-</p>
-<ul>
-  <li>field descriptions for the VTM plot data
-  </li>
-  <li>notes on the plot data entry process
-  </li>
-  <li>observations about irregular, unusual, and/or unobvious details that arose during the data entry process
-  </li>
-</ul>
-<p>
-  For quality control and assurance activities, including standardization/lumping processes, see the "About the Plot Data" section above.
-</p>
-<h3>
-  Terms used in this document
-</h3>
-<p>
-  <b>Datasheet</b>: original VTM plot datasheet (either Brush and Tree Plot datasheet or Grass Plot datasheet)
-</p>
-<p>
-  <b>Data enterer</b>: person that entered data into Access database in 2004
-</p>
-<p>
-  <b>Field recorder</b>: original VTM personnel that recorded plot data on datasheet
-</p>
-<p>
-  <b>Truth table</b>: lumping table/grouping table to allow for grouping of certain data into broader categories than what was entered.  Not everything that was entered in a field needed to be grouped.  Mainly used to standardize variations in text that had the same meaning.
-</p>
-<h2>
-  FIELDS DESCRIPTIONS
-</h2>
-<p>
-  Note: Fields are listed according to the order that they appear on datasheets.
-</p>
-<h3>
-  Plot
-</h3>
-<h4>
-  Plot_ID
-</h4>
-<p>
-  An automated number was assigned to each datasheet entered in the database.
-</p>
-<h4>
-  Quadrangle
-</h4>
-<p>
-  Name of quadrangle as written on datasheet.
-</p>
-<ul>
-  <li>Entries for this field were standardized via the Quadrangle truth table.
-  </li>
-</ul>
-<h4>
-  Map
-</h4>
-<p>
-  Plot map number as written on datasheet.
-</p>
-<ul>
-  <li>The location of each plot is drawn on a topo map that is folded and stored with the associated datasheets.  This map has a number on it, which is also written on the tab top index card (along with the quad name) that organizes the datasheets in the drawers where they are stored.
-  </li>
-</ul>
-<h4>
-  Plot No.
-</h4>
-<p>
-  Letter and number combination written in red ink at top of front page on datasheet.
-</p>
-<ul>
-  <li>Corresponds to location on plot map.  For example, A-1-1 plot number is located in the A1 section on the plot map, and is located where the circled 1 is written in this section.
-  </li>
-  <li>The plot number we entered is different from the number that is written on the datasheet next to the heading "Plot No.", which is written in pencil and not in red ink.  Wieslander's <a target="_blank" href="http://digitalassets.lib.berkeley.edu/vtm/ucb/text/cubio_vtm_fm.pdf">Manual of Field Instructions for Vegetation Type Map of California</a> cites on p.76 that plots are numbered consecutively for each quadrangle, and this number was written next to "Plot No." in pencil.  However, this number does not correspond directly to the location on the plot map.  Whenever the field recorder referred to the "Plot No." (the number written in pencil) on the form, the data enterer also typed the corresponding Plot Key in parentheses.
-  </li>
-</ul>
-<h4>
-  Plot Key
-</h4>
-<p>
-  Combination of map number and plot number without spaces or dashes.
-</p>
-<ul>
-  <li>The Plot Key is a construct of the database management process, which necessitated a way to assign a unique but meaningful identifier for each datasheet entered.  Plot key was entered by hand during data entry of each datasheet; it was not an automated field.
-  </li>
-</ul>
-<h4>
-  Geographic Location
-</h4>
-<p>
-  Plot location as written on datasheet, exceptions noted below. 
-</p>
-<ul>
-  <li>This field often includes mileage information, for ex. "2 miles South of Mason Flat".  If miles were written as fractions, these were usually converted to a decimal when entered.  Also, if miles were written in abbreviated form (such as Mi. or mi.) it was sometimes entered in unabbreviated form.  For ex. "2S Mi. South of Mason Flat" may have been entered as "2.33 miles South of Mason Flat". Some common conversions include:
-    <p>
-      <sup>1</sup>/<sub>16 </sub> = .06<br>
-      <sup>1</sup>/<sub>8  </sub> = .125 or .13<br>
-      <sup>1</sup>/<sub>6  </sub> = .167 or .17<br>
-      <sup>5</sup>/<sub>8  </sub> = .625 or .63<br>
-      <sup>2</sup>/<sub>3  </sub> = .667 or .67<br>
-      <sup>5</sup>/<sub>6  </sub> = .83<br>
-      <sup>7</sup>/<sub>8  </sub> = .875
-    </p>
-  </li>
-  <li>Sometimes plot location was described geographically in relation to a symbol or word on the plot map.  For ex., "2.5 miles S of (triangle symbol with a dot in it) of Mt. Hamilton." Refers to the mountain top marker on the map that looks like a triangle with a small dot in the center of it and often has an elevation written next to it to indicate the elevation of the mountain peak.   Or for ex., "0.2 miles S of "S" in Santa Rosa"  refers to the letter S in the word Santa Rosa that appears on the plot map.
-  </li>
-</ul>
-<h4>
-  Date
-</h4>
-<p>
-  Date as written on datasheet, exceptions noted below.
-</p>
-<ul>
-  <li>The date field would only allow entries in a format of mm/dd/yyyy, and did not allow missing data. 
-  </li>
-  <li>Dates with missing days were entered by entering "01" for the missing day.  Dates with missing years were entered by entering the year that other nearby plots were recorded in that quad (see QA Write up.doc).
-  </li>
-</ul>
-<h4>
-  Section
-</h4>
-<p>
-  Section number as written on datasheet, exceptions noted below.
-</p>
-<ul>
-  <li>Occasionally, the field size was too small to enter all that was written, ie, anything other than the standard one or two digit number that usually indicates the section number.  For ex., Section was sometimes written as "grants" or "unsurveyed".  Section was also sometimes written with hyphenated values to indicate multiple section numbers, for ex., "12-14".  Since this data did not fit in this field it was also entered in Miscellaneous_Notes field.
-  </li>
-</ul>
-<h4>
-  Township
-</h4>
-<p>
-  Township as written on datasheet.
-</p>
-<h4>
-  Range
-</h4>
-<p>
-  Range as written on datasheet, exceptions noted below. 
-</p>
-<ul>
-  <li>Sometimes range was written in parentheses on the datasheet.  The database field would not allow parentheses, so in these cases it was either entered in the Miscellaneous_Notes field or it was entered without parenthesis in the range field with a note in the Miscellaneous_Notes field indicating that the range was written in parentheses.
-  </li>
-  <li>Sometimes range was written with two or three letters following it.  For ex. "8SBM" or "12AES".  These seem to be the initials of VTM personnel that made a change or confirmation to the range written on the datasheet.  Initials were removed in the QC process via the Range truth table.
-  </li>
-  <li>The range was sometimes written with an "R" before the range number.  For ex. "R8S".  R occurrences were removed in the QC process via the Range truth table.
-  </li>
-</ul>
-<h4>
-  Taken By
-</h4>
-<p>
-  Field recorder's name, usually entered as written on datasheet.  Although the policy was to enter the name exactly as it appeared on the datasheet, first and last names were not necessarily entered in the same order as they were written on the datasheet, and initials were sometimes entered instead of the full name as written on the datasheet.    All entries for this field were standardized via the Taken By truth table.
-</p>
-<h4>
-  Type
-</h4>
-<p>
-  Vegetation type as written on datasheet, either as one or more species codes or as the name of the vegetation type, and sometimes both.  Species codes were entered as written, either with spaces between codes or without spaces between species codes.
-</p>
-<p>
-  Ex: ADC may also appear as A  D  C.
-</p>
-<ul>
-  <li>On some datasheets, a circled number was written in the upper right hand corner of the back of the datasheet, which is in the same area as the Type section.  In most cases this number was not entered.  In some cases a reference to this number was entered in the Miscellaneous_Notes field, or in the Type field.  The <a target="_blank" href="http://digitalassets.lib.berkeley.edu/vtm/ucb/text/cubio_vtm_fm.pdf">VTM Field Manual</a> may explain what this number refers to.
-  </li>
-</ul>
-<h4>
-  Exposure
-</h4>
-<p>
-  Plot exposure as written on datasheet (see exceptions below), either as abbreviation of cardinal direction or as the name of the direction (For ex. "Southerly")
-</p>
-<ul>
-  <li>There may be cases when the data enterer did not enter exposure exactly as written on datasheet.  For ex. if "So." was written on the datasheet, the data enterer could have entered "S" or "South".  In all cases however, the meaning of what was entered should never be different than what was written on the datasheet.
-  </li>
-</ul>
-<h4>
-  Slope Percent
-</h4>
-<p>
-  Numerical slope of plot as written on datasheet (unless written as text)
-</p>
-<ul>
-  <li>This field did not allow text, so when slope was written on datasheet as text (for ex. "very steep") it was entered in the Miscellaneous_Notes field
-  </li>
-</ul>
-<h4>
-  Elevation
-</h4>
-<p>
-  Elevation of plot as written on datasheet.  This field had an upper bound of 15,000 ft.
-</p>
-<h4>
-  Year of last burn
-</h4>
-<p>
-  Entered as written on datasheet
-</p>
-<h4>
-  Site
-</h4>
-<p>
-  Entered as written on datasheet
-</p>
-<ul>
-  <li>When a roman numeral was written in this section, the number that the roman numeral represents was entered and a note was added to the Miscellaneous_Notes field to indicate that the number was written as a roman numeral.
-  </li>
-</ul>
-<h4>
-  Penetrability
-</h4>
-<p>
-  Entered as written on datasheet (if it fit within the field size)
-</p>
-<ul>
-  <li>This field was a drop down menu (Easy, Medium, Difficult, or Impenetrable) but also allowed text entry.  However the field size was sometimes too small to enter all that was written.  In this case it was entered in the Miscellaneous_Notes field.
-  </li>
-</ul>
-<h4>
-  Soil depth
-</h4>
-<p>
-  Entered as written on datasheet (if it fit within the field size)
-</p>
-<ul>
-  <li>This field was a drop down menu (Shallow, Medium, Deep)  but also allowed text entry.  However the field size was sometimes too small to enter all that was written.  In this case it was entered in the Miscellaneous_Notes field.
-  </li>
-  <li>One of the two versions of the datasheet did not have a soil depth section.  Therefore no data was entered about soil depth for these datasheets.
-  </li>
-  <li>Occasionally hyphenated values or values that did not match one of the drop down choices were entered by choosing the drop down value that was essentially the same in meaning, and a note was entered in Miscellaneous Notes field to reference what was exactly written on datasheet.
-  </li>
-</ul>
-<h4>
-  Parent Rock
-</h4>
-<p>
-  Entered as written on datasheet, except as noted below.
-</p>
-<ul>
-  <li>This field was a drop down menu (Igneous, Metamorphic, Sedimentary) but also allowed text entry.  However the field size was sometimes too small to enter all that was written.  In this case it was entered in the Miscellaneous_Notes field.
-  </li>
-  <li>There were two versions of the "tree plot" datasheets.  One of the two versions of the datasheet did not have a soil depth section.  Therefore no data was entered about soil depth for these datasheets.
-  </li>
-  <li>Occasionally hyphenated values or values that did not match one of the drop down choices were entered by choosing the drop down value that was essentially the same in meaning, and a note was entered in Miscellaneous_Notes field to reference what was exactly written on datasheet.
-  </li>
-</ul>
-<h4>
-  Soil Character field
-</h4>
-<p>
-  Entered as written on datasheet, except as noted below.
-</p>
-<ul>
-  <li>This section on the datasheet consists of 7 checkboxes (for ex. Rocky, Gravelly, Sandy, etc).  The database entry form had the same checkboxes.  If any other additional information was written on the datasheet (for ex., text written next to the checkboxes) it was entered in the Miscellaneous_Notes field.
-  </li>
-  <li>Occasionally hyphenated values or values that did not match one of the drop down choices were entered by choosing the drop down value that was essentially the same in meaning, and a note was entered in Miscellaneous Notes field to reference what was exactly written on datasheet.
-  </li>
-</ul>
-<h4>
-  Soil_Origin
-</h4>
-<p>
-  Entered as written on datasheet, except as noted below.
-</p>
-<ul>
-  <li>There were two versions of the "Brush and Tree Plot" datasheets.  One version listed 16 different soil origin types, so the field recorder could either check one or more or write in an origin not on the list.  The other datasheet version did not list soil origin types.  There were was a wide range of soil origin types recorded (varying from "brown soil" to "Alluvium of granitics and basalt") each datasheet.  Some soil origin types recorded are technically not a soil origin type (for ex. "poor soil").  These were still entered as they appeared on datasheet, unless it was an obvious spelling error, in which case the spelling error was corrected (see "Other" section at end of this document).
-  </li>
-  <li>Occasionally hyphenated values or values that did not match one of the drop down choices were entered by choosing the drop down value that was essentially the same in meaning, and a note was entered in Miscellaneous Notes field to reference what was exactly written on datasheet.
-  </li>
-</ul>
-<h4>
-  Excessive Erosion Evidence
-</h4>
-<p>
-  Entered as written on datasheet (if it fit within the field size)
-</p>
-<ul>
-  <li>In rare cases the field size was not large enough to enter all that was written on the datasheet.  In these cases the remainder was entered in the Miscellaneous_Notes field.
-  </li>
-</ul>
-<h4>
-  Additional_Ground_Cover-species
-</h4>
-<p>
-  Each species or species code was entered on a separate line in this field.  Species names and species codes were entered as written on datasheet.  Abundance information for a particular species ("x" or "xx" or "xxx", etc.) was entered after the species name or code and on the same line, with either a space or a hyphen between the species name and its abundance.  Although this was the policy, data enterers sometimes entered the abundance information ("x", "xx", etc) before the species name, as written on the datasheet.  Also, one of the databases was set to automatically sort species names alphabetically.
-</p>
-<h4>
-  Special Fire Hazards
-</h4>
-<p>
-  Entered as written on datasheet
-</p>
-<ul>
-  <li>Sometimes the VTM data recorder underlined a word in the heading for this section ("Special Fire Hazards (dead brush, snags, etc.)" instead of writing it.  For ex., dead brush or snags may have been underlined.  In these cases the word that was underlined was entered in this field.
-  </li>
-</ul>
-<h4>
-  Remarks
-</h4>
-<p>
-  Entered as written on datasheet (if it fit within the field size)
-</p>
-<ul>
-  <li>In rare cases the field size was not large enough to write in all that was written on the datasheet.  In these cases the remainder was entered in the Miscellaneous_Notes field.
-  </li>
-</ul>
-<h4>
-  Miscellaneous_Notes
-</h4>
-<p>
-  IMPORTANT - The Miscellaneous_Notes field includes both actual data recorded at time of the original VTM survey as well as 2004 data enterers' comments about the datasheet.  The Miscellaneous_Notes field is NOT a section on the datasheet.
-</p>
-<p>
-  This field contains the following types of information:
-</p>
-<ul>
-  <li>Remarks written on the datasheet that were not written in a particular section, For ex., stray remarks written in margins of the datasheet, or references to species codes: "Ap = Apc" or "Gr2= At2 and Bh2", or "Cpo = Ceanothus prostrates"
-  </li>
-  <li>Observations about the condition of the datasheet.  For ex., if the datasheet was torn, if the datasheet is blank, or if the datasheet has additional information attached to it such as a grass plot datasheet for the same plot.
-  </li>
-  <li>Other potentially important observations about the datasheet.  For ex., if the datasheet looks like it may contain resurvey data, or if some data was crossed out and changed to something else in a different color pencil or pen.
-  </li>
-  <li>This field also served as a holding place for data that did not fit the format requirements of the database fields. 
-  </li>
-</ul>
-<h3>
-  Brush and Ground Cover
-</h3>
-<h4>
-  Species
-</h4>
-<p>
-  Species code as written on datasheet, except as noted below.
-</p>
-<ul>
-  <li>
-    <b>Symbol conversion with species codes:</b>
-    <ul>
-      <li>Codes with a ^ over text were entered with a 1 following text. For ex. A with a ^ over the A was entered as A1
-      </li>
-      <li>Underlined codes were entered with a 2 following text. For ex., <u>Gr</u>  was entered as Gr2
-      </li>
-      <li>Codes with a line over the top of text were entered with a 3 following text. For ex. H with a line over the H (like H) was entered as H3
-      </li>
-      <li>  Codes with an apostrophe after the text were entered with a 4 following text. For ex. S' was entered as S4
-      </li>
-    </ul>
-  </li>
-  <li>
-    <b>Other notes about species codes:</b>
-    <ul>
-      <li>  Any symbol drawn on the datasheet that could not be entered were entered in its text equivalent.  For example:
-      </li>
-      <li>A species code with a circle drawn around it was entered as the code name then circled.  For ex., a R with a circle drawn around it was entered as "R circled" or "R circle".
-      </li>
-      <li>A species code with a square drawn around it was entered as, for ex. "R square" or "R boxed"
-      </li>
-      <li>A pi symbol ( ) drawn next to the code entered as, for ex. "R pi"
-      </li>
-      <li>Other symbols like sigma and spiral were entered as "sigma" and "spiral".
-      </li>
-      <li>   If a number followed the code, it was entered as it was written.  For ex. "W40" was entered as "W40". 
-      </li>
-      <li>   Sometimes two codes were written on the datasheet for one species.  For ex. "Qdo=Qd".  In these cases only one code was entered and a note of what was written was entered in the Miscellaneous_Notes field.
-      </li>
-    </ul>
-  </li>
-  <li>
-    <b>Litter species codes:</b>
-    <ul>
-      <li>Litter was usually written on datasheet as Lit and then the species code(s) that comprised the litter.  Sometimes the species codes were written first and then Lit.  Data entry standardized litter to be entered as Lit and then species codes.  Although this was the rule, it was not always entered in this order and data can be found in either notation.    
-      </li>
-      <li>For ex. "Lit A" or "A lit" were entered as "Lit A"
-      </li>
-      <li>The field recorder occasionally recorded the percent cover of litter in the Summary of Brush and Ground Cover section but recorded the components of the litter (ie what species made up the litter) in the Remarks section (in which case it was entered in the Remarks field), or in margins on the datasheet (in which case it was entered in the Miscellaneous Notes field).
-      </li>
-    </ul>
-  </li>
-</ul>
-<h4>
-  Percent
-</h4>
-<p>
-  % Cover number as written on datasheet
-</p>
-<ul>
-  <li>Occasionally the % Covers of all species did not add up to 100.  In these cases it was still entered as written on datasheet.
-  </li>
-  <li>In rare cases the field recorded did not record the % cover of a species but did fill out the plot diagram completely, allowing the data enterer to calculate and enter the missing cover data.
-  </li>
-</ul>
-<h4>
-  Height
-</h4>
-<p>
-  Plant height in feet as written on datasheet (except when written in inches).
-</p>
-<ul>
-  <li>When the datasheet had inches information (for ex. "2 in." or '2" ', the number in inches was converted to feet.  There may be instances however where the data enterer did not convert to feet and entered it as the way it was written.
-  </li>
-</ul>
-<h4>
-  Litter_Depth
-</h4>
-<p>
-  Depth of species litter in inches as written on datasheet.
-</p>
-<ul>
-  <li>"T" or "t" was sometimes written on datasheet to indicate "trace amount".  In these cases the T or t (whatever was written on the datasheet) was entered. 
-  </li>
-  <li>Fractions were usually converted to decimal amount.
-  </li>
-  <li>Litter depths written in feet were usually converted to inches.
-  </li>
-  <li>The field recorder sometimes included the species components of the litter alongside the depth for "Litt" entries in the Species field (or other codes meaning litter, like "Lit").  In these cases the species components were moved to the Species field.  This was done to be consistent with instructions in the <a target="_blank" href="http://digitalassets.lib.berkeley.edu/vtm/ucb/text/cubio_vtm_fm.pdf">VTM Field Manual</a> and the majority of other field recorders that recorded litter component information.  For ex., if the datasheet had "0.75 mixture of Y S" written for the litter depth of the species code "Litt", then it was entered as "0.75" for the litter depth of species code "Litt mixture of Y S".
-  </li>
-</ul>
-<h3>
-  Trees
-</h3>
-<h4>
-  Species
-</h4>
-<p>
-  Species code as written on datasheet. See notes under <b>Brush and Ground Cover</b> above for details.
-</p>
-<h4>
-  Diameter Class fields
-</h4>
-<p>
-  Number as written on datasheet, except as noted below.
-</p>
-<ul>
-  <li>Occasionally the VTM data taker recorded data on diameter classes that did not fit into the set classes on the datasheet.  For ex. "&lt;4 inches".  In these cases the information was entered in the Miscellaneous_Notes field.
-  </li>
-  <li>This was a numeric field that did not allow text.  If the number was hyphenated it was entered in the Miscellaneous_Notes field.
-  </li>
-</ul>
-<h4>
-  Total
-</h4>
-<p>
-  Number as written on datasheet.  This field was later converted to a calculated field that was the sum of dbh counts recorded on the datasheet.  The original version of this field (ie non-calculated) was archived in case it was wanted in the future.
-</p>
-<h4>
-  HT feet
-</h4>
-<p>
-  Number as written on datasheet (unless hyphenated).
-</p>
-<ul>
-  <li>This field did not allow hyphenated values.   Hyphenated values were entered in the Miscellaneous_Notes field.
-  </li>
-  <li>One of the two versions of the brush and tree datasheets does not have a column for tree height.  On these forms, either height was not recorded, or height was  recorded in a drawn in column (often a drawn line split the total column into two columns with total data on the left and height data on the right). When it was clear that these were heights (ie either the word height was written or both totals and heights were recorded), this information was recorded in the height column.  If it was unclear, a note was added in the Miscellaneous_Notes field indicating that additional numbers that are possibly height data were recorded on the datasheet.
-  </li>
-</ul>
-<h2>
-  OTHER NOTES ABOUT DATA ENTRY
-</h2>
-<ul>
-  <li>
-    <b>Illegible writing on datasheet</b>
-    <p>
-      In any field, if a word was not written legibly enough to understand, it was entered as "(illegible word)" (in parentheses or brackets) or "illegible", sometimes with a suggestion for what the word might mean.  For ex., if in the Excessive Erosion Evidence section the datasheet contained something like "Shet erosion on hillsides", where the "Shet" was written poorly enough that we could not even be certain that it was written as "Shet", the data enterer would enter "(Illegible word, looks like "Shet") erosion on hillsides" or "(Illegible word, possibly "Sheet") erosion on hillsides".  If the word was totally indecipherable the data enterer would enter "(illegible word) erosion on hillsides".
-    </p>
-  </li>
-  <li>
-    <b>Hyphens, blanks, and checkmarks</b>
-    <p>
-      In general, if a hyphen or checkmark was written on the datasheet it was entered as a hyphen (-) or, for checkmarks it was entered as "check" or "checked" or "check mark".  This rule is probably not entirely consistent, however.  Sections on the datasheet that were left blank, have a checkmark in them, or have a hyphen to indicate that no information was taken were sometimes left blank by the data enterers.
-    </p>
-  </li>
-  <li>
-    <b>Spelling errors</b>
-    <p>
-      If obvious spelling errors were found on datasheets (ie spelling errors made by VTM personnel) they were corrected during data entry. 
-    </p>
-  </li>
-  <li>
-    <b>Blank datasheets and placeholder sheets</b>
-    <p>
-      All datasheets had a map number and plot number written on them, but some had very little or no other information recorded on them.  In these cases blank fields were left blank.  Sometimes instead of a datasheet a piece of paper (not a datasheet) had the map number and plot number and sometimes other remarks written on it, but no data.   We called these "placeholders", as they seemed to take the place of a  datasheet. They appear to be original VTM forms, because they are on the same type of paper and use the same typeset as other VTM datasheets.  We are not sure if these plots were ever sampled.  In any case, the data enterer entered all information written on the sheet.  The data enterer also noted in the Miscellaneous_Notes field that it was a placeholder sheet that did not have any data recorded on it.
-    </p>
-  </li>
-</ul>
-
-<!-- A MARKER HERE -->
-		<h2>Works Cited</h2>
-		<ol>
+		<h3>Works Cited</h3>
+		<ul>
 			<li><a name="ref1"></a>Hickman, James C. (editor),  1993.  <u>The Jepson Manual: Higher Plants of California</u>. Berkeley: University of California Press, 1400 pp.</li>
 
 			<li><a name="ref2"></a>Jepson, Willis Linn, 1925.  <u>Manual of the Flowering Plants of California</u>. Berkeley: University of California Press, 1238 pp. </li>
+
 			<li><a name="ref3"></a>Munz, Philip A. and David D. Keck, 1968.  <u>A California Flora and Supplement</u>.  Berkeley: University of California Press, 1681 pp.</li>
-		</ol>	
+		</ul>	
 
    </div>
 </div>

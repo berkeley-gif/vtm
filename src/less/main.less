@@ -25,7 +25,6 @@
 */
 body {
   font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
-  color: ##FFFFF9;
 }
 
 /**
@@ -80,7 +79,8 @@ pre {
   box-shadow: 0 0 5px #ccc;
   margin-left: auto !important;
   margin-right: auto !important;
-  background: url(img/23-white-cardboard-background-sml.jpg) repeat;
+  /*background: url(img/23-white-cardboard-background-sml.jpg) repeat;*/
+  background-color: #FFFFF7;
 }
 .wrapper {
   background: #fff;
@@ -128,60 +128,7 @@ pre {
   font-family: Tahoma;
   border-right: solid 1px #bbb;
 }
-/*Languages*/
-.topbar ul.languages {
-  top: 25px;
-  left: -5px;
-  display: none;
-  padding: 4px 0;
-  padding-left: 0; 
-  list-style: none;
-  min-width: 100px;
-  position: absolute;
-  background: #f0f0f0;
-}
 
-.topbar li:hover ul.languages {
-  display: block;
-}
-
-.topbar ul.languages:after {
-  top: -4px;
-  width: 0; 
-  height: 0;
-  left: 8px;
-  content: " "; 
-  display: block; 
-  position: absolute;
-  border-bottom: 6px solid #f0f0f0; 
-  border-left: 6px solid transparent;
-  border-right: 6px solid transparent;
-  border-left-style: inset; /*FF fixes*/
-  border-right-style: inset; /*FF fixes*/
-}
-.topbar ul.languages li a {
-  color: #555;
-  display: block;
-  font-size: 10px;
-  padding: 2px 12px;
-  margin-bottom: 1px;
-  text-transform: uppercase; 
-}
-
-.topbar ul.languages li.active a i {
-  color: #999;
-  float: right;
-  margin-top: 2px;
-}
-
-.topbar ul.languages li a:hover, 
-.topbar ul.languages li.active a {
-  background: #fafafa;
-}
-
-.topbar ul.languages li a:hover {
-  text-decoration: none; 
-}
 
 /*Responsive Topbar v1*/
 @media (max-width: 992px) {
@@ -208,7 +155,7 @@ pre {
   z-index: 99;
   position: relative;
   border-bottom: solid 2px #eee;
- background-color: #402F3F;
+  background-color: #402F3F;
 }
 
 .header .navbar {
@@ -228,16 +175,17 @@ pre {
 
 /*Brand*/
 .header .navbar-brand { 
+  color: #B9485A;
   z-index: 1;
   top: -10px;
   position: relative;
-  padding: 0 10px 10px;
+  padding: 0 28px 10px;
 }
 
 @media (max-width: 992px) {
   .header .navbar-brand { 
     top: 0;
-    height: 40px;
+    height: 50px;
   }
 }
 
@@ -249,7 +197,7 @@ pre {
 }
 
 .header .navbar-default .navbar-nav > li > a {
-  color: #687074;
+  color: #FFFFF9;
   font-size: 15px;
   font-weight:400;
   text-transform: uppercase;
@@ -409,8 +357,13 @@ pre {
   }
 }
 
-
-
+/**
+ * SUB NAVIGATION
+ */
+.sub-nav-links, .sub-nav-links a {
+  font-family: Raleway;
+  color: #999;
+}
 
 
 /**

@@ -14,7 +14,8 @@
  */
 angular.module( 'vtm.data', [
   'ui.router',
-  'leaflet-directive'
+  'leaflet-directive',
+  'customFilters'
 ])
 
 /**
@@ -33,41 +34,32 @@ angular.module( 'vtm.data', [
     abstract: true,
     url: '/data',
     controller: 'DataCtrl',
-    templateUrl: 'data/data.tpl.html',
-    data:{ pageTitle: 'Data' }
+    templateUrl: 'data/data.tpl.html'
   })
   .state( 'data.overview', {
-	url: '/',
+    url: '/',
     templateUrl: 'data/data.overview.tpl.html',
     data:{ pageTitle: 'Available Datasets' }
   })
-  .state( 'data.vegetation', {
-    url: '/vegetation',
-    templateUrl: 'data/data.vegetation.tpl.html',
-	controller: 'DataCtrl',
-    data:{ 
-      pageTitle: 'Vegetation Type Map',
-      apiUrl: '/api/vtmveg'
-	}
+  .state( 'data.plotdata', {
+    url: '/plotdata',
+    templateUrl: 'data/data.plotdata.tpl.html',
+    data:{ pageTitle: 'Plot Data' }
   })
-  .state( 'data.plots', {
-    url: '/plots',
-    templateUrl: 'data/data.plots.tpl.html',
-	controller: 'DataCtrl',
-    data:{ 
-      pageTitle: 'Plots Map',
-      apiUrl: '/api/vtmplots'
-	}
+  .state( 'data.plotmaps', {
+    url: '/plotmaps',
+    templateUrl: 'data/data.plotmaps.tpl.html',
+    data:{ pageTitle: 'Plot Maps' }
+  })
+  .state( 'data.vegetation', {
+  url: '/vegetation',
+  templateUrl: 'data/data.vegetation.tpl.html',
+  data:{ pageTitle: 'Vegetation Map' }
   })
   .state( 'data.photos', {
     url: '/photos',
     templateUrl: 'data/data.photos.tpl.html',
-    data:{ pageTitle: 'Photos Map' }
-  })
-  .state( 'data.mapsheets', {
-    url: '/mapsheets',
-    templateUrl: 'data/data.mapsheets.tpl.html',
-    data:{ pageTitle: 'Mapsheets' }
+    data:{ pageTitle: 'Photo Locations' }
   });
 })
 

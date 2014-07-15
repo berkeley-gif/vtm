@@ -1,6 +1,7 @@
 angular.module( 'vtm.about', [
   'ui.router',
-  'customFilters'
+  'customFilters',
+  'ui.bootstrap'
 ])
 
 .config(function config( $stateProvider ) {
@@ -15,6 +16,16 @@ angular.module( 'vtm.about', [
     url: '/',
     templateUrl: 'about/about.overview.tpl.html',
     data:{ pageTitle: 'History' }
+  })
+  .state( 'about.description', {
+    url: '/description',
+    templateUrl: 'about/about.description.tpl.html',
+    data:{ pageTitle: 'Data Description' }
+  })
+  .state( 'about.metadata', {
+    url: '/metadata',
+    templateUrl: 'about/about.metadata.tpl.html',
+    data:{ pageTitle: 'Metadata' }
   })
   .state( 'about.plotdata', {
 	url: '/plotdata',
@@ -44,6 +55,11 @@ angular.module( 'vtm.about', [
 })
 
 .controller( 'AboutCtrl', function AboutCtrl( $scope ) {
+
+  $scope.status = {
+    open: false
+  };
+
 })
 
 ;
