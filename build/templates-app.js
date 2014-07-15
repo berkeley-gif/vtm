@@ -1,4 +1,4 @@
-angular.module('templates-app', ['about/about.citations.tpl.html', 'about/about.description.tpl.html', 'about/about.faq.tpl.html', 'about/about.metadata.tpl.html', 'about/about.overview.tpl.html', 'about/about.plotdata.tpl.html', 'about/about.plotmaps.tpl.html', 'about/about.publications.tpl.html', 'about/about.tpl.html', 'data/data.overview.tpl.html', 'data/data.photos.tpl.html', 'data/data.plotdata.tpl.html', 'data/data.plotmaps.tpl.html', 'data/data.tpl.html', 'data/data.vegetation.tpl.html', 'home/home.tpl.html']);
+angular.module('templates-app', ['about/about.citations.tpl.html', 'about/about.description.tpl.html', 'about/about.faq.tpl.html', 'about/about.metadata.tpl.html', 'about/about.overview.tpl.html', 'about/about.plotdata.tpl.html', 'about/about.plotmaps.tpl.html', 'about/about.publications.tpl.html', 'about/about.tpl.html', 'data/data.overview.tpl.html', 'data/data.photos.tpl.html', 'data/data.plotdata.tpl.html', 'data/data.plotmaps.tpl.html', 'data/data.tpl.html', 'data/data.vegetation.tpl.html', 'home/home.tpl.html', 'use/use.overview.tpl.html', 'use/use.tpl.html']);
 
 angular.module("about/about.citations.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("about/about.citations.tpl.html",
@@ -1449,7 +1449,7 @@ angular.module("home/home.tpl.html", []).run(["$templateCache", function($templa
     "                        <i class=\"fa fa-cloud-download\"></i>                \n" +
     "                    </div><!--//icon-->\n" +
     "                    <div class=\"content\">\n" +
-    "                        <h2 class=\"title\">Data Access</h2>\n" +
+    "                        <h2 class=\"title\">Download</h2>\n" +
     "                        <p>View and download vegetation maps, plot data and photos. </p>  \n" +
     "                    </div><!--//content-->  \n" +
     "                </a>        \n" +
@@ -1470,13 +1470,13 @@ angular.module("home/home.tpl.html", []).run(["$templateCache", function($templa
     "        </div>\n" +
     "        <div class=\"item col-md-4 col-sm-4 col-xs-12 text-center\">\n" +
     "            <div class=\"features\">\n" +
-    "                <a href=\"#\">\n" +
+    "                <a href ui-sref=\"use.overview\">\n" +
     "                    <div class=\"icon animated fadeIn delayp1\" style=\"opacity: 0;\">\n" +
     "                        <i class=\"fa fa-camera-retro\"></i>                \n" +
     "                    </div><!--//icon-->\n" +
     "                    <div class=\"content\">\n" +
-    "                        <h2 class=\"title\">Apps</h2>\n" +
-    "                        <p>Explore the VTM photo collection using the Historic Photo Hunt app. </p>  \n" +
+    "                        <h2 class=\"title\">Data Use</h2>\n" +
+    "                        <p>View usage guidelines and explore how others have used this data. </p>  \n" +
     "                    </div><!--//content-->  \n" +
     "                </a>  \n" +
     "            </div>              \n" +
@@ -1486,5 +1486,33 @@ angular.module("home/home.tpl.html", []).run(["$templateCache", function($templa
     "\n" +
     "</div>\n" +
     "\n" +
+    "");
+}]);
+
+angular.module("use/use.overview.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("use/use.overview.tpl.html",
+    "<div class=\"row\" id=\"#about\">\n" +
+    "    <div class=\"col-sm-12\">\n" +
+    "\n" +
+    " \n" +
+    "    </div>\n" +
+    "</div>\n" +
+    "\n" +
+    "");
+}]);
+
+angular.module("use/use.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("use/use.tpl.html",
+    "<div class=\"container\" id=\"data-use\" ng-controller=\"UseCtrl\">\n" +
+    "    <div class=\"row\">\n" +
+    "        <div class=\"col-md-12\">\n" +
+    "			<h3>\n" +
+    "				<span class=\"title\">{{pageTitle | split:'|':0}}</span>\n" +
+    "			</h3>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "    <hr/>\n" +
+    "    <div ui-view></div>\n" +
+    "</div>\n" +
     "");
 }]);

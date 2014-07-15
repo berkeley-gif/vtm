@@ -4,6 +4,7 @@ angular.module( 'vtm', [
   'vtm.home',
   'vtm.about',
   'vtm.data',
+  'vtm.use',
   'ui.router',
   'ngAnimate'
 ])
