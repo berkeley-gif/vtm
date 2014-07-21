@@ -63,12 +63,14 @@ module.exports = {
   vendor_files: {
     js: [
       'vendor/jquery/dist/jquery.min.js',
+      'vendor/jquery/dist/jquery.min.map',
       'vendor/angular/angular.js',
       'vendor/angular-animate/angular-animate.js',
       'vendor/angular-bootstrap/ui-bootstrap-tpls.min.js',
       'vendor/placeholders/angular-placeholders-0.0.1-SNAPSHOT.min.js',
       'vendor/angular-ui-router/release/angular-ui-router.js',
       'vendor/leaflet-dist/leaflet-src.js',
+      'vendor/Leaflet.utfgrid/dist/leaflet.utfgrid-src.js',
       'vendor/angular-leaflet/dist/angular-leaflet-directive.js'
     ],
     css: [

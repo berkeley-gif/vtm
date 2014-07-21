@@ -484,12 +484,56 @@ pre {
   text-align: center;
 }
 #data-grid #map {
-  -moz-box-shadow: 3px 3px 5px 6px #ccc;
-  -webkit-box-shadow: 3px 3px 5px 6px #ccc;
-  box-shadow: 3px 3px 5px 6px #ccc;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.22);
+  margin-botom: 15px;
+  height: 600px;
 }
-#data-grid .img-datasets {
-  -moz-box-shadow: 3px 3px 5px 6px #ccc;
-  -webkit-box-shadow: 3px 3px 5px 6px #ccc;
-  box-shadow: 3px 3px 5px 6px #ccc;
+#data-grid .data-tabs {
+  height: 250px;
+  overflow: auto;
+}
+#data-grid .info-box {
+  height: 800px;
+  overflow: auto;
+}
+#map .leaflet-control-layers.leaflet-control {
+  display: none;
+}
+/*Tabs
+------------------------------------*/
+.tabbable .nav-tabs {
+  border: none;
+  background: none;
+  border-bottom: solid 2px #D0CB93;
+  border-radius: 0 !important;
+}
+.tabbable .nav-tabs a {
+  font-size: 14px;
+  padding: 5px 15px;
+}
+.tabbable .nav-tabs > .active > a,
+.tabbable .nav-tabs > .active > a:hover,
+.tabbable .nav-tabs > .active > a:focus {
+  color: #fff;
+  border: none;
+  background: #D0CB93;
+  border-radius: 0 !important;
+}
+.tabbable .nav-tabs > li > a {
+  border: none;
+}
+.tabbable .nav-tabs > li > a:hover {
+  color: #fff;
+  background: #D0CB93;
+  border-radius: 0 !important;
+}
+.tabbable .tab-content {
+  padding: 10px 0;
+}
+.tabbable .tab-content img {
+  margin-top: 4px;
+  margin-bottom: 15px;
+}
+.tabbable .tab-content img.img-tab-space {
+  margin-top: 7px;
 }

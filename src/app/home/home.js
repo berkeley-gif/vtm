@@ -15,7 +15,7 @@
 angular.module( 'vtm.home', [
   'ui.router',
   'ui.bootstrap',
-  'customDirectives'
+  'directives.animatedBanner'
 ])
 
 /**
