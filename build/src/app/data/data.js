@@ -64,7 +64,7 @@ angular.module( 'vtm.data', [
 .controller( 'DataCtrl', function DataController($scope, $log, $http, $state, leafletData, ROOT) {
 
   // API URL in Ecoengine
-  var tileserver  = 'http://localhost:8080';
+  var tileserver  = 'http://dev-ecoengine.berkeley.edu/tiles';
   var fileserver = 'http://localhost:8000';
 
   // Map setup
