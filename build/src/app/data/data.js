@@ -66,8 +66,8 @@ angular.module( 'vtm.data', [
 .controller( 'DataCtrl', function DataController($scope, $log, $http, $state, leafletData, ROOT) {
 
   // API URL in Ecoengine
-  var tileserver  = 'https://dev-ecoengine.berkeley.edu/tiles';
-  //var tileserver  = 'http://localhost:8080';
+  //var tileserver  = 'https://dev-ecoengine.berkeley.edu/tiles';
+  var tileserver  = 'http://localhost:8080';
   var fileserver = 'http://localhost:8000';
 
   // Map setup
@@ -220,34 +220,12 @@ angular.module( 'vtm.data', [
 
     if (data.hasOwnProperty('VTM_QUAD')) {
       $scope.vtm_quad_id = data.VTM_QUAD;
-
-    }
-
-    //Show information for vtm plot point or vtm vegetation polygon
-    if (data.hasOwnProperty('record')) {    
+    } else if (data.hasOwnProperty('record')) {    
       $scope.$apply(function() {
          $scope.record = data.record;
       });
-
-      var url = "https://dev-ecoengine.berkeley.edu/api/vtmplots/" + $scope.record + '/?format=json';
-
-      $http.get(url).success(function(response, status) {
-
-        //Highlight feature
-        angular.extend($scope, {
-          geojson: {
-            data: response.geojson,
-            style: style,
-            resetStyleOnMouseout: false
-          }
-          
-        });
-        
-        $log.log(response);
-
-        $scope.layerProp = response;
-
-      }); //end $http.get
+    } else {
+      console.log('no data properties found');
     }
 
   });
@@ -272,6 +250,40 @@ angular.module( 'vtm.data', [
   $scope.layers.overlays.plots.visible = true;
   $scope.layers.overlays.plots_utfgrid.visible = true;
 
+  $scope.$watch('record', function(newValue, oldValue){
+
+    // Ignore initial setup
+    if ( newValue === oldValue) {
+      return;
+    }
+
+    // Load data from service
+    if ( newValue ) {
+      console.log($scope.record);
+      var url = "https://dev-ecoengine.berkeley.edu/api/vtmplots/" + $scope.record + '/?format=json';
+      $http.get(url).success(function(response, status) {
+
+        //Highlight feature
+        angular.extend($scope, {
+          geojson: {
+            data: response.geojson,
+            resetStyleOnMouseout: false
+          }
+          
+        });
+        
+        $log.log(response);
+
+        $scope.layerProp = response;
+
+      }); //end $http.get
+
+    }
+
+  }, true);
+
+  
+
 })
 
 /**
@@ -293,10 +305,45 @@ angular.module( 'vtm.data', [
 
   $log.log('in veg controller');
 
+  
+
   $scope.layers.overlays.plots.visible = false;
   $scope.layers.overlays.plots_utfgrid.visible = false;
   $scope.layers.overlays.veg.visible = true;
   $scope.layers.overlays.veg_utfgrid.visible = true;
+
+    $scope.$watch('record', function(newValue, oldValue){
+
+    // Ignore initial setup
+    if ( newValue === oldValue) {
+      return;
+    }
+
+    // Load data from service
+    if ( newValue ) {
+      console.log($scope.record);
+      var url = "https://dev-ecoengine.berkeley.edu/api/vtmveg/" + $scope.record + '/?format=json';
+      $http.get(url).success(function(response, status) {
+
+        //Highlight feature
+        angular.extend($scope, {
+          geojson: {
+            data: response.geojson,
+            style: style,
+            resetStyleOnMouseout: false
+          }
+          
+        });
+        
+        $log.log(response);
+
+        $scope.layerProp = response;
+
+      }); //end $http.get
+
+    }
+
+  }, true);
 
 })
 
