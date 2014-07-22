@@ -44,11 +44,13 @@ angular.module( 'vtm.data', [
   .state( 'data.plots', {
     url: '/plots',
     templateUrl: 'data/data.plots.tpl.html',
+    controller: 'PlotsCtrl',
     data:{ pageTitle: 'Plot Data' }
   })
   .state( 'data.vegetation', {
     url: '/vegetation',
     templateUrl: 'data/data.vegetation.tpl.html',
+    controller: 'VegCtrl',
     data:{ pageTitle: 'Vegetation Map' }
   })
   .state( 'data.photos', {
@@ -64,7 +66,8 @@ angular.module( 'vtm.data', [
 .controller( 'DataCtrl', function DataController($scope, $log, $http, $state, leafletData, ROOT) {
 
   // API URL in Ecoengine
-  var tileserver  = 'http://dev-ecoengine.berkeley.edu/tiles';
+  var tileserver  = 'https://dev-ecoengine.berkeley.edu/tiles';
+  //var tileserver  = 'http://localhost:8080';
   var fileserver = 'http://localhost:8000';
 
   // Map setup
@@ -151,13 +154,13 @@ angular.module( 'vtm.data', [
   };
 
   var overlays =  {
+    veg: veg,
+    veg_utfgrid: veg_utfgrid,
     counties: counties,
     quads: quads,
     quads_utfgrid: quads_utfgrid,
     plots: plots,
     plots_utfgrid: plots_utfgrid
-    //veg: veg,
-    //veg_utfgrid: veg_utfgrid
   };
 
   // Set up DownloadFeaturesControl
@@ -251,4 +254,51 @@ angular.module( 'vtm.data', [
 
 
 
-});
+})
+
+
+
+/**
+ * And of course we define a controller for our route.
+ */
+.controller( 'PlotsCtrl', function PlotsController($scope, $log, $http, $state, leafletData, ROOT) {
+
+
+
+  $log.log('in data plots controller');
+
+  $scope.layers.overlays.veg.visible = false;
+  $scope.layers.overlays.veg_utfgrid.visible = false;
+  $scope.layers.overlays.plots.visible = true;
+  $scope.layers.overlays.plots_utfgrid.visible = true;
+
+})
+
+/**
+ * And of course we define a controller for our route.
+ */
+.controller( 'VegCtrl', function VegetationController($scope, $log, $http, $state, leafletData, ROOT) {
+
+  
+
+  //On map click event
+  function style(feature) {
+    return {
+      weight: 7,
+      opacity: 1,
+      color: 'white',
+      fillOpacity: 0
+    };
+  }
+
+  $log.log('in veg controller');
+
+  $scope.layers.overlays.plots.visible = false;
+  $scope.layers.overlays.plots_utfgrid.visible = false;
+  $scope.layers.overlays.veg.visible = true;
+  $scope.layers.overlays.veg_utfgrid.visible = true;
+
+})
+
+
+;
