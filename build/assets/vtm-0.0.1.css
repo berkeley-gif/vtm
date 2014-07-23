@@ -31,7 +31,6 @@ body {
   font-family: 'EB Garamond';
   font-style: normal;
   font-weight: 400;
-  src: url(http://fonts.googleapis.com/css?family=EB+Garamond);
 }
 .title {
   font-family: "EB Garamond", Times, Georgia, serif;
@@ -483,18 +482,36 @@ pre {
   border: none;
   text-align: center;
 }
-#data-grid #map {
+.tool-wrapper {
+  background-color: #EBEAE6;
+}
+.tool-wrapper #map {
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.22);
   margin-botom: 15px;
   height: 600px;
 }
-#data-grid .data-tabs {
-  height: 250px;
-  overflow: auto;
+.tool-wrapper .info-box {
+  margin: 25px 40px 25px 0;
+  /*top right bottom left */
+  background-color: #fff;
 }
-#data-grid .info-box {
-  height: 800px;
-  overflow: auto;
+.tool-wrapper .info-box.enabled {
+  overflow-y: auto;
+  background-color: none;
+}
+.tool-wrapper .info-box .panel-default {
+  border-color: none;
+}
+.tool-wrapper .info-box .panel {
+  margin-bottom: 0;
+  background-color: none;
+  border-radius: 0;
+  box-shadow: none;
+  border: none;
+}
+.tool-wrapper .info-box .panel ul {
+  list-style-type: none;
+  margin-left: -2em;
 }
 #map .leaflet-control-layers.leaflet-control {
   display: none;

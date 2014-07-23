@@ -66,13 +66,13 @@ angular.module( 'vtm.data', [
 .controller( 'DataCtrl', function DataController($scope, $log, $http, $state, leafletData, ROOT) {
 
   // API URL in Ecoengine
-  var tileserver  = 'https://dev-ecoengine.berkeley.edu/tiles';
-  //var tileserver  = 'http://localhost:8080';
+  //var tileserver  = 'https://dev-ecoengine.berkeley.edu/tiles';
+  var tileserver  = 'http://localhost:8080';
   var fileserver = 'http://localhost:8000';
 
   // Map setup
   var center = {
-    lat: 37,
+    lat: 37.5,
     lng: -122,
     zoom: 11 
   };
@@ -218,15 +218,21 @@ angular.module( 'vtm.data', [
     
     var data = leafletEvent.data;
 
-    if (data.hasOwnProperty('VTM_QUAD')) {
-      $scope.vtm_quad_id = data.VTM_QUAD;
-    } else if (data.hasOwnProperty('record')) {    
-      $scope.$apply(function() {
-         $scope.record = data.record;
-      });
-    } else {
-      console.log('no data properties found');
+    if (data) {
+
+      if (data.hasOwnProperty('VTM_QUAD')) {
+        $scope.vtm_quad_id = data.VTM_QUAD;
+      }
+
+      if (data.hasOwnProperty('record')) {    
+        $scope.$apply(function() {
+          $scope.record = data.record;
+        });
+      }
+
     }
+
+
 
   });
 
@@ -324,6 +330,8 @@ angular.module( 'vtm.data', [
       console.log($scope.record);
       var url = "https://dev-ecoengine.berkeley.edu/api/vtmveg/" + $scope.record + '/?format=json';
       $http.get(url).success(function(response, status) {
+
+
 
         //Highlight feature
         angular.extend($scope, {

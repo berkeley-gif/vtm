@@ -1221,79 +1221,93 @@ angular.module("data/data.photos.tpl.html", []).run(["$templateCache", function(
 angular.module("data/data.plots.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("data/data.plots.tpl.html",
     "<div class=\"row\">\n" +
-    "    <div class=\"col-md-8\">\n" +
+    "	<div class=\"col-md-12\">\n" +
+    "		<div class=\"tool-wrapper\">\n" +
+    "					<div class=\"row\">\n" +
+    "			<div class=\"col-md-8\">\n" +
+    "				<leaflet id=\"map\" center=\"center\" layers=\"layers\" geojson=\"geojson\" defaults=\"defaults\" controls=\"controls\"></leaflet>\n" +
+    "			</div>\n" +
+    "			<div class=\"col-md-4\">\n" +
+    "				<div class=\"info-box\" ng-hide=\"layerProp\">\n" +
+    "					Click on a plot point to see detail information\n" +
+    "				</div>\n" +
+    "				<div class=\"info-box enabled\" ng-show=\"layerProp\">\n" +
     "\n" +
-    "    	<div class=\"row\">\n" +
-    "    		<div class=\"col-md-12\">\n" +
-    "        		<leaflet id=\"map\" center=\"center\" layers=\"layers\" geojson=\"geojson\" defaults=\"defaults\" controls=\"controls\"></leaflet>\n" +
-    "    		</div>\n" +
+    "					<div class=\"panel panel-default\">\n" +
+    "						<div class=\"panel-heading\">Plot</div>\n" +
+    "						<div class=\"panel-body\">\n" +
+    "			            	<ul>\n" +
+    "			            		<li>Plot Number: {{layerProp.plot_no}}</li>\n" +
+    "			            		<li>Plot Map: {{layerProp.map_reference}}</li>\n" +
+    "			            	</ul>\n" +
+    "						</div>\n" +
+    "					</div>\n" +
+    "\n" +
+    "					<div class=\"panel panel-default\">\n" +
+    "						<div class=\"panel-heading\">Brushes</div>\n" +
+    "						<div class=\"panel-body\" ng-hide=\"layerProp.brushes.length\">\n" +
+    "			                    No data\n" +
+    "						</div>\n" +
+    "						<div class=\"panel-body\" ng-show=\"layerProp.brushes.length\">\n" +
+    "							<ul>\n" +
+    "		                        <li ng-repeat=\"obs in layerProp.brushes\">\n" +
+    "		                            {{obs.scientific_name}}\n" +
+    "		                        </li>\n" +
+    "			                </ul>\n" +
+    "						</div>\n" +
+    "					</div>\n" +
+    "\n" +
+    "					<div class=\"panel panel-default\">\n" +
+    "						<div class=\"panel-heading\">Trees</div>\n" +
+    "						<div class=\"panel-body\" ng-hide=\"layerProp.trees.length\">\n" +
+    "			                    No data\n" +
+    "						</div>\n" +
+    "						<div class=\"panel-body\" ng-show=\"layerProp.trees.length\">\n" +
+    "							<ul>\n" +
+    "		                        <li ng-repeat=\"obs in layerProp.trees\">\n" +
+    "		                            {{obs.scientific_name}}\n" +
+    "		                        </li>\n" +
+    "			                </ul>\n" +
+    "						</div>\n" +
+    "					</div>\n" +
+    "\n" +
+    "\n" +
+    "				\n" +
+    "				</div>\n" +
+    "			</div>\n" +
     "		</div>\n" +
-    "		<div class=\"row\" style=\"margin-top:15px;\">\n" +
-    "			<div class=\"col-md-12\" class=\"data-tabs\">\n" +
-    "			<tabset>\n" +
-    "				<tab heading=\"General Information\">\n" +
-    "					<p>The VTM plot maps show the locations of all the individual plots surveyed by the original VTM crews. The points were stamped in red ink on USGS topographic maps that had been cut into eight or more segments, mounted on canvas, and folded, to facilitate use in the field. The plot map collection comprises fifteen minute (1:62500 scale) and thirty minute (1:125000 scale) quadrangles, primarily concentrated along the central and southern coastal ranges, and along the Sierras. In order to digitize this data set, all the plot maps were scanned at high resolution, one cut segment at a time. An uncut, scanned version of each map (of the same edition and reprint, when possible) was georeferenced to USGS Digital Raster Graphics (digital images of USGS quadrangles). The cut VTM segments were in turn rectified and registered to the uncut reference map, thereby brining them into a modern geographical coordinate system. The individual plot points were digitized as ESRI shapefiles, and the associated data wre entered into a database. Here you can download the raw original scans, the georeferenced VTM plot maps, the digitized plot locations, and the associated text data.</p>\n" +
-    "					<p>Statewide there are approximately 18,000 VTM plots, concentrated along the central and southern coastal ranges, and along the Sierra Nevada. These plots were surveyed by the VTM field crews as a check on the vegetation polygons, and also to provide details on species composition, size and stand density of trees and shrubs and depth of leaf litter. The rectangular sample plots (800 m2 in forests, 400 m2 in scrub and chaparral communities) run upslope and were divided into milacre sampling units in which dominant species and height characteristics was recorded. Trees greater than 10 cm in dbh within 10 m of either side of the center-line were tallied by species and diameter class. In both forest and understory plots slope, soil characteristics and year of last burn was recorded. The plots cover a gradient of vegetation types and include data regarding tree stand structure (number per diameter class), percent cover of dominant overstory and understory vegetation by species, soil type, parent material, leaf litter, elevation, slope, aspect, parent material, and other environmental variables. All plot data was stored on paper data sheets, and individual plots were numbered according to U.S. Geological Survey (USGS) topographic quadrangle map name, quad section number and plot number. For more information on the plots, please see: <a href=\"http://kellylab.berkeley.edu/publications/2005/9/30/digitization-of-the-wieslander-california-vegetation-type-ma.html\" target=\"_blank\">Kelly et al. 2005 Madro&ntilde;o paper</a>.</p>\n" +
-    "				</tab>\n" +
-    "				<tab heading=\"Download\">\n" +
-    "					<p> \n" +
-    "						<a href=\"https://dev-ecoengine.berkeley.edu/data/vtm-plots.zip\" class=\"btn btn-primary\">All plot data points shapefile for CA</a>\n" +
-    "					</p>\n" +
-    "					<p> \n" +
-    "						<a href=\"http://localhost:8000/plot/Georeferenced/{{vtm_quad_id}}/\" target=\"_blank\" class=\"btn btn-primary\">Georeferenced plot map for VTM Quad {{vtm_quad_id}}</a>\n" +
-    "					</p>\n" +
-    "					<p> \n" +
-    "						<a href=\"http://localhost:8000/plot/Georeferenced/{{vtm_quad_id}}/\" target=\"_blank\" class=\"btn btn-primary\">Original ungeoreferenced plot map for VTM Quad {{vtm_quad_id}}</a>\n" +
-    "					</p>\n" +
-    "					<p> \n" +
-    "						<a href=\"http://localhost:8000/plot/Georeferenced/{{vtm_quad_id}}/\" target=\"_blank\" class=\"btn btn-primary\">Georeferenced plot data points shapefile for VTM Quad {{vtm_quad_id}}</a>\n" +
-    "					</p>\n" +
-    "				</tab>\n" +
-    "				<tab heading=\"Suggested Citations\">\n" +
-    "					<ng-include src=\"'about/about.citations.tpl.html'\"></ng-inlcude>\n" +
-    "				</tab>\n" +
-    "			</tabset>	\n" +
-    "		</div>\n" +
     "		</div>\n" +
     "\n" +
-    "    </div>\n" +
-    "    <div class=\"col-md-4\">\n" +
-    "    	<div class=\"info-box\" ng-hide=\"layerProp\">\n" +
-    "    		Click on a plot point to see detail information\n" +
-    "    	</div>\n" +
-    "    	<div class=\"info-box\" ng-show=\"layerProp\">\n" +
-    "\n" +
-    "			<table class=\"table table-hover table-condensed\">\n" +
-    "				<tr ng-repeat=\"(k,v) in layerProp\">\n" +
-    "					<th>{{k}}</th>\n" +
-    "					<td>{{v}}</td>\n" +
-    "				</tr>\n" +
-    "			</table>\n" +
-    "    	</div>\n" +
-    "\n" +
-    "    </div>\n" +
+    "	</div>\n" +
+    "	\n" +
     "</div>\n" +
-    "\n" +
-    "\n" +
-    "\n" +
-    "<!-- <div class=\"row\">\n" +
-    "    <div class=\"col-md-5\">\n" +
-    "        <h2>General information</h2>\n" +
-    "		<p>Statewide there are approximately 18,000 VTM plots, concentrated along the central and southern coastal ranges, and along the Sierra Nevada. These plots were surveyed by the VTM field crews as a check on the vegetation polygons, and also to provide details on species composition, size and stand density of trees and shrubs and depth of leaf litter.  The rectangular sample plots (800 m<sup>2</sup> in forests, 400 m<sup>2</sup> in scrub and chaparral communities) run upslope and were divided into milacre sampling units in which dominant species and height characteristics was recorded. Trees greater than 10 cm in dbh within 10 m of either side of the center-line were tallied by species and diameter class. In both forest and understory plots slope, soil characteristics and year of last burn was recorded. The plots cover a gradient of vegetation types and include data regarding tree stand structure (number per diameter class), percent cover of dominant overstory and understory vegetation by species, soil type, parent material, leaf litter, elevation, slope, aspect, parent material, and other environmental variables.  All plot data was stored on paper data sheets, and individual plots were numbered according to U.S. Geological Survey (USGS) topographic quadrangle map name, quad section number and plot number. For more information on the plots, please see: Kelly et al. 2005 Madro&ntilde;o article on the <a ng-href=\"#/about/publications\">Publications</a> page.</p>\n" +
-    "    </div>\n" +
-    "    <div class=\"col-md-4\">\n" +
-    "        <h2>Suggested Citations</h2>\n" +
-    "        <ng-include src=\"'about/about.citations.tpl.html'\"></ng-inlcude>\n" +
-    "    </div>\n" +
-    "    <div class=\"col-md-3\">\n" +
-    "		<h2>Download</h2>\n" +
-    "		<p>Download all plots data in shapefile. </p>\n" +
-    "		<p><img src=\"assets/img/download_plots.png\" class=\"img-responsive img-thumbnail\"/></p>\n" +
-    "		<a href=\"https://dev-ecoengine.berkeley.edu/data/vtm-plots.zip\" class=\"btn btn-primary\">Click here</a>\n" +
-    "    </div>\n" +
-    "</div> -->\n" +
-    "\n" +
-    "\n" +
+    "<div class=\"row\">\n" +
+    "	<div class=\"col-md-12\">\n" +
+    "		<tabset>\n" +
+    "			<tab heading=\"General Information\">\n" +
+    "				<p>The VTM plot maps show the locations of all the individual plots surveyed by the original VTM crews. The points were stamped in red ink on USGS topographic maps that had been cut into eight or more segments, mounted on canvas, and folded, to facilitate use in the field. The plot map collection comprises fifteen minute (1:62500 scale) and thirty minute (1:125000 scale) quadrangles, primarily concentrated along the central and southern coastal ranges, and along the Sierras. In order to digitize this data set, all the plot maps were scanned at high resolution, one cut segment at a time. An uncut, scanned version of each map (of the same edition and reprint, when possible) was georeferenced to USGS Digital Raster Graphics (digital images of USGS quadrangles). The cut VTM segments were in turn rectified and registered to the uncut reference map, thereby brining them into a modern geographical coordinate system. The individual plot points were digitized as ESRI shapefiles, and the associated data wre entered into a database. Here you can download the raw original scans, the georeferenced VTM plot maps, the digitized plot locations, and the associated text data.</p>\n" +
+    "				<p>Statewide there are approximately 18,000 VTM plots, concentrated along the central and southern coastal ranges, and along the Sierra Nevada. These plots were surveyed by the VTM field crews as a check on the vegetation polygons, and also to provide details on species composition, size and stand density of trees and shrubs and depth of leaf litter. The rectangular sample plots (800 m2 in forests, 400 m2 in scrub and chaparral communities) run upslope and were divided into milacre sampling units in which dominant species and height characteristics was recorded. Trees greater than 10 cm in dbh within 10 m of either side of the center-line were tallied by species and diameter class. In both forest and understory plots slope, soil characteristics and year of last burn was recorded. The plots cover a gradient of vegetation types and include data regarding tree stand structure (number per diameter class), percent cover of dominant overstory and understory vegetation by species, soil type, parent material, leaf litter, elevation, slope, aspect, parent material, and other environmental variables. All plot data was stored on paper data sheets, and individual plots were numbered according to U.S. Geological Survey (USGS) topographic quadrangle map name, quad section number and plot number. For more information on the plots, please see: <a href=\"http://kellylab.berkeley.edu/publications/2005/9/30/digitization-of-the-wieslander-california-vegetation-type-ma.html\" target=\"_blank\">Kelly et al. 2005 Madro&ntilde;o paper</a>.</p>\n" +
+    "			</tab>\n" +
+    "			<tab heading=\"Download\">\n" +
+    "				<p> \n" +
+    "					<a href=\"https://dev-ecoengine.berkeley.edu/data/vtm-plots.zip\" class=\"btn btn-primary\">All plot data points shapefile for CA</a>\n" +
+    "				</p>\n" +
+    "				<p> \n" +
+    "					<a href=\"http://localhost:8000/plot/Georeferenced/{{vtm_quad_id}}/\" target=\"_blank\" class=\"btn btn-primary\">Georeferenced plot map for VTM Quad {{vtm_quad_id}}</a>\n" +
+    "				</p>\n" +
+    "				<p> \n" +
+    "					<a href=\"http://localhost:8000/plot/Georeferenced/{{vtm_quad_id}}/\" target=\"_blank\" class=\"btn btn-primary\">Original ungeoreferenced plot map for VTM Quad {{vtm_quad_id}}</a>\n" +
+    "				</p>\n" +
+    "				<p> \n" +
+    "					<a href=\"http://localhost:8000/plot/Georeferenced/{{vtm_quad_id}}/\" target=\"_blank\" class=\"btn btn-primary\">Georeferenced plot data points shapefile for VTM Quad {{vtm_quad_id}}</a>\n" +
+    "				</p>\n" +
+    "			</tab>\n" +
+    "			<tab heading=\"Suggested Citations\">\n" +
+    "				<ng-include src=\"'about/about.citations.tpl.html'\"></ng-inlcude>\n" +
+    "			</tab>\n" +
+    "		</tabset>\n" +
+    "	</div>\n" +
+    "</div>\n" +
     "");
 }]);
 
@@ -1321,7 +1335,7 @@ angular.module("data/data.vegetation.tpl.html", []).run(["$templateCache", funct
   $templateCache.put("data/data.vegetation.tpl.html",
     "<div class=\"row\">\n" +
     "    <div class=\"col-md-9\">\n" +
-    "        <leaflet id=\"map\" center=\"center\" layers=\"layers\" geojson=\"geojson\" defaults=\"defaults\" controls=\"controls\" style=\"height: 600px\"></leaflet>\n" +
+    "        <leaflet id=\"map\" center=\"center\" layers=\"layers\" geojson=\"geojson\" defaults=\"defaults\" controls=\"controls\"></leaflet>\n" +
     "    </div>\n" +
     "    <div class=\"col-md-3\">\n" +
     "        <h2>Info box</h2>\n" +
