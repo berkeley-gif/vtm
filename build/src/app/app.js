@@ -10,7 +10,12 @@ angular.module( 'vtm', [
   'restangular'
 ])
 
-.config( function myAppConfig ( $stateProvider, $urlRouterProvider, RestangularProvider ) {
+.constant('HOLOS_CONFIG', {
+  baseUrl: 'https://ecoengine.berkeley.edu'
+  //apiKey: ''
+})
+
+.config( function myAppConfig ( $stateProvider, $urlRouterProvider, RestangularProvider, HOLOS_CONFIG) {
 
   $urlRouterProvider.otherwise( '/home' );
 
@@ -18,7 +23,7 @@ angular.module( 'vtm', [
   // Restangular Configuration //
   ///////////////////////////////
 
-  RestangularProvider.setBaseUrl('https://dev-ecoengine.berkeley.edu/api');
+  RestangularProvider.setBaseUrl( HOLOS_CONFIG.baseUrl + '/api' );
   RestangularProvider.setDefaultRequestParams({
       //apiKey: HOLOS_CONFIG.apiKey,
       format: 'json'

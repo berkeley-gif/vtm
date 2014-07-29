@@ -1,10 +1,11 @@
 angular.module( 'services.VtmTileService', [])
 
-.factory('VtmTiles', ['$q', '$timeout', '$http', 
-  function($q, $timeout, $http ) {
+.factory('VtmTiles', ['$q', '$timeout', '$http', 'HOLOS_CONFIG',
+  function($q, $timeout, $http, HOLOS_CONFIG ) {
      
      // private data vars
-      var tileserver = 'http://localhost:8080';
+      //ar tileserver = 'http://localhost:8080';
+      var tileserver = HOLOS_CONFIG.baseUrl + '/tiles';
 
       var grayscale = {
         name: 'Basemap',
