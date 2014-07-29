@@ -15,13 +15,9 @@
 angular.module( 'vtm.data', [
   'ui.router',
   'leaflet-directive',
-  'filters.split'
+  'filters.split',
+  'services.VtmTileService'
 ])
-
-/**
- * Defining the domain name as a constant
- */
-.constant('ROOT', 'https://dev-ecoengine.berkeley.edu')
 
 /**
  * Each section or module of the site can also have its own routes. AngularJS
@@ -51,7 +47,7 @@ angular.module( 'vtm.data', [
     url: '/vegetation',
     templateUrl: 'data/data.vegetation.tpl.html',
     controller: 'VegCtrl',
-    data:{ pageTitle: 'Vegetation Map' }
+    data:{ pageTitle: 'Vegetation' }
   })
   .state( 'data.photos', {
     url: '/photos',
@@ -63,12 +59,8 @@ angular.module( 'vtm.data', [
 /**
  * And of course we define a controller for our route.
  */
-.controller( 'DataCtrl', function DataController($scope, $log, $http, $state, leafletData, ROOT) {
+.controller( 'DataCtrl', function DataController($scope, $log, $http, $state, leafletData, VtmTiles) {
 
-  // API URL in Ecoengine
-  //var tileserver  = 'https://dev-ecoengine.berkeley.edu/tiles';
-  var tileserver  = 'http://localhost:8080';
-  var fileserver = 'http://localhost:8000';
 
   // Map setup
   var center = {
@@ -88,79 +80,17 @@ angular.module( 'vtm.data', [
     }
   };
 
-  var grayscale = {
-    name: 'Basemap',
-    type: 'xyz',
-    url: 'http://{s}.www.toolserver.org/tiles/bw-mapnik/{z}/{x}/{y}.png',
-    layerOptions: {
-      attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' + 
-    '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-    'Imagery © <a href="http://mapbox.com">Mapbox</a>',
-      continuousWorld: true,
-      maxZoom: 18
-    }
-  };
 
-  var plots = {
-    name: 'VTM Plots',
-    type: 'xyz',
-    url: tileserver + '/vtmplots/{z}/{x}/{y}.png',
-    visible: true
-  };
-
-  var plots_utfgrid = {
-    name: 'VTM Plots UTFGrid',
-    type: 'utfGrid',
-    url: tileserver + '/vtmplots_utfgrid/{z}/{x}/{y}.json',
-    visible: true,
-    pluginOptions: { 'useJsonP': false}
-  };
-
-  var veg = {
-    name: 'Vegetation',
-    type: 'xyz',
-    url: tileserver + '/vtmveg/{z}/{x}/{y}.png',
-    visible: true
-  };
-
-  var veg_utfgrid = {
-    name: 'VTM Veg UTFGrid',
-    type: 'utfGrid',
-    url: tileserver + '/vtmveg_utfgrid/{z}/{x}/{y}.json',
-    visible: true,
-    pluginOptions: { 'useJsonP': false}
-  };
-
-  var quads = {
-    name: 'VTM Quads',
-    type: 'xyz',
-    url: tileserver + '/vtmquads/{z}/{x}/{y}.png',
-    visible: true
-  };
-
-  var quads_utfgrid = {
-    name: 'VTM Quads UTFGrid',
-    type: 'utfGrid',
-    url: tileserver + '/vtmquads_utfgrid/{z}/{x}/{y}.json',
-    visible: true,
-    pluginOptions: { 'useJsonP': false}
-  };
-
-  var counties = {
-    name: 'Counties',
-    type: 'xyz',
-    url: tileserver + '/counties/{z}/{x}/{y}.png',
-    visible: false
-  };
 
   var overlays =  {
-    veg: veg,
-    veg_utfgrid: veg_utfgrid,
-    counties: counties,
-    quads: quads,
-    quads_utfgrid: quads_utfgrid,
-    plots: plots,
-    plots_utfgrid: plots_utfgrid
+    veg: VtmTiles.loadVegPolygons(),
+    veg_utfgrid: VtmTiles.loadVegUTFgrid(),
+    counties: VtmTiles.loadCounties(),
+    counties_utfgrid: VtmTiles.loadCountyUTFgrid(),
+    quads: VtmTiles.loadQuads(),
+    quads_utfgrid: VtmTiles.loadQuadUTFgrid(),
+    plots: VtmTiles.loadPlotPoints(),
+    plots_utfgrid: VtmTiles.loadPlotUTFgrid()
   };
 
   // Set up DownloadFeaturesControl
@@ -189,7 +119,7 @@ angular.module( 'vtm.data', [
     maxBounds: maxBounds,
     layers: {
       baselayers: {
-        grayscale: grayscale
+        grayscale: VtmTiles.loadGrayscale()
       },
       overlays: overlays
     },
@@ -245,16 +175,17 @@ angular.module( 'vtm.data', [
 /**
  * And of course we define a controller for our route.
  */
-.controller( 'PlotsCtrl', function PlotsController($scope, $log, $http, $state, leafletData, ROOT) {
+.controller( 'PlotsCtrl', function PlotsController($scope, $log, $http, $state, leafletData, Restangular) {
 
 
 
   $log.log('in data plots controller');
 
-  $scope.layers.overlays.veg.visible = false;
+
+/*  $scope.layers.overlays.veg.visible = false;
   $scope.layers.overlays.veg_utfgrid.visible = false;
   $scope.layers.overlays.plots.visible = true;
-  $scope.layers.overlays.plots_utfgrid.visible = true;
+  $scope.layers.overlays.plots_utfgrid.visible = true;*/
 
   $scope.$watch('record', function(newValue, oldValue){
 
@@ -264,11 +195,11 @@ angular.module( 'vtm.data', [
     }
 
     // Load data from service
-    if ( newValue ) {
-      console.log($scope.record);
-      var url = "https://dev-ecoengine.berkeley.edu/api/vtmplots/" + $scope.record + '/?format=json';
-      $http.get(url).success(function(response, status) {
+    if ( newValue.search('plot') >= 0 ) {
 
+      var plotRecord = Restangular.one('vtmplots', newValue);
+      plotRecord.get().then(function(response) {
+        $scope.layerProp = response;
         //Highlight feature
         angular.extend($scope, {
           geojson: {
@@ -277,83 +208,18 @@ angular.module( 'vtm.data', [
           }
           
         });
-        
-        $log.log(response);
+      });
 
-        $scope.layerProp = response;
 
-      }); //end $http.get
 
-    }
-
-  }, true);
-
-  
-
-})
-
-/**
- * And of course we define a controller for our route.
- */
-.controller( 'VegCtrl', function VegetationController($scope, $log, $http, $state, leafletData, ROOT) {
-
-  
-
-  //On map click event
-  function style(feature) {
-    return {
-      weight: 7,
-      opacity: 1,
-      color: 'white',
-      fillOpacity: 0
-    };
-  }
-
-  $log.log('in veg controller');
-
-  
-
-  $scope.layers.overlays.plots.visible = false;
-  $scope.layers.overlays.plots_utfgrid.visible = false;
-  $scope.layers.overlays.veg.visible = true;
-  $scope.layers.overlays.veg_utfgrid.visible = true;
-
-    $scope.$watch('record', function(newValue, oldValue){
-
-    // Ignore initial setup
-    if ( newValue === oldValue) {
+    } else {
       return;
     }
 
-    // Load data from service
-    if ( newValue ) {
-      console.log($scope.record);
-      var url = "https://dev-ecoengine.berkeley.edu/api/vtmveg/" + $scope.record + '/?format=json';
-      $http.get(url).success(function(response, status) {
-
-
-
-        //Highlight feature
-        angular.extend($scope, {
-          geojson: {
-            data: response.geojson,
-            style: style,
-            resetStyleOnMouseout: false
-          }
-          
-        });
-        
-        $log.log(response);
-
-        $scope.layerProp = response;
-
-      }); //end $http.get
-
-    }
-
   }, true);
 
-})
+  
 
+})
 
 ;

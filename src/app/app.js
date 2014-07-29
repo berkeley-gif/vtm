@@ -4,13 +4,26 @@ angular.module( 'vtm', [
   'vtm.home',
   'vtm.about',
   'vtm.data',
-  'vtm.use',
+  'vtm.howto',
   'ui.router',
-  'ngAnimate'
+  'ngAnimate',
+  'restangular'
 ])
 
-.config( function myAppConfig ( $stateProvider, $urlRouterProvider ) {
+.config( function myAppConfig ( $stateProvider, $urlRouterProvider, RestangularProvider ) {
+
   $urlRouterProvider.otherwise( '/home' );
+
+  ///////////////////////////////
+  // Restangular Configuration //
+  ///////////////////////////////
+
+  RestangularProvider.setBaseUrl('https://dev-ecoengine.berkeley.edu/api');
+  RestangularProvider.setDefaultRequestParams({
+      //apiKey: HOLOS_CONFIG.apiKey,
+      format: 'json'
+  });
+
 })
 
 .run( function run () {

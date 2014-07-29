@@ -1,4 +1,60 @@
-angular.module('templates-app', ['about/about.citations.tpl.html', 'about/about.description.tpl.html', 'about/about.faq.tpl.html', 'about/about.metadata.tpl.html', 'about/about.overview.tpl.html', 'about/about.plotdata.tpl.html', 'about/about.plotmaps.tpl.html', 'about/about.publications.tpl.html', 'about/about.tpl.html', 'data/data.overview.tpl.html', 'data/data.photos.tpl.html', 'data/data.plots.tpl.html', 'data/data.tpl.html', 'data/data.vegetation.tpl.html', 'home/home.tpl.html', 'use/use.overview.tpl.html', 'use/use.tpl.html']);
+angular.module('templates-app', ['about/about.bibliography.tpl.html', 'about/about.citations.tpl.html', 'about/about.description.tpl.html', 'about/about.faq.tpl.html', 'about/about.metadata.tpl.html', 'about/about.overview.tpl.html', 'about/about.plotdata.tpl.html', 'about/about.plotmaps.tpl.html', 'about/about.tpl.html', 'data/data.overview.tpl.html', 'data/data.photos.tpl.html', 'data/data.plots.tpl.html', 'data/data.tpl.html', 'data/data.vegetation.tpl.html', 'home/home.tpl.html', 'howto/howto.overview.tpl.html', 'howto/howto.tpl.html']);
+
+angular.module("about/about.bibliography.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("about/about.bibliography.tpl.html",
+    "<div class=\"row\" id=\"#about\">\n" +
+    "    <div class=\"col-sm-12\">\n" +
+    "\n" +
+    "        <p>California Forest and Range Experiment Station., \"Vegetation type maps of California and Western Nevada\" (U.S. Forest Service, Washington, D.C., 1932).</p>\n" +
+    "\n" +
+    "        <p>California Forest and Range Experiment Station., \"Vegetation types of California (exclusive of deserts and cultivated lands),\" maps (1932).</p>\n" +
+    "\n" +
+    "        <p>California. Division of Forestry., \"Upland soils of Mendocino County : (exclusive of National Forests areas),\" , 1 map (1951).</p>\n" +
+    "\n" +
+    "        <p>A. E. Wieslander., \"Forest areas, timber volumes and vegetation types in California\" (California Forest and Range Experiment Station, Berkeley, Calif., 1946).</p>\n" +
+    "\n" +
+    "        <p>A. E. Wieslander., \"Management plan, Eastern Lassen Working Circle\" (Lassen National Forest, Calif., 1922).</p>\n" +
+    "\n" +
+    "        <p>A. E. Wieslander., \"Fire protection map of the forest plantations in the Oakland and Berkeley Hills : City of Oakland, Alameda County, California,\" , 1 ms. map (1915).</p>\n" +
+    "\n" +
+    "        <p>A. E. Wieslander., \"Botanical type map of Muir Woods Basin : Redwood Canyon, Marin Co., California,\" , 1 map (1914).</p>\n" +
+    "\n" +
+    "        <p>A. E. Wieslander., \"A.E. Wieslander papers,\" , 1 v., 1 carton, 1 oversize folder.; 21 sound cassettes.</p>\n" +
+    "\n" +
+    "        <p>A. E. Wieslander., \"A vegetation type map of California.\" Madrono 2:140-144 (1935).</p>\n" +
+    "\n" +
+    "        <p>A. E. Wieslander.,\"First steps of the forest survey in California,\" Journal of Foresty 33:877-884.</p>\n" +
+    "\n" +
+    "        <p>A. E. Wieslander.,H.A. Jensen, and H.S. Yates. \"California vegetation type map:Instructions for the preparation of the vegetative type map of California\". Unpublished USDA Forest Service Report (1933).</p>\n" +
+    "\n" +
+    "        <p>D. Weeks, A.E. Wieslander., \"Land Utilization statistics for the northern Sierra Nevada\". Calfironiat Forest and Range Experiment Station (1942).</p>\n" +
+    "\n" +
+    "        <h3>Other Resources</h3>\n" +
+    "\n" +
+    "        <p>Wieslander, A.E. 1986. <a href=\"http://texts.cdlib.org/view?docId=hb7j49p23f\">A.E. Wieslander, California forester: mapper of wildland vegetation and soils (an oral history conducted in 1985 by Ann Lange).</a> Regional Oral History Office, Bancroft Library, University of California, Berkeley, CA.</p>\n" +
+    "\n" +
+    "<!--         <p>Allen, B.H., Holzman, C.A. and Evett, R.R., 1991. A classification system for California's hardwood rangelands. Hilgardia, 59(2): 1-45. Allen-Diaz, B.H. and B.A. Holzman., 1991. Blue oak communities in California. Madro&ntilde;o , 38: 80-95.</p>\n" +
+    "        \n" +
+    "        <p>Ertter, B., 2000. Our undiscovered heritage: Past and future prospects for species-level botanical inventory. Madro&ntilde;o , 47(4): 237-252.</p>\n" +
+    "		\n" +
+    "		<p>Kelly, M., 2005  VTM Newsletter 2005.  <a href=\"media/docs/VTMnewsletter7-2005.pdf\" target=\"_blank\">PDF</a>.</p>\n" +
+    "    \n" +
+    "        <p>Kelly, M., B. Allen-Diaz, and N. Kobzina. 2005. <a href=\"http://kellylab.berkeley.edu/publications/2005/9/30/digitization-of-the-wieslander-california-vegetation-type-ma.html\" target=\"_blank\">Digitization of a historic dataset: the Wieslander California vegetation type mapping project.</a> Madro&ntilde;o 52(3):191-201.</p>\n" +
+    "\n" +
+    "        <p>Kelly, M., K. Ueda and B. Allen-Diaz. 2008. <a href=\"http://kellylab.berkeley.edu/publications/2008/10/31/historic-map-analysis-spatial-error-in-the-ca-vtm-dataset.html\" target=\"_blank\"> Considerations for ecological reconstruction of historic vegetation: Analysis of the spatial uncertainties in the California Vegetation Type Map dataset.</a> Plant Ecology 194 (1): 37-49.</p>\n" +
+    "\n" +
+    "		<p>Thorne, J. H., Kelsey, R., Honig, J., and Morgan, B. 2006. <a href=\"http://www.energy.ca.gov/2006publications/CEC-500-2006-107/CEC-500-2006-107.PDF\" target=\"_blank\">The development of 70-year-old Wieslander vegetation type maps and an assessment of landscape change in the central Sierra Nevada.</a> University of California, Davis, and California Energy Commission, CED-500-2006-107.</p>\n" +
+    "\n" +
+    "        <p>Wieslander, A.E., 1961. California's vegetation maps: Recent advances in botany, University of Toronto Press, Toronto.</p>\n" +
+    "\n" +
+    "        <p>Wieslander, A.E., 1935. A vegetation type map of California. Madro&ntilde;o , 3(3): 140-144.</p> -->\n" +
+    "    </div>\n" +
+    "</div>\n" +
+    "\n" +
+    "\n" +
+    "\n" +
+    "");
+}]);
 
 angular.module("about/about.citations.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("about/about.citations.tpl.html",
@@ -739,7 +795,9 @@ angular.module("about/about.overview.tpl.html", []).run(["$templateCache", funct
     "<div class=\"row\" id=\"#about\">\n" +
     "    <div class=\"col-sm-12\">\n" +
     "\n" +
-    "        <p>In the 1930s, forester A. E. Wieslander spearheaded a U. S. Forest Service survey of California vegetation, called the Vegetation Type Mapping Project. Originally, the project was slated to include detailed vegetation type maps of 220 USGS quadrangles, but the survey was halted by World War II, and only 23 maps were published. The project continued after the war under state funding, but no more quads were published. However, much of the unpublished data survives today and exists in storage at the University of California, Berkeley, and at other map libraries and research labs around California. The VTM dataset has been recognized as an invaluable window into the state of California flora in the early 20th century, has provided data for several graduate theses at several Universities, and has been the focus of numerous journal articles. However, the dataset's physical fragility has made it largely inaccessible to the broader scientific community. Researchers at U. C. Berkeley Department of Environmental Science, Policy, and Management (ESPM), in conjunction with the Marian Koshland Bioscience and Natural Resources Library, sought funding to digitize all of the published and unpublished dataset, for use in modern geographic information systems and to facilitate its distribution via the Internet.</p>           \n" +
+    "        <p>In the 1930s, forester A. E. Wieslander spearheaded a U. S. Forest Service survey of California vegetation, called the Vegetation Type Mapping Project. Originally, the project was slated to include detailed vegetation type maps of 220 USGS quadrangles, but the survey was halted by World War II, and only 23 maps were published. The project continued after the war under state funding, but no more quads were published. However, much of the unpublished data survives today and exists in storage at the University of California, Berkeley, and at other map libraries and research labs around California. The VTM dataset has been recognized as an invaluable window into the state of California flora in the early 20th century, has provided data for several graduate theses at several Universities, and has been the focus of numerous journal articles. However, the dataset's physical fragility has made it largely inaccessible to the broader scientific community. Researchers at U. C. Berkeley Department of Environmental Science, Policy, and Management (ESPM), in conjunction with the Marian Koshland Bioscience and Natural Resources Library, sought funding to digitize all of the published and unpublished dataset, for use in modern geographic information systems and to facilitate its distribution via the Internet.</p>  \n" +
+    "\n" +
+    "        <p><blockquote>The Wieslander Vegetation Type Mapping collection has been described as &ldquo;the most important and comprehensive botanical map of a large area ever undertaken anywhere on the earth&rsquo;s surface&rdquo;.<small>Jepson et al. 2000</small></blockquote></p>         \n" +
     "\n" +
     "        <p>The ultimate goal of the original VTM project was to create vegetation type maps, but in the process the surveyors collected several other kinds of data as well. In order to validate some of the broad zones of vegetation they designated from high vantage points, the surveyors also ran vegetation transects, collecting data on species composition, depth of leaf litter, and tree size, among other things. They marked the location of these plots on USGS topographic maps, which today provide us with point occurrences of the individual species they found. Addtionally, they collected sample specimens and placed them in the University Herbarium (now the Jepson Herbarium), many of which remain there today. They also took photos of many vegetatively distinct locations, and marked the locations of these photos on maps (unfortunately most of these photos maps have been lost). And finally, of course, they created vegetation maps, drawing broad zones of single or mixed stands in crayon over USGS topographic quads.</p>\n" +
     "\n" +
@@ -1090,34 +1148,6 @@ angular.module("about/about.plotmaps.tpl.html", []).run(["$templateCache", funct
     "");
 }]);
 
-angular.module("about/about.publications.tpl.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("about/about.publications.tpl.html",
-    "<div class=\"row\" id=\"#about\">\n" +
-    "    <div class=\"col-sm-12\">\n" +
-    "\n" +
-    "        <p>Allen, B.H., Holzman, C.A. and Evett, R.R., 1991. A classification system for California's hardwood rangelands. Hilgardia, 59(2): 1-45. Allen-Diaz, B.H. and B.A. Holzman., 1991. Blue oak communities in California. Madro&ntilde;o , 38: 80-95.</p>\n" +
-    "        \n" +
-    "        <p>Ertter, B., 2000. Our undiscovered heritage: Past and future prospects for species-level botanical inventory. Madro&ntilde;o , 47(4): 237-252.</p>\n" +
-    "		\n" +
-    "		<p>Kelly, M., 2005  VTM Newsletter 2005.  <a href=\"media/docs/VTMnewsletter7-2005.pdf\" target=\"_blank\">PDF</a>.</p>\n" +
-    "    \n" +
-    "        <p>Kelly, M., B. Allen-Diaz, and N. Kobzina. 2005. <a href=\"http://kellylab.berkeley.edu/publications/2005/9/30/digitization-of-the-wieslander-california-vegetation-type-ma.html\" target=\"_blank\">Digitization of a historic dataset: the Wieslander California vegetation type mapping project.</a> Madro&ntilde;o 52(3):191-201.</p>\n" +
-    "\n" +
-    "        <p>Kelly, M., K. Ueda and B. Allen-Diaz. 2008. <a href=\"http://kellylab.berkeley.edu/publications/2008/10/31/historic-map-analysis-spatial-error-in-the-ca-vtm-dataset.html\" target=\"_blank\"> Considerations for ecological reconstruction of historic vegetation: Analysis of the spatial uncertainties in the California Vegetation Type Map dataset.</a> Plant Ecology 194 (1): 37-49.</p>\n" +
-    "\n" +
-    "		<p>Thorne, J. H., Kelsey, R., Honig, J., and Morgan, B. 2006. <a href=\"http://www.energy.ca.gov/2006publications/CEC-500-2006-107/CEC-500-2006-107.PDF\" target=\"_blank\">The development of 70-year-old Wieslander vegetation type maps and an assessment of landscape change in the central Sierra Nevada.</a> University of California, Davis, and California Energy Commission, CED-500-2006-107.</p>\n" +
-    "\n" +
-    "        <p>Wieslander, A.E., 1961. California's vegetation maps: Recent advances in botany, University of Toronto Press, Toronto.</p>\n" +
-    "\n" +
-    "        <p>Wieslander, A.E., 1935. A vegetation type map of California. Madro&ntilde;o , 3(3): 140-144.</p>\n" +
-    "    </div>\n" +
-    "</div>\n" +
-    "\n" +
-    "\n" +
-    "\n" +
-    "");
-}]);
-
 angular.module("about/about.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("about/about.tpl.html",
     "<div class=\"container\" id=\"learn-more\" ng-controller=\"AboutCtrl\">\n" +
@@ -1131,7 +1161,7 @@ angular.module("about/about.tpl.html", []).run(["$templateCache", function($temp
     "				<a href ui-sref=\"about.description\">Data Description</a> |\n" +
     "				<a href ui-sref=\"about.metadata\">Metadata</a> |\n" +
     "				<a href ui-sref=\"about.faq\">FAQ</a> |\n" +
-    "				<a href ui-sref=\"about.publications\">Publications</a> |\n" +
+    "				<a href ui-sref=\"about.bibliography\">Bibliography</a> |\n" +
     "				<a href ui-sref=\"about.citations\">Suggested Citations</a>\n" +
     "			</h5>\n" +
     "        </div>\n" +
@@ -1145,24 +1175,24 @@ angular.module("about/about.tpl.html", []).run(["$templateCache", function($temp
 angular.module("data/data.overview.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("data/data.overview.tpl.html",
     "<div class=\"row\">\n" +
-    "    <div class=\"item col-md-6 col-sm-6 col-xs-12 text-center\">\n" +
+    "    <div class=\"item col-md-4 col-sm-4 col-xs-12 text-center\">\n" +
     "        <div class=\"features\">\n" +
     "            <a href ui-sref=\"data.vegetation\">\n" +
     "                <div class=\"icon animated fadeIn delayp1\" style=\"opacity: 0;\">\n" +
-    "                    <img class=\"img-rounded\" src=\"assets/img/data_vegpolygons.png\" />\n" +
+    "                    <img class=\"img-circle\" src=\"assets/img/data_vegpolygons.png\" />\n" +
     "                </div><!--//icon-->\n" +
     "                <div class=\"content\">\n" +
-    "                    <h2 class=\"title\">Vegetation Map</h2>\n" +
+    "                    <h2 class=\"title\">Vegetation</h2>\n" +
     "                    <p>Learn more about this data set. </p>  \n" +
     "                </div><!--//content-->  \n" +
     "            </a>        \n" +
     "        </div>     \n" +
     "    </div>\n" +
-    "    <div class=\"item col-md-6 col-sm-6 col-xs-12 text-center\">\n" +
+    "    <div class=\"item col-md-4 col-sm-4 col-xs-12 text-center\">\n" +
     "        <div class=\"features\">\n" +
     "            <a href ui-sref=\"data.plots\">\n" +
     "                <div class=\"icon animated fadeIn delayp1\" style=\"opacity: 0;\">\n" +
-    "                    <img class=\"img-rounded\" src=\"assets/img/data_plots.png\" />\n" +
+    "                    <img class=\"img-circle\" src=\"assets/img/data_plots.png\" />\n" +
     "                </div><!--//icon-->\n" +
     "                <div class=\"content\">\n" +
     "                    <h2 class=\"title\">Plot Data</h2>\n" +
@@ -1171,11 +1201,11 @@ angular.module("data/data.overview.tpl.html", []).run(["$templateCache", functio
     "            </a>    \n" +
     "        </div>           \n" +
     "    </div>\n" +
-    "    <div class=\"item col-md-6 col-sm-6 col-xs-12 text-center\">\n" +
+    "    <div class=\"item col-md-4 col-sm-4 col-xs-12 text-center\">\n" +
     "        <div class=\"features\">\n" +
     "            <a href ui-sref=\"data.photos\">\n" +
     "                <div class=\"icon animated fadeIn delayp1\" style=\"opacity: 0;\">\n" +
-    "                    <img class=\"img-rounded\" src=\"assets/img/data_photolocations.png\" />               \n" +
+    "                    <img class=\"img-circle\" src=\"assets/img/data_photolocations.png\" />               \n" +
     "                </div><!--//icon-->\n" +
     "                <div class=\"content\">\n" +
     "                    <h2 class=\"title\">Photo Locations</h2>\n" +
@@ -1281,7 +1311,7 @@ angular.module("data/data.plots.tpl.html", []).run(["$templateCache", function($
     "	</div>\n" +
     "	\n" +
     "</div>\n" +
-    "<div class=\"row\">\n" +
+    "<div class=\"row\" style=\"margin-top:15px;\">\n" +
     "	<div class=\"col-md-12\">\n" +
     "		<tabset>\n" +
     "			<tab heading=\"General Information\">\n" +
@@ -1320,9 +1350,9 @@ angular.module("data/data.tpl.html", []).run(["$templateCache", function($templa
     "				<span class=\"title\">{{pageTitle | split:'|':0}}</span>\n" +
     "			</h3>\n" +
     "			<h5 class=\"sub-nav-links\">\n" +
-    "				<a href ui-sref=\"data.vegetation\">Vegetation Map</a> |\n" +
+    "				<a href ui-sref=\"data.vegetation\">Vegetation</a> |\n" +
     "				<a href ui-sref=\"data.plots\">Plot Data</a> |\n" +
-    "				<a href ui-sref=\"data.photos\">Photos</a>\n" +
+    "				<a href ui-sref=\"data.photos\">Photo Locations</a>\n" +
     "			</h5>\n" +
     "        </div>\n" +
     "    </div>\n" +
@@ -1459,7 +1489,7 @@ angular.module("home/home.tpl.html", []).run(["$templateCache", function($templa
     "        </div>\n" +
     "        <div class=\"item col-md-4 col-sm-4 col-xs-12 text-center\">\n" +
     "            <div class=\"features\">\n" +
-    "                <a href ui-sref=\"use.overview\">\n" +
+    "                <a href ui-sref=\"howto.overview\">\n" +
     "                    <div class=\"icon animated fadeIn delayp1\" style=\"opacity: 0;\">\n" +
     "                        <i class=\"fa fa-user\"></i>                \n" +
     "                    </div><!--//icon-->\n" +
@@ -1478,21 +1508,22 @@ angular.module("home/home.tpl.html", []).run(["$templateCache", function($templa
     "");
 }]);
 
-angular.module("use/use.overview.tpl.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("use/use.overview.tpl.html",
+angular.module("howto/howto.overview.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("howto/howto.overview.tpl.html",
     "<div class=\"row\" id=\"#about\">\n" +
     "    <div class=\"col-sm-12\">\n" +
     "\n" +
-    " \n" +
+    " 	 <p><blockquote>VTM is &ldquo;the most ambitious attempt ever made to describe the complex vegetation of California&rdquo;.<small>Critchfield, 1971</small></blockquote></p> \n" +
+    "\n" +
     "    </div>\n" +
     "</div>\n" +
     "\n" +
     "");
 }]);
 
-angular.module("use/use.tpl.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("use/use.tpl.html",
-    "<div class=\"container\" id=\"data-use\" ng-controller=\"UseCtrl\">\n" +
+angular.module("howto/howto.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("howto/howto.tpl.html",
+    "<div class=\"container\" id=\"data-use\" ng-controller=\"HowtoCtrl\">\n" +
     "    <div class=\"row\">\n" +
     "        <div class=\"col-md-12\">\n" +
     "			<h3>\n" +

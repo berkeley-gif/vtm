@@ -42,10 +42,10 @@ angular.module( 'vtm.about', [
 	templateUrl: 'about/about.faq.tpl.html',
 	data:{ pageTitle: 'Frequently Asked Questions' }
   })
-  .state( 'about.publications', {
-    url: '/publications',
-    templateUrl: 'about/about.publications.tpl.html',
-    data:{ pageTitle: 'Publications' }
+  .state( 'about.bibliography', {
+    url: '/bibliography',
+    templateUrl: 'about/about.bibliography.tpl.html',
+    data:{ pageTitle: 'Wieslander Bibliography' }
   })
   .state( 'about.citations', {
     url: '/citations',

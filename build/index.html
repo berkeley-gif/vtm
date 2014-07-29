@@ -104,7 +104,7 @@
                                 <li><a href ui-sref="about.metadata">Metadata</a></li>
                                 <li><a href ui-sref="about.description">Description</a></li>
                                 <li><a href ui-sref="about.faq">FAQ</a></li>
-                                <li><a href ui-sref="about.publications">Publications</a></li>
+                                <li><a href ui-sref="about.bibliography">Bibliography</a></li>
                                 <li><a href ui-sref="about.citations">Suggested Citations</a></li>
                             </ul>
                         </li>
@@ -112,7 +112,7 @@
 
                         <!-- Data -->
                         <li class="dropdown" ui-sref-active="active">
-                            <a href ui-sref="use.overview">
+                            <a href ui-sref="howto.overview">
                                 <i class="fa fa-user"></i>
                                 How To
                             </a>
@@ -134,17 +134,9 @@
         <div class="page-header">
         </div>
         <div>
-          <ul class="social">
-            <li><a target="_blank" href="#"><i class="fa fa-google-plus-sign"></i></a></li>
-            <li><a target="_blank" href="#"><i class="fa fa-twitter-sign"></i></a></li>
-            <li><a target="_blank" href="#"><i class="fa fa-linkedin-sign"></i></a></li>
-            <li><a target="_blank" href="#"><i class="fa fa-github-sign"></i></a></li>
-          </ul>
-          
-
           <p>
-            VTM is powered by 
-            <a href="http://ecoengine.berkeley.edu/">Holos</a>.        
+            This site is powered by &nbsp
+            <a href="http://holos.berkeley.edu/" tooltip="Berkeley Ecoinformatics Engine" tooltip-placement="right"><img src="assets/img/HOLOS_logo_color_horizontal_highres_transparent.png" alt="HOLOS" height="40"></a>        
           </p>
         </div>
       </div>
@@ -159,6 +151,8 @@
     <script type="text/javascript" src="vendor/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
     <script type="text/javascript" src="vendor/placeholders/angular-placeholders-0.0.1-SNAPSHOT.min.js"></script>
     <script type="text/javascript" src="vendor/angular-ui-router/release/angular-ui-router.js"></script>
+    <script type="text/javascript" src="vendor/restangular/dist/restangular.js"></script>
+    <script type="text/javascript" src="vendor/lodash/dist/lodash.js"></script>
     <script type="text/javascript" src="vendor/leaflet-dist/leaflet-src.js"></script>
     <script type="text/javascript" src="vendor/Leaflet.utfgrid/dist/leaflet.utfgrid-src.js"></script>
     <script type="text/javascript" src="vendor/angular-leaflet/dist/angular-leaflet-directive.js"></script>
@@ -166,12 +160,12 @@
     <script type="text/javascript" src="src/app/app.js"></script>
     <script type="text/javascript" src="src/app/data/data.js"></script>
     <script type="text/javascript" src="src/app/home/home.js"></script>
-    <script type="text/javascript" src="src/app/use/use.js"></script>
+    <script type="text/javascript" src="src/app/howto/howto.js"></script>
     <script type="text/javascript" src="src/common/directives/AnimatedBanner.js"></script>
     <script type="text/javascript" src="src/common/directives/AnimatedDemo.js"></script>
     <script type="text/javascript" src="src/common/directives/DisableAnimation.js"></script>
     <script type="text/javascript" src="src/common/filters/SplitWord.js"></script>
-    <script type="text/javascript" src="src/common/services.js"></script>
+    <script type="text/javascript" src="src/common/services/TileService.js"></script>
     <script type="text/javascript" src="templates-common.js"></script>
     <script type="text/javascript" src="templates-app.js"></script>
     
