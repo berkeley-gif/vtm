@@ -1253,59 +1253,70 @@ angular.module("data/data.plots.tpl.html", []).run(["$templateCache", function($
     "<div class=\"row\">\n" +
     "	<div class=\"col-md-12\">\n" +
     "		<div class=\"tool-wrapper\">\n" +
-    "					<div class=\"row\">\n" +
-    "			<div class=\"col-md-8\">\n" +
-    "				<leaflet id=\"map\" center=\"center\" layers=\"layers\" geojson=\"geojson\" defaults=\"defaults\" controls=\"controls\"></leaflet>\n" +
-    "			</div>\n" +
-    "			<div class=\"col-md-4\">\n" +
-    "				<div class=\"info-box\" ng-hide=\"layerProp\">\n" +
-    "					Click on a plot point to see detail information\n" +
+    "			<div class=\"row\">\n" +
+    "				<div class=\"col-md-9\">\n" +
+    "					<leaflet id=\"map\" center=\"center\" layers=\"layers\" geojson=\"geojson\" defaults=\"defaults\" controls=\"controls\"></leaflet>\n" +
     "				</div>\n" +
-    "				<div class=\"info-box enabled\" ng-show=\"layerProp\">\n" +
+    "				<div class=\"col-md-3\">\n" +
+    "					<div class=\"info-box\" ng-hide=\"layerProp\">\n" +
+    "						Click on a plot point to see detail information\n" +
+    "					</div>\n" +
+    "					<div class=\"info-box enabled\" ng-show=\"layerProp\">\n" +
     "\n" +
-    "					<div class=\"panel panel-default\">\n" +
-    "						<div class=\"panel-heading\">Plot</div>\n" +
-    "						<div class=\"panel-body\">\n" +
-    "			            	<ul>\n" +
-    "			            		<li>Plot Number: {{layerProp.plot_no}}</li>\n" +
-    "			            		<li>Plot Map: {{layerProp.map_reference}}</li>\n" +
-    "			            	</ul>\n" +
+    "						<div class=\"panel panel-default\">\n" +
+    "							<div class=\"panel-heading\">Plot</div>\n" +
+    "							<div class=\"panel-body\">\n" +
+    "				            	<ul>\n" +
+    "				            		<li>Plot Number: {{layerProp.plot_no}}</li>\n" +
+    "				            		<li>Plot Map: {{layerProp.map_reference}}</li>\n" +
+    "				            	</ul>\n" +
+    "							</div>\n" +
     "						</div>\n" +
+    "\n" +
+    "						<div class=\"panel panel-default\">\n" +
+    "							<div class=\"panel-heading\">Brushes</div>\n" +
+    "							<div class=\"panel-body\" ng-hide=\"layerProp.brushes.length\">\n" +
+    "				                    No data\n" +
+    "							</div>\n" +
+    "							<div class=\"panel-body\" ng-show=\"layerProp.brushes.length\">\n" +
+    "								<ul>\n" +
+    "			                        <li ng-repeat=\"obs in layerProp.brushes\">\n" +
+    "			                            {{obs.scientific_name}}\n" +
+    "			                        </li>\n" +
+    "				                </ul>\n" +
+    "							</div>\n" +
+    "						</div>\n" +
+    "\n" +
+    "						<div class=\"panel panel-default\">\n" +
+    "							<div class=\"panel-heading\">Trees</div>\n" +
+    "							<div class=\"panel-body\" ng-hide=\"layerProp.trees.length\">\n" +
+    "				                    No data\n" +
+    "							</div>\n" +
+    "							<div class=\"panel-body\" ng-show=\"layerProp.trees.length\">\n" +
+    "								<ul>\n" +
+    "			                        <li ng-repeat=\"obs in layerProp.trees\">\n" +
+    "			                            {{obs.scientific_name}}\n" +
+    "			                        </li>\n" +
+    "				                </ul>\n" +
+    "							</div>\n" +
+    "						</div>\n" +
+    "\n" +
+    "\n" +
+    "					\n" +
     "					</div>\n" +
     "\n" +
-    "					<div class=\"panel panel-default\">\n" +
-    "						<div class=\"panel-heading\">Brushes</div>\n" +
-    "						<div class=\"panel-body\" ng-hide=\"layerProp.brushes.length\">\n" +
-    "			                    No data\n" +
-    "						</div>\n" +
-    "						<div class=\"panel-body\" ng-show=\"layerProp.brushes.length\">\n" +
-    "							<ul>\n" +
-    "		                        <li ng-repeat=\"obs in layerProp.brushes\">\n" +
-    "		                            {{obs.scientific_name}}\n" +
-    "		                        </li>\n" +
-    "			                </ul>\n" +
-    "						</div>\n" +
+    "					<div class=\"map-attribution-control\" ng-hide=\"attribution\">\n" +
+    "						<a href=\"\" ng-click=\"showAttribution = ! showAttribution\"><i class=\"fa fa-info-circle\"></i></a>\n" +
     "					</div>\n" +
     "\n" +
-    "					<div class=\"panel panel-default\">\n" +
-    "						<div class=\"panel-heading\">Trees</div>\n" +
-    "						<div class=\"panel-body\" ng-hide=\"layerProp.trees.length\">\n" +
-    "			                    No data\n" +
-    "						</div>\n" +
-    "						<div class=\"panel-body\" ng-show=\"layerProp.trees.length\">\n" +
-    "							<ul>\n" +
-    "		                        <li ng-repeat=\"obs in layerProp.trees\">\n" +
-    "		                            {{obs.scientific_name}}\n" +
-    "		                        </li>\n" +
-    "			                </ul>\n" +
-    "						</div>\n" +
+    "					<div class=\"map-attribution-text\" ng-class=\"{ 'hidden': ! showAttribution }\">\n" +
+    "						Data provided by <a href=\"http://openstreetmap.org\" target=\"_blank\">HOLOS</a> Berkeley Ecoinformatics Engine. Basemap data by &copy; <a href=\"http://openstreetmap.org\" target=\"_blank\">OpenStreetMap</a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\" target=\"_blank\">CC-BY-SA</a>, Imagery &copy; <a href=\"http://mapbox.com\" target=\"_blank\">Mapbox</a>\n" +
     "					</div>\n" +
-    "\n" +
-    "\n" +
     "				\n" +
+    "\n" +
     "				</div>\n" +
     "			</div>\n" +
-    "		</div>\n" +
+    "\n" +
     "		</div>\n" +
     "\n" +
     "	</div>\n" +

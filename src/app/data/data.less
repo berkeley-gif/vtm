@@ -17,6 +17,10 @@
 	height: 600px;
 }
 
+.tool-wrapper #map .leaflet-control-layers.leaflet-control {
+  display: none;
+}
+
 .tool-wrapper .info-box {
   margin: 25px 40px 25px 0; /*top right bottom left */
   background-color: #fff;
@@ -45,8 +49,10 @@
   margin-left: -2em;
 }
 
-#map .leaflet-control-layers.leaflet-control {
-	display: none;
+.map-attribution-text {
+  display: table-cell;
+  vertical-align: bottom;
+  float: none;
 }
 
 
@@ -99,3 +105,29 @@
   margin-top: 7px;
 }
 
+
+
+
+
+/* Extra small devices (phones, less than 768px) */
+@media (max-width: 767px) {
+
+  .tool-wrapper #map {    
+    height: 300px;
+  }
+
+}
+
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+
+
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+
+}
+
+/* Large devices (large desktops, 1200px and up) */

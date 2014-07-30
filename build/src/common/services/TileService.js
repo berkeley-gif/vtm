@@ -12,9 +12,6 @@ angular.module( 'services.VtmTileService', [])
         type: 'xyz',
         url: 'http://{s}.www.toolserver.org/tiles/bw-mapnik/{z}/{x}/{y}.png',
         layerOptions: {
-          attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' + 
-        '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-        'Imagery © <a href="http://mapbox.com">Mapbox</a>',
           continuousWorld: true,
           maxZoom: 18
         }

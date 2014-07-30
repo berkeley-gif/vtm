@@ -16,7 +16,8 @@ angular.module( 'vtm.data', [
   'ui.router',
   'leaflet-directive',
   'filters.split',
-  'services.VtmTileService'
+  'services.VtmTileService',
+  'ngTouch'
 ])
 
 /**
@@ -124,6 +125,7 @@ angular.module( 'vtm.data', [
       overlays: overlays
     },
     defaults : {
+      minZoom: 6,
       scrollWheelZoom: true 
     },
 	controls : {
@@ -147,6 +149,8 @@ angular.module( 'vtm.data', [
   $scope.$on('leafletDirectiveMap.utfgridClick', function(event, leafletEvent) {
     
     var data = leafletEvent.data;
+    console.log('leafletEvent', leafletEvent);
+    console.log('event', event);
 
     if (data) {
 
@@ -165,6 +169,8 @@ angular.module( 'vtm.data', [
 
 
   });
+
+  $scope.attribution = false;
 
 
 
