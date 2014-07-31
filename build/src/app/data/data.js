@@ -17,7 +17,8 @@ angular.module( 'vtm.data', [
   'leaflet-directive',
   'filters.split',
   'services.VtmTileService',
-  'ngTouch'
+  'ngTouch',
+  'services.ModalDialog'
 ])
 
 /**
@@ -111,17 +112,50 @@ angular.module( 'vtm.data', [
 		.on(div, 'dblclick', L.DomEvent.stopPropagation);
     return div;
   };
+
   var toggleVegControl = L.control(); // DownloadFeaturesControl
   toggleVegControl.setPosition('topleft');
   toggleVegControl.onAdd = function (map) {
-    var div = L.DomUtil.create('div','toggle-veg');
-    div.innerHTML = '<button type="button" class="btn btn-primary">Toggle Veg</button>';
+    var div = L.DomUtil.create('div','custom-control leaflet-bar');
+    div.innerHTML = '<a href="" class="toggle-veg" title="Vegetation Show/Hide"><i class="fa fa-leaf"></i></a>';
     L.DomEvent
     .on(div, 'click', L.DomEvent.stopPropagation)
     .on(div, 'click', L.DomEvent.preventDefault)
     .on(div, 'click', function() {
       VtmTiles.toggleLayer('veg');
       VtmTiles.toggleLayer('veg_utfgrid');
+    })
+    .on(div, 'dblclick', L.DomEvent.stopPropagation);
+    return div;
+  };
+
+  var togglePlotsControl = L.control(); // DownloadFeaturesControl
+  togglePlotsControl.setPosition('topleft');
+  togglePlotsControl.onAdd = function (map) {
+    var div = L.DomUtil.create('div','custom-control leaflet-bar');
+    div.innerHTML = '<a href="" class="toggle-plots" title="Plots Show/Hide"><i class="fa fa-circle"></i></a>';
+    L.DomEvent
+    .on(div, 'click', L.DomEvent.stopPropagation)
+    .on(div, 'click', L.DomEvent.preventDefault)
+    .on(div, 'click', function() {
+      VtmTiles.toggleLayer('plots');
+      VtmTiles.toggleLayer('plots_utfgrid');
+    })
+    .on(div, 'dblclick', L.DomEvent.stopPropagation);
+    return div;
+  };
+
+  var togglePhotosControl = L.control(); // DownloadFeaturesControl
+  togglePhotosControl.setPosition('topleft');
+  togglePhotosControl.onAdd = function (map) {
+    var div = L.DomUtil.create('div','custom-control leaflet-bar');
+    div.innerHTML = '<a href="" class="toggle-photos" title="Vegetation Show/Hide"><i class="fa fa-picture-o"></i></a>';
+    L.DomEvent
+    .on(div, 'click', L.DomEvent.stopPropagation)
+    .on(div, 'click', L.DomEvent.preventDefault)
+    .on(div, 'click', function() {
+      //VtmTiles.toggleLayer('photos');
+      //VtmTiles.toggleLayer('photos_utfgrid');
     })
     .on(div, 'dblclick', L.DomEvent.stopPropagation);
     return div;
@@ -142,23 +176,17 @@ angular.module( 'vtm.data', [
       scrollWheelZoom: true 
     },
     controls : {
-        custom: [ toggleVegControl ]
+        custom: [ toggleVegControl, togglePlotsControl, togglePhotosControl]
     }
   });
 
-  //On map click event
-  function style(feature) {
-    return {
-      weight: 7,
-      opacity: 1,
-      color: 'white',
-      fillOpacity: 0
-    };
-  }
+
 
   $scope.$on('leafletDirectiveMap.utfgridClick', function(event, leafletEvent) {
     
     var data = leafletEvent.data;
+/*    console.log('event', event);
+    console.log(leafletEvent);*/
 
     if (data) {
 
@@ -206,18 +234,20 @@ angular.module( 'vtm.data', [
 /**
  * And of course we define a controller for our route.
  */
-.controller( 'PlotsCtrl', function PlotsController($scope, $log, $http, $state, leafletData, VtmTiles, Restangular) {
+.controller( 'PlotsCtrl', function PlotsController($scope, $log, $http, $state, modalService, leafletData, VtmTiles, Restangular) {
 
 
 
   $log.log('in plots controller');
 
-  VtmTiles.toggleLayer('veg');
-  VtmTiles.toggleLayer('veg_utfgrid');
-/*  $scope.layers.overlays.veg.visible = false;
-  $scope.layers.overlays.veg_utfgrid.visible = false;
-  $scope.layers.overlays.plots.visible = true;
-  $scope.layers.overlays.plots_utfgrid.visible = true;*/
+  //Make all overlays except plots invisible
+  VtmTiles.showLayer('plots');
+  VtmTiles.showLayer('plots_utfgrid');
+  VtmTiles.hideLayer('veg');
+  VtmTiles.hideLayer('veg_utfgrid');
+  //VtmTiles.hideLayer('photos');
+  //VtmTiles.hideLayer('photos_utfgrid');
+
 
   $scope.$watch('plotRecord', function(newValue, oldValue){
 
@@ -232,6 +262,17 @@ angular.module( 'vtm.data', [
       var plotRecord = Restangular.one('vtmplots', newValue);
       plotRecord.get().then(function(response) {
         $scope.layerProp = response;
+        
+        //Show modal
+        var modalOptions = {
+            closeButtonText: 'Cancel',
+            actionButtonText: 'Delete Customer',
+            headerText: 'Delete ?',
+            bodyText: 'Are you sure you want to delete this customer?'
+        };
+        modalService.showModal({}, modalOptions).then(function (result) {
+            console.log('modal');
+        });
         //Highlight feature
         angular.extend($scope, {
           geojson: {
@@ -255,17 +296,30 @@ angular.module( 'vtm.data', [
 /**
  * And of course we define a controller for our route.
  */
-.controller( 'VegCtrl', function VegController($scope, $log, $http, $state, leafletData, Restangular) {
+.controller( 'VegCtrl', function VegController($scope, $log, $http, $state, leafletData, Restangular, VtmTiles) {
 
 
 
   $log.log('in veg controller');
+  //Make all overlays except vegetation invisible
+  VtmTiles.showLayer('veg');
+  VtmTiles.showLayer('veg_utfgrid');
+  VtmTiles.hideLayer('plots');
+  VtmTiles.hideLayer('plots_utfgrid');
+  //VtmTiles.hideLayer('photos');
+  //VtmTiles.hideLayer('photos_utfgrid');
 
 
-/*  $scope.layers.overlays.veg.visible = false;
-  $scope.layers.overlays.veg_utfgrid.visible = false;
-  $scope.layers.overlays.plots.visible = true;
-  $scope.layers.overlays.plots_utfgrid.visible = true;*/
+  //Style for selected veg polygon on click event
+  function style(feature) {
+    return {
+      weight: 4,
+      opacity: 1,
+      color: 'white',
+      fillOpacity: 0
+    };
+  }
+
 
   $scope.$watch('vegRecord', function(newValue, oldValue){
 
@@ -280,10 +334,12 @@ angular.module( 'vtm.data', [
       var vegRecord = Restangular.one('vtmveg', newValue);
       vegRecord.get().then(function(response) {
         $scope.layerProp = response;
+        $scope.showModal();
         //Highlight feature
         angular.extend($scope, {
           geojson: {
             data: response.geojson,
+            style: style,
             resetStyleOnMouseout: false
           }
           

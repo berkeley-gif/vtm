@@ -526,6 +526,27 @@ blockquote {
   vertical-align: bottom;
   float: none;
 }
+.leaflet-control.custom-control {
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.4);
+  border-bottom: 1px solid #ccc;
+  line-height: 26px;
+  background: #fff;
+  border-radius: 4px;
+  width: 26px;
+  height: 26px;
+  text-align: center;
+  vertical-align: middle;
+  cursor: auto;
+}
+.leaflet-control.custom-control a {
+  color: inherit;
+  text-decoration: none;
+}
+.leaflet-control.custom-control .leaflet-disabled {
+  cursor: default;
+  background-color: #f4f4f4;
+  color: #bbb;
+}
 /*Tabs
 ------------------------------------*/
 .tabbable .nav-tabs {

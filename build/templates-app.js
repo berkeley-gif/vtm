@@ -1254,10 +1254,10 @@ angular.module("data/data.plots.tpl.html", []).run(["$templateCache", function($
     "	<div class=\"col-md-12\">\n" +
     "		<div class=\"tool-wrapper\">\n" +
     "			<div class=\"row\">\n" +
-    "				<div class=\"col-md-9\">\n" +
+    "				<div class=\"col-md-12\">\n" +
     "					<leaflet id=\"map\" center=\"center\" layers=\"layers\" geojson=\"geojson\" defaults=\"defaults\" controls=\"controls\"></leaflet>\n" +
     "				</div>\n" +
-    "				<div class=\"col-md-3\">\n" +
+    "<!-- 				<div class=\"col-md-3\">\n" +
     "					<div class=\"info-box\" ng-hide=\"layerProp\">\n" +
     "						Click on a plot point to see detail information\n" +
     "					</div>\n" +
@@ -1314,7 +1314,7 @@ angular.module("data/data.plots.tpl.html", []).run(["$templateCache", function($
     "					</div>\n" +
     "				\n" +
     "\n" +
-    "				</div>\n" +
+    "				</div> -->\n" +
     "			</div>\n" +
     "\n" +
     "		</div>\n" +

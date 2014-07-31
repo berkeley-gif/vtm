@@ -80,6 +80,12 @@ angular.module( 'services.VtmTileService', [])
           },
           toggleLayer: function(layer) {
             tileLayers[layer].visible = !tileLayers[layer].visible;
+          },
+          hideLayer: function(layer) {
+            tileLayers[layer].visible = false;
+          },
+          showLayer: function(layer) {
+            tileLayers[layer].visible = true;
           }
      };
 

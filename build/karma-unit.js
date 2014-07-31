@@ -21,6 +21,7 @@ module.exports = function ( karma ) {
       'vendor/Leaflet.utfgrid/dist/leaflet.utfgrid-src.js',
       'vendor/angular-leaflet/dist/angular-leaflet-directive.js',
       'vendor/angular-touch/angular-touch.js',
+      'vendor/bootstrap/dist/js/bootstrap.js',
       'build/templates-app.js',
       'build/templates-common.js',
       'vendor/angular-mocks/angular-mocks.js',
