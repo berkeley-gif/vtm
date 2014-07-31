@@ -1310,7 +1310,7 @@ angular.module("data/data.plots.tpl.html", []).run(["$templateCache", function($
     "					</div>\n" +
     "\n" +
     "					<div class=\"map-attribution-text\" ng-class=\"{ 'hidden': ! showAttribution }\">\n" +
-    "						Data provided by <a href=\"http://openstreetmap.org\" target=\"_blank\">HOLOS</a> Berkeley Ecoinformatics Engine. Basemap data by &copy; <a href=\"http://openstreetmap.org\" target=\"_blank\">OpenStreetMap</a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\" target=\"_blank\">CC-BY-SA</a>, Imagery &copy; <a href=\"http://mapbox.com\" target=\"_blank\">Mapbox</a>\n" +
+    "						<p ng-model=\"mapAttributionText\"></p>\n" +
     "					</div>\n" +
     "				\n" +
     "\n" +
@@ -1374,7 +1374,7 @@ angular.module("data/data.tpl.html", []).run(["$templateCache", function($templa
 
 angular.module("data/data.vegetation.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("data/data.vegetation.tpl.html",
-    "<div class=\"row\">\n" +
+    "<!-- <div class=\"row\">\n" +
     "    <div class=\"col-md-9\">\n" +
     "        <leaflet id=\"map\" center=\"center\" layers=\"layers\" geojson=\"geojson\" defaults=\"defaults\" controls=\"controls\"></leaflet>\n" +
     "    </div>\n" +
@@ -1432,9 +1432,107 @@ angular.module("data/data.vegetation.tpl.html", []).run(["$templateCache", funct
     "		<p><img src=\"assets/img/download_veg.png\" class=\"img-responsive img-thumbnail\"/></p>\n" +
     "		<a href=\"https://dev-ecoengine.berkeley.edu/data/Wieslander_Statewide_CANAD83.zip\" class=\"btn btn-primary\">Click here</a>\n" +
     "    </div>\n" +
+    "</div> -->\n" +
+    "\n" +
+    "\n" +
+    "<div class=\"row\">\n" +
+    "    <div class=\"col-md-12\">\n" +
+    "        <div class=\"tool-wrapper\">\n" +
+    "            <div class=\"row\">\n" +
+    "                <div class=\"col-md-9\">\n" +
+    "                    <leaflet id=\"map\" center=\"center\" layers=\"layers\" geojson=\"geojson\" defaults=\"defaults\" controls=\"controls\"></leaflet>\n" +
+    "                </div>\n" +
+    "                <div class=\"col-md-3\">\n" +
+    "                    <div class=\"info-box\" ng-hide=\"layerProp\">\n" +
+    "                        Click on a plot point to see detail information\n" +
+    "                    </div>\n" +
+    "                    <div class=\"info-box enabled\" ng-show=\"layerProp\">\n" +
+    "\n" +
+    "                        <div class=\"panel panel-default\">\n" +
+    "                            <div class=\"panel-heading\">Plot</div>\n" +
+    "                            <div class=\"panel-body\">\n" +
+    "                                <ul>\n" +
+    "                                    <li>Plot Number: {{layerProp.plot_no}}</li>\n" +
+    "                                    <li>Plot Map: {{layerProp.map_reference}}</li>\n" +
+    "                                </ul>\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "\n" +
+    "                        <div class=\"panel panel-default\">\n" +
+    "                            <div class=\"panel-heading\">Brushes</div>\n" +
+    "                            <div class=\"panel-body\" ng-hide=\"layerProp.brushes.length\">\n" +
+    "                                    No data\n" +
+    "                            </div>\n" +
+    "                            <div class=\"panel-body\" ng-show=\"layerProp.brushes.length\">\n" +
+    "                                <ul>\n" +
+    "                                    <li ng-repeat=\"obs in layerProp.brushes\">\n" +
+    "                                        {{obs.scientific_name}}\n" +
+    "                                    </li>\n" +
+    "                                </ul>\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "\n" +
+    "                        <div class=\"panel panel-default\">\n" +
+    "                            <div class=\"panel-heading\">Trees</div>\n" +
+    "                            <div class=\"panel-body\" ng-hide=\"layerProp.trees.length\">\n" +
+    "                                    No data\n" +
+    "                            </div>\n" +
+    "                            <div class=\"panel-body\" ng-show=\"layerProp.trees.length\">\n" +
+    "                                <ul>\n" +
+    "                                    <li ng-repeat=\"obs in layerProp.trees\">\n" +
+    "                                        {{obs.scientific_name}}\n" +
+    "                                    </li>\n" +
+    "                                </ul>\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "\n" +
+    "\n" +
+    "                    \n" +
+    "                    </div>\n" +
+    "\n" +
+    "                    <div class=\"map-attribution-control\" ng-hide=\"attribution\">\n" +
+    "                        <a href=\"\" ng-click=\"showAttribution = ! showAttribution\"><i class=\"fa fa-info-circle\"></i></a>\n" +
+    "                    </div>\n" +
+    "\n" +
+    "                    <div class=\"map-attribution-text\" ng-class=\"{ 'hidden': ! showAttribution }\">\n" +
+    "                        <p ng-model=\"mapAttributionText\"></p>\n" +
+    "                    </div>\n" +
+    "                \n" +
+    "\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "\n" +
+    "        </div>\n" +
+    "\n" +
+    "    </div>\n" +
+    "    \n" +
     "</div>\n" +
-    "\n" +
-    "\n" +
+    "<div class=\"row\" style=\"margin-top:15px;\">\n" +
+    "    <div class=\"col-md-12\">\n" +
+    "        <tabset>\n" +
+    "            <tab heading=\"General Information\">\n" +
+    "                <p>Dominant vegetation type maps were mapped with a minimum mapping unit of 16 ha by direct observation \"from ridges, peaks, and other vantage points\" in the field by VTM crews, directly upon 15-minute (1: 62,500-scale) topographic quadrangles, and supplemented by sample plots. At sample plots, information on overstory and understory vegetation were collected. According to his reports, it took a two-man crew from six to eight weeks to complete the fieldwork for a 15-minute quad of about 6,070 ha.  The vegetation mapping scheme was driven by \"the dominant vegetation visible externally\", in other words, by overstory species recognition, and included \"mosaic types\" - complex vegetation conditions that resulted from fire or other disturbances, and pure and mixed stand conditions which they associated with \"natural plant associations\".  The mapped products include 215 maps with the major vegetation types shown in different colors and separated by ink lines. These are over printed in color on 7.5-minute, 15-minute, and 30-minute USGS topographic quadrangles. For more information on the vegetation maps, please see: <a ng-href=\"#/about/publications\">Publications</a> page.</p>\n" +
+    "            </tab>\n" +
+    "            <tab heading=\"Download\">\n" +
+    "                <p> \n" +
+    "                    <a href=\"https://dev-ecoengine.berkeley.edu/data/vtm-plots.zip\" class=\"btn btn-primary\">All plot data points shapefile for CA</a>\n" +
+    "                </p>\n" +
+    "                <p> \n" +
+    "                    <a href=\"http://localhost:8000/plot/Georeferenced/{{vtm_quad_id}}/\" target=\"_blank\" class=\"btn btn-primary\">Georeferenced plot map for VTM Quad {{vtm_quad_id}}</a>\n" +
+    "                </p>\n" +
+    "                <p> \n" +
+    "                    <a href=\"http://localhost:8000/plot/Georeferenced/{{vtm_quad_id}}/\" target=\"_blank\" class=\"btn btn-primary\">Original ungeoreferenced plot map for VTM Quad {{vtm_quad_id}}</a>\n" +
+    "                </p>\n" +
+    "                <p> \n" +
+    "                    <a href=\"http://localhost:8000/plot/Georeferenced/{{vtm_quad_id}}/\" target=\"_blank\" class=\"btn btn-primary\">Georeferenced plot data points shapefile for VTM Quad {{vtm_quad_id}}</a>\n" +
+    "                </p>\n" +
+    "            </tab>\n" +
+    "            <tab heading=\"Suggested Citations\">\n" +
+    "                <ng-include src=\"'about/about.citations.tpl.html'\"></ng-inlcude>\n" +
+    "            </tab>\n" +
+    "        </tabset>\n" +
+    "    </div>\n" +
+    "</div>\n" +
     "");
 }]);
 

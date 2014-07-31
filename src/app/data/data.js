@@ -62,7 +62,6 @@ angular.module( 'vtm.data', [
  */
 .controller( 'DataCtrl', function DataController($scope, $log, $http, $state, leafletData, VtmTiles) {
 
-
   // Map setup
   var center = {
     lat: 37.5,
@@ -81,21 +80,20 @@ angular.module( 'vtm.data', [
     }
   };
 
-
-
+  //Load tiles from service
   var overlays =  {
-    veg: VtmTiles.loadVegPolygons(),
-    veg_utfgrid: VtmTiles.loadVegUTFgrid(),
-    counties: VtmTiles.loadCounties(),
-    counties_utfgrid: VtmTiles.loadCountyUTFgrid(),
-    quads: VtmTiles.loadQuads(),
-    quads_utfgrid: VtmTiles.loadQuadUTFgrid(),
-    plots: VtmTiles.loadPlotPoints(),
-    plots_utfgrid: VtmTiles.loadPlotUTFgrid()
+    veg: VtmTiles.loadLayer('veg'),
+    veg_utfgrid: VtmTiles.loadLayer('veg_utfgrid'),
+    counties: VtmTiles.loadLayer('counties'),
+    counties_utfgrid: VtmTiles.loadLayer('counties_utfgrid'),
+    quads: VtmTiles.loadLayer('quads'),
+    quads_utfgrid: VtmTiles.loadLayer('quads_utfgrid'),
+    plots: VtmTiles.loadLayer('plots'),
+    plots_utfgrid: VtmTiles.loadLayer('plots_utfgrid')
   };
 
-  // Set up DownloadFeaturesControl
-  var downloadFeaturesControl = L.control();
+  //Define custom controls  
+  var downloadFeaturesControl = L.control(); // DownloadFeaturesControl
 	downloadFeaturesControl.setPosition('bottomright');
 	downloadFeaturesControl.onAdd = function (map) {
     var div = L.DomUtil.create('div','download-features');
@@ -113,6 +111,21 @@ angular.module( 'vtm.data', [
 		.on(div, 'dblclick', L.DomEvent.stopPropagation);
     return div;
   };
+  var toggleVegControl = L.control(); // DownloadFeaturesControl
+  toggleVegControl.setPosition('topleft');
+  toggleVegControl.onAdd = function (map) {
+    var div = L.DomUtil.create('div','toggle-veg');
+    div.innerHTML = '<button type="button" class="btn btn-primary">Toggle Veg</button>';
+    L.DomEvent
+    .on(div, 'click', L.DomEvent.stopPropagation)
+    .on(div, 'click', L.DomEvent.preventDefault)
+    .on(div, 'click', function() {
+      VtmTiles.toggleLayer('veg');
+      VtmTiles.toggleLayer('veg_utfgrid');
+    })
+    .on(div, 'dblclick', L.DomEvent.stopPropagation);
+    return div;
+  };
 
   // Putting all the map parameters together
   angular.extend($scope, {
@@ -120,7 +133,7 @@ angular.module( 'vtm.data', [
     maxBounds: maxBounds,
     layers: {
       baselayers: {
-        grayscale: VtmTiles.loadGrayscale()
+        grayscale: VtmTiles.loadLayer('grayscale')
       },
       overlays: overlays
     },
@@ -128,9 +141,9 @@ angular.module( 'vtm.data', [
       minZoom: 6,
       scrollWheelZoom: true 
     },
-	controls : {
-      //custom: [ downloadFeaturesControl ]
-	}
+    controls : {
+        custom: [ toggleVegControl ]
+    }
   });
 
   //On map click event
@@ -143,14 +156,9 @@ angular.module( 'vtm.data', [
     };
   }
 
-
-
-
   $scope.$on('leafletDirectiveMap.utfgridClick', function(event, leafletEvent) {
     
     var data = leafletEvent.data;
-    console.log('leafletEvent', leafletEvent);
-    console.log('event', event);
 
     if (data) {
 
@@ -158,10 +166,22 @@ angular.module( 'vtm.data', [
         $scope.vtm_quad_id = data.VTM_QUAD;
       }
 
+      if (data.hasOwnProperty('NAME')) {
+        $scope.county_name = data.NAME;
+      }
+
       if (data.hasOwnProperty('record')) {    
-        $scope.$apply(function() {
-          $scope.record = data.record;
-        });
+        var record = data.record;
+        if (record.search('plot') >= 0) {
+          $scope.$apply(function() {
+            $scope.plotRecord = record;
+          });
+        } else {
+          $scope.$apply(function() {
+            $scope.vegRecord = record;
+          });
+        }
+
       }
 
     }
@@ -170,7 +190,12 @@ angular.module( 'vtm.data', [
 
   });
 
-  $scope.attribution = false;
+  $scope.showAttribution = false;
+  $scope.mapAttributionText = 'Data provided by <a href="http://openstreetmap.org" target="_blank">' +
+                              ' HOLOS</a> Berkeley Ecoinformatics Engine. Basemap data by &copy;' +
+                              ' <a href="http://openstreetmap.org" target="_blank">OpenStreetMap</a>' +
+                              ' contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/" target="_blank">' +
+                              ' CC-BY-SA</a>, Imagery &copy; <a href="http://mapbox.com" target="_blank">Mapbox</a>';
 
 
 
@@ -181,19 +206,20 @@ angular.module( 'vtm.data', [
 /**
  * And of course we define a controller for our route.
  */
-.controller( 'PlotsCtrl', function PlotsController($scope, $log, $http, $state, leafletData, Restangular) {
+.controller( 'PlotsCtrl', function PlotsController($scope, $log, $http, $state, leafletData, VtmTiles, Restangular) {
 
 
 
-  $log.log('in data plots controller');
+  $log.log('in plots controller');
 
-
+  VtmTiles.toggleLayer('veg');
+  VtmTiles.toggleLayer('veg_utfgrid');
 /*  $scope.layers.overlays.veg.visible = false;
   $scope.layers.overlays.veg_utfgrid.visible = false;
   $scope.layers.overlays.plots.visible = true;
   $scope.layers.overlays.plots_utfgrid.visible = true;*/
 
-  $scope.$watch('record', function(newValue, oldValue){
+  $scope.$watch('plotRecord', function(newValue, oldValue){
 
     // Ignore initial setup
     if ( newValue === oldValue) {
@@ -201,7 +227,7 @@ angular.module( 'vtm.data', [
     }
 
     // Load data from service
-    if ( newValue.search('plot') >= 0 ) {
+    if ( newValue ) {
 
       var plotRecord = Restangular.one('vtmplots', newValue);
       plotRecord.get().then(function(response) {
@@ -218,8 +244,54 @@ angular.module( 'vtm.data', [
 
 
 
-    } else {
+    }
+
+  }, true);
+
+  
+
+})
+
+/**
+ * And of course we define a controller for our route.
+ */
+.controller( 'VegCtrl', function VegController($scope, $log, $http, $state, leafletData, Restangular) {
+
+
+
+  $log.log('in veg controller');
+
+
+/*  $scope.layers.overlays.veg.visible = false;
+  $scope.layers.overlays.veg_utfgrid.visible = false;
+  $scope.layers.overlays.plots.visible = true;
+  $scope.layers.overlays.plots_utfgrid.visible = true;*/
+
+  $scope.$watch('vegRecord', function(newValue, oldValue){
+
+    // Ignore initial setup
+    if ( newValue === oldValue) {
       return;
+    }
+
+    // Load data from service
+    if ( newValue ) {
+
+      var vegRecord = Restangular.one('vtmveg', newValue);
+      vegRecord.get().then(function(response) {
+        $scope.layerProp = response;
+        //Highlight feature
+        angular.extend($scope, {
+          geojson: {
+            data: response.geojson,
+            resetStyleOnMouseout: false
+          }
+          
+        });
+      });
+
+
+
     }
 
   }, true);
