@@ -1,0 +1,17 @@
+<ul>
+	<li>WHR: {{layerProp.whr}}</li>
+	<li>Primary species: {{layerProp.primary_species}}</li>
+	<li>MCV: {{layerProp.mcv}}</li>
+	<li>Notes: {{layerProp.notes}}</li>
+	<li>Observations:
+		<span ng-hide="layerProp.observations.length">
+        	&nbsp;No data
+		</span>
+		<ul ng-show="layerProp.observations.length">
+        	<li ng-repeat="obs in layerProp.observations">
+            	<a ng-href="{{obs.url}}" target="_blank">{{obs.scientific_name}}</a>
+        	</li>
+		</ul>
+	</li>
+	<li>More details <a ng-href="{{layerProp.url}}" target="_blank"><i class="fa fa-info-circle"></i></a></li>
+</ul>

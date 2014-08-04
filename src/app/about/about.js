@@ -1,5 +1,4 @@
 angular.module( 'vtm.about', [
-  'ui.router',
   'filters.split',
   'ui.bootstrap'
 ])

@@ -457,8 +457,8 @@ pre {
   -moz-transition-delay: .1s;
   -o-transition-delay: .1s;
 }
-/* Extra small devices (phones, less than 768px) */
-@media (max-width: 767px) {
+/* Extra Small Devices, Phones */
+@media only screen and (max-width: 480px) {
   .fullwidthbanner-container {
     margin-top: 3px;
     margin-bottom: 5px;
@@ -499,8 +499,8 @@ pre {
     font-size: 40px;
   }
 }
-/* Small devices (tablets, 768px and up) */
-@media (min-width: 768px) {
+/* Small Devices, Tablets */
+@media only screen and (max-width: 768px) {
   #title-box p {
     font-size: 18px;
   }
@@ -518,8 +518,6 @@ pre {
     margin-bottom: none;
   }
 }
-/* Medium devices (desktops, 992px and up) */
-/* Large devices (large desktops, 1200px and up) */
 /* 
 * LEARN MORE
 */
@@ -570,6 +568,32 @@ blockquote {
 .tool-wrapper .info-box .panel ul {
   list-style-type: none;
   margin-left: -2em;
+}
+.tool-wrapper .custom-overlay {
+  background-color: black;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.8);
+  filter: progid:DXImageTransform.Microsoft.Gradient(GradientType=1, startColorStr="#E6FFFFFF", endColorStr="#E6FFFFFF");
+  -ms-filter: progid:DXImageTransform.Microsoft.Gradient(GradientType=1, startColorStr="#E6FFFFFF", endColorStr="#E6FFFFFF");
+  position: absolute;
+  z-index: 2000;
+  height: 75%;
+  width: 20%;
+  margin-top: 1%;
+  margin-bottom: 2%;
+  margin-right: 1%;
+  top: 0;
+  right: 0;
+  overflow-y: auto;
+  padding-top: 5px;
+}
+.tool-wrapper .custom-overlay ul {
+  list-style-type: none;
+  padding: 0px 0px 0px 10px;
+}
+.tool-wrapper .custom-overlay ul a {
+  color: #fff;
+  text-decoration: underline;
 }
 .map-attribution-text {
   display: table-cell;

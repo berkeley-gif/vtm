@@ -5,10 +5,10 @@
 
     <!-- social media tags -->
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:site" content="@berkeleyGIF">
+    <meta name="twitter:site" content="@BerkeleyGIF">
     <meta name="twitter:title" content="vtm">
     <meta name="twitter:description" content="Wieslander Vegetation Type Mapping project is a collection of datasets that provides a snapshot of California's vegetation in the early 20th century.">
-    <meta name="twitter:creator" content="@berkeleyGIF">
+    <meta name="twitter:creator" content="@BerkeleyGIF">
     <meta name="twitter:image:src" content="https://a248.e.akamai.net/assets.github.com/images/modules/logos_page/Octocat.png?1366128846">
     <meta property="og:title" content="vtm" />
     <meta property="og:type" content="website" />
@@ -27,6 +27,7 @@
     <link rel="stylesheet" type="text/css" href="vendor/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" type="text/css" href="vendor/leaflet-dist/leaflet.css" />
     <link rel="stylesheet" type="text/css" href="vendor/animate.css/animate.css" />
+    <link rel="stylesheet" type="text/css" href="vendor/angular-socialshare/angular-socialshare.css" />
     <link rel="stylesheet" type="text/css" href="assets/vtm-0.0.1.css" />
 
   </head>
@@ -42,15 +43,7 @@
                 <!-- Topbar Navigation -->
                 <ul class="loginbar pull-right">
                     <li>                        
-                        <a href="#"><i class="fa fa-twitter"></i></a>
-                    </li>
-                    <li class="topbar-devider"></li>   
-                    <li>                        
-                        <a href="#"><i class="fa fa-facebook"></i></a>
-                    </li>
-                    <li class="topbar-devider"></li>   
-                    <li>                        
-                        <a href="#"><i class="fa fa-linkedin"></i></a>
+                        <a twitter  data-lang="en" data-count='none' data-url='http://vtm.berkeley.edu' data-size="medium" data-text="{{socialShare}}" target="_blank"></a>
                     </li>
                 </ul>
                 <!-- End Topbar Navigation -->
@@ -157,7 +150,7 @@
     <script type="text/javascript" src="vendor/Leaflet.utfgrid/dist/leaflet.utfgrid-src.js"></script>
     <script type="text/javascript" src="vendor/angular-leaflet/dist/angular-leaflet-directive.js"></script>
     <script type="text/javascript" src="vendor/angular-touch/angular-touch.js"></script>
-    <script type="text/javascript" src="vendor/bootstrap/dist/js/bootstrap.js"></script>
+    <script type="text/javascript" src="vendor/angular-socialshare/angular-socialshare.js"></script>
     <script type="text/javascript" src="src/app/about/about.js"></script>
     <script type="text/javascript" src="src/app/app.js"></script>
     <script type="text/javascript" src="src/app/data/data.js"></script>
@@ -166,13 +159,15 @@
     <script type="text/javascript" src="src/common/directives/AnimatedBanner.js"></script>
     <script type="text/javascript" src="src/common/directives/AnimatedDemo.js"></script>
     <script type="text/javascript" src="src/common/directives/DisableAnimation.js"></script>
+    <script type="text/javascript" src="src/common/directives/SocialMediaShare.js"></script>
     <script type="text/javascript" src="src/common/filters/SplitWord.js"></script>
+    <script type="text/javascript" src="src/common/services/ModalService.js"></script>
     <script type="text/javascript" src="src/common/services/TileService.js"></script>
     <script type="text/javascript" src="templates-common.js"></script>
     <script type="text/javascript" src="templates-app.js"></script>
     
     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.11.2/TweenMax.min.js"></script>
-
+    <script src="http://platform.twitter.com/widgets.js"></script>
 
   </body>
 </html>

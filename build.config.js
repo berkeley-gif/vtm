@@ -75,13 +75,14 @@ module.exports = {
       'vendor/Leaflet.utfgrid/dist/leaflet.utfgrid-src.js',
       'vendor/angular-leaflet/dist/angular-leaflet-directive.js',
       'vendor/angular-touch/angular-touch.js',
-      'vendor/bootstrap/dist/js/bootstrap.js'
+      'vendor/angular-socialshare/angular-socialshare.js'
     ],
     css: [
      'vendor/bootstrap/dist/css/bootstrap.css',
      'vendor/bootstrap/dist/css/bootstrap.css.map',
      'vendor/leaflet-dist/leaflet.css',
-     'vendor/animate.css/animate.css'
+     'vendor/animate.css/animate.css',
+     'vendor/angular-socialshare/angular-socialshare.css'
     ],
     assets: [
     ]

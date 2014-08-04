@@ -1,4 +1,4 @@
-angular.module('templates-app', ['about/about.bibliography.tpl.html', 'about/about.citations.tpl.html', 'about/about.description.tpl.html', 'about/about.faq.tpl.html', 'about/about.metadata.tpl.html', 'about/about.overview.tpl.html', 'about/about.plotdata.tpl.html', 'about/about.plotmaps.tpl.html', 'about/about.tpl.html', 'data/data.overview.tpl.html', 'data/data.photos.tpl.html', 'data/data.plots.tpl.html', 'data/data.tpl.html', 'data/data.vegetation.tpl.html', 'home/home.tpl.html', 'howto/howto.overview.tpl.html', 'howto/howto.tpl.html']);
+angular.module('templates-app', ['about/about.bibliography.tpl.html', 'about/about.citations.tpl.html', 'about/about.description.tpl.html', 'about/about.faq.tpl.html', 'about/about.metadata.tpl.html', 'about/about.overview.tpl.html', 'about/about.plotdata.tpl.html', 'about/about.plotmaps.tpl.html', 'about/about.tpl.html', 'data/data.overview.tpl.html', 'data/data.photos.tpl.html', 'data/data.plots.tpl.html', 'data/data.tpl.html', 'data/data.vegetation.tpl.html', 'data/plots.popup.tpl.html', 'data/vegetation.popup.tpl.html', 'home/home.tpl.html', 'howto/howto.overview.tpl.html', 'howto/howto.tpl.html']);
 
 angular.module("about/about.bibliography.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("about/about.bibliography.tpl.html",
@@ -1256,107 +1256,13 @@ angular.module("data/data.plots.tpl.html", []).run(["$templateCache", function($
     "			<div class=\"row\">\n" +
     "				<div class=\"col-md-12\">\n" +
     "					<leaflet id=\"map\" center=\"center\" layers=\"layers\" geojson=\"geojson\" defaults=\"defaults\" controls=\"controls\">\n" +
-    "						<div class=\"custom-overlay\" ng-show=\"layerProp\" style=\"background-color:red;opacity:0.5;position:absolute;z-index:2000;height:100%;width:200px;top:0;right:0;overflow-y:auto;\">\n" +
-    "					<div  ng-show=\"layerProp\">\n" +
-    "\n" +
-    "						<div class=\"panel panel-default\">\n" +
-    "							<div class=\"panel-heading\">Plot</div>\n" +
-    "							<div class=\"panel-body\">\n" +
-    "				            	<ul>\n" +
-    "				            		<li>Plot Number: {{layerProp.plot_no}}</li>\n" +
-    "				            		<li>Plot Map: {{layerProp.map_reference}}</li>\n" +
-    "				            	</ul>\n" +
+    "						<div ng-show=\"layerProp\">\n" +
+    "							<div class=\"custom-overlay\" >\n" +
+    "								<ng-include src=\"'data/plots.popup.tpl.html'\" scope=\"layerProp\" onload=\"\"></ng-include>\n" +
     "							</div>\n" +
-    "						</div>\n" +
-    "\n" +
-    "						<div class=\"panel panel-default\">\n" +
-    "							<div class=\"panel-heading\">Brushes</div>\n" +
-    "							<div class=\"panel-body\" ng-hide=\"layerProp.brushes.length\">\n" +
-    "				                    No data\n" +
-    "							</div>\n" +
-    "							<div class=\"panel-body\" ng-show=\"layerProp.brushes.length\">\n" +
-    "								<ul>\n" +
-    "			                        <li ng-repeat=\"obs in layerProp.brushes\">\n" +
-    "			                            {{obs.scientific_name}}\n" +
-    "			                        </li>\n" +
-    "				                </ul>\n" +
-    "							</div>\n" +
-    "						</div>\n" +
-    "\n" +
-    "						<div class=\"panel panel-default\">\n" +
-    "							<div class=\"panel-heading\">Trees</div>\n" +
-    "							<div class=\"panel-body\" ng-hide=\"layerProp.trees.length\">\n" +
-    "				                    No data\n" +
-    "							</div>\n" +
-    "							<div class=\"panel-body\" ng-show=\"layerProp.trees.length\">\n" +
-    "								<ul>\n" +
-    "			                        <li ng-repeat=\"obs in layerProp.trees\">\n" +
-    "			                            {{obs.scientific_name}}\n" +
-    "			                        </li>\n" +
-    "				                </ul>\n" +
-    "							</div>\n" +
-    "						</div>\n" +
     "						</div>\n" +
     "					</leaflet>\n" +
     "				</div>\n" +
-    "<!-- 				<div class=\"col-md-3\">\n" +
-    "					<div class=\"info-box\" ng-hide=\"layerProp\">\n" +
-    "						Click on a plot point to see detail information\n" +
-    "					</div>\n" +
-    "					<div class=\"info-box enabled\" ng-show=\"layerProp\">\n" +
-    "\n" +
-    "						<div class=\"panel panel-default\">\n" +
-    "							<div class=\"panel-heading\">Plot</div>\n" +
-    "							<div class=\"panel-body\">\n" +
-    "				            	<ul>\n" +
-    "				            		<li>Plot Number: {{layerProp.plot_no}}</li>\n" +
-    "				            		<li>Plot Map: {{layerProp.map_reference}}</li>\n" +
-    "				            	</ul>\n" +
-    "							</div>\n" +
-    "						</div>\n" +
-    "\n" +
-    "						<div class=\"panel panel-default\">\n" +
-    "							<div class=\"panel-heading\">Brushes</div>\n" +
-    "							<div class=\"panel-body\" ng-hide=\"layerProp.brushes.length\">\n" +
-    "				                    No data\n" +
-    "							</div>\n" +
-    "							<div class=\"panel-body\" ng-show=\"layerProp.brushes.length\">\n" +
-    "								<ul>\n" +
-    "			                        <li ng-repeat=\"obs in layerProp.brushes\">\n" +
-    "			                            {{obs.scientific_name}}\n" +
-    "			                        </li>\n" +
-    "				                </ul>\n" +
-    "							</div>\n" +
-    "						</div>\n" +
-    "\n" +
-    "						<div class=\"panel panel-default\">\n" +
-    "							<div class=\"panel-heading\">Trees</div>\n" +
-    "							<div class=\"panel-body\" ng-hide=\"layerProp.trees.length\">\n" +
-    "				                    No data\n" +
-    "							</div>\n" +
-    "							<div class=\"panel-body\" ng-show=\"layerProp.trees.length\">\n" +
-    "								<ul>\n" +
-    "			                        <li ng-repeat=\"obs in layerProp.trees\">\n" +
-    "			                            {{obs.scientific_name}}\n" +
-    "			                        </li>\n" +
-    "				                </ul>\n" +
-    "							</div>\n" +
-    "						</div>\n" +
-    "\n" +
-    "\n" +
-    "					\n" +
-    "					</div>\n" +
-    "\n" +
-    "					<div class=\"map-attribution-control\" ng-hide=\"attribution\">\n" +
-    "						<a href=\"\" ng-click=\"showAttribution = ! showAttribution\"><i class=\"fa fa-info-circle\"></i></a>\n" +
-    "					</div>\n" +
-    "\n" +
-    "					<div class=\"map-attribution-text\" ng-class=\"{ 'hidden': ! showAttribution }\">\n" +
-    "						<p ng-model=\"mapAttributionText\"></p>\n" +
-    "					</div>\n" +
-    "				\n" +
-    "\n" +
-    "				</div> -->\n" +
     "			</div>\n" +
     "\n" +
     "		</div>\n" +
@@ -1481,66 +1387,14 @@ angular.module("data/data.vegetation.tpl.html", []).run(["$templateCache", funct
     "    <div class=\"col-md-12\">\n" +
     "        <div class=\"tool-wrapper\">\n" +
     "            <div class=\"row\">\n" +
-    "                <div class=\"col-md-9\">\n" +
-    "                    <leaflet id=\"map\" center=\"center\" layers=\"layers\" geojson=\"geojson\" defaults=\"defaults\" controls=\"controls\"></leaflet>\n" +
-    "                </div>\n" +
-    "                <div class=\"col-md-3\">\n" +
-    "                    <div class=\"info-box\" ng-hide=\"layerProp\">\n" +
-    "                        Click on a plot point to see detail information\n" +
-    "                    </div>\n" +
-    "                    <div class=\"info-box enabled\" ng-show=\"layerProp\">\n" +
-    "\n" +
-    "                        <div class=\"panel panel-default\">\n" +
-    "                            <div class=\"panel-heading\">Plot</div>\n" +
-    "                            <div class=\"panel-body\">\n" +
-    "                                <ul>\n" +
-    "                                    <li>Plot Number: {{layerProp.plot_no}}</li>\n" +
-    "                                    <li>Plot Map: {{layerProp.map_reference}}</li>\n" +
-    "                                </ul>\n" +
+    "                <div class=\"col-md-12\">\n" +
+    "                    <leaflet id=\"map\" center=\"center\" layers=\"layers\" geojson=\"geojson\" defaults=\"defaults\" controls=\"controls\">\n" +
+    "                        <div ng-show=\"layerProp\">\n" +
+    "                            <div class=\"custom-overlay\" >\n" +
+    "                                <ng-include src=\"'data/vegetation.popup.tpl.html'\" scope=\"layerProp\" onload=\"\"></ng-include>\n" +
     "                            </div>\n" +
     "                        </div>\n" +
-    "\n" +
-    "                        <div class=\"panel panel-default\">\n" +
-    "                            <div class=\"panel-heading\">Brushes</div>\n" +
-    "                            <div class=\"panel-body\" ng-hide=\"layerProp.brushes.length\">\n" +
-    "                                    No data\n" +
-    "                            </div>\n" +
-    "                            <div class=\"panel-body\" ng-show=\"layerProp.brushes.length\">\n" +
-    "                                <ul>\n" +
-    "                                    <li ng-repeat=\"obs in layerProp.brushes\">\n" +
-    "                                        {{obs.scientific_name}}\n" +
-    "                                    </li>\n" +
-    "                                </ul>\n" +
-    "                            </div>\n" +
-    "                        </div>\n" +
-    "\n" +
-    "                        <div class=\"panel panel-default\">\n" +
-    "                            <div class=\"panel-heading\">Trees</div>\n" +
-    "                            <div class=\"panel-body\" ng-hide=\"layerProp.trees.length\">\n" +
-    "                                    No data\n" +
-    "                            </div>\n" +
-    "                            <div class=\"panel-body\" ng-show=\"layerProp.trees.length\">\n" +
-    "                                <ul>\n" +
-    "                                    <li ng-repeat=\"obs in layerProp.trees\">\n" +
-    "                                        {{obs.scientific_name}}\n" +
-    "                                    </li>\n" +
-    "                                </ul>\n" +
-    "                            </div>\n" +
-    "                        </div>\n" +
-    "\n" +
-    "\n" +
-    "                    \n" +
-    "                    </div>\n" +
-    "\n" +
-    "                    <div class=\"map-attribution-control\" ng-hide=\"attribution\">\n" +
-    "                        <a href=\"\" ng-click=\"showAttribution = ! showAttribution\"><i class=\"fa fa-info-circle\"></i></a>\n" +
-    "                    </div>\n" +
-    "\n" +
-    "                    <div class=\"map-attribution-text\" ng-class=\"{ 'hidden': ! showAttribution }\">\n" +
-    "                        <p ng-model=\"mapAttributionText\"></p>\n" +
-    "                    </div>\n" +
-    "                \n" +
-    "\n" +
+    "                    </leaflet>\n" +
     "                </div>\n" +
     "            </div>\n" +
     "\n" +
@@ -1576,6 +1430,66 @@ angular.module("data/data.vegetation.tpl.html", []).run(["$templateCache", funct
     "    </div>\n" +
     "</div>\n" +
     "");
+}]);
+
+angular.module("data/plots.popup.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("data/plots.popup.tpl.html",
+    "<ul>\n" +
+    "	<li>Plot Number:{{layerProp.plot_no}}</li>\n" +
+    "	<li>Plot Map: {{layerProp.map_reference}}</li>\n" +
+    "	<li>Quadrangle: {{layerProp.quadrangle}}</li>\n" +
+    "	<li>TRS: {{layerProp.trs}}</li>\n" +
+    "	<li>Locality: {{layerProp.locality}}</li>\n" +
+    "	<li>Date: {{layerProp.begin_date | date:\"shortDate\"}}</li>\n" +
+    "	<li>Coordinates: {{layerProp.geojson.coordinates[0] | number:2}}, {{layerProp.geojson.coordinates[1] | number:2}}</li>\n" +
+    "	<li>Coordinate uncertainty (mt): {{layerProp.coordinate_uncertainty_in_meters}}</li>\n" +
+    "	<li>Elevation: {{layerProp.elevation}}</li>\n" +
+    "	<li>Penetrability: {{layerProp.penetrability}}</li>\n" +
+    "	<li>Taken by: {{layerProp.taken_by}}</li>\n" +
+    "	<li>Slope (%): {{layerProp.slope_percent}}</li>\n" +
+    "	<li>Trees:\n" +
+    "		<span ng-hide=\"layerProp.trees.length\">\n" +
+    "        	&nbsp;No data\n" +
+    "		</span>\n" +
+    "		<ul ng-show=\"layerProp.trees.length\">\n" +
+    "        	<li ng-repeat=\"obs in layerProp.trees\">\n" +
+    "            	<a ng-href=\"{{obs.url}}\" target=\"_blank\">{{obs.scientific_name}}</a>\n" +
+    "        	</li>\n" +
+    "		</ul>\n" +
+    "	</li>\n" +
+    "	<li>Brushes:\n" +
+    "		<span ng-hide=\"layerProp.brushes.length\">\n" +
+    "        	&nbsp;No data\n" +
+    "		</span>\n" +
+    "		<ul ng-show=\"layerProp.brushes.length\">\n" +
+    "        	<li ng-repeat=\"obs in layerProp.brushes\">\n" +
+    "            	<a ng-href=\"{{obs.url}}\" target=\"_blank\">{{obs.scientific_name}}</a>\n" +
+    "        	</li>\n" +
+    "		</ul>\n" +
+    "	</li>\n" +
+    "	<li>More details <a ng-href=\"{{layerProp.url}}\" target=\"_blank\"><i class=\"fa fa-info-circle\"></i></a></li>\n" +
+    "</ul>");
+}]);
+
+angular.module("data/vegetation.popup.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("data/vegetation.popup.tpl.html",
+    "<ul>\n" +
+    "	<li>WHR: {{layerProp.whr}}</li>\n" +
+    "	<li>Primary species: {{layerProp.primary_species}}</li>\n" +
+    "	<li>MCV: {{layerProp.mcv}}</li>\n" +
+    "	<li>Notes: {{layerProp.notes}}</li>\n" +
+    "	<li>Observations:\n" +
+    "		<span ng-hide=\"layerProp.observations.length\">\n" +
+    "        	&nbsp;No data\n" +
+    "		</span>\n" +
+    "		<ul ng-show=\"layerProp.observations.length\">\n" +
+    "        	<li ng-repeat=\"obs in layerProp.observations\">\n" +
+    "            	<a ng-href=\"{{obs.url}}\" target=\"_blank\">{{obs.scientific_name}}</a>\n" +
+    "        	</li>\n" +
+    "		</ul>\n" +
+    "	</li>\n" +
+    "	<li>More details <a ng-href=\"{{layerProp.url}}\" target=\"_blank\"><i class=\"fa fa-info-circle\"></i></a></li>\n" +
+    "</ul>");
 }]);
 
 angular.module("home/home.tpl.html", []).run(["$templateCache", function($templateCache) {
@@ -1660,14 +1574,25 @@ angular.module("home/home.tpl.html", []).run(["$templateCache", function($templa
 
 angular.module("howto/howto.overview.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("howto/howto.overview.tpl.html",
-    "<div class=\"row\" id=\"#about\">\n" +
+    "<div class=\"row\">\n" +
     "    <div class=\"col-sm-12\">\n" +
-    "\n" +
-    " 	 <p><blockquote>VTM is &ldquo;the most ambitious attempt ever made to describe the complex vegetation of California&rdquo;.<small>Critchfield, 1971</small></blockquote></p> \n" +
-    "\n" +
-    "    </div>\n" +
+    " 	 	<p><blockquote>VTM is &ldquo;the most ambitious attempt ever made to describe the complex vegetation of California&rdquo;.<small>Critchfield, 1971</small></blockquote></p> \n" +
+    "    </div>    \n" +
     "</div>\n" +
-    "\n" +
+    "<div class=\"row\">\n" +
+    "    <div class=\"col-sm-12\">\n" +
+    " 	 	<h3>\n" +
+    "		  Using the HOLOS API\n" +
+    "		</h3>\n" +
+    "		<p>\n" +
+    "			These are the entry endpoints for VTM data on the HOLOS API. For more details on using the api, read the HOLOS <a href=\"https://ecoengine.berkeley.edu/docs/wieslander.html\" target=\"_blank\">documentation</a>.\n" +
+    "			<pre>https://ecoengine.berkeley.edu/api/vtmplots_trees/</pre>\n" +
+    "			<pre>https://ecoengine.berkeley.edu/api/vtmplots/</pre>\n" +
+    "			<pre>https://ecoengine.berkeley.edu/api/vtmplots_brushes/</pre>\n" +
+    "			<pre>https://ecoengine.berkeley.edu/api/vtmveg/</pre>\n" +
+    "		</p>\n" +
+    "    </div>    \n" +
+    "</div>\n" +
     "");
 }]);
 

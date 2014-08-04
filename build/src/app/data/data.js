@@ -17,7 +17,7 @@ angular.module( 'vtm.data', [
   'leaflet-directive',
   'filters.split',
   'services.VtmTileService',
-  'ngTouch'
+  'restangular'
 ])
 
 /**
@@ -113,7 +113,7 @@ angular.module( 'vtm.data', [
   };
 
   var toggleVegControl = L.control(); // DownloadFeaturesControl
-  toggleVegControl.setPosition('topleft');
+  toggleVegControl.setPosition('bottomleft');
   toggleVegControl.onAdd = function (map) {
     var div = L.DomUtil.create('div','custom-control leaflet-bar');
     div.innerHTML = '<a href="" class="toggle-veg" title="Vegetation Show/Hide"><i class="fa fa-leaf"></i></a>';
@@ -129,7 +129,7 @@ angular.module( 'vtm.data', [
   };
 
   var togglePlotsControl = L.control(); // DownloadFeaturesControl
-  togglePlotsControl.setPosition('topleft');
+  togglePlotsControl.setPosition('bottomleft');
   togglePlotsControl.onAdd = function (map) {
     var div = L.DomUtil.create('div','custom-control leaflet-bar');
     div.innerHTML = '<a href="" class="toggle-plots" title="Plots Show/Hide"><i class="fa fa-circle"></i></a>';
@@ -145,10 +145,10 @@ angular.module( 'vtm.data', [
   };
 
   var togglePhotosControl = L.control(); // DownloadFeaturesControl
-  togglePhotosControl.setPosition('topleft');
+  togglePhotosControl.setPosition('bottomleft');
   togglePhotosControl.onAdd = function (map) {
     var div = L.DomUtil.create('div','custom-control leaflet-bar');
-    div.innerHTML = '<a href="" class="toggle-photos" title="Vegetation Show/Hide"><i class="fa fa-picture-o"></i></a>';
+    div.innerHTML = '<a href="" class="toggle-photos" title="Photos Show/Hide"><i class="fa fa-picture-o"></i></a>';
     L.DomEvent
     .on(div, 'click', L.DomEvent.stopPropagation)
     .on(div, 'click', L.DomEvent.preventDefault)
@@ -172,7 +172,7 @@ angular.module( 'vtm.data', [
     },
     defaults : {
       minZoom: 6,
-      scrollWheelZoom: true 
+      scrollWheelZoom: false
     },
     controls : {
         custom: [ toggleVegControl, togglePlotsControl, togglePhotosControl]
@@ -260,8 +260,9 @@ angular.module( 'vtm.data', [
 
       var plotRecord = Restangular.one('vtmplots', newValue);
       plotRecord.get().then(function(response) {
-        $scope.layerProp = response;
-        
+        $scope.layerProp = response.plain(); //Strip out Restangular methods
+        $scope.layerQueried = 'vtmplots';
+        $log.log($scope.layerProp);
         //Highlight feature
         angular.extend($scope, {
           geojson: {
@@ -322,8 +323,8 @@ angular.module( 'vtm.data', [
 
       var vegRecord = Restangular.one('vtmveg', newValue);
       vegRecord.get().then(function(response) {
-        $scope.layerProp = response;
-        $scope.showModal();
+        $scope.layerProp = response.plain(); //Strip out Restangular methods
+        $log.log($scope.layerProp);
         //Highlight feature
         angular.extend($scope, {
           geojson: {

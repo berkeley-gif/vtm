@@ -1,6 +1,4 @@
 angular.module( 'vtm.howto', [
-  'ui.router',
-  'ui.bootstrap'
 ])
 
 .config(function config( $stateProvider ) {

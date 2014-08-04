@@ -4,107 +4,13 @@
 			<div class="row">
 				<div class="col-md-12">
 					<leaflet id="map" center="center" layers="layers" geojson="geojson" defaults="defaults" controls="controls">
-						<div class="custom-overlay" ng-show="layerProp" style="background-color:red;opacity:0.5;position:absolute;z-index:2000;height:100%;width:200px;top:0;right:0;overflow-y:auto;">
-					<div  ng-show="layerProp">
-
-						<div class="panel panel-default">
-							<div class="panel-heading">Plot</div>
-							<div class="panel-body">
-				            	<ul>
-				            		<li>Plot Number: {{layerProp.plot_no}}</li>
-				            		<li>Plot Map: {{layerProp.map_reference}}</li>
-				            	</ul>
+						<div ng-show="layerProp">
+							<div class="custom-overlay" >
+								<ng-include src="'data/plots.popup.tpl.html'" scope="layerProp" onload=""></ng-include>
 							</div>
-						</div>
-
-						<div class="panel panel-default">
-							<div class="panel-heading">Brushes</div>
-							<div class="panel-body" ng-hide="layerProp.brushes.length">
-				                    No data
-							</div>
-							<div class="panel-body" ng-show="layerProp.brushes.length">
-								<ul>
-			                        <li ng-repeat="obs in layerProp.brushes">
-			                            {{obs.scientific_name}}
-			                        </li>
-				                </ul>
-							</div>
-						</div>
-
-						<div class="panel panel-default">
-							<div class="panel-heading">Trees</div>
-							<div class="panel-body" ng-hide="layerProp.trees.length">
-				                    No data
-							</div>
-							<div class="panel-body" ng-show="layerProp.trees.length">
-								<ul>
-			                        <li ng-repeat="obs in layerProp.trees">
-			                            {{obs.scientific_name}}
-			                        </li>
-				                </ul>
-							</div>
-						</div>
 						</div>
 					</leaflet>
 				</div>
-<!-- 				<div class="col-md-3">
-					<div class="info-box" ng-hide="layerProp">
-						Click on a plot point to see detail information
-					</div>
-					<div class="info-box enabled" ng-show="layerProp">
-
-						<div class="panel panel-default">
-							<div class="panel-heading">Plot</div>
-							<div class="panel-body">
-				            	<ul>
-				            		<li>Plot Number: {{layerProp.plot_no}}</li>
-				            		<li>Plot Map: {{layerProp.map_reference}}</li>
-				            	</ul>
-							</div>
-						</div>
-
-						<div class="panel panel-default">
-							<div class="panel-heading">Brushes</div>
-							<div class="panel-body" ng-hide="layerProp.brushes.length">
-				                    No data
-							</div>
-							<div class="panel-body" ng-show="layerProp.brushes.length">
-								<ul>
-			                        <li ng-repeat="obs in layerProp.brushes">
-			                            {{obs.scientific_name}}
-			                        </li>
-				                </ul>
-							</div>
-						</div>
-
-						<div class="panel panel-default">
-							<div class="panel-heading">Trees</div>
-							<div class="panel-body" ng-hide="layerProp.trees.length">
-				                    No data
-							</div>
-							<div class="panel-body" ng-show="layerProp.trees.length">
-								<ul>
-			                        <li ng-repeat="obs in layerProp.trees">
-			                            {{obs.scientific_name}}
-			                        </li>
-				                </ul>
-							</div>
-						</div>
-
-
-					
-					</div>
-
-					<div class="map-attribution-control" ng-hide="attribution">
-						<a href="" ng-click="showAttribution = ! showAttribution"><i class="fa fa-info-circle"></i></a>
-					</div>
-
-					<div class="map-attribution-text" ng-class="{ 'hidden': ! showAttribution }">
-						<p ng-model="mapAttributionText"></p>
-					</div>
-				
-
-				</div> -->
 			</div>
 
 		</div>

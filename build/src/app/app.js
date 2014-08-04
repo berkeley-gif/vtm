@@ -7,7 +7,7 @@ angular.module( 'vtm', [
   'vtm.howto',
   'ui.router',
   'ngAnimate',
-  'restangular'
+  'djds4rce.angular-socialshare'
 ])
 
 .constant('HOLOS_CONFIG', {
@@ -34,11 +34,13 @@ angular.module( 'vtm', [
 .run( function run () {
 })
 
-.controller( 'AppCtrl', function AppCtrl ( $scope, $location ) {
+.controller( 'AppCtrl', function AppCtrl ( $scope, $location) {
   $scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
     if ( angular.isDefined( toState.data.pageTitle ) ) {
       $scope.pageTitle = toState.data.pageTitle + ' | VTM' ;
     }
   });
+
+  $scope.socialShare = " #vtm The most ambitious attempt ever made to describe the complex vegetation of CA";
 });
 
