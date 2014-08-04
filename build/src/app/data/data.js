@@ -17,8 +17,7 @@ angular.module( 'vtm.data', [
   'leaflet-directive',
   'filters.split',
   'services.VtmTileService',
-  'ngTouch',
-  'services.ModalDialog'
+  'ngTouch'
 ])
 
 /**
@@ -234,7 +233,7 @@ angular.module( 'vtm.data', [
 /**
  * And of course we define a controller for our route.
  */
-.controller( 'PlotsCtrl', function PlotsController($scope, $log, $http, $state, modalService, leafletData, VtmTiles, Restangular) {
+.controller( 'PlotsCtrl', function PlotsController($scope, $log, $http, $state, leafletData, VtmTiles, Restangular) {
 
 
 
@@ -263,16 +262,6 @@ angular.module( 'vtm.data', [
       plotRecord.get().then(function(response) {
         $scope.layerProp = response;
         
-        //Show modal
-        var modalOptions = {
-            closeButtonText: 'Cancel',
-            actionButtonText: 'Delete Customer',
-            headerText: 'Delete ?',
-            bodyText: 'Are you sure you want to delete this customer?'
-        };
-        modalService.showModal({}, modalOptions).then(function (result) {
-            console.log('modal');
-        });
         //Highlight feature
         angular.extend($scope, {
           geojson: {

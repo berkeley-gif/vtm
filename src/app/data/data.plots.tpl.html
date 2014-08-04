@@ -3,7 +3,49 @@
 		<div class="tool-wrapper">
 			<div class="row">
 				<div class="col-md-12">
-					<leaflet id="map" center="center" layers="layers" geojson="geojson" defaults="defaults" controls="controls"></leaflet>
+					<leaflet id="map" center="center" layers="layers" geojson="geojson" defaults="defaults" controls="controls">
+						<div class="custom-overlay" ng-show="layerProp" style="background-color:red;opacity:0.5;position:absolute;z-index:2000;height:100%;width:200px;top:0;right:0;overflow-y:auto;">
+					<div  ng-show="layerProp">
+
+						<div class="panel panel-default">
+							<div class="panel-heading">Plot</div>
+							<div class="panel-body">
+				            	<ul>
+				            		<li>Plot Number: {{layerProp.plot_no}}</li>
+				            		<li>Plot Map: {{layerProp.map_reference}}</li>
+				            	</ul>
+							</div>
+						</div>
+
+						<div class="panel panel-default">
+							<div class="panel-heading">Brushes</div>
+							<div class="panel-body" ng-hide="layerProp.brushes.length">
+				                    No data
+							</div>
+							<div class="panel-body" ng-show="layerProp.brushes.length">
+								<ul>
+			                        <li ng-repeat="obs in layerProp.brushes">
+			                            {{obs.scientific_name}}
+			                        </li>
+				                </ul>
+							</div>
+						</div>
+
+						<div class="panel panel-default">
+							<div class="panel-heading">Trees</div>
+							<div class="panel-body" ng-hide="layerProp.trees.length">
+				                    No data
+							</div>
+							<div class="panel-body" ng-show="layerProp.trees.length">
+								<ul>
+			                        <li ng-repeat="obs in layerProp.trees">
+			                            {{obs.scientific_name}}
+			                        </li>
+				                </ul>
+							</div>
+						</div>
+						</div>
+					</leaflet>
 				</div>
 <!-- 				<div class="col-md-3">
 					<div class="info-box" ng-hide="layerProp">

@@ -1255,7 +1255,49 @@ angular.module("data/data.plots.tpl.html", []).run(["$templateCache", function($
     "		<div class=\"tool-wrapper\">\n" +
     "			<div class=\"row\">\n" +
     "				<div class=\"col-md-12\">\n" +
-    "					<leaflet id=\"map\" center=\"center\" layers=\"layers\" geojson=\"geojson\" defaults=\"defaults\" controls=\"controls\"></leaflet>\n" +
+    "					<leaflet id=\"map\" center=\"center\" layers=\"layers\" geojson=\"geojson\" defaults=\"defaults\" controls=\"controls\">\n" +
+    "						<div class=\"custom-overlay\" ng-show=\"layerProp\" style=\"background-color:red;opacity:0.5;position:absolute;z-index:2000;height:100%;width:200px;top:0;right:0;overflow-y:auto;\">\n" +
+    "					<div  ng-show=\"layerProp\">\n" +
+    "\n" +
+    "						<div class=\"panel panel-default\">\n" +
+    "							<div class=\"panel-heading\">Plot</div>\n" +
+    "							<div class=\"panel-body\">\n" +
+    "				            	<ul>\n" +
+    "				            		<li>Plot Number: {{layerProp.plot_no}}</li>\n" +
+    "				            		<li>Plot Map: {{layerProp.map_reference}}</li>\n" +
+    "				            	</ul>\n" +
+    "							</div>\n" +
+    "						</div>\n" +
+    "\n" +
+    "						<div class=\"panel panel-default\">\n" +
+    "							<div class=\"panel-heading\">Brushes</div>\n" +
+    "							<div class=\"panel-body\" ng-hide=\"layerProp.brushes.length\">\n" +
+    "				                    No data\n" +
+    "							</div>\n" +
+    "							<div class=\"panel-body\" ng-show=\"layerProp.brushes.length\">\n" +
+    "								<ul>\n" +
+    "			                        <li ng-repeat=\"obs in layerProp.brushes\">\n" +
+    "			                            {{obs.scientific_name}}\n" +
+    "			                        </li>\n" +
+    "				                </ul>\n" +
+    "							</div>\n" +
+    "						</div>\n" +
+    "\n" +
+    "						<div class=\"panel panel-default\">\n" +
+    "							<div class=\"panel-heading\">Trees</div>\n" +
+    "							<div class=\"panel-body\" ng-hide=\"layerProp.trees.length\">\n" +
+    "				                    No data\n" +
+    "							</div>\n" +
+    "							<div class=\"panel-body\" ng-show=\"layerProp.trees.length\">\n" +
+    "								<ul>\n" +
+    "			                        <li ng-repeat=\"obs in layerProp.trees\">\n" +
+    "			                            {{obs.scientific_name}}\n" +
+    "			                        </li>\n" +
+    "				                </ul>\n" +
+    "							</div>\n" +
+    "						</div>\n" +
+    "						</div>\n" +
+    "					</leaflet>\n" +
     "				</div>\n" +
     "<!-- 				<div class=\"col-md-3\">\n" +
     "					<div class=\"info-box\" ng-hide=\"layerProp\">\n" +
@@ -1551,7 +1593,7 @@ angular.module("home/home.tpl.html", []).run(["$templateCache", function($templa
     "        </div> <!-- end banner -->\n" +
     "    </div>\n" +
     "    <div id=\"title-box\">\n" +
-    "        <h3><span class=\"title\"><span class=\"title-first-letter\">W</span>IESLANDER <span class=\"title-first-letter\">V</span>EGETATION <span class=\"title-first-letter\">T</span>YPE <span class=\"title-first-letter\">M</span>APPING</span></h3>\n" +
+    "        <p><span class=\"title\"><span class=\"title-first-letter\">W</span>IESLANDER <span class=\"title-first-letter\">V</span>EGETATION <span class=\"title-first-letter\">T</span>YPE <span class=\"title-first-letter\">M</span>APPING</span></p>\n" +
     "    </div>\n" +
     "    <div id=\"description-box\">\n" +
     "        <div class=\"row\">\n" +
@@ -1560,12 +1602,11 @@ angular.module("home/home.tpl.html", []).run(["$templateCache", function($templa
     "                        <img  src=\"assets/img/wieslander.png\"></img>\n" +
     "                    </div>\n" +
     "                </div>\n" +
-    "                <div class=\"col-sm-8\" > \n" +
+    "                <div class=\"col-sm-9\" > \n" +
     "                    <div id=\"tagline\">          \n" +
     "                        <p>In the 1920s and 1930s Albert Everett Wieslander and several others explored much of California's wilderness sampling vegetation, taking photographs, collecting specimens, and drawing detailed maps of what they found. These data represent a valuable resource for comparative and conservation ecology. Explore and download the Wieslander Vegetation Type Mapping project collection to get a snapshot of California's vegetation in the early 20th century.</p>\n" +
     "                    </div>\n" +
     "                </div>\n" +
-    "                <div class=\"col-sm-1\"></div>\n" +
     "        </div>\n" +
     "    </div>\n" +
     "</div>\n" +
