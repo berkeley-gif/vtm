@@ -53,6 +53,7 @@ angular.module( 'vtm.data', [
   .state( 'data.photos', {
     url: '/photos',
     templateUrl: 'data/data.photos.tpl.html',
+    controller: 'PhotosCtrl',
     data:{ pageTitle: 'Photo Locations' }
   });
 })
@@ -89,7 +90,9 @@ angular.module( 'vtm.data', [
     quads: VtmTiles.loadLayer('quads'),
     quads_utfgrid: VtmTiles.loadLayer('quads_utfgrid'),
     plots: VtmTiles.loadLayer('plots'),
-    plots_utfgrid: VtmTiles.loadLayer('plots_utfgrid')
+    plots_utfgrid: VtmTiles.loadLayer('plots_utfgrid'),
+    photos: VtmTiles.loadLayer('photos'),
+    photos_utfgrid: VtmTiles.loadLayer('photos_utfgrid')
   };
 
   //Define custom controls  
@@ -148,7 +151,7 @@ angular.module( 'vtm.data', [
   togglePhotosControl.setPosition('bottomleft');
   togglePhotosControl.onAdd = function (map) {
     var div = L.DomUtil.create('div','custom-control leaflet-bar');
-    div.innerHTML = '<a href="" class="toggle-photos" title="Photos Show/Hide"><i class="fa fa-picture-o"></i></a>';
+    div.innerHTML = '<a href="" class="toggle-photos" title="Photos Show/Hide"><i class="fa fa-camera"></i></a>';
     L.DomEvent
     .on(div, 'click', L.DomEvent.stopPropagation)
     .on(div, 'click', L.DomEvent.preventDefault)
@@ -199,11 +202,18 @@ angular.module( 'vtm.data', [
 
       if (data.hasOwnProperty('record')) {    
         var record = data.record;
+        console.log(record);
         if (record.search('plot') >= 0) {
           $scope.$apply(function() {
             $scope.plotRecord = record;
           });
-        } else {
+        }
+        else if (record.search('Photo') >= 0) {
+          $scope.$apply(function() {
+            $scope.photoRecord = record;
+          });
+        } 
+        else {
           $scope.$apply(function() {
             $scope.vegRecord = record;
           });
@@ -244,8 +254,8 @@ angular.module( 'vtm.data', [
   VtmTiles.showLayer('plots_utfgrid');
   VtmTiles.hideLayer('veg');
   VtmTiles.hideLayer('veg_utfgrid');
-  //VtmTiles.hideLayer('photos');
-  //VtmTiles.hideLayer('photos_utfgrid');
+  VtmTiles.hideLayer('photos');
+  VtmTiles.hideLayer('photos_utfgrid');
 
 
   $scope.$watch('plotRecord', function(newValue, oldValue){
@@ -296,8 +306,8 @@ angular.module( 'vtm.data', [
   VtmTiles.showLayer('veg_utfgrid');
   VtmTiles.hideLayer('plots');
   VtmTiles.hideLayer('plots_utfgrid');
-  //VtmTiles.hideLayer('photos');
-  //VtmTiles.hideLayer('photos_utfgrid');
+  VtmTiles.hideLayer('photos');
+  VtmTiles.hideLayer('photos_utfgrid');
 
 
   //Style for selected veg polygon on click event
@@ -330,6 +340,55 @@ angular.module( 'vtm.data', [
           geojson: {
             data: response.geojson,
             style: style,
+            resetStyleOnMouseout: false
+          }
+          
+        });
+      });
+
+
+
+    }
+
+  }, true);
+
+  
+
+})
+
+.controller( 'PhotosCtrl', function PhotosController($scope, $log, $http, $state, leafletData, VtmTiles, Restangular) {
+
+
+
+  $log.log('in photos controller');
+
+  //Make all overlays except photos invisible
+  VtmTiles.showLayer('photos');
+  VtmTiles.showLayer('photos_utfgrid');
+  VtmTiles.hideLayer('veg');
+  VtmTiles.hideLayer('veg_utfgrid');
+  VtmTiles.hideLayer('plots');
+  VtmTiles.hideLayer('plots_utfgrid');
+
+
+  $scope.$watch('photoRecord', function(newValue, oldValue){
+
+    // Ignore initial setup
+    if ( newValue === oldValue) {
+      return;
+    }
+
+    // Load data from service
+    if ( newValue ) {
+      var photoRecord = Restangular.one('photos', newValue);
+      photoRecord.get().then(function(response) {
+        $scope.layerProp = response.plain(); //Strip out Restangular methods
+        $scope.layerQueried = 'photos';
+        $log.log($scope.layerProp);
+        //Highlight feature
+        angular.extend($scope, {
+          geojson: {
+            data: response.geojson,
             resetStyleOnMouseout: false
           }
           

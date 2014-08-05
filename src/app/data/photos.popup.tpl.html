@@ -1,7 +1,7 @@
 <ul>
-	<li><i>WHR:</i> {{layerProp.whr}}</li>
-	<li><i>Primary species:</i> {{layerProp.primary_species}}</li>
-	<li><i>MCV:</i> {{layerProp.mcv}}</li>
+	<li><b>{{layerProp.record}}</b></li>
+	<li><i>Authors:</i> {{layerProp.authors}}</li>
+	<li><i>Date:</i> {{layerProp.begin_date | date:"shortDate"}}</li>
 	<li><i>Notes:</i> {{layerProp.notes}}</li>
 	<li><i>Observations:</i>
 		<span ng-hide="layerProp.observations.length">

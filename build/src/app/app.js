@@ -11,7 +11,7 @@ angular.module( 'vtm', [
 ])
 
 .constant('HOLOS_CONFIG', {
-  baseUrl: 'https://ecoengine.berkeley.edu'
+  baseUrl: 'https://dev-ecoengine.berkeley.edu'
   //apiKey: ''
 })
 

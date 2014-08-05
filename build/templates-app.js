@@ -1,4 +1,4 @@
-angular.module('templates-app', ['about/about.bibliography.tpl.html', 'about/about.citations.tpl.html', 'about/about.description.tpl.html', 'about/about.faq.tpl.html', 'about/about.metadata.tpl.html', 'about/about.overview.tpl.html', 'about/about.plotdata.tpl.html', 'about/about.plotmaps.tpl.html', 'about/about.tpl.html', 'data/data.overview.tpl.html', 'data/data.photos.tpl.html', 'data/data.plots.tpl.html', 'data/data.tpl.html', 'data/data.vegetation.tpl.html', 'data/plots.popup.tpl.html', 'data/vegetation.popup.tpl.html', 'home/home.tpl.html', 'howto/howto.overview.tpl.html', 'howto/howto.tpl.html']);
+angular.module('templates-app', ['about/about.bibliography.tpl.html', 'about/about.citations.tpl.html', 'about/about.description.tpl.html', 'about/about.faq.tpl.html', 'about/about.metadata.tpl.html', 'about/about.overview.tpl.html', 'about/about.plotdata.tpl.html', 'about/about.plotmaps.tpl.html', 'about/about.tpl.html', 'data/data.overview.tpl.html', 'data/data.photos.tpl.html', 'data/data.plots.tpl.html', 'data/data.tpl.html', 'data/data.vegetation.tpl.html', 'data/photos.popup.tpl.html', 'data/plots.popup.tpl.html', 'data/vegetation.popup.tpl.html', 'home/home.tpl.html', 'howto/howto.overview.tpl.html', 'howto/howto.tpl.html']);
 
 angular.module("about/about.bibliography.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("about/about.bibliography.tpl.html",
@@ -1220,29 +1220,52 @@ angular.module("data/data.overview.tpl.html", []).run(["$templateCache", functio
 angular.module("data/data.photos.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("data/data.photos.tpl.html",
     "<div class=\"row\">\n" +
-    "    <div class=\"col-md-9\">\n" +
-    "        <div id=\"map\" style=\"height: 600px\"></div>\n" +
+    "    <div class=\"col-md-12\">\n" +
+    "        <div class=\"tool-wrapper\">\n" +
+    "            <div class=\"row\">\n" +
+    "                <div class=\"col-md-12\">\n" +
+    "                    <leaflet id=\"map\" center=\"center\" layers=\"layers\" geojson=\"geojson\" defaults=\"defaults\" controls=\"controls\">\n" +
+    "                        <div ng-show=\"layerProp\">\n" +
+    "                            <div class=\"custom-overlay\" >\n" +
+    "                                <ng-include src=\"'data/photos.popup.tpl.html'\" scope=\"layerProp\" onload=\"\"></ng-include>\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "                    </leaflet>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "\n" +
+    "        </div>\n" +
+    "\n" +
     "    </div>\n" +
-    "    <div class=\"col-md-3\">\n" +
-    "        <h2>Info box</h2>\n" +
-    "        <p><div id=\"info-box\">Please click on the map to get more information about the vegetation map.</div></p>\n" +
+    "    \n" +
+    "</div>\n" +
+    "<div class=\"row\" style=\"margin-top:15px;\">\n" +
+    "    <div class=\"col-md-12\">\n" +
+    "        <tabset>\n" +
+    "            <tab heading=\"General Information\">\n" +
+    "                <p>3174 original VTM photos (number from ecoengine + 12 reshoots), 2952 of which are georeferenced. The points shown here consists of 2952 these georeferenced original photos (no reshoots). </p>\n" +
+    "            </tab>\n" +
+    "            <tab heading=\"Download\">\n" +
+    "                <p> \n" +
+    "                    <a href=\"https://dev-ecoengine.berkeley.edu/data/vtm-plots.zip\" class=\"btn btn-primary\">All photo data points shapefile for CA</a>\n" +
+    "                </p>\n" +
+    "                <p> \n" +
+    "                    <a href=\"http://localhost:8000/plot/Georeferenced/{{vtm_quad_id}}/\" target=\"_blank\" class=\"btn btn-primary\">Georeferenced plot map for VTM Quad {{vtm_quad_id}}</a>\n" +
+    "                </p>\n" +
+    "                <p> \n" +
+    "                    <a href=\"http://localhost:8000/plot/Georeferenced/{{vtm_quad_id}}/\" target=\"_blank\" class=\"btn btn-primary\">Original ungeoreferenced plot map for VTM Quad {{vtm_quad_id}}</a>\n" +
+    "                </p>\n" +
+    "                <p> \n" +
+    "                    <a href=\"http://localhost:8000/plot/Georeferenced/{{vtm_quad_id}}/\" target=\"_blank\" class=\"btn btn-primary\">Georeferenced plot data points shapefile for VTM Quad {{vtm_quad_id}}</a>\n" +
+    "                </p>\n" +
+    "            </tab>\n" +
+    "            <tab heading=\"Suggested Citations\">\n" +
+    "                <ng-include src=\"'about/about.citations.tpl.html'\"></ng-inlcude>\n" +
+    "            </tab>\n" +
+    "        </tabset>\n" +
     "    </div>\n" +
     "</div>\n" +
     "\n" +
-    "<div class=\"row\">\n" +
-    "    <div class=\"col-md-4\">\n" +
-    "        <h2>Summary</h2>\n" +
-    "        <p>Something about this map.</p>\n" +
-    "    </div>\n" +
-    "    <div class=\"col-md-4\">\n" +
-    "        <h2>Suggested Citations</h2>\n" +
-    "        <ng-include src=\"'about/about.citations.tpl.html'\"></ng-inlcude>\n" +
-    "    </div>\n" +
-    "    <div class=\"col-md-4\">\n" +
-    "        <h2>Method</h2>\n" +
-    "        <p>How did we create this map?</p>\n" +
-    "    </div>\n" +
-    "</div>\n" +
     "\n" +
     "\n" +
     "");
@@ -1432,6 +1455,27 @@ angular.module("data/data.vegetation.tpl.html", []).run(["$templateCache", funct
     "");
 }]);
 
+angular.module("data/photos.popup.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("data/photos.popup.tpl.html",
+    "<ul>\n" +
+    "	<li><b>{{layerProp.record}}</b></li>\n" +
+    "	<li><i>Authors:</i> {{layerProp.authors}}</li>\n" +
+    "	<li><i>Date:</i> {{layerProp.begin_date | date:\"shortDate\"}}</li>\n" +
+    "	<li><i>Notes:</i> {{layerProp.notes}}</li>\n" +
+    "	<li><i>Observations:</i>\n" +
+    "		<span ng-hide=\"layerProp.observations.length\">\n" +
+    "        	&nbsp;No data\n" +
+    "		</span>\n" +
+    "		<ul ng-show=\"layerProp.observations.length\">\n" +
+    "        	<li ng-repeat=\"obs in layerProp.observations\">\n" +
+    "            	<a ng-href=\"{{obs.url}}\" target=\"_blank\">{{obs.scientific_name}}</a>\n" +
+    "        	</li>\n" +
+    "		</ul>\n" +
+    "	</li>\n" +
+    "	<li><i>More details</i> <a ng-href=\"{{layerProp.url}}\" target=\"_blank\"><i class=\"fa fa-info-circle\"></i></a></li>\n" +
+    "</ul>");
+}]);
+
 angular.module("data/plots.popup.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("data/plots.popup.tpl.html",
     "<ul>\n" +
@@ -1474,11 +1518,11 @@ angular.module("data/plots.popup.tpl.html", []).run(["$templateCache", function(
 angular.module("data/vegetation.popup.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("data/vegetation.popup.tpl.html",
     "<ul>\n" +
-    "	<li>WHR: {{layerProp.whr}}</li>\n" +
-    "	<li>Primary species: {{layerProp.primary_species}}</li>\n" +
-    "	<li>MCV: {{layerProp.mcv}}</li>\n" +
-    "	<li>Notes: {{layerProp.notes}}</li>\n" +
-    "	<li>Observations:\n" +
+    "	<li><i>WHR:</i> {{layerProp.whr}}</li>\n" +
+    "	<li><i>Primary species:</i> {{layerProp.primary_species}}</li>\n" +
+    "	<li><i>MCV:</i> {{layerProp.mcv}}</li>\n" +
+    "	<li><i>Notes:</i> {{layerProp.notes}}</li>\n" +
+    "	<li><i>Observations:</i>\n" +
     "		<span ng-hide=\"layerProp.observations.length\">\n" +
     "        	&nbsp;No data\n" +
     "		</span>\n" +
@@ -1488,7 +1532,7 @@ angular.module("data/vegetation.popup.tpl.html", []).run(["$templateCache", func
     "        	</li>\n" +
     "		</ul>\n" +
     "	</li>\n" +
-    "	<li>More details <a ng-href=\"{{layerProp.url}}\" target=\"_blank\"><i class=\"fa fa-info-circle\"></i></a></li>\n" +
+    "	<li><i>More details</i> <a ng-href=\"{{layerProp.url}}\" target=\"_blank\"><i class=\"fa fa-info-circle\"></i></a></li>\n" +
     "</ul>");
 }]);
 
@@ -1590,6 +1634,7 @@ angular.module("howto/howto.overview.tpl.html", []).run(["$templateCache", funct
     "			<pre>https://ecoengine.berkeley.edu/api/vtmplots/</pre>\n" +
     "			<pre>https://ecoengine.berkeley.edu/api/vtmplots_brushes/</pre>\n" +
     "			<pre>https://ecoengine.berkeley.edu/api/vtmveg/</pre>\n" +
+    "			<pre>https://ecoengine.berkeley.edu/api/photos/?collection_code=VTM</pre>\n" +
     "		</p>\n" +
     "    </div>    \n" +
     "</div>\n" +

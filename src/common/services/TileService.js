@@ -31,6 +31,19 @@ angular.module( 'services.VtmTileService', [])
           visible: true,
           pluginOptions: { 'useJsonP': false}
         },
+        photos : {
+          name: 'VTM Photos',
+          type: 'xyz',
+          url: tileserver + '/vtmphotos/{z}/{x}/{y}.png',
+          visible: true
+        },
+        photos_utfgrid : {
+          name: 'VTM Photos UTFGrid',
+          type: 'utfGrid',
+          url: tileserver + '/vtmphotos_utfgrid/{z}/{x}/{y}.json',
+          visible: true,
+          pluginOptions: { 'useJsonP': false}
+        },
         veg : {
           name: 'Vegetation',
           type: 'xyz',

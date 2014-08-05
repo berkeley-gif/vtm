@@ -1,26 +1,49 @@
 <div class="row">
-    <div class="col-md-9">
-        <div id="map" style="height: 600px"></div>
+    <div class="col-md-12">
+        <div class="tool-wrapper">
+            <div class="row">
+                <div class="col-md-12">
+                    <leaflet id="map" center="center" layers="layers" geojson="geojson" defaults="defaults" controls="controls">
+                        <div ng-show="layerProp">
+                            <div class="custom-overlay" >
+                                <ng-include src="'data/photos.popup.tpl.html'" scope="layerProp" onload=""></ng-include>
+                            </div>
+                        </div>
+                    </leaflet>
+                </div>
+            </div>
+
+        </div>
+
     </div>
-    <div class="col-md-3">
-        <h2>Info box</h2>
-        <p><div id="info-box">Please click on the map to get more information about the vegetation map.</div></p>
+    
+</div>
+<div class="row" style="margin-top:15px;">
+    <div class="col-md-12">
+        <tabset>
+            <tab heading="General Information">
+                <p>3174 original VTM photos (number from ecoengine + 12 reshoots), 2952 of which are georeferenced. The points shown here consists of 2952 these georeferenced original photos (no reshoots). </p>
+            </tab>
+            <tab heading="Download">
+                <p> 
+                    <a href="https://dev-ecoengine.berkeley.edu/data/vtm-plots.zip" class="btn btn-primary">All photo data points shapefile for CA</a>
+                </p>
+                <p> 
+                    <a href="http://localhost:8000/plot/Georeferenced/{{vtm_quad_id}}/" target="_blank" class="btn btn-primary">Georeferenced plot map for VTM Quad {{vtm_quad_id}}</a>
+                </p>
+                <p> 
+                    <a href="http://localhost:8000/plot/Georeferenced/{{vtm_quad_id}}/" target="_blank" class="btn btn-primary">Original ungeoreferenced plot map for VTM Quad {{vtm_quad_id}}</a>
+                </p>
+                <p> 
+                    <a href="http://localhost:8000/plot/Georeferenced/{{vtm_quad_id}}/" target="_blank" class="btn btn-primary">Georeferenced plot data points shapefile for VTM Quad {{vtm_quad_id}}</a>
+                </p>
+            </tab>
+            <tab heading="Suggested Citations">
+                <ng-include src="'about/about.citations.tpl.html'"></ng-inlcude>
+            </tab>
+        </tabset>
     </div>
 </div>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Summary</h2>
-        <p>Something about this map.</p>
-    </div>
-    <div class="col-md-4">
-        <h2>Suggested Citations</h2>
-        <ng-include src="'about/about.citations.tpl.html'"></ng-inlcude>
-    </div>
-    <div class="col-md-4">
-        <h2>Method</h2>
-        <p>How did we create this map?</p>
-    </div>
-</div>
 
 

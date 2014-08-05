@@ -660,6 +660,9 @@ blockquote {
 .tabbable .tab-content img.img-tab-space {
   margin-top: 7px;
 }
+#data-grid .features a:hover img {
+  opacity: 0.5;
+}
 /* Extra small devices (phones, less than 768px) */
 @media (max-width: 767px) {
   .tool-wrapper #map {
