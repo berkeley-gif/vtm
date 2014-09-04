@@ -1278,7 +1278,7 @@ angular.module("data/data.plots.tpl.html", []).run(["$templateCache", function($
     "		<div class=\"tool-wrapper\">\n" +
     "			<div class=\"row\">\n" +
     "				<div class=\"col-md-12\">\n" +
-    "					<leaflet id=\"map\" center=\"center\" layers=\"layers\" geojson=\"geojson\" defaults=\"defaults\" controls=\"controls\">\n" +
+    "					<leaflet id=\"map\" center=\"center\" layers=\"layers\" geojson=\"geojson\" defaults=\"defaults\" controls=\"controls\" markers=\"markers\" watch-markers=\"no\" bounds=\"bounds\">\n" +
     "						<div ng-show=\"layerProp\">\n" +
     "							<div class=\"custom-overlay\" >\n" +
     "								<ng-include src=\"'data/plots.popup.tpl.html'\" scope=\"layerProp\" onload=\"\"></ng-include>\n" +
@@ -1485,7 +1485,7 @@ angular.module("data/plots.popup.tpl.html", []).run(["$templateCache", function(
     "	<li>TRS: {{layerProp.trs}}</li>\n" +
     "	<li>Locality: {{layerProp.locality}}</li>\n" +
     "	<li>Date: {{layerProp.begin_date | date:\"shortDate\"}}</li>\n" +
-    "	<li>Coordinates: {{layerProp.geojson.coordinates[0] | number:2}}, {{layerProp.geojson.coordinates[1] | number:2}}</li>\n" +
+    "	<li>Coordinates: {{layerProp.geojson.coordinates[0]}}, {{layerProp.geojson.coordinates[1]}}</li>\n" +
     "	<li>Coordinate uncertainty (mt): {{layerProp.coordinate_uncertainty_in_meters}}</li>\n" +
     "	<li>Elevation: {{layerProp.elevation}}</li>\n" +
     "	<li>Penetrability: {{layerProp.penetrability}}</li>\n" +

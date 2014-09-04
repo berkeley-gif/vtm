@@ -16,8 +16,10 @@ angular.module( 'vtm.data', [
   'ui.router',
   'leaflet-directive',
   'filters.split',
-  'services.VtmTileService',
-  'restangular'
+  'services.VtmLayerService',
+  'restangular',
+  'services.VtmPhotoService',
+  'services.HolosPaginatedResource'
 ])
 
 /**
@@ -61,14 +63,21 @@ angular.module( 'vtm.data', [
 /**
  * And of course we define a controller for our route.
  */
-.controller( 'DataCtrl', function DataController($scope, $log, $http, $state, leafletData, VtmTiles) {
+.controller( 'DataCtrl', function DataController($scope, $log, $http, $state, $timeout, leafletData, leafletBoundsHelpers, VtmLayers, VtmPhotos, Restangular) {
 
   // Map setup
+  console.log('state', $state);
   var center = {
     lat: 37.5,
     lng: -122,
     zoom: 11 
   };
+
+  var bounds = leafletBoundsHelpers.createBoundsFromArray([
+    [ center.lat-0.1, center.lng-0.1 ],
+    [ center.lat+0.1, center.lng+0.1 ]
+  ]);
+  console.log('bounds before map', bounds);
 
   var maxBounds = {
     southWest: {
@@ -81,51 +90,49 @@ angular.module( 'vtm.data', [
     }
   };
 
-  //Load tiles from service
+ //Load tiles from service
   var overlays =  {
-    veg: VtmTiles.loadLayer('veg'),
-    veg_utfgrid: VtmTiles.loadLayer('veg_utfgrid'),
-    counties: VtmTiles.loadLayer('counties'),
-    counties_utfgrid: VtmTiles.loadLayer('counties_utfgrid'),
-    quads: VtmTiles.loadLayer('quads'),
-    quads_utfgrid: VtmTiles.loadLayer('quads_utfgrid'),
-    plots: VtmTiles.loadLayer('plots'),
-    plots_utfgrid: VtmTiles.loadLayer('plots_utfgrid'),
-    photos: VtmTiles.loadLayer('photos'),
-    photos_utfgrid: VtmTiles.loadLayer('photos_utfgrid')
+    veg: VtmLayers.loadLayer('veg'),
+    veg_utfgrid: VtmLayers.loadLayer('veg_utfgrid'),
+    counties: VtmLayers.loadLayer('counties'),
+    counties_utfgrid: VtmLayers.loadLayer('counties_utfgrid'),
+    quads: VtmLayers.loadLayer('quads'),
+    quads_utfgrid: VtmLayers.loadLayer('quads_utfgrid'),
+    plots: VtmLayers.loadLayer('plots'),
+    //plots_utfgrid: VtmLayers.loadLayer('plots_utfgrid'),
+    photos: VtmLayers.loadLayer('photos')     //marker group layer
   };
-
+  
   //Define custom controls  
   var downloadFeaturesControl = L.control(); // DownloadFeaturesControl
-	downloadFeaturesControl.setPosition('bottomright');
-	downloadFeaturesControl.onAdd = function (map) {
+  downloadFeaturesControl.setPosition('bottomright');
+  downloadFeaturesControl.onAdd = function (map) {
     var div = L.DomUtil.create('div','download-features');
     div.innerHTML = '<button type="button" class="btn btn-primary">Download features in view</button>';
     L.DomEvent
-		.on(div, 'click', L.DomEvent.stopPropagation)
-		.on(div, 'click', L.DomEvent.preventDefault)
-		.on(div, 'click', function() {
-			leafletData.getMap().then(function(map) {
-				var url = ROOT + apiUrl + "/?bbox="+map.getBounds().toBBoxString()+"&format=geojson";
-				//console.log("BBox: " + map.getBounds().toBBoxString());
-				window.open(url);
-			});
-		})
-		.on(div, 'dblclick', L.DomEvent.stopPropagation);
+    .on(div, 'click', L.DomEvent.stopPropagation)
+    .on(div, 'click', L.DomEvent.preventDefault)
+    .on(div, 'click', function() {
+      leafletData.getMap().then(function(map) {
+        var url = ROOT + apiUrl + "/?bbox="+map.getBounds().toBBoxString()+"&format=geojson";
+        //console.log("BBox: " + map.getBounds().toBBoxString());
+        window.open(url);
+      });
+    })
+    .on(div, 'dblclick', L.DomEvent.stopPropagation);
     return div;
   };
 
   var toggleVegControl = L.control(); // DownloadFeaturesControl
   toggleVegControl.setPosition('bottomleft');
   toggleVegControl.onAdd = function (map) {
-    var div = L.DomUtil.create('div','custom-control leaflet-bar');
+    var div = L.DomUtil.create('div','custom-control');
     div.innerHTML = '<a href="" class="toggle-veg" title="Vegetation Show/Hide"><i class="fa fa-leaf"></i></a>';
     L.DomEvent
     .on(div, 'click', L.DomEvent.stopPropagation)
     .on(div, 'click', L.DomEvent.preventDefault)
     .on(div, 'click', function() {
-      VtmTiles.toggleLayer('veg');
-      VtmTiles.toggleLayer('veg_utfgrid');
+      toggleLayer('veg');
     })
     .on(div, 'dblclick', L.DomEvent.stopPropagation);
     return div;
@@ -134,14 +141,13 @@ angular.module( 'vtm.data', [
   var togglePlotsControl = L.control(); // DownloadFeaturesControl
   togglePlotsControl.setPosition('bottomleft');
   togglePlotsControl.onAdd = function (map) {
-    var div = L.DomUtil.create('div','custom-control leaflet-bar');
+    var div = L.DomUtil.create('div','custom-control');
     div.innerHTML = '<a href="" class="toggle-plots" title="Plots Show/Hide"><i class="fa fa-circle"></i></a>';
     L.DomEvent
     .on(div, 'click', L.DomEvent.stopPropagation)
     .on(div, 'click', L.DomEvent.preventDefault)
     .on(div, 'click', function() {
-      VtmTiles.toggleLayer('plots');
-      VtmTiles.toggleLayer('plots_utfgrid');
+      toggleLayer('plots');
     })
     .on(div, 'dblclick', L.DomEvent.stopPropagation);
     return div;
@@ -150,14 +156,13 @@ angular.module( 'vtm.data', [
   var togglePhotosControl = L.control(); // DownloadFeaturesControl
   togglePhotosControl.setPosition('bottomleft');
   togglePhotosControl.onAdd = function (map) {
-    var div = L.DomUtil.create('div','custom-control leaflet-bar');
+    var div = L.DomUtil.create('div','custom-control');
     div.innerHTML = '<a href="" class="toggle-photos" title="Photos Show/Hide"><i class="fa fa-camera"></i></a>';
     L.DomEvent
     .on(div, 'click', L.DomEvent.stopPropagation)
     .on(div, 'click', L.DomEvent.preventDefault)
     .on(div, 'click', function() {
-      //VtmTiles.toggleLayer('photos');
-      //VtmTiles.toggleLayer('photos_utfgrid');
+      toggleLayer('photos');
     })
     .on(div, 'dblclick', L.DomEvent.stopPropagation);
     return div;
@@ -165,30 +170,104 @@ angular.module( 'vtm.data', [
 
   // Putting all the map parameters together
   angular.extend($scope, {
-    center : center,
+    bounds: bounds,
     maxBounds: maxBounds,
     layers: {
       baselayers: {
-        grayscale: VtmTiles.loadLayer('grayscale')
+        grayscale: VtmLayers.loadLayer('grayscale')
       },
       overlays: overlays
     },
     defaults : {
-      minZoom: 6,
-      scrollWheelZoom: false
+      map: {
+        minZoom: 6,
+        scrollWheelZoom: false,
+        doubleClickZoom: false,
+        contextmenu: true,
+        contextmenuItems: [
+          {
+            text: 'County'
+          },
+          {
+            text: 'VTM Quad',
+            callback: queryVTMQuads
+          }, '-',
+          {
+            text: 'Plot',
+            //callback: zoomIn
+            disabled: true
+          },
+          {
+            text: 'Vegetation'
+            //callback: zoomOut
+          },
+          {
+            text: 'Photo'
+            //callback: zoomOut
+          }
+        ]
+      }
     },
     controls : {
         custom: [ toggleVegControl, togglePlotsControl, togglePhotosControl]
     }
   });
 
+  function queryVTMQuads(args){
+
+    var latlng = args.latlng;
+
+    var latlngBounds = leafletBoundsHelpers.createBoundsFromArray([
+      [ latlng.lat-0.002, latlng.lng-0.002 ],
+      [ latlng.lat+0.002, latlng.lng+0.002 ]
+    ]);
+    var southWest = latlngBounds.southWest;
+    var northEast = latlngBounds.northEast;
+    
+    var bboxString = southWest.lng + ',' + southWest.lat + ',' + northEast.lng + ',' + northEast.lat;
+    
+    console.log('map click event', bboxString);
+
+    var vtmquads = Restangular.one('layers', 'vtmquads');
+
+    vtmquads.getList('features', {bbox: bboxString}).then(function(data){
+      console.log('from map click', data);
+    });
+
+  }
+
+  function loadPhotoMarkers(bboxString){
+    console.log("BBox: " + bboxString);
+    $scope.markers = VtmPhotos.loadMarkers({'bbox': bboxString});
+    console.log('markersfrom data', $scope.markers);
+  }
+
+  $scope.$on('leafletDirectiveMap.moveend', function(){
+
+    leafletData.getMap().then(function(leafletMapObject) {
+      var bboxString = leafletMapObject.getBounds().toBBoxString();
+      var bboxArray = bboxString.split(',').map(function(val){
+        return (parseFloat(val)).toFixed(4);
+      });
+      loadPhotoMarkers(bboxArray.toString());
+    });
+
+  });
 
 
-  $scope.$on('leafletDirectiveMap.utfgridClick', function(event, leafletEvent) {
+  function toggleLayer(layername) {
+
+      $scope.$apply(function() {
+        VtmLayers.toggleLayer(layername);
+        console.log($scope.defaults.map.contextmenuItems);
+      });   
+
+  }
+
+
+/*  $scope.$on('leafletDirectiveMap.utfgridClick', function(event, leafletEvent) {
     
     var data = leafletEvent.data;
-/*    console.log('event', event);
-    console.log(leafletEvent);*/
 
     if (data) {
 
@@ -206,6 +285,7 @@ angular.module( 'vtm.data', [
         if (record.search('plot') >= 0) {
           $scope.$apply(function() {
             $scope.plotRecord = record;
+            console.log('record clicked', record);
           });
         }
         else if (record.search('Photo') >= 0) {
@@ -225,7 +305,7 @@ angular.module( 'vtm.data', [
 
 
 
-  });
+  });*/
 
   $scope.showAttribution = false;
   $scope.mapAttributionText = 'Data provided by <a href="http://openstreetmap.org" target="_blank">' +
@@ -235,7 +315,6 @@ angular.module( 'vtm.data', [
                               ' CC-BY-SA</a>, Imagery &copy; <a href="http://mapbox.com" target="_blank">Mapbox</a>';
 
 
-
 })
 
 
@@ -243,51 +322,16 @@ angular.module( 'vtm.data', [
 /**
  * And of course we define a controller for our route.
  */
-.controller( 'PlotsCtrl', function PlotsController($scope, $log, $http, $state, leafletData, VtmTiles, Restangular) {
+.controller( 'PlotsCtrl', function PlotsController($scope, $log, $http, $state, leafletData, VtmLayers, VtmPhotos, Restangular) {
 
 
 
   $log.log('in plots controller');
 
   //Make all overlays except plots invisible
-  VtmTiles.showLayer('plots');
-  VtmTiles.showLayer('plots_utfgrid');
-  VtmTiles.hideLayer('veg');
-  VtmTiles.hideLayer('veg_utfgrid');
-  VtmTiles.hideLayer('photos');
-  VtmTiles.hideLayer('photos_utfgrid');
-
-
-  $scope.$watch('plotRecord', function(newValue, oldValue){
-
-    // Ignore initial setup
-    if ( newValue === oldValue) {
-      return;
-    }
-
-    // Load data from service
-    if ( newValue ) {
-
-      var plotRecord = Restangular.one('vtmplots', newValue);
-      plotRecord.get().then(function(response) {
-        $scope.layerProp = response.plain(); //Strip out Restangular methods
-        $scope.layerQueried = 'vtmplots';
-        $log.log($scope.layerProp);
-        //Highlight feature
-        angular.extend($scope, {
-          geojson: {
-            data: response.geojson,
-            resetStyleOnMouseout: false
-          }
-          
-        });
-      });
-
-
-
-    }
-
-  }, true);
+  VtmLayers.showLayer('plots');
+  VtmLayers.hideLayer('veg');
+  VtmLayers.hideLayer('photos');
 
   
 
@@ -296,18 +340,15 @@ angular.module( 'vtm.data', [
 /**
  * And of course we define a controller for our route.
  */
-.controller( 'VegCtrl', function VegController($scope, $log, $http, $state, leafletData, Restangular, VtmTiles) {
+.controller( 'VegCtrl', function VegController($scope, $log, $http, $state, leafletData, Restangular, VtmLayers) {
 
 
 
   $log.log('in veg controller');
   //Make all overlays except vegetation invisible
-  VtmTiles.showLayer('veg');
-  VtmTiles.showLayer('veg_utfgrid');
-  VtmTiles.hideLayer('plots');
-  VtmTiles.hideLayer('plots_utfgrid');
-  VtmTiles.hideLayer('photos');
-  VtmTiles.hideLayer('photos_utfgrid');
+  VtmLayers.showLayer('veg');
+  VtmLayers.hideLayer('plots');
+  VtmPhotos.hideLayer('photos');
 
 
   //Style for selected veg polygon on click event
@@ -321,7 +362,7 @@ angular.module( 'vtm.data', [
   }
 
 
-  $scope.$watch('vegRecord', function(newValue, oldValue){
+  /*$scope.$watch('vegRecord', function(newValue, oldValue){
 
     // Ignore initial setup
     if ( newValue === oldValue) {
@@ -351,27 +392,24 @@ angular.module( 'vtm.data', [
     }
 
   }, true);
-
+*/
   
 
 })
 
-.controller( 'PhotosCtrl', function PhotosController($scope, $log, $http, $state, leafletData, VtmTiles, Restangular) {
+.controller( 'PhotosCtrl', function PhotosController($scope, $log, $http, $state, leafletData, VtmLayers, Restangular) {
 
 
 
   $log.log('in photos controller');
 
   //Make all overlays except photos invisible
-  VtmTiles.showLayer('photos');
-  VtmTiles.showLayer('photos_utfgrid');
-  VtmTiles.hideLayer('veg');
-  VtmTiles.hideLayer('veg_utfgrid');
-  VtmTiles.hideLayer('plots');
-  VtmTiles.hideLayer('plots_utfgrid');
+  VtmPhotos.showLayer('photos');
+  VtmLayers.hideLayer('veg');
+  VtmLayers.hideLayer('plots');
 
 
-  $scope.$watch('photoRecord', function(newValue, oldValue){
+  /*$scope.$watch('photoRecord', function(newValue, oldValue){
 
     // Ignore initial setup
     if ( newValue === oldValue) {
@@ -399,7 +437,7 @@ angular.module( 'vtm.data', [
 
     }
 
-  }, true);
+  }, true);*/
 
   
 

@@ -3,7 +3,7 @@
 		<div class="tool-wrapper">
 			<div class="row">
 				<div class="col-md-12">
-					<leaflet id="map" center="center" layers="layers" geojson="geojson" defaults="defaults" controls="controls">
+					<leaflet id="map" center="center" layers="layers" geojson="geojson" defaults="defaults" controls="controls" markers="markers" watch-markers="no" bounds="bounds">
 						<div ng-show="layerProp">
 							<div class="custom-overlay" >
 								<ng-include src="'data/plots.popup.tpl.html'" scope="layerProp" onload=""></ng-include>

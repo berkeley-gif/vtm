@@ -24,9 +24,44 @@ angular.module( 'vtm', [
   ///////////////////////////////
 
   RestangularProvider.setBaseUrl( HOLOS_CONFIG.baseUrl + '/api' );
-  RestangularProvider.setDefaultRequestParams({
+
+  //Set default request params for all supported request methods
+  RestangularProvider.setDefaultRequestParams(
+    { 
       //apiKey: HOLOS_CONFIG.apiKey,
       format: 'json'
+    }
+  );
+  RestangularProvider.setRequestSuffix('/');
+
+  //Set default request params only for get method
+  //RestangularProvider.setDefaultRequestParams('get', {format: 'json'});
+
+  //Add a Response Interceptor to convert object returned by Holos API to array for 
+  //Restangular getList() operations
+  RestangularProvider.addResponseInterceptor(function(element, operation, what, url, response, deferred) {
+    var extractedData = [];
+    // .. to look for getList operations
+    if (operation === "getList") {
+      // .. and handle the data and meta data
+      extractedData.results = element.results;
+      extractedData.count = element.count;
+      extractedData.next = element.next;
+      extractedData.prev = element.prev;
+    } else {
+      extractedData = element;
+    }
+    return extractedData;
+  });
+
+  //Add a Response Interceptor to convert object returned by Holos API to array for 
+  //Restangular getList() operations
+  RestangularProvider.setFullRequestInterceptor(function(element, operation, path, url, headers, params, httpConfig) {
+    
+    if (operation === "getList") {
+      //console.log('intercepted url', url);
+    }
+
   });
 
 })

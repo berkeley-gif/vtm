@@ -1,13 +1,14 @@
-angular.module( 'services.VtmTileService', [])
+angular.module( 'services.VtmLayerService', [])
 
-.factory('VtmTiles', ['$q', '$timeout', '$http', 'HOLOS_CONFIG',
+.factory('VtmLayers', ['$q', '$timeout', '$http', 'HOLOS_CONFIG',
   function($q, $timeout, $http, HOLOS_CONFIG ) {
      
      // private data vars
-      //ar tileserver = 'http://localhost:8080';
+      //var tileserver = 'http://localhost:8080';
       var tileserver = HOLOS_CONFIG.baseUrl + '/tiles';
 
-      var tileLayers = {
+      var mapLayers = {
+        //map tiles
         grayscale : {
           name: 'Basemap',
           type: 'xyz',
@@ -28,19 +29,6 @@ angular.module( 'services.VtmTileService', [])
           name: 'VTM Plots UTFGrid',
           type: 'utfGrid',
           url: tileserver + '/vtmplots_utfgrid/{z}/{x}/{y}.json',
-          visible: true,
-          pluginOptions: { 'useJsonP': false}
-        },
-        photos : {
-          name: 'VTM Photos',
-          type: 'xyz',
-          url: tileserver + '/vtmphotos/{z}/{x}/{y}.png',
-          visible: true
-        },
-        photos_utfgrid : {
-          name: 'VTM Photos UTFGrid',
-          type: 'utfGrid',
-          url: tileserver + '/vtmphotos_utfgrid/{z}/{x}/{y}.json',
           visible: true,
           pluginOptions: { 'useJsonP': false}
         },
@@ -73,15 +61,27 @@ angular.module( 'services.VtmTileService', [])
         counties : {
           name: 'Counties',
           type: 'xyz',
-          url: tileserver + '/counties/{z}/{x}/{y}.png',
+          url: tileserver + '/cacounties/{z}/{x}/{y}.png',
           visible: true
         },
         counties_utfgrid : {
           name: 'Counties UTFGrid',
           type: 'utfGrid',
-          url: tileserver + '/counties_utfgrid/{z}/{x}/{y}.json',
+          url: tileserver + '/cacounties_utfgrid/{z}/{x}/{y}.json',
           visible: true,
           pluginOptions: { 'useJsonP': false}
+        },
+        //marker group
+        photos : {
+          name: 'VTM Photos',
+          type: 'group',
+          visible: true
+        },
+        //marker group
+        photos_custom : {
+          name: 'VTM2 Photos',
+          type: 'custom',
+          visible: true
         }
       };
 
@@ -89,16 +89,26 @@ angular.module( 'services.VtmTileService', [])
     //public functions          
      return {
           loadLayer: function(layer) {
-            return tileLayers[layer];
+            return mapLayers[layer];
           },
           toggleLayer: function(layer) {
-            tileLayers[layer].visible = !tileLayers[layer].visible;
+            mapLayers[layer].visible = !mapLayers[layer].visible;
+            if (mapLayers[layer + '_utfgrid']){
+              mapLayers[layer + '_utfgrid'].visible = !mapLayers[layer + '_utfgrid'].visible;
+            }
+
           },
           hideLayer: function(layer) {
-            tileLayers[layer].visible = false;
+            mapLayers[layer].visible = false;
+            if (mapLayers[layer + '_utfgrid']){
+              mapLayers[layer + '_utfgrid'].visible = false;
+            }
           },
           showLayer: function(layer) {
-            tileLayers[layer].visible = true;
+            mapLayers[layer].visible = true;
+            if (mapLayers[layer + '_utfgrid']){
+              mapLayers[layer + '_utfgrid'].visible = true;
+            }
           }
      };
 

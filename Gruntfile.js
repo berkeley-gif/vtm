@@ -153,8 +153,8 @@ module.exports = function ( grunt ) {
           files: [
               {
                   src: [ '**' ],
-                  dest: '<%= build_dir %>/vendor/leaflet-dist/images',
-                  cwd: 'vendor/leaflet-dist/images',
+                  dest: '<%= build_dir %>/vendor/leaflet/dist/images/',
+                  cwd: 'vendor/leaflet/dist/images/',
                   expand: true
               }
           ]
