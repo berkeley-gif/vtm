@@ -1,4 +1,4 @@
-angular.module('templates-app', ['about/about.bibliography.tpl.html', 'about/about.citations.tpl.html', 'about/about.description.tpl.html', 'about/about.faq.tpl.html', 'about/about.metadata.tpl.html', 'about/about.overview.tpl.html', 'about/about.plotdata.tpl.html', 'about/about.plotmaps.tpl.html', 'about/about.tpl.html', 'data/data.overview.tpl.html', 'data/data.photos.tpl.html', 'data/data.plots.tpl.html', 'data/data.tpl.html', 'data/data.vegetation.tpl.html', 'data/photos.popup.tpl.html', 'data/plots.popup.tpl.html', 'data/vegetation.popup.tpl.html', 'home/home.tpl.html', 'howto/howto.overview.tpl.html', 'howto/howto.tpl.html']);
+angular.module('templates-app', ['about/about.bibliography.tpl.html', 'about/about.citations.tpl.html', 'about/about.description.tpl.html', 'about/about.faq.tpl.html', 'about/about.metadata.tpl.html', 'about/about.overview.tpl.html', 'about/about.plotdata.tpl.html', 'about/about.plotmaps.tpl.html', 'about/about.tpl.html', 'data/data.overview.tpl.html', 'data/data.photos.tpl.html', 'data/data.plots.tpl.html', 'data/data.popup.tpl.html', 'data/data.tpl.html', 'data/data.vegetation.tpl.html', 'data/popup/photos.popup.tpl.html', 'data/popup/plots.popup.tpl.html', 'data/popup/vegetation.popup.tpl.html', 'home/home.tpl.html', 'howto/howto.overview.tpl.html', 'howto/howto.tpl.html']);
 
 angular.module("about/about.bibliography.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("about/about.bibliography.tpl.html",
@@ -1273,20 +1273,58 @@ angular.module("data/data.photos.tpl.html", []).run(["$templateCache", function(
 
 angular.module("data/data.plots.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("data/data.plots.tpl.html",
-    "<div class=\"row\">\n" +
-    "	<div class=\"col-md-12\">\n" +
+    "<div class=\"row\" style=\"height:70%;\">\n" +
+    "	<div class=\"col-md-12\" style=\"height:100%;\">\n" +
     "		<div class=\"tool-wrapper\">\n" +
-    "			<div class=\"row\">\n" +
-    "				<div class=\"col-md-12\">\n" +
-    "					<leaflet id=\"map\" center=\"center\" layers=\"layers\" geojson=\"geojson\" defaults=\"defaults\" controls=\"controls\" markers=\"markers\" watch-markers=\"no\" bounds=\"bounds\">\n" +
-    "						<div ng-show=\"layerProp\">\n" +
-    "							<div class=\"custom-overlay\" >\n" +
-    "								<ng-include src=\"'data/plots.popup.tpl.html'\" scope=\"layerProp\" onload=\"\"></ng-include>\n" +
+    "\n" +
+    "					<div class=\"map-layer-controls\">\n" +
+    "						<ul >\n" +
+    "							<li custom-layer-control icon=\"fa fa-circle\" layer=\"plots\">\n" +
+    "							<li custom-layer-control icon=\"fa fa-camera\" layer=\"photos\">\n" +
+    "							<li custom-layer-control icon=\"fa fa-leaf\" layer=\"veg\">\n" +
+    "						</ul>\n" +
+    "					</div>\n" +
+    "\n" +
+    "					<div class=\"map-popup\" >\n" +
+    "						<span ng-hide=\"results.counties.length\">Right click feature for more information.</span>\n" +
+    "						<div class=\"info-box\" ng-show=\"results.counties.length\" ng-cloak>\n" +
+    "							<div >\n" +
+    "								County:\n" +
+    "									<span ng-repeat=\"county in results.counties\" repeat-delimiter=\",\">\n" +
+    "									{{ county.name }}\n" +
+    "									</span>\n" +
+    "							</div>\n" +
+    "							<div>\n" +
+    "								VTM Quads:\n" +
+    "									<span ng-repeat=\"quad in results.quads\" repeat-delimiter=\",\">\n" +
+    "									{{ quad.record | split:':':1 }}\n" +
+    "									</span>\n" +
+    "							</div>\n" +
+    "							<div ng-show=\"results.plots.length\">\n" +
+    "								Plots:\n" +
+    "									<span ng-repeat=\"plot in results.plots\" repeat-delimiter=\",\">\n" +
+    "									{{ plot.plot_no }}\n" +
+    "									</span>\n" +
+    "							</div>\n" +
+    "								<div ng-show=\"results.photos.length\">\n" +
+    "								Plots:\n" +
+    "									<span ng-repeat=\"photo in results.photos\" repeat-delimiter=\",\">\n" +
+    "									{{ photo.record }}\n" +
+    "									</span>\n" +
+    "							</div>\n" +
+    "							<div ng-show=\"results.veg.length\">\n" +
+    "								Plots:\n" +
+    "									<span ng-repeat=\"veg in results.veg\" repeat-delimiter=\",\">\n" +
+    "									{{ veg.whr }}\n" +
+    "									</span>\n" +
     "							</div>\n" +
     "						</div>\n" +
+    "\n" +
+    " 					<!-- <div  custom-map-popup layerProp=\"layerProp\" ></div> -->\n" +
+    "					</div>\n" +
+    "\n" +
+    "					<leaflet id=\"map\" center=\"map.center\" layers=\"map.layers\" geojson=\"map.geojson\" defaults=\"map.defaults\" controls=\"map.controls\" markers=\"map.markers\"  bounds=\"map.bounds\">\n" +
     "					</leaflet>\n" +
-    "				</div>\n" +
-    "			</div>\n" +
     "\n" +
     "		</div>\n" +
     "\n" +
@@ -1323,6 +1361,45 @@ angular.module("data/data.plots.tpl.html", []).run(["$templateCache", function($
     "");
 }]);
 
+angular.module("data/data.popup.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("data/data.popup.tpl.html",
+    "<ul>\n" +
+    "	<li>Plot Number:{{layerProp.plot_no}}</li>\n" +
+    "	<li>Plot Map: {{layerProp.map_reference}}</li>\n" +
+    "	<li>Quadrangle: {{layerProp.quadrangle}}</li>\n" +
+    "	<li>TRS: {{layerProp.trs}}</li>\n" +
+    "	<li>Locality: {{layerProp.locality}}</li>\n" +
+    "	<li>Date: {{layerProp.begin_date | date:\"shortDate\"}}</li>\n" +
+    "	<li>Coordinates: {{layerProp.geojson.coordinates[0]}}, {{layerProp.geojson.coordinates[1]}}</li>\n" +
+    "	<li>Coordinate uncertainty (mt): {{layerProp.coordinate_uncertainty_in_meters}}</li>\n" +
+    "	<li>Elevation: {{layerProp.elevation}}</li>\n" +
+    "	<li>Penetrability: {{layerProp.penetrability}}</li>\n" +
+    "	<li>Taken by: {{layerProp.taken_by}}</li>\n" +
+    "	<li>Slope (%): {{layerProp.slope_percent}}</li>\n" +
+    "	<li>Trees:\n" +
+    "		<span ng-hide=\"layerProp.trees.length\">\n" +
+    "        	&nbsp;No data\n" +
+    "		</span>\n" +
+    "		<ul ng-show=\"layerProp.trees.length\">\n" +
+    "        	<li ng-repeat=\"obs in layerProp.trees\">\n" +
+    "            	<a ng-href=\"{{obs.url}}\" target=\"_blank\">{{obs.scientific_name}}</a>\n" +
+    "        	</li>\n" +
+    "		</ul>\n" +
+    "	</li>\n" +
+    "	<li>Brushes:\n" +
+    "		<span ng-hide=\"layerProp.brushes.length\">\n" +
+    "        	&nbsp;No data\n" +
+    "		</span>\n" +
+    "		<ul ng-show=\"layerProp.brushes.length\">\n" +
+    "        	<li ng-repeat=\"obs in layerProp.brushes\">\n" +
+    "            	<a ng-href=\"{{obs.url}}\" target=\"_blank\">{{obs.scientific_name}}</a>\n" +
+    "        	</li>\n" +
+    "		</ul>\n" +
+    "	</li>\n" +
+    "	<li>More details <a ng-href=\"{{layerProp.url}}\" target=\"_blank\"><i class=\"fa fa-info-circle\"></i></a></li>\n" +
+    "</ul>");
+}]);
+
 angular.module("data/data.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("data/data.tpl.html",
     "<div class=\"container\" id=\"data-grid\">\n" +
@@ -1339,7 +1416,7 @@ angular.module("data/data.tpl.html", []).run(["$templateCache", function($templa
     "        </div>\n" +
     "    </div>\n" +
     "    <hr/>\n" +
-    "    <div ui-view></div>\n" +
+    "    <div ui-view style=\"height:100%;\"></div>\n" +
     "</div>");
 }]);
 
@@ -1455,8 +1532,8 @@ angular.module("data/data.vegetation.tpl.html", []).run(["$templateCache", funct
     "");
 }]);
 
-angular.module("data/photos.popup.tpl.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("data/photos.popup.tpl.html",
+angular.module("data/popup/photos.popup.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("data/popup/photos.popup.tpl.html",
     "<ul>\n" +
     "	<li><b>{{layerProp.record}}</b></li>\n" +
     "	<li><i>Authors:</i> {{layerProp.authors}}</li>\n" +
@@ -1476,8 +1553,8 @@ angular.module("data/photos.popup.tpl.html", []).run(["$templateCache", function
     "</ul>");
 }]);
 
-angular.module("data/plots.popup.tpl.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("data/plots.popup.tpl.html",
+angular.module("data/popup/plots.popup.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("data/popup/plots.popup.tpl.html",
     "<ul>\n" +
     "	<li>Plot Number:{{layerProp.plot_no}}</li>\n" +
     "	<li>Plot Map: {{layerProp.map_reference}}</li>\n" +
@@ -1515,8 +1592,8 @@ angular.module("data/plots.popup.tpl.html", []).run(["$templateCache", function(
     "</ul>");
 }]);
 
-angular.module("data/vegetation.popup.tpl.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("data/vegetation.popup.tpl.html",
+angular.module("data/popup/vegetation.popup.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("data/popup/vegetation.popup.tpl.html",
     "<ul>\n" +
     "	<li><i>WHR:</i> {{layerProp.whr}}</li>\n" +
     "	<li><i>Primary species:</i> {{layerProp.primary_species}}</li>\n" +

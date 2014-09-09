@@ -1,0 +1,35 @@
+<ul>
+	<li>Plot Number:{{layerProp.plot_no}}</li>
+	<li>Plot Map: {{layerProp.map_reference}}</li>
+	<li>Quadrangle: {{layerProp.quadrangle}}</li>
+	<li>TRS: {{layerProp.trs}}</li>
+	<li>Locality: {{layerProp.locality}}</li>
+	<li>Date: {{layerProp.begin_date | date:"shortDate"}}</li>
+	<li>Coordinates: {{layerProp.geojson.coordinates[0]}}, {{layerProp.geojson.coordinates[1]}}</li>
+	<li>Coordinate uncertainty (mt): {{layerProp.coordinate_uncertainty_in_meters}}</li>
+	<li>Elevation: {{layerProp.elevation}}</li>
+	<li>Penetrability: {{layerProp.penetrability}}</li>
+	<li>Taken by: {{layerProp.taken_by}}</li>
+	<li>Slope (%): {{layerProp.slope_percent}}</li>
+	<li>Trees:
+		<span ng-hide="layerProp.trees.length">
+        	&nbsp;No data
+		</span>
+		<ul ng-show="layerProp.trees.length">
+        	<li ng-repeat="obs in layerProp.trees">
+            	<a ng-href="{{obs.url}}" target="_blank">{{obs.scientific_name}}</a>
+        	</li>
+		</ul>
+	</li>
+	<li>Brushes:
+		<span ng-hide="layerProp.brushes.length">
+        	&nbsp;No data
+		</span>
+		<ul ng-show="layerProp.brushes.length">
+        	<li ng-repeat="obs in layerProp.brushes">
+            	<a ng-href="{{obs.url}}" target="_blank">{{obs.scientific_name}}</a>
+        	</li>
+		</ul>
+	</li>
+	<li>More details <a ng-href="{{layerProp.url}}" target="_blank"><i class="fa fa-info-circle"></i></a></li>
+</ul>

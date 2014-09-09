@@ -68,11 +68,18 @@ angular.module( 'services.VtmPhotoService', ['services.HolosPaginatedResource'])
               } 
             }
             console.log(queryParams);
-            HolosPaginated.loadList('photos', queryParams).then(function(data){
-              createMarkers(data);
-            });
-            return markerArray;
 
+            //Send request to Holos
+            HolosPaginated.loadList('photos', queryParams).then(function(data){
+              console.log('from holos', data);
+              if (data.length > 0) {
+                createMarkers(data);
+              }              
+            });
+
+          },
+          getMarkers: function(){
+            return markerArray;
           }
      };
 

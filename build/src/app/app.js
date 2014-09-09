@@ -56,11 +56,16 @@ angular.module( 'vtm', [
 
   //Add a Response Interceptor to convert object returned by Holos API to array for 
   //Restangular getList() operations
-  RestangularProvider.setFullRequestInterceptor(function(element, operation, path, url, headers, params, httpConfig) {
+  RestangularProvider.setErrorInterceptor(function(response, deferred, responseHandler) {
     
-    if (operation === "getList") {
-      //console.log('intercepted url', url);
+    if (response.status == 400) {
+      console.log("The request had bad syntax or was inherently impossible to be satisfied.");
+    } else if (response.status == 404) {
+      console.log("Resource not available...");
+    } else {
+      console.log("Response received with HTTP error code: " + response.status );
     }
+    return false; // stop the promise chain
 
   });
 

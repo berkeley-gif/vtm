@@ -98,6 +98,9 @@ angular.module( 'services.VtmLayerService', [])
             }
 
           },
+          isVisible: function(layer) {
+            return mapLayers[layer].visible;
+          },
           hideLayer: function(layer) {
             mapLayers[layer].visible = false;
             if (mapLayers[layer + '_utfgrid']){

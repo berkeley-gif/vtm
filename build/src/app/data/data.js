@@ -19,7 +19,9 @@ angular.module( 'vtm.data', [
   'services.VtmLayerService',
   'restangular',
   'services.VtmPhotoService',
-  'services.HolosPaginatedResource'
+  'directives.customLayerControl',
+  'directives.customMapPopup',
+  'directives.repeatDelimiter'
 ])
 
 /**
@@ -102,148 +104,140 @@ angular.module( 'vtm.data', [
     //plots_utfgrid: VtmLayers.loadLayer('plots_utfgrid'),
     photos: VtmLayers.loadLayer('photos')     //marker group layer
   };
+
   
-  //Define custom controls  
-  var downloadFeaturesControl = L.control(); // DownloadFeaturesControl
-  downloadFeaturesControl.setPosition('bottomright');
-  downloadFeaturesControl.onAdd = function (map) {
-    var div = L.DomUtil.create('div','download-features');
-    div.innerHTML = '<button type="button" class="btn btn-primary">Download features in view</button>';
-    L.DomEvent
-    .on(div, 'click', L.DomEvent.stopPropagation)
-    .on(div, 'click', L.DomEvent.preventDefault)
-    .on(div, 'click', function() {
-      leafletData.getMap().then(function(map) {
-        var url = ROOT + apiUrl + "/?bbox="+map.getBounds().toBBoxString()+"&format=geojson";
-        //console.log("BBox: " + map.getBounds().toBBoxString());
-        window.open(url);
-      });
-    })
-    .on(div, 'dblclick', L.DomEvent.stopPropagation);
-    return div;
-  };
-
-  var toggleVegControl = L.control(); // DownloadFeaturesControl
-  toggleVegControl.setPosition('bottomleft');
-  toggleVegControl.onAdd = function (map) {
-    var div = L.DomUtil.create('div','custom-control');
-    div.innerHTML = '<a href="" class="toggle-veg" title="Vegetation Show/Hide"><i class="fa fa-leaf"></i></a>';
-    L.DomEvent
-    .on(div, 'click', L.DomEvent.stopPropagation)
-    .on(div, 'click', L.DomEvent.preventDefault)
-    .on(div, 'click', function() {
-      toggleLayer('veg');
-    })
-    .on(div, 'dblclick', L.DomEvent.stopPropagation);
-    return div;
-  };
-
-  var togglePlotsControl = L.control(); // DownloadFeaturesControl
-  togglePlotsControl.setPosition('bottomleft');
-  togglePlotsControl.onAdd = function (map) {
-    var div = L.DomUtil.create('div','custom-control');
-    div.innerHTML = '<a href="" class="toggle-plots" title="Plots Show/Hide"><i class="fa fa-circle"></i></a>';
-    L.DomEvent
-    .on(div, 'click', L.DomEvent.stopPropagation)
-    .on(div, 'click', L.DomEvent.preventDefault)
-    .on(div, 'click', function() {
-      toggleLayer('plots');
-    })
-    .on(div, 'dblclick', L.DomEvent.stopPropagation);
-    return div;
-  };
-
-  var togglePhotosControl = L.control(); // DownloadFeaturesControl
-  togglePhotosControl.setPosition('bottomleft');
-  togglePhotosControl.onAdd = function (map) {
-    var div = L.DomUtil.create('div','custom-control');
-    div.innerHTML = '<a href="" class="toggle-photos" title="Photos Show/Hide"><i class="fa fa-camera"></i></a>';
-    L.DomEvent
-    .on(div, 'click', L.DomEvent.stopPropagation)
-    .on(div, 'click', L.DomEvent.preventDefault)
-    .on(div, 'click', function() {
-      toggleLayer('photos');
-    })
-    .on(div, 'dblclick', L.DomEvent.stopPropagation);
-    return div;
-  };
-
   // Putting all the map parameters together
   angular.extend($scope, {
-    bounds: bounds,
-    maxBounds: maxBounds,
-    layers: {
-      baselayers: {
-        grayscale: VtmLayers.loadLayer('grayscale')
+    map : {
+      bounds: bounds,
+      maxBounds: maxBounds,
+      layers: {
+        baselayers: {
+          grayscale: VtmLayers.loadLayer('grayscale')
+        },
+        overlays: overlays
       },
-      overlays: overlays
-    },
-    defaults : {
-      map: {
-        minZoom: 6,
-        scrollWheelZoom: false,
-        doubleClickZoom: false,
-        contextmenu: true,
-        contextmenuItems: [
-          {
-            text: 'County'
-          },
-          {
-            text: 'VTM Quad',
-            callback: queryVTMQuads
-          }, '-',
-          {
-            text: 'Plot',
-            //callback: zoomIn
-            disabled: true
-          },
-          {
-            text: 'Vegetation'
-            //callback: zoomOut
-          },
-          {
-            text: 'Photo'
-            //callback: zoomOut
-          }
-        ]
+      defaults : {
+        map: {
+          minZoom: 6,
+          scrollWheelZoom: false,
+          doubleClickZoom: false,
+          contextmenu: true,
+          contextmenuItems: [
+            {
+              text: 'Query features',
+              callback: queryFeatures
+            }
+          ]
+        }
+      },
+      controls : {
+          custom: []
       }
-    },
-    controls : {
-        custom: [ toggleVegControl, togglePlotsControl, togglePhotosControl]
     }
+
   });
 
-  function queryVTMQuads(args){
+  $scope.results = {
+    counties : [],
+    quads : [],
+    plots: [],
+    photos: [],
+    veg: []
+  };
+
+  function queryFeatures(args){
 
     var latlng = args.latlng;
+    console.log(latlng);
+
+/*    var latlngBounds = leafletBoundsHelpers.createBoundsFromArray([
+      [ latlng.lat+0.002, latlng.lng+0.002 ],
+      [ latlng.lat-0.002, latlng.lng-0.002 ]
+    ]);*/
 
     var latlngBounds = leafletBoundsHelpers.createBoundsFromArray([
-      [ latlng.lat-0.002, latlng.lng-0.002 ],
-      [ latlng.lat+0.002, latlng.lng+0.002 ]
+      [ latlng.lat, latlng.lng],
+      [ latlng.lat, latlng.lng]
     ]);
+
     var southWest = latlngBounds.southWest;
+    console.log('southwest', southWest);
     var northEast = latlngBounds.northEast;
+    console.log('northEast', northEast);
     
     var bboxString = southWest.lng + ',' + southWest.lat + ',' + northEast.lng + ',' + northEast.lat;
     
     console.log('map click event', bboxString);
 
-    var vtmquads = Restangular.one('layers', 'vtmquads');
-
-    vtmquads.getList('features', {bbox: bboxString}).then(function(data){
-      console.log('from map click', data);
+    var counties = Restangular.one('layers', 'cacounties');
+    counties.getList('features', {bbox: bboxString, fields: 'name'}).then(function(data){
+      if (data.results.length > 0){
+        $scope.results['counties'] = data.results;
+      }
     });
+
+
+    var vtmquads = Restangular.one('layers', 'vtmquads');
+    vtmquads.getList('features', {bbox: bboxString, fields: 'name'}).then(function(data){
+      if (data.results.length > 0){
+        $scope.results['quads'] = data.results;
+      }
+    });
+
+    if ( VtmLayers.isVisible('plots') ) {
+      var vtmplots = Restangular.all('vtmplots');
+      vtmplots.getList({bbox: bboxString}).then(function(data){
+        if (data.results.length > 0){
+          $scope.results['plots'].length = 0;
+          $scope.results['plots'] = data.results;
+        }
+      });
+    } else {
+      $scope.results['plots'].length = 0;
+    }
+
+    if ( VtmLayers.isVisible('photos') ) {
+      var vtmphotos = Restangular.all('photos');
+      vtmphotos.getList({ bbox: bboxString, 'collection_code':'vtm', 'georeferenced': true}).then(function(data){
+        if (data.results.length > 0){
+          $scope.results['photos'].length = 0;
+          $scope.results['photos'] = data.results;
+        }
+      });
+    } else {
+      $scope.results['photos'].length = 0;
+    }
+
+    if ( VtmLayers.isVisible('veg') ) {
+      var vtmveg = Restangular.all('vtmveg');
+      vtmveg.getList({bbox: bboxString}).then(function(data){
+        if (data.results.length > 0){
+          $scope.results['veg'].length = 0;
+          $scope.results['veg'] = data.results;
+        }
+      });
+    } else {
+      $scope.results['veg'].length = 0;
+    }
+
+
+
+    console.log($scope.results);
 
   }
 
+
+
   function loadPhotoMarkers(bboxString){
     console.log("BBox: " + bboxString);
-    $scope.markers = VtmPhotos.loadMarkers({'bbox': bboxString});
+    VtmPhotos.loadMarkers({'bbox': bboxString});
+    $scope.map.markers = VtmPhotos.getMarkers();
     console.log('markersfrom data', $scope.markers);
   }
 
   $scope.$on('leafletDirectiveMap.moveend', function(){
-
+    console.log('moveend fired');
     leafletData.getMap().then(function(leafletMapObject) {
       var bboxString = leafletMapObject.getBounds().toBBoxString();
       var bboxArray = bboxString.split(',').map(function(val){
@@ -255,14 +249,7 @@ angular.module( 'vtm.data', [
   });
 
 
-  function toggleLayer(layername) {
 
-      $scope.$apply(function() {
-        VtmLayers.toggleLayer(layername);
-        console.log($scope.defaults.map.contextmenuItems);
-      });   
-
-  }
 
 
 /*  $scope.$on('leafletDirectiveMap.utfgridClick', function(event, leafletEvent) {
@@ -308,7 +295,7 @@ angular.module( 'vtm.data', [
   });*/
 
   $scope.showAttribution = false;
-  $scope.mapAttributionText = 'Data provided by <a href="http://openstreetmap.org" target="_blank">' +
+  $scope.mapAttributionText = 'VTM data provided by <a href="http://openstreetmap.org" target="_blank">' +
                               ' HOLOS</a> Berkeley Ecoinformatics Engine. Basemap data by &copy;' +
                               ' <a href="http://openstreetmap.org" target="_blank">OpenStreetMap</a>' +
                               ' contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/" target="_blank">' +
