@@ -149,8 +149,10 @@ angular.module( 'vtm.data', [
   function queryFeatures(args){
 
     var latlng = args.latlng;
-    console.log(latlng);
+    
 
+    var pointGeojson= '{"type":"point","coordinates":[' + latlng.lng + ',' + latlng.lat + ']}';
+    console.log(pointGeojson);
 /*    var latlngBounds = leafletBoundsHelpers.createBoundsFromArray([
       [ latlng.lat+0.002, latlng.lng+0.002 ],
       [ latlng.lat-0.002, latlng.lng-0.002 ]
@@ -179,7 +181,7 @@ angular.module( 'vtm.data', [
 
 
     var vtmquads = Restangular.one('layers', 'vtmquads');
-    vtmquads.getList('features', {bbox: bboxString, fields: 'name'}).then(function(data){
+    vtmquads.getList('features', {bbox : bboxString, fields: 'name'}).then(function(data){
       if (data.results.length > 0){
         $scope.results['quads'] = data.results;
       }
@@ -187,7 +189,7 @@ angular.module( 'vtm.data', [
 
     if ( VtmLayers.isVisible('plots') ) {
       var vtmplots = Restangular.all('vtmplots');
-      vtmplots.getList({bbox: bboxString}).then(function(data){
+      vtmplots.getList({g: pointGeojson}).then(function(data){
         if (data.results.length > 0){
           $scope.results['plots'].length = 0;
           $scope.results['plots'] = data.results;
@@ -199,7 +201,7 @@ angular.module( 'vtm.data', [
 
     if ( VtmLayers.isVisible('photos') ) {
       var vtmphotos = Restangular.all('photos');
-      vtmphotos.getList({ bbox: bboxString, 'collection_code':'vtm', 'georeferenced': true}).then(function(data){
+      vtmphotos.getList({ g: pointGeojson, 'collection_code':'vtm', 'georeferenced': true}).then(function(data){
         if (data.results.length > 0){
           $scope.results['photos'].length = 0;
           $scope.results['photos'] = data.results;
@@ -211,7 +213,7 @@ angular.module( 'vtm.data', [
 
     if ( VtmLayers.isVisible('veg') ) {
       var vtmveg = Restangular.all('vtmveg');
-      vtmveg.getList({bbox: bboxString}).then(function(data){
+      vtmveg.getList({g: pointGeojson}).then(function(data){
         if (data.results.length > 0){
           $scope.results['veg'].length = 0;
           $scope.results['veg'] = data.results;

@@ -1307,13 +1307,13 @@ angular.module("data/data.plots.tpl.html", []).run(["$templateCache", function($
     "									</span>\n" +
     "							</div>\n" +
     "								<div ng-show=\"results.photos.length\">\n" +
-    "								Plots:\n" +
+    "								Photos:\n" +
     "									<span ng-repeat=\"photo in results.photos\" repeat-delimiter=\",\">\n" +
     "									{{ photo.record }}\n" +
     "									</span>\n" +
     "							</div>\n" +
     "							<div ng-show=\"results.veg.length\">\n" +
-    "								Plots:\n" +
+    "								Veg:\n" +
     "									<span ng-repeat=\"veg in results.veg\" repeat-delimiter=\",\">\n" +
     "									{{ veg.whr }}\n" +
     "									</span>\n" +
