@@ -1291,13 +1291,13 @@ angular.module("data/data.plots.tpl.html", []).run(["$templateCache", function($
     "							<div >\n" +
     "								County:\n" +
     "									<span ng-repeat=\"county in results.counties\" repeat-delimiter=\",\">\n" +
-    "									{{ county.name }}\n" +
+    "									{{ county.properties.name }}\n" +
     "									</span>\n" +
     "							</div>\n" +
     "							<div>\n" +
     "								VTM Quads:\n" +
     "									<span ng-repeat=\"quad in results.quads\" repeat-delimiter=\",\">\n" +
-    "									{{ quad.record | split:':':1 }}\n" +
+    "									{{ quad.properties.record | split:':':1 }}\n" +
     "									</span>\n" +
     "							</div>\n" +
     "							<div ng-show=\"results.plots.length\">\n" +

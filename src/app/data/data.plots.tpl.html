@@ -16,13 +16,13 @@
 							<div >
 								County:
 									<span ng-repeat="county in results.counties" repeat-delimiter=",">
-									{{ county.name }}
+									{{ county.properties.name }}
 									</span>
 							</div>
 							<div>
 								VTM Quads:
 									<span ng-repeat="quad in results.quads" repeat-delimiter=",">
-									{{ quad.record | split:':':1 }}
+									{{ quad.properties.record | split:':':1 }}
 									</span>
 							</div>
 							<div ng-show="results.plots.length">
