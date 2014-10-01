@@ -43,7 +43,8 @@ angular.module( 'services.HolosPaginatedResource', ['restangular'])
                 if (d['next']) {
                   nextUrl = d['next'];
                   //Strip nextUrl of query param &format=json because Restangular
-                  //is configured to add it by default to every request (configured in app.js)
+                  //is configured to add it by default to every request
+                  //(configured in app.js)
                   nextUrl = nextUrl.replace(/&format=json/g, '');
                   loadNextPage(nextUrl);
                 }

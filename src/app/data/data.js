@@ -150,24 +150,28 @@ angular.module( 'vtm.data', [
 
     var latlng = args.latlng;
     
+    //Create geojson geometry string fpr query
+    var pointGeojson = 
+      { 
+        'type' : 'point',
+        'coordinates' : [latlng.lng, latlng.lat]
+      };
 
-    var pointGeojson= '{"type":"point","coordinates":[' + latlng.lng + ',' + latlng.lat + ']}';
     console.log(pointGeojson);
-/*    var latlngBounds = leafletBoundsHelpers.createBoundsFromArray([
+
+    ////Create bounding box for query
+    var latlngBounds = leafletBoundsHelpers.createBoundsFromArray([
       [ latlng.lat+0.002, latlng.lng+0.002 ],
       [ latlng.lat-0.002, latlng.lng-0.002 ]
-    ]);*/
-
-    var latlngBounds = leafletBoundsHelpers.createBoundsFromArray([
-      [ latlng.lat, latlng.lng],
-      [ latlng.lat, latlng.lng]
     ]);
 
+/*    var latlngBounds = leafletBoundsHelpers.createBoundsFromArray([
+      [ latlng.lat, latlng.lng],
+      [ latlng.lat, latlng.lng]
+    ]);*/
+
     var southWest = latlngBounds.southWest;
-    console.log('southwest', southWest);
-    var northEast = latlngBounds.northEast;
-    console.log('northEast', northEast);
-    
+    var northEast = latlngBounds.northEast;    
     var bboxString = southWest.lng + ',' + southWest.lat + ',' + northEast.lng + ',' + northEast.lat;
     
     console.log('map click event', bboxString);
@@ -179,17 +183,17 @@ angular.module( 'vtm.data', [
       }
     });
 
-
     var vtmquads = Restangular.one('layers', 'vtmquads');
-    vtmquads.getList('features', {bbox : bboxString, fields: 'name'}).then(function(data){
+    vtmquads.getList('features', {bbox: bboxString, fields: 'name'}).then(function(data){
       if (data.results.length > 0){
+        console.log(data.results);
         $scope.results['quads'] = data.results;
       }
     });
 
     if ( VtmLayers.isVisible('plots') ) {
       var vtmplots = Restangular.all('vtmplots');
-      vtmplots.getList({g: pointGeojson}).then(function(data){
+      vtmplots.getList({bbox: bboxString}).then(function(data){
         if (data.results.length > 0){
           $scope.results['plots'].length = 0;
           $scope.results['plots'] = data.results;
@@ -201,7 +205,7 @@ angular.module( 'vtm.data', [
 
     if ( VtmLayers.isVisible('photos') ) {
       var vtmphotos = Restangular.all('photos');
-      vtmphotos.getList({ g: pointGeojson, 'collection_code':'vtm', 'georeferenced': true}).then(function(data){
+      vtmphotos.getList({ bbox: bboxString, 'collection_code':'vtm', 'georeferenced': true}).then(function(data){
         if (data.results.length > 0){
           $scope.results['photos'].length = 0;
           $scope.results['photos'] = data.results;
@@ -249,6 +253,13 @@ angular.module( 'vtm.data', [
     });
 
   });
+
+  $scope.$on('leafletDirectiveMarkers.click', function(){
+    console.log('marker click fired');
+
+
+  });
+
 
 
 

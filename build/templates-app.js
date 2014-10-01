@@ -1291,13 +1291,13 @@ angular.module("data/data.plots.tpl.html", []).run(["$templateCache", function($
     "							<div >\n" +
     "								County:\n" +
     "									<span ng-repeat=\"county in results.counties\" repeat-delimiter=\",\">\n" +
-    "									{{ county.name }}\n" +
+    "									{{ county.properties.name }}\n" +
     "									</span>\n" +
     "							</div>\n" +
     "							<div>\n" +
     "								VTM Quads:\n" +
     "									<span ng-repeat=\"quad in results.quads\" repeat-delimiter=\",\">\n" +
-    "									{{ quad.record | split:':':1 }}\n" +
+    "									{{ quad.properties.record | split:':':1 }}\n" +
     "									</span>\n" +
     "							</div>\n" +
     "							<div ng-show=\"results.plots.length\">\n" +
@@ -1468,17 +1468,17 @@ angular.module("data/data.vegetation.tpl.html", []).run(["$templateCache", funct
     "<div class=\"row\">\n" +
     "    <div class=\"col-md-5\">\n" +
     "        <h2>General information</h2>\n" +
-    "		<p>Dominant vegetation type maps were mapped with a minimum mapping unit of 16 ha by direct observation \"from ridges, peaks, and other vantage points\" in the field by VTM crews, directly upon 15-minute (1: 62,500-scale) topographic quadrangles, and supplemented by sample plots. At sample plots, information on overstory and understory vegetation were collected. According to his reports, it took a two-man crew from six to eight weeks to complete the fieldwork for a 15-minute quad of about 6,070 ha.  The vegetation mapping scheme was driven by \"the dominant vegetation visible externally\", in other words, by overstory species recognition, and included \"mosaic types\" - complex vegetation conditions that resulted from fire or other disturbances, and pure and mixed stand conditions which they associated with \"natural plant associations\".  The mapped products include 215 maps with the major vegetation types shown in different colors and separated by ink lines. These are over printed in color on 7.5-minute, 15-minute, and 30-minute USGS topographic quadrangles. For more information on the vegetation maps, please see: <a ng-href=\"#/about/publications\">Publications</a> page.</p>\n" +
+    "        <p>Dominant vegetation type maps were mapped with a minimum mapping unit of 16 ha by direct observation \"from ridges, peaks, and other vantage points\" in the field by VTM crews, directly upon 15-minute (1: 62,500-scale) topographic quadrangles, and supplemented by sample plots. At sample plots, information on overstory and understory vegetation were collected. According to his reports, it took a two-man crew from six to eight weeks to complete the fieldwork for a 15-minute quad of about 6,070 ha.  The vegetation mapping scheme was driven by \"the dominant vegetation visible externally\", in other words, by overstory species recognition, and included \"mosaic types\" - complex vegetation conditions that resulted from fire or other disturbances, and pure and mixed stand conditions which they associated with \"natural plant associations\".  The mapped products include 215 maps with the major vegetation types shown in different colors and separated by ink lines. These are over printed in color on 7.5-minute, 15-minute, and 30-minute USGS topographic quadrangles. For more information on the vegetation maps, please see: <a ng-href=\"#/about/publications\">Publications</a> page.</p>\n" +
     "    </div>\n" +
     "    <div class=\"col-md-4\">\n" +
     "        <h2>Suggested Citations</h2>\n" +
     "        <ng-include src=\"'about/about.citations.tpl.html'\"></ng-inlcude>\n" +
     "    </div>\n" +
     "    <div class=\"col-md-3\">\n" +
-    "		<h2>Download</h2>\n" +
-    "		<p>Download the entire vegetation layer in shapefile (~1.3G). </p>\n" +
-    "		<p><img src=\"assets/img/download_veg.png\" class=\"img-responsive img-thumbnail\"/></p>\n" +
-    "		<a href=\"https://dev-ecoengine.berkeley.edu/data/Wieslander_Statewide_CANAD83.zip\" class=\"btn btn-primary\">Click here</a>\n" +
+    "        <h2>Download</h2>\n" +
+    "        <p>Download the entire vegetation layer in shapefile (~1.3G). </p>\n" +
+    "        <p><img src=\"assets/img/download_veg.png\" class=\"img-responsive img-thumbnail\"/></p>\n" +
+    "        <a href=\"https://dev-ecoengine.berkeley.edu/data/Wieslander_Statewide_CANAD83.zip\" class=\"btn btn-primary\">Click here</a>\n" +
     "    </div>\n" +
     "</div> -->\n" +
     "\n" +
