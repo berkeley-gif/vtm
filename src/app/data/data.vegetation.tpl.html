@@ -1,78 +1,56 @@
-<!-- <div class="row">
-    <div class="col-md-9">
-        <leaflet id="map" center="center" layers="layers" geojson="geojson" defaults="defaults" controls="controls"></leaflet>
-    </div>
-    <div class="col-md-3">
-        <h2>Info box</h2>
-        <div class="info-box" ng-hide="layerProp">Additional information about the vegetation polygons will be displayed here when you click on them on the map.</div>
-        <div class="info-box" ng-show="layerProp">
-            <p><b>Vegetation name</b>:</p>
-            <ul>
-                <li>{{layerProp.mcv}}</li>
-            </ul>
-            <p><b>Primary species</b>:</p>
-            <ul>
-                <li>{{layerProp.primary_species}}</li>
-            </ul>
-            <p><b>Associated species</b>:
-                <span ng-hide="layerProp.observations.length">
-                    <br />
-                    No associated species found
-                </span>
-                <span ng-show="layerProp.observations.length">
-                    <ul>
-                        <li ng-repeat="obs in layerProp.observations">
-                            {{obs.scientific_name}}
-                        </li>
-                    </ul>
-                </span>
 
-            </p>
-             <p><b>Vegetation Type</b>:</p>
-            <ul>
-                <li>{{layerProp.whr}}</li>
-            </ul>
-            <p><b>For more information</b>:</p>
-            <ul>
-                <li><a ng-href="{{layerProp.url}}" target="_blank">{{layerProp.url}}</a></li>
-            </ul>
-       </div>
-
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-md-5">
-        <h2>General information</h2>
-        <p>Dominant vegetation type maps were mapped with a minimum mapping unit of 16 ha by direct observation "from ridges, peaks, and other vantage points" in the field by VTM crews, directly upon 15-minute (1: 62,500-scale) topographic quadrangles, and supplemented by sample plots. At sample plots, information on overstory and understory vegetation were collected. According to his reports, it took a two-man crew from six to eight weeks to complete the fieldwork for a 15-minute quad of about 6,070 ha.  The vegetation mapping scheme was driven by "the dominant vegetation visible externally", in other words, by overstory species recognition, and included "mosaic types" - complex vegetation conditions that resulted from fire or other disturbances, and pure and mixed stand conditions which they associated with "natural plant associations".  The mapped products include 215 maps with the major vegetation types shown in different colors and separated by ink lines. These are over printed in color on 7.5-minute, 15-minute, and 30-minute USGS topographic quadrangles. For more information on the vegetation maps, please see: <a ng-href="#/about/publications">Publications</a> page.</p>
-    </div>
-    <div class="col-md-4">
-        <h2>Suggested Citations</h2>
-        <ng-include src="'about/about.citations.tpl.html'"></ng-inlcude>
-    </div>
-    <div class="col-md-3">
-        <h2>Download</h2>
-        <p>Download the entire vegetation layer in shapefile (~1.3G). </p>
-        <p><img src="assets/img/download_veg.png" class="img-responsive img-thumbnail"/></p>
-        <a href="https://dev-ecoengine.berkeley.edu/data/Wieslander_Statewide_CANAD83.zip" class="btn btn-primary">Click here</a>
-    </div>
-</div> -->
-
-
-<div class="row">
-    <div class="col-md-12">
+<div class="row" style="height:80%;">
+    <div class="col-md-12" style="height:100%;">
         <div class="tool-wrapper">
-            <div class="row">
-                <div class="col-md-12">
-                    <leaflet id="map" center="center" layers="layers" geojson="geojson" defaults="defaults" controls="controls">
-                        <div ng-show="layerProp">
-                            <div class="custom-overlay" >
-                                <ng-include src="'data/vegetation.popup.tpl.html'" scope="layerProp" onload=""></ng-include>
+
+                    <div class="map-layer-controls">
+                        <ul >
+                            <li custom-layer-control icon="fa fa-circle" layer="plots">
+                            <li custom-layer-control icon="fa fa-camera" layer="photos">
+                            <li custom-layer-control icon="fa fa-leaf" layer="veg">
+                        </ul>
+                    </div>
+
+                    <div class="map-popup" >
+                        <span ng-hide="results.counties.length">Right click feature for more information.</span>
+                        <div class="info-box" ng-show="results.counties.length" ng-cloak>
+                            <div >
+                                County:
+                                    <span ng-repeat="county in results.counties" repeat-delimiter=",">
+                                    {{ county.properties.name }}
+                                    </span>
+                            </div>
+                            <div>
+                                VTM Quads:
+                                    <span ng-repeat="quad in results.quads" repeat-delimiter=",">
+                                    {{ quad.properties.record | split:':':1 }}
+                                    </span>
+                            </div>
+                            <div ng-show="results.plots.length">
+                                Plots:
+                                    <span ng-repeat="plot in results.plots" repeat-delimiter=",">
+                                    {{ plot.plot_no }}
+                                    </span>
+                            </div>
+                                <div ng-show="results.photos.length">
+                                Photos:
+                                    <span ng-repeat="photo in results.photos" repeat-delimiter=",">
+                                    {{ photo.record }}
+                                    </span>
+                            </div>
+                            <div ng-show="results.veg.length">
+                                Veg:
+                                    <span ng-repeat="veg in results.veg" repeat-delimiter=",">
+                                    {{ veg.whr }}
+                                    </span>
                             </div>
                         </div>
+
+                    <!-- <div  custom-map-popup layerProp="layerProp" ></div> -->
+                    </div>
+
+                    <leaflet id="map" center="map.center" layers="map.layers" geojson="map.geojson" defaults="map.defaults" controls="map.controls" markers="map.markers"  bounds="map.bounds">
                     </leaflet>
-                </div>
-            </div>
 
         </div>
 
@@ -87,16 +65,10 @@
             </tab>
             <tab heading="Download">
                 <p> 
-                    <a href="https://dev-ecoengine.berkeley.edu/data/vtm-plots.zip" class="btn btn-primary">All plot data points shapefile for CA</a>
+                    <a href="https://dev-ecoengine.berkeley.edu/data/vtm-plots.zip" class="btn btn-primary">Vegetation shapefile for CA</a>
                 </p>
                 <p> 
-                    <a href="http://localhost:8000/plot/Georeferenced/{{vtm_quad_id}}/" target="_blank" class="btn btn-primary">Georeferenced plot map for VTM Quad {{vtm_quad_id}}</a>
-                </p>
-                <p> 
-                    <a href="http://localhost:8000/plot/Georeferenced/{{vtm_quad_id}}/" target="_blank" class="btn btn-primary">Original ungeoreferenced plot map for VTM Quad {{vtm_quad_id}}</a>
-                </p>
-                <p> 
-                    <a href="http://localhost:8000/plot/Georeferenced/{{vtm_quad_id}}/" target="_blank" class="btn btn-primary">Georeferenced plot data points shapefile for VTM Quad {{vtm_quad_id}}</a>
+                    <a href="http://localhost:8000/plot/Georeferenced/{{vtm_quad_id}}/" target="_blank" class="btn btn-primary">Georeferenced veg map for VTM Quad {{vtm_quad_id}}</a>
                 </p>
             </tab>
             <tab heading="Suggested Citations">
@@ -105,3 +77,4 @@
         </tabset>
     </div>
 </div>
+

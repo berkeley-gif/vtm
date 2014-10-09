@@ -1219,20 +1219,58 @@ angular.module("data/data.overview.tpl.html", []).run(["$templateCache", functio
 
 angular.module("data/data.photos.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("data/data.photos.tpl.html",
-    "<div class=\"row\">\n" +
-    "    <div class=\"col-md-12\">\n" +
+    "<div class=\"row\" style=\"height:80%;\">\n" +
+    "    <div class=\"col-md-12\" style=\"height:100%;\">\n" +
     "        <div class=\"tool-wrapper\">\n" +
-    "            <div class=\"row\">\n" +
-    "                <div class=\"col-md-12\">\n" +
-    "                    <leaflet id=\"map\" center=\"center\" layers=\"layers\" geojson=\"geojson\" defaults=\"defaults\" controls=\"controls\">\n" +
-    "                        <div ng-show=\"layerProp\">\n" +
-    "                            <div class=\"custom-overlay\" >\n" +
-    "                                <ng-include src=\"'data/photos.popup.tpl.html'\" scope=\"layerProp\" onload=\"\"></ng-include>\n" +
+    "\n" +
+    "                    <div class=\"map-layer-controls\">\n" +
+    "                        <ul >\n" +
+    "                            <li custom-layer-control icon=\"fa fa-circle\" layer=\"plots\">\n" +
+    "                            <li custom-layer-control icon=\"fa fa-camera\" layer=\"photos\">\n" +
+    "                            <li custom-layer-control icon=\"fa fa-leaf\" layer=\"veg\">\n" +
+    "                        </ul>\n" +
+    "                    </div>\n" +
+    "\n" +
+    "                    <div class=\"map-popup\" >\n" +
+    "                        <span ng-hide=\"results.counties.length\">Right click feature for more information.</span>\n" +
+    "                        <div class=\"info-box\" ng-show=\"results.counties.length\" ng-cloak>\n" +
+    "                            <div >\n" +
+    "                                County:\n" +
+    "                                    <span ng-repeat=\"county in results.counties\" repeat-delimiter=\",\">\n" +
+    "                                    {{ county.properties.name }}\n" +
+    "                                    </span>\n" +
+    "                            </div>\n" +
+    "                            <div>\n" +
+    "                                VTM Quads:\n" +
+    "                                    <span ng-repeat=\"quad in results.quads\" repeat-delimiter=\",\">\n" +
+    "                                    {{ quad.properties.record | split:':':1 }}\n" +
+    "                                    </span>\n" +
+    "                            </div>\n" +
+    "                            <div ng-show=\"results.plots.length\">\n" +
+    "                                Plots:\n" +
+    "                                    <span ng-repeat=\"plot in results.plots\" repeat-delimiter=\",\">\n" +
+    "                                    {{ plot.plot_no }}\n" +
+    "                                    </span>\n" +
+    "                            </div>\n" +
+    "                                <div ng-show=\"results.photos.length\">\n" +
+    "                                Photos:\n" +
+    "                                    <span ng-repeat=\"photo in results.photos\" repeat-delimiter=\",\">\n" +
+    "                                    {{ photo.record }}\n" +
+    "                                    </span>\n" +
+    "                            </div>\n" +
+    "                            <div ng-show=\"results.veg.length\">\n" +
+    "                                Veg:\n" +
+    "                                    <span ng-repeat=\"veg in results.veg\" repeat-delimiter=\",\">\n" +
+    "                                    {{ veg.whr }}\n" +
+    "                                    </span>\n" +
     "                            </div>\n" +
     "                        </div>\n" +
+    "\n" +
+    "                    <!-- <div  custom-map-popup layerProp=\"layerProp\" ></div> -->\n" +
+    "                    </div>\n" +
+    "\n" +
+    "                    <leaflet id=\"map\" center=\"map.center\" layers=\"map.layers\" geojson=\"map.geojson\" defaults=\"map.defaults\" controls=\"map.controls\" markers=\"map.markers\"  bounds=\"map.bounds\">\n" +
     "                    </leaflet>\n" +
-    "                </div>\n" +
-    "            </div>\n" +
     "\n" +
     "        </div>\n" +
     "\n" +
@@ -1243,21 +1281,10 @@ angular.module("data/data.photos.tpl.html", []).run(["$templateCache", function(
     "    <div class=\"col-md-12\">\n" +
     "        <tabset>\n" +
     "            <tab heading=\"General Information\">\n" +
-    "                <p>3174 original VTM photos (number from ecoengine + 12 reshoots), 2952 of which are georeferenced. The points shown here consists of 2952 these georeferenced original photos (no reshoots). </p>\n" +
+    "                <p></p>\n" +
     "            </tab>\n" +
     "            <tab heading=\"Download\">\n" +
-    "                <p> \n" +
-    "                    <a href=\"https://dev-ecoengine.berkeley.edu/data/vtm-plots.zip\" class=\"btn btn-primary\">All photo data points shapefile for CA</a>\n" +
-    "                </p>\n" +
-    "                <p> \n" +
-    "                    <a href=\"http://localhost:8000/plot/Georeferenced/{{vtm_quad_id}}/\" target=\"_blank\" class=\"btn btn-primary\">Georeferenced plot map for VTM Quad {{vtm_quad_id}}</a>\n" +
-    "                </p>\n" +
-    "                <p> \n" +
-    "                    <a href=\"http://localhost:8000/plot/Georeferenced/{{vtm_quad_id}}/\" target=\"_blank\" class=\"btn btn-primary\">Original ungeoreferenced plot map for VTM Quad {{vtm_quad_id}}</a>\n" +
-    "                </p>\n" +
-    "                <p> \n" +
-    "                    <a href=\"http://localhost:8000/plot/Georeferenced/{{vtm_quad_id}}/\" target=\"_blank\" class=\"btn btn-primary\">Georeferenced plot data points shapefile for VTM Quad {{vtm_quad_id}}</a>\n" +
-    "                </p>\n" +
+    "\n" +
     "            </tab>\n" +
     "            <tab heading=\"Suggested Citations\">\n" +
     "                <ng-include src=\"'about/about.citations.tpl.html'\"></ng-inlcude>\n" +
@@ -1265,6 +1292,8 @@ angular.module("data/data.photos.tpl.html", []).run(["$templateCache", function(
     "        </tabset>\n" +
     "    </div>\n" +
     "</div>\n" +
+    "\n" +
+    "\n" +
     "\n" +
     "\n" +
     "\n" +
@@ -1422,81 +1451,59 @@ angular.module("data/data.tpl.html", []).run(["$templateCache", function($templa
 
 angular.module("data/data.vegetation.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("data/data.vegetation.tpl.html",
-    "<!-- <div class=\"row\">\n" +
-    "    <div class=\"col-md-9\">\n" +
-    "        <leaflet id=\"map\" center=\"center\" layers=\"layers\" geojson=\"geojson\" defaults=\"defaults\" controls=\"controls\"></leaflet>\n" +
-    "    </div>\n" +
-    "    <div class=\"col-md-3\">\n" +
-    "        <h2>Info box</h2>\n" +
-    "        <div class=\"info-box\" ng-hide=\"layerProp\">Additional information about the vegetation polygons will be displayed here when you click on them on the map.</div>\n" +
-    "        <div class=\"info-box\" ng-show=\"layerProp\">\n" +
-    "            <p><b>Vegetation name</b>:</p>\n" +
-    "            <ul>\n" +
-    "                <li>{{layerProp.mcv}}</li>\n" +
-    "            </ul>\n" +
-    "            <p><b>Primary species</b>:</p>\n" +
-    "            <ul>\n" +
-    "                <li>{{layerProp.primary_species}}</li>\n" +
-    "            </ul>\n" +
-    "            <p><b>Associated species</b>:\n" +
-    "                <span ng-hide=\"layerProp.observations.length\">\n" +
-    "                    <br />\n" +
-    "                    No associated species found\n" +
-    "                </span>\n" +
-    "                <span ng-show=\"layerProp.observations.length\">\n" +
-    "                    <ul>\n" +
-    "                        <li ng-repeat=\"obs in layerProp.observations\">\n" +
-    "                            {{obs.scientific_name}}\n" +
-    "                        </li>\n" +
-    "                    </ul>\n" +
-    "                </span>\n" +
     "\n" +
-    "            </p>\n" +
-    "             <p><b>Vegetation Type</b>:</p>\n" +
-    "            <ul>\n" +
-    "                <li>{{layerProp.whr}}</li>\n" +
-    "            </ul>\n" +
-    "            <p><b>For more information</b>:</p>\n" +
-    "            <ul>\n" +
-    "                <li><a ng-href=\"{{layerProp.url}}\" target=\"_blank\">{{layerProp.url}}</a></li>\n" +
-    "            </ul>\n" +
-    "       </div>\n" +
-    "\n" +
-    "    </div>\n" +
-    "</div>\n" +
-    "\n" +
-    "<div class=\"row\">\n" +
-    "    <div class=\"col-md-5\">\n" +
-    "        <h2>General information</h2>\n" +
-    "        <p>Dominant vegetation type maps were mapped with a minimum mapping unit of 16 ha by direct observation \"from ridges, peaks, and other vantage points\" in the field by VTM crews, directly upon 15-minute (1: 62,500-scale) topographic quadrangles, and supplemented by sample plots. At sample plots, information on overstory and understory vegetation were collected. According to his reports, it took a two-man crew from six to eight weeks to complete the fieldwork for a 15-minute quad of about 6,070 ha.  The vegetation mapping scheme was driven by \"the dominant vegetation visible externally\", in other words, by overstory species recognition, and included \"mosaic types\" - complex vegetation conditions that resulted from fire or other disturbances, and pure and mixed stand conditions which they associated with \"natural plant associations\".  The mapped products include 215 maps with the major vegetation types shown in different colors and separated by ink lines. These are over printed in color on 7.5-minute, 15-minute, and 30-minute USGS topographic quadrangles. For more information on the vegetation maps, please see: <a ng-href=\"#/about/publications\">Publications</a> page.</p>\n" +
-    "    </div>\n" +
-    "    <div class=\"col-md-4\">\n" +
-    "        <h2>Suggested Citations</h2>\n" +
-    "        <ng-include src=\"'about/about.citations.tpl.html'\"></ng-inlcude>\n" +
-    "    </div>\n" +
-    "    <div class=\"col-md-3\">\n" +
-    "        <h2>Download</h2>\n" +
-    "        <p>Download the entire vegetation layer in shapefile (~1.3G). </p>\n" +
-    "        <p><img src=\"assets/img/download_veg.png\" class=\"img-responsive img-thumbnail\"/></p>\n" +
-    "        <a href=\"https://dev-ecoengine.berkeley.edu/data/Wieslander_Statewide_CANAD83.zip\" class=\"btn btn-primary\">Click here</a>\n" +
-    "    </div>\n" +
-    "</div> -->\n" +
-    "\n" +
-    "\n" +
-    "<div class=\"row\">\n" +
-    "    <div class=\"col-md-12\">\n" +
+    "<div class=\"row\" style=\"height:80%;\">\n" +
+    "    <div class=\"col-md-12\" style=\"height:100%;\">\n" +
     "        <div class=\"tool-wrapper\">\n" +
-    "            <div class=\"row\">\n" +
-    "                <div class=\"col-md-12\">\n" +
-    "                    <leaflet id=\"map\" center=\"center\" layers=\"layers\" geojson=\"geojson\" defaults=\"defaults\" controls=\"controls\">\n" +
-    "                        <div ng-show=\"layerProp\">\n" +
-    "                            <div class=\"custom-overlay\" >\n" +
-    "                                <ng-include src=\"'data/vegetation.popup.tpl.html'\" scope=\"layerProp\" onload=\"\"></ng-include>\n" +
+    "\n" +
+    "                    <div class=\"map-layer-controls\">\n" +
+    "                        <ul >\n" +
+    "                            <li custom-layer-control icon=\"fa fa-circle\" layer=\"plots\">\n" +
+    "                            <li custom-layer-control icon=\"fa fa-camera\" layer=\"photos\">\n" +
+    "                            <li custom-layer-control icon=\"fa fa-leaf\" layer=\"veg\">\n" +
+    "                        </ul>\n" +
+    "                    </div>\n" +
+    "\n" +
+    "                    <div class=\"map-popup\" >\n" +
+    "                        <span ng-hide=\"results.counties.length\">Right click feature for more information.</span>\n" +
+    "                        <div class=\"info-box\" ng-show=\"results.counties.length\" ng-cloak>\n" +
+    "                            <div >\n" +
+    "                                County:\n" +
+    "                                    <span ng-repeat=\"county in results.counties\" repeat-delimiter=\",\">\n" +
+    "                                    {{ county.properties.name }}\n" +
+    "                                    </span>\n" +
+    "                            </div>\n" +
+    "                            <div>\n" +
+    "                                VTM Quads:\n" +
+    "                                    <span ng-repeat=\"quad in results.quads\" repeat-delimiter=\",\">\n" +
+    "                                    {{ quad.properties.record | split:':':1 }}\n" +
+    "                                    </span>\n" +
+    "                            </div>\n" +
+    "                            <div ng-show=\"results.plots.length\">\n" +
+    "                                Plots:\n" +
+    "                                    <span ng-repeat=\"plot in results.plots\" repeat-delimiter=\",\">\n" +
+    "                                    {{ plot.plot_no }}\n" +
+    "                                    </span>\n" +
+    "                            </div>\n" +
+    "                                <div ng-show=\"results.photos.length\">\n" +
+    "                                Photos:\n" +
+    "                                    <span ng-repeat=\"photo in results.photos\" repeat-delimiter=\",\">\n" +
+    "                                    {{ photo.record }}\n" +
+    "                                    </span>\n" +
+    "                            </div>\n" +
+    "                            <div ng-show=\"results.veg.length\">\n" +
+    "                                Veg:\n" +
+    "                                    <span ng-repeat=\"veg in results.veg\" repeat-delimiter=\",\">\n" +
+    "                                    {{ veg.whr }}\n" +
+    "                                    </span>\n" +
     "                            </div>\n" +
     "                        </div>\n" +
+    "\n" +
+    "                    <!-- <div  custom-map-popup layerProp=\"layerProp\" ></div> -->\n" +
+    "                    </div>\n" +
+    "\n" +
+    "                    <leaflet id=\"map\" center=\"map.center\" layers=\"map.layers\" geojson=\"map.geojson\" defaults=\"map.defaults\" controls=\"map.controls\" markers=\"map.markers\"  bounds=\"map.bounds\">\n" +
     "                    </leaflet>\n" +
-    "                </div>\n" +
-    "            </div>\n" +
     "\n" +
     "        </div>\n" +
     "\n" +
@@ -1511,16 +1518,10 @@ angular.module("data/data.vegetation.tpl.html", []).run(["$templateCache", funct
     "            </tab>\n" +
     "            <tab heading=\"Download\">\n" +
     "                <p> \n" +
-    "                    <a href=\"https://dev-ecoengine.berkeley.edu/data/vtm-plots.zip\" class=\"btn btn-primary\">All plot data points shapefile for CA</a>\n" +
+    "                    <a href=\"https://dev-ecoengine.berkeley.edu/data/vtm-plots.zip\" class=\"btn btn-primary\">Vegetation shapefile for CA</a>\n" +
     "                </p>\n" +
     "                <p> \n" +
-    "                    <a href=\"http://localhost:8000/plot/Georeferenced/{{vtm_quad_id}}/\" target=\"_blank\" class=\"btn btn-primary\">Georeferenced plot map for VTM Quad {{vtm_quad_id}}</a>\n" +
-    "                </p>\n" +
-    "                <p> \n" +
-    "                    <a href=\"http://localhost:8000/plot/Georeferenced/{{vtm_quad_id}}/\" target=\"_blank\" class=\"btn btn-primary\">Original ungeoreferenced plot map for VTM Quad {{vtm_quad_id}}</a>\n" +
-    "                </p>\n" +
-    "                <p> \n" +
-    "                    <a href=\"http://localhost:8000/plot/Georeferenced/{{vtm_quad_id}}/\" target=\"_blank\" class=\"btn btn-primary\">Georeferenced plot data points shapefile for VTM Quad {{vtm_quad_id}}</a>\n" +
+    "                    <a href=\"http://localhost:8000/plot/Georeferenced/{{vtm_quad_id}}/\" target=\"_blank\" class=\"btn btn-primary\">Georeferenced veg map for VTM Quad {{vtm_quad_id}}</a>\n" +
     "                </p>\n" +
     "            </tab>\n" +
     "            <tab heading=\"Suggested Citations\">\n" +
@@ -1529,6 +1530,7 @@ angular.module("data/data.vegetation.tpl.html", []).run(["$templateCache", funct
     "        </tabset>\n" +
     "    </div>\n" +
     "</div>\n" +
+    "\n" +
     "");
 }]);
 

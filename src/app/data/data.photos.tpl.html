@@ -1,17 +1,55 @@
-<div class="row">
-    <div class="col-md-12">
+<div class="row" style="height:80%;">
+    <div class="col-md-12" style="height:100%;">
         <div class="tool-wrapper">
-            <div class="row">
-                <div class="col-md-12">
-                    <leaflet id="map" center="center" layers="layers" geojson="geojson" defaults="defaults" controls="controls">
-                        <div ng-show="layerProp">
-                            <div class="custom-overlay" >
-                                <ng-include src="'data/photos.popup.tpl.html'" scope="layerProp" onload=""></ng-include>
+
+                    <div class="map-layer-controls">
+                        <ul >
+                            <li custom-layer-control icon="fa fa-circle" layer="plots">
+                            <li custom-layer-control icon="fa fa-camera" layer="photos">
+                            <li custom-layer-control icon="fa fa-leaf" layer="veg">
+                        </ul>
+                    </div>
+
+                    <div class="map-popup" >
+                        <span ng-hide="results.counties.length">Right click feature for more information.</span>
+                        <div class="info-box" ng-show="results.counties.length" ng-cloak>
+                            <div >
+                                County:
+                                    <span ng-repeat="county in results.counties" repeat-delimiter=",">
+                                    {{ county.properties.name }}
+                                    </span>
+                            </div>
+                            <div>
+                                VTM Quads:
+                                    <span ng-repeat="quad in results.quads" repeat-delimiter=",">
+                                    {{ quad.properties.record | split:':':1 }}
+                                    </span>
+                            </div>
+                            <div ng-show="results.plots.length">
+                                Plots:
+                                    <span ng-repeat="plot in results.plots" repeat-delimiter=",">
+                                    {{ plot.plot_no }}
+                                    </span>
+                            </div>
+                                <div ng-show="results.photos.length">
+                                Photos:
+                                    <span ng-repeat="photo in results.photos" repeat-delimiter=",">
+                                    {{ photo.record }}
+                                    </span>
+                            </div>
+                            <div ng-show="results.veg.length">
+                                Veg:
+                                    <span ng-repeat="veg in results.veg" repeat-delimiter=",">
+                                    {{ veg.whr }}
+                                    </span>
                             </div>
                         </div>
+
+                    <!-- <div  custom-map-popup layerProp="layerProp" ></div> -->
+                    </div>
+
+                    <leaflet id="map" center="map.center" layers="map.layers" geojson="map.geojson" defaults="map.defaults" controls="map.controls" markers="map.markers"  bounds="map.bounds">
                     </leaflet>
-                </div>
-            </div>
 
         </div>
 
@@ -22,21 +60,10 @@
     <div class="col-md-12">
         <tabset>
             <tab heading="General Information">
-                <p>3174 original VTM photos (number from ecoengine + 12 reshoots), 2952 of which are georeferenced. The points shown here consists of 2952 these georeferenced original photos (no reshoots). </p>
+                <p></p>
             </tab>
             <tab heading="Download">
-                <p> 
-                    <a href="https://dev-ecoengine.berkeley.edu/data/vtm-plots.zip" class="btn btn-primary">All photo data points shapefile for CA</a>
-                </p>
-                <p> 
-                    <a href="http://localhost:8000/plot/Georeferenced/{{vtm_quad_id}}/" target="_blank" class="btn btn-primary">Georeferenced plot map for VTM Quad {{vtm_quad_id}}</a>
-                </p>
-                <p> 
-                    <a href="http://localhost:8000/plot/Georeferenced/{{vtm_quad_id}}/" target="_blank" class="btn btn-primary">Original ungeoreferenced plot map for VTM Quad {{vtm_quad_id}}</a>
-                </p>
-                <p> 
-                    <a href="http://localhost:8000/plot/Georeferenced/{{vtm_quad_id}}/" target="_blank" class="btn btn-primary">Georeferenced plot data points shapefile for VTM Quad {{vtm_quad_id}}</a>
-                </p>
+
             </tab>
             <tab heading="Suggested Citations">
                 <ng-include src="'about/about.citations.tpl.html'"></ng-inlcude>
@@ -44,6 +71,8 @@
         </tabset>
     </div>
 </div>
+
+
 
 
 

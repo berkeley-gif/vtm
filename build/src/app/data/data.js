@@ -322,7 +322,7 @@ angular.module( 'vtm.data', [
 /**
  * And of course we define a controller for our route.
  */
-.controller( 'PlotsCtrl', function PlotsController($scope, $log, $http, $state, leafletData, VtmLayers, VtmPhotos, Restangular) {
+.controller( 'PlotsCtrl', function PlotsController($scope, $log, VtmLayers, VtmPhotos) {
 
 
 
@@ -340,7 +340,7 @@ angular.module( 'vtm.data', [
 /**
  * And of course we define a controller for our route.
  */
-.controller( 'VegCtrl', function VegController($scope, $log, $http, $state, leafletData, Restangular, VtmLayers) {
+.controller( 'VegCtrl', function VegController($scope, $log, VtmLayers) {
 
 
 
@@ -348,96 +348,23 @@ angular.module( 'vtm.data', [
   //Make all overlays except vegetation invisible
   VtmLayers.showLayer('veg');
   VtmLayers.hideLayer('plots');
-  VtmPhotos.hideLayer('photos');
+  VtmLayers.hideLayer('photos');
 
-
-  //Style for selected veg polygon on click event
-  function style(feature) {
-    return {
-      weight: 4,
-      opacity: 1,
-      color: 'white',
-      fillOpacity: 0
-    };
-  }
-
-
-  /*$scope.$watch('vegRecord', function(newValue, oldValue){
-
-    // Ignore initial setup
-    if ( newValue === oldValue) {
-      return;
-    }
-
-    // Load data from service
-    if ( newValue ) {
-
-      var vegRecord = Restangular.one('vtmveg', newValue);
-      vegRecord.get().then(function(response) {
-        $scope.layerProp = response.plain(); //Strip out Restangular methods
-        $log.log($scope.layerProp);
-        //Highlight feature
-        angular.extend($scope, {
-          geojson: {
-            data: response.geojson,
-            style: style,
-            resetStyleOnMouseout: false
-          }
-          
-        });
-      });
-
-
-
-    }
-
-  }, true);
-*/
   
 
 })
 
-.controller( 'PhotosCtrl', function PhotosController($scope, $log, $http, $state, leafletData, VtmLayers, Restangular) {
+.controller( 'PhotosCtrl', function PhotosController($scope, $log, VtmLayers) {
 
 
 
   $log.log('in photos controller');
 
   //Make all overlays except photos invisible
-  VtmPhotos.showLayer('photos');
+  VtmLayers.showLayer('photos');
   VtmLayers.hideLayer('veg');
   VtmLayers.hideLayer('plots');
 
-
-  /*$scope.$watch('photoRecord', function(newValue, oldValue){
-
-    // Ignore initial setup
-    if ( newValue === oldValue) {
-      return;
-    }
-
-    // Load data from service
-    if ( newValue ) {
-      var photoRecord = Restangular.one('photos', newValue);
-      photoRecord.get().then(function(response) {
-        $scope.layerProp = response.plain(); //Strip out Restangular methods
-        $scope.layerQueried = 'photos';
-        $log.log($scope.layerProp);
-        //Highlight feature
-        angular.extend($scope, {
-          geojson: {
-            data: response.geojson,
-            resetStyleOnMouseout: false
-          }
-          
-        });
-      });
-
-
-
-    }
-
-  }, true);*/
 
   
 
