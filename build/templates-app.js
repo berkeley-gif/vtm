@@ -1,4 +1,4 @@
-angular.module('templates-app', ['about/about.bibliography.tpl.html', 'about/about.citations.tpl.html', 'about/about.description.tpl.html', 'about/about.faq.tpl.html', 'about/about.metadata.tpl.html', 'about/about.overview.tpl.html', 'about/about.plotdata.tpl.html', 'about/about.plotmaps.tpl.html', 'about/about.tpl.html', 'data/data.overview.tpl.html', 'data/data.photos.tpl.html', 'data/data.plots.tpl.html', 'data/data.popup.tpl.html', 'data/data.tpl.html', 'data/data.vegetation.tpl.html', 'data/popup/photos.popup.tpl.html', 'data/popup/plots.popup.tpl.html', 'data/popup/vegetation.popup.tpl.html', 'home/home.tpl.html', 'howto/howto.overview.tpl.html', 'howto/howto.tpl.html']);
+angular.module('templates-app', ['about/about.bibliography.tpl.html', 'about/about.citations.tpl.html', 'about/about.description.tpl.html', 'about/about.faq.tpl.html', 'about/about.metadata.tpl.html', 'about/about.overview.tpl.html', 'about/about.photos.tpl.html', 'about/about.plotdata.tpl.html', 'about/about.plotmaps.tpl.html', 'about/about.tpl.html', 'about/about.vegmaps.tpl.html', 'data/data.overview.tpl.html', 'data/data.photos.tpl.html', 'data/data.plots.tpl.html', 'data/data.popup.tpl.html', 'data/data.tpl.html', 'data/data.vegetation.tpl.html', 'data/popup/photos.popup.tpl.html', 'data/popup/plots.popup.tpl.html', 'data/popup/vegetation.popup.tpl.html', 'home/home.tpl.html', 'howto/howto.overview.tpl.html', 'howto/howto.tpl.html']);
 
 angular.module("about/about.bibliography.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("about/about.bibliography.tpl.html",
@@ -86,6 +86,14 @@ angular.module("about/about.description.tpl.html", []).run(["$templateCache", fu
     "    			<ng-include src=\"'about/about.plotmaps.tpl.html'\">\n" +
     "    			</ng-include>\n" +
     "    		</accordion-group>\n" +
+    "			<accordion-group heading=\"Vegetation Maps\">\n" +
+    "				<ng-include src=\"'about/about.vegmaps.tpl.html'\">\n" +
+    "				</ng-include>\n" +
+    "			</accordion-group>\n" +
+    "			<accordion-group heading=\"Photos\">\n" +
+    "				<ng-include src=\"'about/about.photos.tpl.html'\">\n" +
+    "				</ng-include>\n" +
+    "			</accordion-group>\n" +
     "\n" +
     "    	</accordion>\n" +
     "    	\n" +
@@ -795,6 +803,8 @@ angular.module("about/about.overview.tpl.html", []).run(["$templateCache", funct
     "<div class=\"row\" id=\"#about\">\n" +
     "    <div class=\"col-sm-12\">\n" +
     "\n" +
+    "		<p><img src=\"assets/img/about_history_surveyors_1140x300.png\" class=\"img-responsive\"></img></p>\n" +
+    "\n" +
     "		<p>In the 1930s, forester A. E. Wieslander spearheaded a U. S. Forest Service survey of California vegetation, called the Vegetation Type Mapping Project (VTM).  In this remarkable effort the Forest Service crews mapped over 1/3 (16 million+ hectares) of the state. Because of its comprehensive and detailed nature, the VTM dataset is recognized as a valuable window into the state of early 20th century California flora. The collection has provided data for numerous graduate theses at several Universities, as well as numerous manuscripts in peer-reviewed journals.</p>\n" +
     "\n" +
     "        <p><blockquote>The Wieslander Vegetation Type Mapping collection has been described as &ldquo;the most important and comprehensive botanical map of a large area ever undertaken anywhere on the earth&rsquo;s surface&rdquo;.<small>Jepson et al. 2000</small></blockquote></p>         \n" +
@@ -812,12 +822,29 @@ angular.module("about/about.overview.tpl.html", []).run(["$templateCache", funct
     "");
 }]);
 
+angular.module("about/about.photos.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("about/about.photos.tpl.html",
+    "<div class=\"row\">\n" +
+    "    <div class=\"col-sm-12\">\n" +
+    "\n" +
+    "	<h3>A Brief Summary of the Methods</h3>\n" +
+    "\n" +
+    "	<p>There are approximately 3,100 black and white landscape and stand scale photographs (9.2 x 13.6 cm) from 1920–1941, many of which are keyed to USGS topographical maps with the location of the photographer is written in red pen on the maps, with an arrow marking the vantage point and view of the photo. The photograph captions typically includes a description of the location and subject of the photograph including relevant genus and species, timber stand conditions, and examples of cultivation, grazing, logging, mining and fire, and quad name. The photographer, date of the photograph, and occasionally township and range are included.</p> \n" +
+    "\n" +
+    "	<p>Each photograph was scanned, and information from captions were entered into a database that is searchable by keyword (information from photograph caption) and genus, species. The location of each photograph depicted on an accompanying map USGS topographic map were georeferenced. The protocol, developed by the Berkeley Museum for Vertebrate Zoology, involves measuring the distance and bearing of each marked point from the known southwest corner and calculating its location.</p>\n" +
+    "\n" +
+    "   </div>\n" +
+    "</div>\n" +
+    "\n" +
+    "");
+}]);
+
 angular.module("about/about.plotdata.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("about/about.plotdata.tpl.html",
     "<div class=\"row\">\n" +
     "    <div class=\"col-sm-12\">\n" +
     "\n" +
-    "		<p>The plot data consists of about 18,000 datasheets of recorded vegetation and environmental data from plots located throughout California and nearby areas of Nevada and Oregon.  Most plots were recorded in the 1930's and some as early as the 1920's.  Much of the data was collected in timberland since the objective of the VTM project was to survey forest resources (<a target=\"_blank\" href=\"http://digitalassets.lib.berkeley.edu/vtm/ucb/text/cubio_vtm_fm.pdf\">Manual of Field Instructions for Vegetation Type Map of California, pg.1</a>); however, plots were also located in non-timber forests and woodlands, shrublands, and grasslands.</p>\n" +
+    "		<p>The plot data consists of about 18,000 datasheets of recorded vegetation and environmental data from plots located throughout California and nearby areas of Nevada and Oregon. These plots were surveyed by the VTM field crews as a check on the vegetation polygons, and also to provide details on species composition, size and stand density of trees and shrubs and depth of leaf litter. Most plots were recorded in the 1930's and some as early as the 1920's. Much of the data was collected in timberland since the objective of the VTM project was to survey forest resources (<a target=\"_blank\" href=\"http://digitalassets.lib.berkeley.edu/vtm/ucb/text/cubio_vtm_fm.pdf\">Manual of Field Instructions for Vegetation Type Map of California, pg.1</a>); however, plots were also located in non-timber forests and woodlands, shrublands, and grasslands. The plots cover a gradient of vegetation types and include data regarding tree stand structure (number per diameter class), percent cover of dominant overstory and understory vegetation by species, soil type, parent material, leaf litter, elevation, slope, aspect, parent material, and other environmental variables. All plot data was stored on paper data sheets, and individual plots were numbered according to U.S. Geological Survey (USGS) topographic quadrangle map name, quad section number and plot number. For more information on the plots, please see: <a href=\"/index.html#/about/citations\">Kelly et al. 2005 Madroño paper</a>.</p>\n" +
     "\n" +
     "		<h3>A Brief Summary of the Methods</h3>\n" +
     "\n" +
@@ -1121,14 +1148,13 @@ angular.module("about/about.plotmaps.tpl.html", []).run(["$templateCache", funct
     "<div class=\"row\">\n" +
     "    <div class=\"col-sm-12\">\n" +
     "\n" +
-    "		<p>The VTM plot maps show the locations of plots surveyed during the original VTM project.  The original surveyors ran vegetation transects at each plot, collecting species richness and abundance data for trees and ground cover.  The VTM plot maps mark the location of the plots with red numbered circles.  To our knowledge these circles were stamped, and thus their size has no meaning.</p>\n" +
+    "		<p>The VTM plot maps show the locations of all the individual plots surveyed by the original VTM crews. The points were stamped in red ink on USGS topographic maps that had been cut into eight or more segments, mounted on canvas, and folded, to facilitate use in the field. The plot map collection comprises fifteen minute (1:62500 scale) and thirty minute (1:125000 scale) quadrangles, primarily concentrated along the central and southern coastal ranges, and along the Sierras.</p>\n" +
     "\n" +
-    "		<h3>Naming Convenstions</h2>\n" +
-    "\n" +
+    "		<h3>Naming Conventions</h3>\n" +
     "		<p>Each VTM plot map was divided into a grid, labeled alphabetically down the side and numerically across the top.  The plots were numbered within each section of the grid, for example A13 for grid section A 1, plot 3.  We assign each plot a unique identifier by prepending the quad number, i.e. 65A13 for quad 65, grid section A 1, plot 3.</p>\n" +
     "\n" +
     "		<h3>Scanning</h3>\n" +
-    "			<p>We scanned all VTM plot maps on an Epson Perfection flatbed scanner at 600 dpi.  We cropped and rotated the scans in Adobe Photoshop to prepare them for rectification.</p>\n" +
+    "		<p>We scanned all VTM plot maps on an Epson Perfection flatbed scanner at 600 dpi.  We cropped and rotated the scans in Adobe Photoshop to prepare them for rectification.</p>\n" +
     "\n" +
     "		<h3>Georeferencing</h3>\n" +
     "		<p>The original VTM surveyors marked the plot locations on USGS topographic maps, which have a polyconic projection centered at the center of the map (Birdseye 1928).  We first registered the historic uncut maps of the same vintage as the VTM cut maps to modern maps (1:24,000-scale USGS Digital Raster Graphic digital images of modern USGS quadrangles) of a known projection and coordinate system using stable tie points such as roads and peaks. We used between eight and 16 tie points per map. Next, the uncut scanned VTM maps were georeferenced to the georeferenced historic uncut maps using common map features as the tie points. We used a minimum of six tie points per segment and first order polynomial transformations for each step. Average RMSE for the process was around 60 m. All plot locations were digitized manually and their location attributed to the plot ID.</p>\n" +
@@ -1173,6 +1199,25 @@ angular.module("about/about.tpl.html", []).run(["$templateCache", function($temp
     "    <hr/>\n" +
     "    <div ui-view></div>\n" +
     "</div>\n" +
+    "");
+}]);
+
+angular.module("about/about.vegmaps.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("about/about.vegmaps.tpl.html",
+    "<div class=\"row\">\n" +
+    "    <div class=\"col-sm-12\">\n" +
+    "\n" +
+    "	<h3>A Brief Summary of the Methods</h3>\n" +
+    "	<p>Dominant vegetation type maps were mapped with a minimum mapping unit (MMU) of 16 ha by direct observation ‘from ridges, peaks, and other vantage points’’ (Wieslander 1935) in the field by VTM crews, directly upon 15-minute (1: 62,500-scale) topographic quadrangles, and supplemented by sample plots (which are described below) (Wieslander 1935). According to his reports, it took a two-man crew from six to eight weeks to complete the fieldwork for a 15-minute quad of about 6,070 ha (Wieslander 1935).  The vegetation mapping scheme was driven by ‘‘the dominant vegetation visible externally’’ (Wieslander 1935), in other words, by overstory species recognition, and included ‘‘mosaic types’’ - complex vegetation conditions that resulted from fire or other disturbances, and pure and mixed stand conditions which they associated with “natural plant associations” (Wieslander 1935).</p>\n" +
+    "\n" +
+    "	<p>The VTM vegetation maps were mostly found in the Marian Koshland Library archives, although the collection was also distributed in various labs and libraries around the state.  As many of the maps as could be found were gathered and brought to UC Davis for digitization by Dr. James Thorne.  The VTM vegetation maps were scanned at 300 dpi, one cut segment at a time, and the scanned versions of the VTM tiles corresponding to each topographic map were then registered to the topographic base map. Once the VTM images were georeferenced, vegetation polygons were traced and plant species codes in each polygon were transcribed. The original VTM plant species codes were linked to modern plant scientific names, and the sequence of species in each polygon was assigned to vegetation and habitat types. The project used the Manual of California Vegetation Types (Sawyer and Keeler‐Wolf 1995), and the California Wildlife Habitat Relationships Models (WHR) (California Department of Fish and Game 2004) for land cover classifications. Once these attributes were added to the maps, they were then error‐checked and finalized.</p>\n" +
+    "\n" +
+    "	<h3>Works Cited</h3>\n" +
+    "	<p>See <a href=\"/index.html#about/bibliography\">Wieslander Bibliography</a></p>\n" +
+    "\n" +
+    "   </div>\n" +
+    "</div>\n" +
+    "\n" +
     "");
 }]);
 
@@ -1286,7 +1331,7 @@ angular.module("data/data.photos.tpl.html", []).run(["$templateCache", function(
     "    <div class=\"col-md-12\">\n" +
     "        <tabset>\n" +
     "            <tab heading=\"General Information\">\n" +
-    "                <p>	There are approximately 3,100 black and white landscape and stand scale photographs from 1920–1941 keyed to USGS topographical maps. The photograph captions typically includes a description of the location and subject of the photograph including relevant genus and species, timber stand conditions, and examples of cultivation, grazing, logging, mining and fire, and quad name. The photographer, date of the photograph, and occasionally township and range are included. The photographs and locations and associated data can be downloaded (see Download Tab). For more information about the digitization method, please see here: (<a href=\"/index.html#/about/description\">http://vtm.berkeley.edu:8000/index.html#/about/description</a>). For more information about the attribute data, please see here: ().</p>\n" +
+    "                <p>	There are approximately 3,100 black and white landscape and stand scale photographs from 1920–1941 keyed to USGS topographical maps. The photograph captions typically includes a description of the location and subject of the photograph including relevant genus and species, timber stand conditions, and examples of cultivation, grazing, logging, mining and fire, and quad name. The photographer, date of the photograph, and occasionally township and range are included. The photographs and locations and associated data can be downloaded (see Download Tab). For more information about the digitization method, please see here: (<a href=\"/index.html#/about/description\">http://vtm.berkeley.edu/index.html#/about/description</a>).</p>\n" +
     "            </tab>\n" +
     "            <tab heading=\"Download\">\n" +
     "\n" +
@@ -1369,20 +1414,20 @@ angular.module("data/data.plots.tpl.html", []).run(["$templateCache", function($
     "	<div class=\"col-md-12\">\n" +
     "		<tabset>\n" +
     "			<tab heading=\"General Information\">\n" +
-    "			<p>There are approximately 18,000 VTM plots statewide, concentrated along the central and southern coastal ranges, and along the Sierra Nevada. These plot locations and their associate attributes can be downloaded (see Download Tab). For more information about the digitization method, please see here: (<a href=\"/index.html#/about/description\">http://vtm.berkeley.edu:8000/index.html#/about/description</a>). For more information about the attribute data, please see here: (URL).</p>\n" +
+    "			<p>There are approximately 18,000 VTM plots statewide, concentrated along the central and southern coastal ranges, and along the Sierra Nevada. These plot locations and their associate attributes can be downloaded (see Download Tab). For more information about the digitization method, please see here: (<a href=\"/index.html#/about/description\">http://vtm.berkeley.edu/index.html#/about/description</a>). For more information about the attribute data, please see here: (<a href=\"/#/about/metadata\">http://vtm.berkeley.edu/#/about/metadata</a>).</p>\n" +
     "			</tab>\n" +
     "			<tab heading=\"Download\">\n" +
     "				<p> \n" +
     "					<a href=\"https://dev-ecoengine.berkeley.edu/data/vtm-plots.zip\" class=\"btn btn-primary\">All plot data points shapefile for CA</a>\n" +
     "				</p>\n" +
     "				<p> \n" +
-    "					<a href=\"http://localhost:8000/plot/Georeferenced/{{vtm_quad_id}}/\" target=\"_blank\" class=\"btn btn-primary\">Georeferenced plot map for VTM Quad {{vtm_quad_id}}</a>\n" +
+    "					<a href=\"/plot/Georeferenced/{{vtm_quad_id}}/\" target=\"_blank\" class=\"btn btn-primary\">Georeferenced plot map for VTM Quad {{vtm_quad_id}}</a>\n" +
     "				</p>\n" +
     "				<p> \n" +
-    "					<a href=\"http://localhost:8000/plot/Georeferenced/{{vtm_quad_id}}/\" target=\"_blank\" class=\"btn btn-primary\">Original ungeoreferenced plot map for VTM Quad {{vtm_quad_id}}</a>\n" +
+    "					<a href=\"/plot/Georeferenced/{{vtm_quad_id}}/\" target=\"_blank\" class=\"btn btn-primary\">Original ungeoreferenced plot map for VTM Quad {{vtm_quad_id}}</a>\n" +
     "				</p>\n" +
     "				<p> \n" +
-    "					<a href=\"http://localhost:8000/plot/Georeferenced/{{vtm_quad_id}}/\" target=\"_blank\" class=\"btn btn-primary\">Georeferenced plot data points shapefile for VTM Quad {{vtm_quad_id}}</a>\n" +
+    "					<a href=\"/plot/Georeferenced/{{vtm_quad_id}}/\" target=\"_blank\" class=\"btn btn-primary\">Georeferenced plot data points shapefile for VTM Quad {{vtm_quad_id}}</a>\n" +
     "				</p>\n" +
     "			</tab>\n" +
     "			<tab heading=\"Suggested Citations\">\n" +
@@ -1518,14 +1563,14 @@ angular.module("data/data.vegetation.tpl.html", []).run(["$templateCache", funct
     "    <div class=\"col-md-12\">\n" +
     "        <tabset>\n" +
     "            <tab heading=\"General Information\">\n" +
-    "				<p>Dominant vegetation type maps were mapped with a minimum mapping unit of 16 ha by direct. The vegetation mapping scheme was driven by overstory species recognition, and included \"mosaic types\" - complex vegetation conditions that resulted from fire or other disturbances, and pure and mixed stand conditions which they associated with \"natural plant associations\". The vegetation polygons and associated data can be downloaded (see Download Tab). For more information about the digitization method, please see here: (<a href=\"/index.html#/about/description\">http://vtm.berkeley.edu:8000/index.html#/about/description</a>). For more information about the attribute data, please see here: (<a href=\"/index.html#/about/description\">http://vtm.berkeley.edu:8000/index.html#/about/description</a>).</p>\n" +
+    "				<p>Dominant vegetation type maps were mapped with a minimum mapping unit of 16 ha by direct. The vegetation mapping scheme was driven by overstory species recognition, and included \"mosaic types\" - complex vegetation conditions that resulted from fire or other disturbances, and pure and mixed stand conditions which they associated with \"natural plant associations\". The vegetation polygons and associated data can be downloaded (see Download Tab). For more information about the digitization method, please see here: (<a href=\"/index.html#/about/description\">http://vtm.berkeley.edu/index.html#/about/description</a>).</p>\n" +
     "            </tab>\n" +
     "            <tab heading=\"Download\">\n" +
     "                <p> \n" +
     "                    <a href=\"https://dev-ecoengine.berkeley.edu/data/vtm-plots.zip\" class=\"btn btn-primary\">Vegetation shapefile for CA</a>\n" +
     "                </p>\n" +
     "                <p> \n" +
-    "                    <a href=\"http://localhost:8000/plot/Georeferenced/{{vtm_quad_id}}/\" target=\"_blank\" class=\"btn btn-primary\">Georeferenced veg map for VTM Quad {{vtm_quad_id}}</a>\n" +
+    "                    <a href=\"/plot/Georeferenced/{{vtm_quad_id}}/\" target=\"_blank\" class=\"btn btn-primary\">Georeferenced veg map for VTM Quad {{vtm_quad_id}}</a>\n" +
     "                </p>\n" +
     "            </tab>\n" +
     "            <tab heading=\"Suggested Citations\">\n" +
@@ -1711,9 +1756,9 @@ angular.module("howto/howto.overview.tpl.html", []).run(["$templateCache", funct
     " 	 	<h3>\n" +
     "		  Using the HOLOS API\n" +
     "		</h3>\n" +
-    "		<p>Parts of the VTM collection have been used in scientific research since the mid 1940’s, however the data and their utility continue to expand. The vegetation maps have been used to understand legacies of land use change and plan for the future on broad scales. The plot data have been used to examine changes to chaparral and forest communities around the state by relocating and resurveying plots as well as by comparing modern vegetation plot data to predict changes in community structure under a changing climate. Some of the photographs have been reshot, and used to understand changing vegetation structure.</p>\n" +
+    "		<p>Parts of the VTM collection have been used in scientific research since the mid 1940's, however the data and their utility continue to expand. The vegetation maps have been used to understand legacies of land use change and plan for the future on broad scales. The plot data have been used to examine changes to chaparral and forest communities around the state by relocating and resurveying plots as well as by comparing modern vegetation plot data to predict changes in community structure under a changing climate. Some of the photographs have been reshot, and used to understand changing vegetation structure.</p>\n" +
     "		<p>The VTM website is currently hosted under the frame of the Berkeley Ecoinformatics Engine (Holos) (<a href=\"https://ecoengine.berkeley.edu\" target=\"_blank\">https://ecoengine.berkeley.edu/</a>), built with open source software and using a RESTful API structure, this engine encourages further data synthesis by making available a wide variety of data sources, both historical and contemporary. The Berkeley Ecoinformatics Engine serves much of the ecological data collected at UC Berkeley, among them about 5,000,000 million records from museum specimen, soil and pollen data, field station records, sensor readings, as well as biophysical base layers such as climate and land use.</p>\n" +
-    "		<p>We recommend downloading the data in full to work with, but researchers can also interact with the data through the HOLOS API (<a href=\"https://ecoengine.berkeley.edu\" target=\"_blank\">https://ecoengine.berkeley.edu/</a>).  If the data is used in research, we ask that you cite this article: Kelly, M., B. Allen-Diaz, and N. Kobzina. 2005. Digitization of a historic dataset: the Wieslander California vegetation type mapping project. Madroño 52(3):191-201.</p> \n" +
+    "		<p>We recommend downloading the data in full to work with, but researchers can also interact with the data through the HOLOS API (<a href=\"https://ecoengine.berkeley.edu\" target=\"_blank\">https://ecoengine.berkeley.edu/</a>).  If the data is used in research, we ask that you use this citation: Kelly, M., B. Allen-Diaz, and N. Kobzina. 2005. <em>Digitization of a historic dataset: the Wieslander California vegetation type mapping project.</em> Madro&ntilde;o 52(3):191-201.</p> \n" +
     "\n" +
     "		<p>\n" +
     "			These are the entry endpoints for VTM data on the HOLOS API. For more details on using the api, read the HOLOS <a href=\"https://ecoengine.berkeley.edu/docs/wieslander.html\" target=\"_blank\">documentation</a>.\n" +
