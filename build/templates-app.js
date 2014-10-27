@@ -1,4 +1,4 @@
-angular.module('templates-app', ['about/about.bibliography.tpl.html', 'about/about.citations.tpl.html', 'about/about.description.tpl.html', 'about/about.faq.tpl.html', 'about/about.metadata.tpl.html', 'about/about.overview.tpl.html', 'about/about.photos.tpl.html', 'about/about.plotdata.tpl.html', 'about/about.plotmaps.tpl.html', 'about/about.tpl.html', 'about/about.vegmaps.tpl.html', 'data/data.overview.tpl.html', 'data/data.photos.tpl.html', 'data/data.plots.tpl.html', 'data/data.popup.tpl.html', 'data/data.tpl.html', 'data/data.vegetation.tpl.html', 'data/popup/photos.popup.tpl.html', 'data/popup/plots.popup.tpl.html', 'data/popup/vegetation.popup.tpl.html', 'home/home.tpl.html', 'howto/howto.overview.tpl.html', 'howto/howto.tpl.html']);
+angular.module('templates-app', ['about/about.bibliography.tpl.html', 'about/about.citations.tpl.html', 'about/about.description.tpl.html', 'about/about.faq.tpl.html', 'about/about.metadata.tpl.html', 'about/about.overview.tpl.html', 'about/about.photos.tpl.html', 'about/about.plotdata.tpl.html', 'about/about.plotmaps.tpl.html', 'about/about.tpl.html', 'about/about.vegmaps.tpl.html', 'data/data.legend.tpl.html', 'data/data.overview.tpl.html', 'data/data.photos.tpl.html', 'data/data.plots.tpl.html', 'data/data.popup.tpl.html', 'data/data.tpl.html', 'data/data.vegetation.tpl.html', 'data/popup/photos.popup.tpl.html', 'data/popup/plots.popup.tpl.html', 'data/popup/vegetation.popup.tpl.html', 'home/home.tpl.html', 'howto/howto.overview.tpl.html', 'howto/howto.tpl.html']);
 
 angular.module("about/about.bibliography.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("about/about.bibliography.tpl.html",
@@ -1218,6 +1218,74 @@ angular.module("about/about.vegmaps.tpl.html", []).run(["$templateCache", functi
     "   </div>\n" +
     "</div>\n" +
     "\n" +
+    "");
+}]);
+
+angular.module("data/data.legend.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("data/data.legend.tpl.html",
+    "<div class='vtm-legend'>\n" +
+    "<div class='legend-title'>VTM Vegetation Map</div>\n" +
+    "<div class='legend-scale'>\n" +
+    "  <ul class='legend-labels'>\n" +
+    "    <li><span style='background:#FFFFFF;'></span>Alpine</li>\n" +
+    "    <li><span style='background:#F3EACF;'></span>Barren</li>\n" +
+    "    <li><span style='background:#E1E298;'></span>Cropland</li>\n" +
+    "    <li><span style='background:#DFC098;'></span>Dessert southwest shrub</li>\n" +
+    "    <li><span style='background:#53A379;'></span>Evergreen forest</li>\n" +
+    "    <li><span style='background:#FCEBA8;'></span>Grassland &amps; herbaceous</li>\n" +
+    "    <li><span style='background:#A3CAC2;'></span>Herbaceous wetland</li>\n" +
+    "    <li><span style='background:#64547C;'></span>High intensity development</li>\n" +
+    "    <li><span style='background:#BDDFFF;'></span>Open water</li>\n" +
+    "    <li><span style='background:#C9DD9F;'></span>Orchard &amps; vineyard</li>\n" +
+    "    <li><span style='background:#53A379;'></span>Other forest</li>\n" +
+    "    <li><span style='background:#F3F3A4;'></span>Pasture/Hay</li>\n" +
+    "    <li><span style='background:#8EB092;'></span>Shrub</li>\n" +
+    "    <li><span style='background:#75B092;'></span>Woody wetland</li>\n" +
+    "    <li><span style='background:#000000;'></span>Unknown</li>\n" +
+    "  </ul>\n" +
+    "</div>\n" +
+    "<div class='legend-source'>Source: <a href=\"http://landcover.usgs.gov/classes.php\">NLCD 92 Land Cover Class Definitions</a></div>\n" +
+    "</div>\n" +
+    "\n" +
+    "<style type='text/css'>\n" +
+    "  .vtm-legend .legend-title {\n" +
+    "    text-align: left;\n" +
+    "    margin-bottom: 5px;\n" +
+    "    font-weight: bold;\n" +
+    "    font-size: 90%;\n" +
+    "    }\n" +
+    "  .vtm-legend .legend-scale ul {\n" +
+    "    margin: 0;\n" +
+    "    margin-bottom: 5px;\n" +
+    "    padding: 0;\n" +
+    "    float: left;\n" +
+    "    list-style: none;\n" +
+    "    }\n" +
+    "  .vtm-legend .legend-scale ul li {\n" +
+    "    font-size: 80%;\n" +
+    "    list-style: none;\n" +
+    "    margin-left: 0;\n" +
+    "    line-height: 18px;\n" +
+    "    margin-bottom: 2px;\n" +
+    "    }\n" +
+    "  .vtm-legend ul.legend-labels li span {\n" +
+    "    display: block;\n" +
+    "    float: left;\n" +
+    "    height: 16px;\n" +
+    "    width: 30px;\n" +
+    "    margin-right: 5px;\n" +
+    "    margin-left: 0;\n" +
+    "    border: 1px solid #999;\n" +
+    "    }\n" +
+    "  .vtm-legend .legend-source {\n" +
+    "    font-size: 70%;\n" +
+    "    color: #999;\n" +
+    "    clear: both;\n" +
+    "    }\n" +
+    "  .vtm-legend a {\n" +
+    "    color: #777;\n" +
+    "    }\n" +
+    "</style>\n" +
     "");
 }]);
 
