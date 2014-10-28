@@ -14,10 +14,10 @@
     "restangular": "~1.4.0",
     "angular-touch": "~1.2.21",
     "angular-socialshare": "~0.0.2",
-    "Leaflet.contextmenu": "*"
+    "Leaflet.contextmenu": "*",
+    "angular-modal-service": "~0.4.0"
   },
   "resolutions": {
     "angular": "1.2.21"
   }
 }
-

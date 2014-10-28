@@ -21,7 +21,8 @@ angular.module( 'vtm.data', [
   'services.VtmPhotoService',
   'directives.customLayerControl',
   'directives.customMapPopup',
-  'directives.repeatDelimiter'
+  'directives.repeatDelimiter',
+  'directives.customLegendControl'
 ])
 
 /**
@@ -65,7 +66,7 @@ angular.module( 'vtm.data', [
 /**
  * And of course we define a controller for our route.
  */
-.controller( 'DataCtrl', function DataController($scope, $log, $http, $state, $timeout, leafletData, leafletBoundsHelpers, VtmLayers, VtmPhotos, Restangular) {
+.controller( 'DataCtrl', function DataController($scope, $log, $http, $state, $timeout, $modal, leafletData, leafletBoundsHelpers, VtmLayers, VtmPhotos, Restangular) {
 
   // Map setup
   console.log('state', $state);
@@ -95,13 +96,8 @@ angular.module( 'vtm.data', [
  //Load tiles from service
   var overlays =  {
     veg: VtmLayers.loadLayer('veg'),
-    veg_utfgrid: VtmLayers.loadLayer('veg_utfgrid'),
-    counties: VtmLayers.loadLayer('counties'),
-    counties_utfgrid: VtmLayers.loadLayer('counties_utfgrid'),
     quads: VtmLayers.loadLayer('quads'),
-    quads_utfgrid: VtmLayers.loadLayer('quads_utfgrid'),
     plots: VtmLayers.loadLayer('plots'),
-    //plots_utfgrid: VtmLayers.loadLayer('plots_utfgrid'),
     photos: VtmLayers.loadLayer('photos')     //marker group layer
   };
 
@@ -149,15 +145,15 @@ angular.module( 'vtm.data', [
   function queryFeatures(args){
 
     var latlng = args.latlng;
+
+    $scope.results.length = 0;
     
     //Create geojson geometry string fpr query
     var pointGeojson = 
       { 
-        'type' : 'point',
+        'type' : 'Point',
         'coordinates' : [latlng.lng, latlng.lat]
       };
-
-    console.log(pointGeojson);
 
     ////Create bounding box for query
     var latlngBounds = leafletBoundsHelpers.createBoundsFromArray([
@@ -165,16 +161,29 @@ angular.module( 'vtm.data', [
       [ latlng.lat-0.002, latlng.lng-0.002 ]
     ]);
 
-/*    var latlngBounds = leafletBoundsHelpers.createBoundsFromArray([
-      [ latlng.lat, latlng.lng],
-      [ latlng.lat, latlng.lng]
-    ]);*/
-
     var southWest = latlngBounds.southWest;
-    var northEast = latlngBounds.northEast;    
-    var bboxString = southWest.lng + ',' + southWest.lat + ',' + northEast.lng + ',' + northEast.lat;
-    
-    console.log('map click event', bboxString);
+    var northEast = latlngBounds.northEast;  
+
+/*    var sw = [southWest.lng, southWest.lat];
+    var nw = [northEast.lng, southWest.lat];
+    var ne = [northEast.lng, northEast.lat];
+    var se = [southWest.lng, northEast.lat];
+    var polygonGeojson = 
+      { 
+        'type' : 'Polygon',
+        'coordinates' : [
+          [
+            sw,
+            nw,
+            ne,
+            se,
+            sw
+          ]
+        ]
+      };*/
+
+  
+    var bboxString = southWest.lng.toFixed(4) + ',' + southWest.lat.toFixed(4) + ',' + northEast.lng.toFixed(2) + ',' + northEast.lat.toFixed(2);
 
     var counties = Restangular.one('layers', 'cacounties');
     counties.getList('features', {bbox: bboxString, fields: 'name'}).then(function(data){
@@ -186,14 +195,15 @@ angular.module( 'vtm.data', [
     var vtmquads = Restangular.one('layers', 'vtmquads');
     vtmquads.getList('features', {bbox: bboxString, fields: 'name'}).then(function(data){
       if (data.results.length > 0){
-        console.log(data.results);
         $scope.results['quads'] = data.results;
       }
     });
 
     if ( VtmLayers.isVisible('plots') ) {
-      var vtmplots = Restangular.all('vtmplots');
-      vtmplots.getList({bbox: bboxString}).then(function(data){
+      //var vtmplots = Restangular.all('vtmplots');
+      //vtmplots.getList({g: polygonGeojson}).then(function(data){
+      var vtmplots = Restangular.one('layers', 'vtmplots');
+      vtmplots.getList('features', {g: polygonGeojson}).then(function(data){
         if (data.results.length > 0){
           $scope.results['plots'].length = 0;
           $scope.results['plots'] = data.results;
@@ -260,52 +270,9 @@ angular.module( 'vtm.data', [
 
   });
 
-
-
-
-
-
-/*  $scope.$on('leafletDirectiveMap.utfgridClick', function(event, leafletEvent) {
-    
-    var data = leafletEvent.data;
-
-    if (data) {
-
-      if (data.hasOwnProperty('VTM_QUAD')) {
-        $scope.vtm_quad_id = data.VTM_QUAD;
-      }
-
-      if (data.hasOwnProperty('NAME')) {
-        $scope.county_name = data.NAME;
-      }
-
-      if (data.hasOwnProperty('record')) {    
-        var record = data.record;
-        console.log(record);
-        if (record.search('plot') >= 0) {
-          $scope.$apply(function() {
-            $scope.plotRecord = record;
-            console.log('record clicked', record);
-          });
-        }
-        else if (record.search('Photo') >= 0) {
-          $scope.$apply(function() {
-            $scope.photoRecord = record;
-          });
-        } 
-        else {
-          $scope.$apply(function() {
-            $scope.vegRecord = record;
-          });
-        }
-
-      }
-
-    }
-
-
-
-  });*/
+  //////////////////////////////////////////////////////////////////
+  //  EVENT HANDLERS FOR DETAIL STATE WHEN IT IS OPENED AS MODAL  //
+  /////////////////////////////////////////////////////////////////
 
   $scope.showAttribution = false;
   $scope.mapAttributionText = 'VTM data provided by <a href="http://openstreetmap.org" target="_blank">' +

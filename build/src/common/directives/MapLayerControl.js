@@ -9,7 +9,7 @@ angular.module( 'directives.customLayerControl', ['services.VtmLayerService'])
         layer: '@',
         defaultLayer: '@?'
       },
-      template: '<a href="" title="{{ layer }} Show/Hide"><i class="{{ icon }}"></i></a>',
+      template: '<a href="" title="{{ layer }} show/hide"><i class="{{ icon }}"></i></a>',
       link: function(scope, element, attrs) {
 
         var layer = attrs.layer;

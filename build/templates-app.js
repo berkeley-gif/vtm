@@ -368,7 +368,7 @@ angular.module("about/about.metadata.tpl.html", []).run(["$templateCache", funct
     "    	<accordion close-others=\"oneAtATime\">\n" +
     "\n" +
     "    		<accordion-group is-open=\"status.open\">\n" +
-    "    			<accordion-heading>Plot <i class=\"pull-right fa\" ng-class=\"{'fa-sort-desc': status.open, 'fa-sort-up': !status.open}\"></i></accordion-heading>\n" +
+    "    			<accordion-heading>Plot</accordion-heading>\n" +
     "    			<h4>\n" +
     "				  Plot_ID\n" +
     "				</h4>\n" +
@@ -1223,28 +1223,30 @@ angular.module("about/about.vegmaps.tpl.html", []).run(["$templateCache", functi
 
 angular.module("data/data.legend.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("data/data.legend.tpl.html",
-    "<div class='vtm-legend'>\n" +
-    "<div class='legend-title'>VTM Vegetation Map</div>\n" +
-    "<div class='legend-scale'>\n" +
-    "  <ul class='legend-labels'>\n" +
-    "    <li><span style='background:#FFFFFF;'></span>Alpine</li>\n" +
-    "    <li><span style='background:#F3EACF;'></span>Barren</li>\n" +
-    "    <li><span style='background:#E1E298;'></span>Cropland</li>\n" +
-    "    <li><span style='background:#DFC098;'></span>Dessert southwest shrub</li>\n" +
-    "    <li><span style='background:#53A379;'></span>Evergreen forest</li>\n" +
-    "    <li><span style='background:#FCEBA8;'></span>Grassland &amps; herbaceous</li>\n" +
-    "    <li><span style='background:#A3CAC2;'></span>Herbaceous wetland</li>\n" +
-    "    <li><span style='background:#64547C;'></span>High intensity development</li>\n" +
-    "    <li><span style='background:#BDDFFF;'></span>Open water</li>\n" +
-    "    <li><span style='background:#C9DD9F;'></span>Orchard &amps; vineyard</li>\n" +
-    "    <li><span style='background:#53A379;'></span>Other forest</li>\n" +
-    "    <li><span style='background:#F3F3A4;'></span>Pasture/Hay</li>\n" +
-    "    <li><span style='background:#8EB092;'></span>Shrub</li>\n" +
-    "    <li><span style='background:#75B092;'></span>Woody wetland</li>\n" +
-    "    <li><span style='background:#000000;'></span>Unknown</li>\n" +
-    "  </ul>\n" +
-    "</div>\n" +
-    "<div class='legend-source'>Source: <a href=\"http://landcover.usgs.gov/classes.php\">NLCD 92 Land Cover Class Definitions</a></div>\n" +
+    "<div class=\"modal-body\">\n" +
+    "    <div class='vtm-legend'>\n" +
+    "        <div class='legend-title'>VTM Vegetation Map Legend</div>\n" +
+    "        <div class='legend-scale'>\n" +
+    "          <ul class='legend-labels'>\n" +
+    "            <li><span style='background:#FFFFFF;'></span>Alpine</li>\n" +
+    "            <li><span style='background:#F3EACF;'></span>Barren</li>\n" +
+    "            <li><span style='background:#E1E298;'></span>Cropland</li>\n" +
+    "            <li><span style='background:#DFC098;'></span>Dessert southwest shrub</li>\n" +
+    "            <li><span style='background:#53A379;'></span>Evergreen forest</li>\n" +
+    "            <li><span style='background:#FCEBA8;'></span>Grassland &amps; herbaceous</li>\n" +
+    "            <li><span style='background:#A3CAC2;'></span>Herbaceous wetland</li>\n" +
+    "            <li><span style='background:#64547C;'></span>High intensity development</li>\n" +
+    "            <li><span style='background:#BDDFFF;'></span>Open water</li>\n" +
+    "            <li><span style='background:#C9DD9F;'></span>Orchard &amps; vineyard</li>\n" +
+    "            <li><span style='background:#53A379;'></span>Other forest</li>\n" +
+    "            <li><span style='background:#F3F3A4;'></span>Pasture/Hay</li>\n" +
+    "            <li><span style='background:#8EB092;'></span>Shrub</li>\n" +
+    "            <li><span style='background:#75B092;'></span>Woody wetland</li>\n" +
+    "            <li><span style='background:#000000;'></span>Unknown</li>\n" +
+    "          </ul>\n" +
+    "        </div>\n" +
+    "        <div class='legend-source'>Source: <a href=\"http://landcover.usgs.gov/classes.php\">NLCD 92 Land Cover Class Definitions</a></div>\n" +
+    "    </div>\n" +
     "</div>\n" +
     "\n" +
     "<style type='text/css'>\n" +
@@ -1275,7 +1277,6 @@ angular.module("data/data.legend.tpl.html", []).run(["$templateCache", function(
     "    width: 30px;\n" +
     "    margin-right: 5px;\n" +
     "    margin-left: 0;\n" +
-    "    border: 1px solid #999;\n" +
     "    }\n" +
     "  .vtm-legend .legend-source {\n" +
     "    font-size: 70%;\n" +
@@ -1337,8 +1338,8 @@ angular.module("data/data.overview.tpl.html", []).run(["$templateCache", functio
 
 angular.module("data/data.photos.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("data/data.photos.tpl.html",
-    "<div class=\"row\" style=\"height:80%;\">\n" +
-    "    <div class=\"col-md-12\" style=\"height:100%;\">\n" +
+    "<div class=\"row\" >\n" +
+    "    <div class=\"col-md-12\" >\n" +
     "        <div class=\"tool-wrapper\">\n" +
     "\n" +
     "                    <div class=\"map-layer-controls\">\n" +
@@ -1399,10 +1400,11 @@ angular.module("data/data.photos.tpl.html", []).run(["$templateCache", function(
     "    <div class=\"col-md-12\">\n" +
     "        <tabset>\n" +
     "            <tab heading=\"General Information\">\n" +
-    "                <p>	There are approximately 3,100 black and white landscape and stand scale photographs from 1920–1941 keyed to USGS topographical maps. The photograph captions typically includes a description of the location and subject of the photograph including relevant genus and species, timber stand conditions, and examples of cultivation, grazing, logging, mining and fire, and quad name. The photographer, date of the photograph, and occasionally township and range are included. The photographs and locations and associated data can be downloaded (see Download Tab). For more information about the digitization method, please see here: (<a href=\"/index.html#/about/description\">http://vtm.berkeley.edu/index.html#/about/description</a>).</p>\n" +
+    "                <p>	There are approximately 3,100 black and white landscape and stand scale photographs from 1920&ndash;1941 keyed to USGS topographical maps. The photograph captions typically includes a description of the location and subject of the photograph including relevant genus and species, timber stand conditions, and examples of cultivation, grazing, logging, mining and fire, and quad name. The photographer, date of the photograph, and occasionally township and range are included. The photographs and locations and associated data can be downloaded (see Download Tab).</p>\n" +
+    "                <p><a href ui-sref=\"about.description\">Read more about the digitization method</a></p>\n" +
     "            </tab>\n" +
     "            <tab heading=\"Download\">\n" +
-    "\n" +
+    "                <p>We are working on providing scans of the original photo datasheets and a Historica Photo Hunt app. In the meantime photographs can be downloaded from <a href=\"http://www.lib.berkeley.edu/BIOS/vtm\" target=\"_blank\">Marian Koshland Bioscience and Natural Resources Library</a>.</p>\n" +
     "            </tab>\n" +
     "            <tab heading=\"Suggested Citations\">\n" +
     "                <ng-include src=\"'about/about.citations.tpl.html'\"></ng-inlcude>\n" +
@@ -1420,8 +1422,8 @@ angular.module("data/data.photos.tpl.html", []).run(["$templateCache", function(
 
 angular.module("data/data.plots.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("data/data.plots.tpl.html",
-    "<div class=\"row\" style=\"height:70%;\">\n" +
-    "	<div class=\"col-md-12\" style=\"height:100%;\">\n" +
+    "<div class=\"row\" >\n" +
+    "	<div class=\"col-md-12\" >\n" +
     "		<div class=\"tool-wrapper\">\n" +
     "\n" +
     "					<div class=\"map-layer-controls\">\n" +
@@ -1482,21 +1484,18 @@ angular.module("data/data.plots.tpl.html", []).run(["$templateCache", function($
     "	<div class=\"col-md-12\">\n" +
     "		<tabset>\n" +
     "			<tab heading=\"General Information\">\n" +
-    "			<p>There are approximately 18,000 VTM plots statewide, concentrated along the central and southern coastal ranges, and along the Sierra Nevada. These plot locations and their associate attributes can be downloaded (see Download Tab). For more information about the digitization method, please see here: (<a href=\"/index.html#/about/description\">http://vtm.berkeley.edu/index.html#/about/description</a>). For more information about the attribute data, please see here: (<a href=\"/#/about/metadata\">http://vtm.berkeley.edu/#/about/metadata</a>).</p>\n" +
+    "				<p>There are approximately 18,000 VTM plots statewide, concentrated along the central and southern coastal ranges, and along the Sierra Nevada. These plot locations and their associate attributes can be downloaded (see Download Tab).</p>\n" +
+    "				<p><a href ui-sref=\"about.description\">Read more about the digitization method</a></p>\n" +
+    "				<p><a href ui-sref=\"about.metadata\">Read more about the attribute data</a></p>\n" +
     "			</tab>\n" +
     "			<tab heading=\"Download\">\n" +
     "				<p> \n" +
-    "					<a href=\"https://dev-ecoengine.berkeley.edu/data/vtm-plots.zip\" class=\"btn btn-primary\">All plot data points shapefile for CA</a>\n" +
+    "					Download shapefile containing Plot Data for CA\n" +
+    "					<a class=\"btn btn-large btn-download-icon\" href=\"https://dev-ecoengine.berkeley.edu/data/vtm-plots.zip\">\n" +
+    "						<i class=\"fa fa-arrow-circle-down\"></i>					\n" +
+    "					</a>\n" +
     "				</p>\n" +
-    "				<p> \n" +
-    "					<a href=\"/plot/Georeferenced/{{vtm_quad_id}}/\" target=\"_blank\" class=\"btn btn-primary\">Georeferenced plot map for VTM Quad {{vtm_quad_id}}</a>\n" +
-    "				</p>\n" +
-    "				<p> \n" +
-    "					<a href=\"/plot/Georeferenced/{{vtm_quad_id}}/\" target=\"_blank\" class=\"btn btn-primary\">Original ungeoreferenced plot map for VTM Quad {{vtm_quad_id}}</a>\n" +
-    "				</p>\n" +
-    "				<p> \n" +
-    "					<a href=\"/plot/Georeferenced/{{vtm_quad_id}}/\" target=\"_blank\" class=\"btn btn-primary\">Georeferenced plot data points shapefile for VTM Quad {{vtm_quad_id}}</a>\n" +
-    "				</p>\n" +
+    "				<p>We are working on providing scans of the original vegetation maps.</p>\n" +
     "			</tab>\n" +
     "			<tab heading=\"Suggested Citations\">\n" +
     "				<ng-include src=\"'about/about.citations.tpl.html'\"></ng-inlcude>\n" +
@@ -1569,8 +1568,8 @@ angular.module("data/data.tpl.html", []).run(["$templateCache", function($templa
 angular.module("data/data.vegetation.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("data/data.vegetation.tpl.html",
     "\n" +
-    "<div class=\"row\" style=\"height:80%;\">\n" +
-    "    <div class=\"col-md-12\" style=\"height:100%;\">\n" +
+    "<div class=\"row\">\n" +
+    "    <div class=\"col-md-12\" >\n" +
     "        <div class=\"tool-wrapper\">\n" +
     "\n" +
     "                    <div class=\"map-layer-controls\">\n" +
@@ -1578,6 +1577,12 @@ angular.module("data/data.vegetation.tpl.html", []).run(["$templateCache", funct
     "                            <li custom-layer-control icon=\"fa fa-circle\" layer=\"plots\">\n" +
     "                            <li custom-layer-control icon=\"fa fa-camera\" layer=\"photos\">\n" +
     "                            <li custom-layer-control icon=\"fa fa-leaf\" layer=\"veg\">\n" +
+    "                        </ul>\n" +
+    "                    </div>\n" +
+    "\n" +
+    "                    <div class=\"map-legend-controls\">\n" +
+    "                        <ul >\n" +
+    "                            <li custom-legend-control>\n" +
     "                        </ul>\n" +
     "                    </div>\n" +
     "\n" +
@@ -1631,15 +1636,17 @@ angular.module("data/data.vegetation.tpl.html", []).run(["$templateCache", funct
     "    <div class=\"col-md-12\">\n" +
     "        <tabset>\n" +
     "            <tab heading=\"General Information\">\n" +
-    "				<p>Dominant vegetation type maps were mapped with a minimum mapping unit of 16 ha by direct. The vegetation mapping scheme was driven by overstory species recognition, and included \"mosaic types\" - complex vegetation conditions that resulted from fire or other disturbances, and pure and mixed stand conditions which they associated with \"natural plant associations\". The vegetation polygons and associated data can be downloaded (see Download Tab). For more information about the digitization method, please see here: (<a href=\"/index.html#/about/description\">http://vtm.berkeley.edu/index.html#/about/description</a>).</p>\n" +
+    "				<p>Dominant vegetation type maps were mapped with a minimum mapping unit of 16 ha by direct. The vegetation mapping scheme was driven by overstory species recognition, and included \"mosaic types\" - complex vegetation conditions that resulted from fire or other disturbances, and pure and mixed stand conditions which they associated with \"natural plant associations\". The vegetation polygons and associated data can be downloaded (see Download Tab).</p>\n" +
+    "                <p><a href ui-sref=\"about.description\">Read more about the digitization method</a></p>\n" +
     "            </tab>\n" +
     "            <tab heading=\"Download\">\n" +
     "                <p> \n" +
-    "                    <a href=\"https://dev-ecoengine.berkeley.edu/data/vtm-plots.zip\" class=\"btn btn-primary\">Vegetation shapefile for CA</a>\n" +
+    "                    Download shapefile containing Vegetation polygons for CA\n" +
+    "                    <a class=\"btn btn-large btn-download-icon\" href=\"https://dev-ecoengine.berkeley.edu/data/Wieslander_Statewide_CANAD83.zip\">\n" +
+    "                        <i class=\"fa fa-arrow-circle-down\"></i>                 \n" +
+    "                    </a>\n" +
     "                </p>\n" +
-    "                <p> \n" +
-    "                    <a href=\"/plot/Georeferenced/{{vtm_quad_id}}/\" target=\"_blank\" class=\"btn btn-primary\">Georeferenced veg map for VTM Quad {{vtm_quad_id}}</a>\n" +
-    "                </p>\n" +
+    "                <p>We are working on providing scans of the original vegetation maps.</p>\n" +
     "            </tab>\n" +
     "            <tab heading=\"Suggested Citations\">\n" +
     "                <ng-include src=\"'about/about.citations.tpl.html'\"></ng-inlcude>\n" +
@@ -1825,11 +1832,11 @@ angular.module("howto/howto.overview.tpl.html", []).run(["$templateCache", funct
     "		  Using the HOLOS API\n" +
     "		</h3>\n" +
     "		<p>Parts of the VTM collection have been used in scientific research since the mid 1940's, however the data and their utility continue to expand. The vegetation maps have been used to understand legacies of land use change and plan for the future on broad scales. The plot data have been used to examine changes to chaparral and forest communities around the state by relocating and resurveying plots as well as by comparing modern vegetation plot data to predict changes in community structure under a changing climate. Some of the photographs have been reshot, and used to understand changing vegetation structure.</p>\n" +
-    "		<p>The VTM website is currently hosted under the frame of the Berkeley Ecoinformatics Engine (Holos) (<a href=\"https://ecoengine.berkeley.edu\" target=\"_blank\">https://ecoengine.berkeley.edu/</a>), built with open source software and using a RESTful API structure, this engine encourages further data synthesis by making available a wide variety of data sources, both historical and contemporary. The Berkeley Ecoinformatics Engine serves much of the ecological data collected at UC Berkeley, among them about 5,000,000 million records from museum specimen, soil and pollen data, field station records, sensor readings, as well as biophysical base layers such as climate and land use.</p>\n" +
-    "		<p>We recommend downloading the data in full to work with, but researchers can also interact with the data through the HOLOS API (<a href=\"https://ecoengine.berkeley.edu\" target=\"_blank\">https://ecoengine.berkeley.edu/</a>).  If the data is used in research, we ask that you use this citation: Kelly, M., B. Allen-Diaz, and N. Kobzina. 2005. <em>Digitization of a historic dataset: the Wieslander California vegetation type mapping project.</em> Madro&ntilde;o 52(3):191-201.</p> \n" +
+    "		<p>The VTM website is currently hosted under the frame of the <a href=\"https://ecoengine.berkeley.edu\" target=\"_blank\">Berkeley Ecoinformatics Engine (HOLOS)</a>. Built with open source software and using a RESTful API structure, this engine encourages further data synthesis by making available a wide variety of data sources, both historical and contemporary. The Berkeley Ecoinformatics Engine serves much of the ecological data collected at UC Berkeley, among them about 5,000,000 million records from museum specimen, soil and pollen data, field station records, sensor readings, as well as biophysical base layers such as climate and land use.</p>\n" +
+    "		<p>We recommend downloading the data in full to work with, but researchers can also interact with the data through the HOLOS <a href=\"https://ecoengine.berkeley.edu\" target=\"_blank\">API</a>. If the data is used in research, we ask that you use this citation: Kelly, M., B. Allen-Diaz, and N. Kobzina. 2005. <em>Digitization of a historic dataset: the Wieslander California vegetation type mapping project.</em> Madro&ntilde;o 52(3):191-201.</p> \n" +
     "\n" +
     "		<p>\n" +
-    "			These are the entry endpoints for VTM data on the HOLOS API. For more details on using the api, read the HOLOS <a href=\"https://ecoengine.berkeley.edu/docs/wieslander.html\" target=\"_blank\">documentation</a>.\n" +
+    "			These are the entry endpoints for VTM data on the HOLOS API. For more details on using the API, read the HOLOS <a href=\"https://ecoengine.berkeley.edu/docs/wieslander.html\" target=\"_blank\">documentation</a>.\n" +
     "			<pre>https://ecoengine.berkeley.edu/api/vtmplots_trees/</pre>\n" +
     "			<pre>https://ecoengine.berkeley.edu/api/vtmplots/</pre>\n" +
     "			<pre>https://ecoengine.berkeley.edu/api/vtmplots_brushes/</pre>\n" +

@@ -534,9 +534,6 @@ blockquote {
 /* 
 *OVERVIEW PAGE
 */
-#data-grid {
-  height: 100%;
-}
 #data-grid .thumbnail {
   border: none;
   text-align: center;
@@ -552,12 +549,12 @@ blockquote {
 .tool-wrapper #map {
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.22);
   cursor: context-menu !important;
-  height: 100%;
+  height: 500px;
 }
 /* MAP POPUP */
 .tool-wrapper .map-popup {
   position: absolute;
-  z-index: 2000;
+  z-index: 1001;
   height: auto;
   width: 20%;
   overflow-y: auto;
@@ -585,7 +582,7 @@ blockquote {
 }
 .tool-wrapper .map-layer-controls {
   position: absolute;
-  z-index: 2001;
+  z-index: 1000;
   overflow: none;
   bottom: 10px;
   left: -30px;
@@ -612,6 +609,33 @@ blockquote {
 }
 .map-control.layer-control.disabled a {
   color: grey;
+}
+.tool-wrapper .map-legend-controls {
+  position: absolute;
+  z-index: 1000;
+  overflow: none;
+  bottom: 10px;
+  right: 10px;
+}
+.tool-wrapper .map-legend-controls ul {
+  list-style: none outside none;
+}
+.map-control.legend-control {
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.4);
+  border-bottom: 1px solid #ccc;
+  line-height: 30px;
+  background: #fff;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  vertical-align: middle;
+  cursor: auto;
+  margin-bottom: 8px;
+}
+.map-control.legend-control a {
+  color: inherit;
+  text-decoration: none;
 }
 .map-attribution-text {
   display: table-cell;
@@ -663,6 +687,19 @@ blockquote {
 }
 #data-grid .features a:hover img {
   opacity: 0.5;
+}
+.btn-download-icon :first-child {
+  font-size: 1.8em;
+}
+.modal-dialog {
+  width: 50%;
+  margin-top: 20%;
+}
+.modal-content {
+  background: rgba(255, 255, 255, 0.8);
+}
+.modal-header {
+  border-bottom: none;
 }
 /* Extra small devices (phones, less than 768px) */
 @media (max-width: 767px) {
