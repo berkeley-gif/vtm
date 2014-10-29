@@ -92,7 +92,7 @@ pre {
   position: relative;
 }
 .topbar ul.loginbar {
-  margin: 0;
+  margin-right: 20px;
 }
 .topbar ul.loginbar > li {
   display: inline;
@@ -530,6 +530,30 @@ blockquote {
   font-style: italic;
   margin: 30px 0 30px 15px;
   padding-left: 15px;
+}
+/*Vertical Tabs
+------------------------------------*/
+.tabbable .nav a {
+  font-size: 16px;
+  padding: 5px 15px;
+  color: inherit;
+  border: 1px solid #ddd;
+  background-color: #f5f5f5;
+  border-radius: 3px !important;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+  margin-bottom: 5px;
+}
+.tabbable .nav > .active > a,
+.tabbable .nav > .active > a:hover,
+.tabbable .nav > .active > a:focus {
+  background-color: #E4E2DE;
+}
+.tabbable .nav > li > a:hover {
+  color: #999;
+  background-color: #EBEAE6;
+}
+.tabbable .tab-content {
+  padding: 10px 0;
 }
 /* 
 *OVERVIEW PAGE

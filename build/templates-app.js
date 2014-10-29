@@ -21,7 +21,7 @@ angular.module("about/about.bibliography.tpl.html", []).run(["$templateCache", f
     "\n" +
     "        <p>A. E. Wieslander., \"A.E. Wieslander papers,\" , 1 v., 1 carton, 1 oversize folder.; 21 sound cassettes.</p>\n" +
     "\n" +
-    "        <p>A. E. Wieslander., \"A vegetation type map of California.\" Madrono 2:140-144 (1935).</p>\n" +
+    "        <p>A. E. Wieslander., \"A vegetation type map of California.\" Madro&ntilde;o 2:140-144 (1935).</p>\n" +
     "\n" +
     "        <p>A. E. Wieslander.,\"First steps of the forest survey in California,\" Journal of Foresty 33:877-884.</p>\n" +
     "\n" +
@@ -32,22 +32,6 @@ angular.module("about/about.bibliography.tpl.html", []).run(["$templateCache", f
     "        <h3>Other Resources</h3>\n" +
     "\n" +
     "        <p>Wieslander, A.E. 1986. <a href=\"http://texts.cdlib.org/view?docId=hb7j49p23f\">A.E. Wieslander, California forester: mapper of wildland vegetation and soils (an oral history conducted in 1985 by Ann Lange).</a> Regional Oral History Office, Bancroft Library, University of California, Berkeley, CA.</p>\n" +
-    "\n" +
-    "<!--         <p>Allen, B.H., Holzman, C.A. and Evett, R.R., 1991. A classification system for California's hardwood rangelands. Hilgardia, 59(2): 1-45. Allen-Diaz, B.H. and B.A. Holzman., 1991. Blue oak communities in California. Madro&ntilde;o , 38: 80-95.</p>\n" +
-    "        \n" +
-    "        <p>Ertter, B., 2000. Our undiscovered heritage: Past and future prospects for species-level botanical inventory. Madro&ntilde;o , 47(4): 237-252.</p>\n" +
-    "		\n" +
-    "		<p>Kelly, M., 2005  VTM Newsletter 2005.  <a href=\"media/docs/VTMnewsletter7-2005.pdf\" target=\"_blank\">PDF</a>.</p>\n" +
-    "    \n" +
-    "        <p>Kelly, M., B. Allen-Diaz, and N. Kobzina. 2005. <a href=\"http://kellylab.berkeley.edu/publications/2005/9/30/digitization-of-the-wieslander-california-vegetation-type-ma.html\" target=\"_blank\">Digitization of a historic dataset: the Wieslander California vegetation type mapping project.</a> Madro&ntilde;o 52(3):191-201.</p>\n" +
-    "\n" +
-    "        <p>Kelly, M., K. Ueda and B. Allen-Diaz. 2008. <a href=\"http://kellylab.berkeley.edu/publications/2008/10/31/historic-map-analysis-spatial-error-in-the-ca-vtm-dataset.html\" target=\"_blank\"> Considerations for ecological reconstruction of historic vegetation: Analysis of the spatial uncertainties in the California Vegetation Type Map dataset.</a> Plant Ecology 194 (1): 37-49.</p>\n" +
-    "\n" +
-    "		<p>Thorne, J. H., Kelsey, R., Honig, J., and Morgan, B. 2006. <a href=\"http://www.energy.ca.gov/2006publications/CEC-500-2006-107/CEC-500-2006-107.PDF\" target=\"_blank\">The development of 70-year-old Wieslander vegetation type maps and an assessment of landscape change in the central Sierra Nevada.</a> University of California, Davis, and California Energy Commission, CED-500-2006-107.</p>\n" +
-    "\n" +
-    "        <p>Wieslander, A.E., 1961. California's vegetation maps: Recent advances in botany, University of Toronto Press, Toronto.</p>\n" +
-    "\n" +
-    "        <p>Wieslander, A.E., 1935. A vegetation type map of California. Madro&ntilde;o , 3(3): 140-144.</p> -->\n" +
     "    </div>\n" +
     "</div>\n" +
     "\n" +
@@ -76,26 +60,24 @@ angular.module("about/about.description.tpl.html", []).run(["$templateCache", fu
     "<div class=\"row\">\n" +
     "    <div class=\"col-sm-12\">\n" +
     "\n" +
-    "    	<accordion close-others=\"oneAtATime\">\n" +
-    "\n" +
-    "    		<accordion-group heading=\"Plot Data\">\n" +
-    "    			<ng-include src=\"'about/about.plotdata.tpl.html'\">\n" +
-    "    			</ng-include>\n" +
-    "    		</accordion-group>\n" +
-    "    		<accordion-group heading=\"Plot Maps\">\n" +
-    "    			<ng-include src=\"'about/about.plotmaps.tpl.html'\">\n" +
-    "    			</ng-include>\n" +
-    "    		</accordion-group>\n" +
-    "			<accordion-group heading=\"Vegetation Maps\">\n" +
-    "				<ng-include src=\"'about/about.vegmaps.tpl.html'\">\n" +
-    "				</ng-include>\n" +
-    "			</accordion-group>\n" +
-    "			<accordion-group heading=\"Photos\">\n" +
-    "				<ng-include src=\"'about/about.photos.tpl.html'\">\n" +
-    "				</ng-include>\n" +
-    "			</accordion-group>\n" +
-    "\n" +
-    "    	</accordion>\n" +
+    "        <tabset type=\"pills\">\n" +
+    "            <tab heading=\"Plot Data\">\n" +
+    "                <ng-include src=\"'about/about.plotdata.tpl.html'\">\n" +
+    "                </ng-include>\n" +
+    "            </tab>\n" +
+    "            <tab heading=\"Plot Maps\">\n" +
+    "                <ng-include src=\"'about/about.plotmaps.tpl.html'\">\n" +
+    "                </ng-include>\n" +
+    "            </tab>\n" +
+    "            <tab heading=\"Vegetation Maps\">\n" +
+    "                <ng-include src=\"'about/about.vegmaps.tpl.html'\">\n" +
+    "                </ng-include>\n" +
+    "            </tab>\n" +
+    "            <tab heading=\"Photos\">\n" +
+    "                <ng-include src=\"'about/about.photos.tpl.html'\">\n" +
+    "                </ng-include>\n" +
+    "            </tab>\n" +
+    "        </tabset>\n" +
     "    	\n" +
     "    </div>\n" +
     "</div>\n" +
@@ -340,7 +322,7 @@ angular.module("about/about.metadata.tpl.html", []).run(["$templateCache", funct
     "    <div class=\"col-sm-12\">\n" +
     "\n" +
     "    	<p>\n" +
-    "		  This document contains field descriptions for the VTM plot data. For quality control and assurance activities, including standardization/lumping processes, see <a href=\"about.description\">Plot Data description</a>.\n" +
+    "		  This document contains field descriptions for the VTM plot data. For quality control and assurance activities, including standardization/lumping processes, see <a href ui-sref=\"about.description\">Plot Data description</a>.\n" +
     "		</p>\n" +
     "\n" +
     "		<h3>\n" +
@@ -365,10 +347,9 @@ angular.module("about/about.metadata.tpl.html", []).run(["$templateCache", funct
     "		<p>Fields are listed according to the order that they appear on datasheets.\n" +
     "		</p>\n" +
     "\n" +
-    "    	<accordion close-others=\"oneAtATime\">\n" +
+    "    	<tabset type=\"pills\">\n" +
     "\n" +
-    "    		<accordion-group is-open=\"status.open\">\n" +
-    "    			<accordion-heading>Plot</accordion-heading>\n" +
+    "    		<tab heading=\"Plot\">\n" +
     "    			<h4>\n" +
     "				  Plot_ID\n" +
     "				</h4>\n" +
@@ -404,7 +385,7 @@ angular.module("about/about.metadata.tpl.html", []).run(["$templateCache", funct
     "				<ul>\n" +
     "				  <li>Corresponds to location on plot map.  For example, A-1-1 plot number is located in the A1 section on the plot map, and is located where the circled 1 is written in this section.\n" +
     "				  </li>\n" +
-    "				  <li>The plot number we entered is different from the number that is written on the datasheet next to the heading \"Plot No.\", which is written in pencil and not in red ink.  Wieslander's <a target=\"_blank\" href=\"http://digitalassets.lib.berkeley.edu/vtm/ucb/text/cubio_vtm_fm.pdf\">Manual of Field Instructions for Vegetation Type Map of California</a> cites on p.76 that plots are numbered consecutively for each quadrangle, and this number was written next to \"Plot No.\" in pencil.  However, this number does not correspond directly to the location on the plot map.  Whenever the field recorder referred to the \"Plot No.\" (the number written in pencil) on the form, the data enterer also typed the corresponding Plot Key in parentheses.\n" +
+    "				  <li>The plot number we entered is different from the number that is written on the datasheet next to the heading &ldquo;Plot No.&rdquo;, which is written in pencil and not in red ink.  Wieslander's <a target=\"_blank\" href=\"http://digitalassets.lib.berkeley.edu/vtm/ucb/text/cubio_vtm_fm.pdf\">Manual of Field Instructions for Vegetation Type Map of California</a> cites on p.76 that plots are numbered consecutively for each quadrangle, and this number was written next to &ldquo;Plot No.&rdquo; in pencil.  However, this number does not correspond directly to the location on the plot map.  Whenever the field recorder referred to the &ldquo;Plot No.&rdquo; (the number written in pencil) on the form, the data enterer also typed the corresponding Plot Key in parentheses.\n" +
     "				  </li>\n" +
     "				</ul>\n" +
     "				<h4>\n" +
@@ -424,7 +405,7 @@ angular.module("about/about.metadata.tpl.html", []).run(["$templateCache", funct
     "				  Plot location as written on datasheet, exceptions noted below. \n" +
     "				</p>\n" +
     "				<ul>\n" +
-    "				  <li>This field often includes mileage information, for ex. \"2 miles South of Mason Flat\".  If miles were written as fractions, these were usually converted to a decimal when entered.  Also, if miles were written in abbreviated form (such as Mi. or mi.) it was sometimes entered in unabbreviated form.  For ex. \"2S Mi. South of Mason Flat\" may have been entered as \"2.33 miles South of Mason Flat\". Some common conversions include:\n" +
+    "				  <li>This field often includes mileage information, for ex. &ldquo;2 miles South of Mason Flat&rdquo;.  If miles were written as fractions, these were usually converted to a decimal when entered.  Also, if miles were written in abbreviated form (such as Mi. or mi.) it was sometimes entered in unabbreviated form.  For ex. &ldquo;2S Mi. South of Mason Flat&rdquo; may have been entered as &ldquo;2.33 miles South of Mason Flat&rdquo;. Some common conversions include:\n" +
     "				    <p>\n" +
     "				      <sup>1</sup>/<sub>16 </sub> = .06<br>\n" +
     "				      <sup>1</sup>/<sub>8  </sub> = .125 or .13<br>\n" +
@@ -435,7 +416,7 @@ angular.module("about/about.metadata.tpl.html", []).run(["$templateCache", funct
     "				      <sup>7</sup>/<sub>8  </sub> = .875\n" +
     "				    </p>\n" +
     "				  </li>\n" +
-    "				  <li>Sometimes plot location was described geographically in relation to a symbol or word on the plot map.  For ex., \"2.5 miles S of (triangle symbol with a dot in it) of Mt. Hamilton.\" Refers to the mountain top marker on the map that looks like a triangle with a small dot in the center of it and often has an elevation written next to it to indicate the elevation of the mountain peak.   Or for ex., \"0.2 miles S of \"S\" in Santa Rosa\"  refers to the letter S in the word Santa Rosa that appears on the plot map.\n" +
+    "				  <li>Sometimes plot location was described geographically in relation to a symbol or word on the plot map.  For ex., &ldquo;2.5 miles S of (triangle symbol with a dot in it) of Mt. Hamilton.&rdquo; Refers to the mountain top marker on the map that looks like a triangle with a small dot in the center of it and often has an elevation written next to it to indicate the elevation of the mountain peak.   Or for ex., &ldquo;0.2 miles S of &lsquo;S&rsquo; in Santa Rosa&rdquo;  refers to the letter S in the word Santa Rosa that appears on the plot map.\n" +
     "				  </li>\n" +
     "				</ul>\n" +
     "				<h4>\n" +
@@ -447,7 +428,7 @@ angular.module("about/about.metadata.tpl.html", []).run(["$templateCache", funct
     "				<ul>\n" +
     "				  <li>The date field would only allow entries in a format of mm/dd/yyyy, and did not allow missing data. \n" +
     "				  </li>\n" +
-    "				  <li>Dates with missing days were entered by entering \"01\" for the missing day.  Dates with missing years were entered by entering the year that other nearby plots were recorded in that quad (see QA Write up.doc).\n" +
+    "				  <li>Dates with missing days were entered by entering &ldquo;01&rdquo; for the missing day.  Dates with missing years were entered by entering the year that other nearby plots were recorded in that quad (see QA Write up.doc).\n" +
     "				  </li>\n" +
     "				</ul>\n" +
     "				<h4>\n" +
@@ -457,7 +438,7 @@ angular.module("about/about.metadata.tpl.html", []).run(["$templateCache", funct
     "				  Section number as written on datasheet, exceptions noted below.\n" +
     "				</p>\n" +
     "				<ul>\n" +
-    "				  <li>Occasionally, the field size was too small to enter all that was written, ie, anything other than the standard one or two digit number that usually indicates the section number.  For ex., Section was sometimes written as \"grants\" or \"unsurveyed\".  Section was also sometimes written with hyphenated values to indicate multiple section numbers, for ex., \"12-14\".  Since this data did not fit in this field it was also entered in Miscellaneous_Notes field.\n" +
+    "				  <li>Occasionally, the field size was too small to enter all that was written, ie, anything other than the standard one or two digit number that usually indicates the section number.  For ex., Section was sometimes written as &ldquo;grants&rdquo; or &ldquo;unsurveyed&rdquo;.  Section was also sometimes written with hyphenated values to indicate multiple section numbers, for ex., &ldquo;12-14&rdquo;.  Since this data did not fit in this field it was also entered in Miscellaneous_Notes field.\n" +
     "				  </li>\n" +
     "				</ul>\n" +
     "				<h4>\n" +
@@ -475,9 +456,9 @@ angular.module("about/about.metadata.tpl.html", []).run(["$templateCache", funct
     "				<ul>\n" +
     "				  <li>Sometimes range was written in parentheses on the datasheet.  The database field would not allow parentheses, so in these cases it was either entered in the Miscellaneous_Notes field or it was entered without parenthesis in the range field with a note in the Miscellaneous_Notes field indicating that the range was written in parentheses.\n" +
     "				  </li>\n" +
-    "				  <li>Sometimes range was written with two or three letters following it.  For ex. \"8SBM\" or \"12AES\".  These seem to be the initials of VTM personnel that made a change or confirmation to the range written on the datasheet.  Initials were removed in the QC process via the Range truth table.\n" +
+    "				  <li>Sometimes range was written with two or three letters following it.  For ex. &ldquo;8SBM&rdquo; or &ldquo;12AES&rdquo;.  These seem to be the initials of VTM personnel that made a change or confirmation to the range written on the datasheet.  Initials were removed in the QC process via the Range truth table.\n" +
     "				  </li>\n" +
-    "				  <li>The range was sometimes written with an \"R\" before the range number.  For ex. \"R8S\".  R occurrences were removed in the QC process via the Range truth table.\n" +
+    "				  <li>The range was sometimes written with an &ldquo;R&rdquo; before the range number.  For ex. &ldquo;R8S&rdquo;.  R occurrences were removed in the QC process via the Range truth table.\n" +
     "				  </li>\n" +
     "				</ul>\n" +
     "				<h4>\n" +
@@ -503,10 +484,10 @@ angular.module("about/about.metadata.tpl.html", []).run(["$templateCache", funct
     "				  Exposure\n" +
     "				</h4>\n" +
     "				<p>\n" +
-    "				  Plot exposure as written on datasheet (see exceptions below), either as abbreviation of cardinal direction or as the name of the direction (For ex. \"Southerly\")\n" +
+    "				  Plot exposure as written on datasheet (see exceptions below), either as abbreviation of cardinal direction or as the name of the direction (For ex. &ldquo;Southerly&rdquo;)\n" +
     "				</p>\n" +
     "				<ul>\n" +
-    "				  <li>There may be cases when the data enterer did not enter exposure exactly as written on datasheet.  For ex. if \"So.\" was written on the datasheet, the data enterer could have entered \"S\" or \"South\".  In all cases however, the meaning of what was entered should never be different than what was written on the datasheet.\n" +
+    "				  <li>There may be cases when the data enterer did not enter exposure exactly as written on datasheet.  For ex. if &ldquo;So.&rdquo; was written on the datasheet, the data enterer could have entered &ldquo;S&rdquo; or &ldquo;South&rdquo;.  In all cases however, the meaning of what was entered should never be different than what was written on the datasheet.\n" +
     "				  </li>\n" +
     "				</ul>\n" +
     "				<h4>\n" +
@@ -516,7 +497,7 @@ angular.module("about/about.metadata.tpl.html", []).run(["$templateCache", funct
     "				  Numerical slope of plot as written on datasheet (unless written as text)\n" +
     "				</p>\n" +
     "				<ul>\n" +
-    "				  <li>This field did not allow text, so when slope was written on datasheet as text (for ex. \"very steep\") it was entered in the Miscellaneous_Notes field\n" +
+    "				  <li>This field did not allow text, so when slope was written on datasheet as text (for ex. &ldquo;very steep&rdquo;) it was entered in the Miscellaneous_Notes field\n" +
     "				  </li>\n" +
     "				</ul>\n" +
     "				<h4>\n" +
@@ -574,7 +555,7 @@ angular.module("about/about.metadata.tpl.html", []).run(["$templateCache", funct
     "				<ul>\n" +
     "				  <li>This field was a drop down menu (Igneous, Metamorphic, Sedimentary) but also allowed text entry.  However the field size was sometimes too small to enter all that was written.  In this case it was entered in the Miscellaneous_Notes field.\n" +
     "				  </li>\n" +
-    "				  <li>There were two versions of the \"tree plot\" datasheets.  One of the two versions of the datasheet did not have a soil depth section.  Therefore no data was entered about soil depth for these datasheets.\n" +
+    "				  <li>There were two versions of the &ldquo;tree plot&rdquo; datasheets.  One of the two versions of the datasheet did not have a soil depth section.  Therefore no data was entered about soil depth for these datasheets.\n" +
     "				  </li>\n" +
     "				  <li>Occasionally hyphenated values or values that did not match one of the drop down choices were entered by choosing the drop down value that was essentially the same in meaning, and a note was entered in Miscellaneous_Notes field to reference what was exactly written on datasheet.\n" +
     "				  </li>\n" +
@@ -598,7 +579,7 @@ angular.module("about/about.metadata.tpl.html", []).run(["$templateCache", funct
     "				  Entered as written on datasheet, except as noted below.\n" +
     "				</p>\n" +
     "				<ul>\n" +
-    "				  <li>There were two versions of the \"Brush and Tree Plot\" datasheets.  One version listed 16 different soil origin types, so the field recorder could either check one or more or write in an origin not on the list.  The other datasheet version did not list soil origin types.  There were was a wide range of soil origin types recorded (varying from \"brown soil\" to \"Alluvium of granitics and basalt\") each datasheet.  Some soil origin types recorded are technically not a soil origin type (for ex. \"poor soil\").  These were still entered as they appeared on datasheet, unless it was an obvious spelling error, in which case the spelling error was corrected (see \"Other\" section at end of this document).\n" +
+    "				  <li>There were two versions of the &ldquo;Brush and Tree Plot&rdquo; datasheets.  One version listed 16 different soil origin types, so the field recorder could either check one or more or write in an origin not on the list.  The other datasheet version did not list soil origin types.  There were was a wide range of soil origin types recorded (varying from &ldquo;brown soil&rdquo;to &ldquo;Alluvium of granitics and basalt&rdquo;) each datasheet.  Some soil origin types recorded are technically not a soil origin type (for ex. &ldquo;poor soil&rdquo;).  These were still entered as they appeared on datasheet, unless it was an obvious spelling error, in which case the spelling error was corrected (see &ldquo;Other&rdquo; section at end of this document).\n" +
     "				  </li>\n" +
     "				  <li>Occasionally hyphenated values or values that did not match one of the drop down choices were entered by choosing the drop down value that was essentially the same in meaning, and a note was entered in Miscellaneous Notes field to reference what was exactly written on datasheet.\n" +
     "				  </li>\n" +
@@ -617,7 +598,7 @@ angular.module("about/about.metadata.tpl.html", []).run(["$templateCache", funct
     "				  Additional_Ground_Cover-species\n" +
     "				</h4>\n" +
     "				<p>\n" +
-    "				  Each species or species code was entered on a separate line in this field.  Species names and species codes were entered as written on datasheet.  Abundance information for a particular species (\"x\" or \"xx\" or \"xxx\", etc.) was entered after the species name or code and on the same line, with either a space or a hyphen between the species name and its abundance.  Although this was the policy, data enterers sometimes entered the abundance information (\"x\", \"xx\", etc) before the species name, as written on the datasheet.  Also, one of the databases was set to automatically sort species names alphabetically.\n" +
+    "				  Each species or species code was entered on a separate line in this field.  Species names and species codes were entered as written on datasheet.  Abundance information for a particular species (&ldquo;x&rdquo; or &ldquo;xx&rdquo; or &ldquo;xxx&rdquo;, etc.) was entered after the species name or code and on the same line, with either a space or a hyphen between the species name and its abundance.  Although this was the policy, data enterers sometimes entered the abundance information (&ldquo;x&rdquo;, &ldquo;xx&rdquo;, etc) before the species name, as written on the datasheet.  Also, one of the databases was set to automatically sort species names alphabetically.\n" +
     "				</p>\n" +
     "				<h4>\n" +
     "				  Special Fire Hazards\n" +
@@ -626,7 +607,7 @@ angular.module("about/about.metadata.tpl.html", []).run(["$templateCache", funct
     "				  Entered as written on datasheet\n" +
     "				</p>\n" +
     "				<ul>\n" +
-    "				  <li>Sometimes the VTM data recorder underlined a word in the heading for this section (\"Special Fire Hazards (dead brush, snags, etc.)\" instead of writing it.  For ex., dead brush or snags may have been underlined.  In these cases the word that was underlined was entered in this field.\n" +
+    "				  <li>Sometimes the VTM data recorder underlined a word in the heading for this section (&ldquo;Special Fire Hazards (dead brush, snags, etc.)&rdquo; instead of writing it.  For ex., dead brush or snags may have been underlined.  In these cases the word that was underlined was entered in this field.\n" +
     "				  </li>\n" +
     "				</ul>\n" +
     "				<h4>\n" +
@@ -649,7 +630,7 @@ angular.module("about/about.metadata.tpl.html", []).run(["$templateCache", funct
     "				  This field contains the following types of information:\n" +
     "				</p>\n" +
     "				<ul>\n" +
-    "				  <li>Remarks written on the datasheet that were not written in a particular section, For ex., stray remarks written in margins of the datasheet, or references to species codes: \"Ap = Apc\" or \"Gr2= At2 and Bh2\", or \"Cpo = Ceanothus prostrates\"\n" +
+    "				  <li>Remarks written on the datasheet that were not written in a particular section, For ex., stray remarks written in margins of the datasheet, or references to species codes: &ldquo;Ap = Apc&rdquo; or &ldquo;Gr2= At2 and Bh2&rdquo;, or &ldquo;Cpo = Ceanothus prostrates&rdquo;\n" +
     "				  </li>\n" +
     "				  <li>Observations about the condition of the datasheet.  For ex., if the datasheet was torn, if the datasheet is blank, or if the datasheet has additional information attached to it such as a grass plot datasheet for the same plot.\n" +
     "				  </li>\n" +
@@ -658,9 +639,9 @@ angular.module("about/about.metadata.tpl.html", []).run(["$templateCache", funct
     "				  <li>This field also served as a holding place for data that did not fit the format requirements of the database fields. \n" +
     "				  </li>\n" +
     "				</ul>\n" +
-    "    		</accordion-group>\n" +
+    "    		</tab>\n" +
     "\n" +
-    "    		<accordion-group heading=\"Brush and Ground Cover\">\n" +
+    "    		<tab heading=\"Brush and Ground Cover\">\n" +
     "				<h4>\n" +
     "				  Species\n" +
     "				</h4>\n" +
@@ -686,17 +667,17 @@ angular.module("about/about.metadata.tpl.html", []).run(["$templateCache", funct
     "				    <ul>\n" +
     "				      <li>  Any symbol drawn on the datasheet that could not be entered were entered in its text equivalent.  For example:\n" +
     "				      </li>\n" +
-    "				      <li>A species code with a circle drawn around it was entered as the code name then circled.  For ex., a R with a circle drawn around it was entered as \"R circled\" or \"R circle\".\n" +
+    "				      <li>A species code with a circle drawn around it was entered as the code name then circled.  For ex., a R with a circle drawn around it was entered as &ldquo;R circled&rdquo; or &ldquo;R circle&rdquo;.\n" +
     "				      </li>\n" +
-    "				      <li>A species code with a square drawn around it was entered as, for ex. \"R square\" or \"R boxed\"\n" +
+    "				      <li>A species code with a square drawn around it was entered as, for ex. &ldquo;R square&rdquo; or &ldquo;R boxed&rdquo;\n" +
     "				      </li>\n" +
-    "				      <li>A pi symbol ( ) drawn next to the code entered as, for ex. \"R pi\"\n" +
+    "				      <li>A pi symbol ( ) drawn next to the code entered as, for ex. &ldquo;R pi&rdquo;\n" +
     "				      </li>\n" +
-    "				      <li>Other symbols like sigma and spiral were entered as \"sigma\" and \"spiral\".\n" +
+    "				      <li>Other symbols like sigma and spiral were entered as &ldquo;sigma&rdquo; and &ldquo;spiral&rdquo;.\n" +
     "				      </li>\n" +
-    "				      <li>   If a number followed the code, it was entered as it was written.  For ex. \"W40\" was entered as \"W40\". \n" +
+    "				      <li>   If a number followed the code, it was entered as it was written.  For ex. &ldquo;W40&rdquo; was entered as &ldquo;W40&rdquo;. \n" +
     "				      </li>\n" +
-    "				      <li>   Sometimes two codes were written on the datasheet for one species.  For ex. \"Qdo=Qd\".  In these cases only one code was entered and a note of what was written was entered in the Miscellaneous_Notes field.\n" +
+    "				      <li>   Sometimes two codes were written on the datasheet for one species.  For ex. &ldquo;Qdo=Qd&rdquo;.  In these cases only one code was entered and a note of what was written was entered in the Miscellaneous_Notes field.\n" +
     "				      </li>\n" +
     "				    </ul>\n" +
     "				  </li>\n" +
@@ -705,7 +686,7 @@ angular.module("about/about.metadata.tpl.html", []).run(["$templateCache", funct
     "				    <ul>\n" +
     "				      <li>Litter was usually written on datasheet as Lit and then the species code(s) that comprised the litter.  Sometimes the species codes were written first and then Lit.  Data entry standardized litter to be entered as Lit and then species codes.  Although this was the rule, it was not always entered in this order and data can be found in either notation.    \n" +
     "				      </li>\n" +
-    "				      <li>For ex. \"Lit A\" or \"A lit\" were entered as \"Lit A\"\n" +
+    "				      <li>For ex. &ldquo;Lit A&rdquo; or &ldquo;A lit&rdquo; were entered as &ldquo;Lit A&rdquo;\n" +
     "				      </li>\n" +
     "				      <li>The field recorder occasionally recorded the percent cover of litter in the Summary of Brush and Ground Cover section but recorded the components of the litter (ie what species made up the litter) in the Remarks section (in which case it was entered in the Remarks field), or in margins on the datasheet (in which case it was entered in the Miscellaneous Notes field).\n" +
     "				      </li>\n" +
@@ -731,7 +712,7 @@ angular.module("about/about.metadata.tpl.html", []).run(["$templateCache", funct
     "				  Plant height in feet as written on datasheet (except when written in inches).\n" +
     "				</p>\n" +
     "				<ul>\n" +
-    "				  <li>When the datasheet had inches information (for ex. \"2 in.\" or '2\" ', the number in inches was converted to feet.  There may be instances however where the data enterer did not convert to feet and entered it as the way it was written.\n" +
+    "				  <li>When the datasheet had inches information (for ex. &ldquo;2 in.&rdquo; or &ldquo;2\" &rdquo;, the number in inches was converted to feet.  There may be instances however where the data enterer did not convert to feet and entered it as the way it was written.\n" +
     "				  </li>\n" +
     "				</ul>\n" +
     "				<h4>\n" +
@@ -741,18 +722,18 @@ angular.module("about/about.metadata.tpl.html", []).run(["$templateCache", funct
     "				  Depth of species litter in inches as written on datasheet.\n" +
     "				</p>\n" +
     "				<ul>\n" +
-    "				  <li>\"T\" or \"t\" was sometimes written on datasheet to indicate \"trace amount\".  In these cases the T or t (whatever was written on the datasheet) was entered. \n" +
+    "				  <li>&ldquo;T&rdquo; or &ldquo;t&rdquo; was sometimes written on datasheet to indicate &ldquo;trace amount&rdquo;.  In these cases the T or t (whatever was written on the datasheet) was entered. \n" +
     "				  </li>\n" +
     "				  <li>Fractions were usually converted to decimal amount.\n" +
     "				  </li>\n" +
     "				  <li>Litter depths written in feet were usually converted to inches.\n" +
     "				  </li>\n" +
-    "				  <li>The field recorder sometimes included the species components of the litter alongside the depth for \"Litt\" entries in the Species field (or other codes meaning litter, like \"Lit\").  In these cases the species components were moved to the Species field.  This was done to be consistent with instructions in the <a target=\"_blank\" href=\"http://digitalassets.lib.berkeley.edu/vtm/ucb/text/cubio_vtm_fm.pdf\">VTM Field Manual</a> and the majority of other field recorders that recorded litter component information.  For ex., if the datasheet had \"0.75 mixture of Y S\" written for the litter depth of the species code \"Litt\", then it was entered as \"0.75\" for the litter depth of species code \"Litt mixture of Y S\".\n" +
+    "				  <li>The field recorder sometimes included the species components of the litter alongside the depth for &ldquo;Litt&rdquo; entries in the Species field (or other codes meaning litter, like &ldquo;Lit&rdquo;).  In these cases the species components were moved to the Species field.  This was done to be consistent with instructions in the <a target=\"_blank\" href=\"http://digitalassets.lib.berkeley.edu/vtm/ucb/text/cubio_vtm_fm.pdf\">VTM Field Manual</a> and the majority of other field recorders that recorded litter component information.  For ex., if the datasheet had &ldquo;0.75 mixture of Y S&rdquo; written for the litter depth of the species code &ldquo;Litt&rdquo;, then it was entered as &ldquo;0.75&rdquo; for the litter depth of species code &ldquo;Litt mixture of Y S&rdquo;.\n" +
     "				  </li>\n" +
     "				</ul>\n" +
-    "    		</accordion-group>\n" +
+    "    		</tab>\n" +
     "\n" +
-    "    		<accordion-group heading=\"Trees\">	\n" +
+    "    		<tab heading=\"Trees\">	\n" +
     "				<h4>\n" +
     "				  Species\n" +
     "				</h4>\n" +
@@ -766,7 +747,7 @@ angular.module("about/about.metadata.tpl.html", []).run(["$templateCache", funct
     "				  Number as written on datasheet, except as noted below.\n" +
     "				</p>\n" +
     "				<ul>\n" +
-    "				  <li>Occasionally the VTM data taker recorded data on diameter classes that did not fit into the set classes on the datasheet.  For ex. \"&lt;4 inches\".  In these cases the information was entered in the Miscellaneous_Notes field.\n" +
+    "				  <li>Occasionally the VTM data taker recorded data on diameter classes that did not fit into the set classes on the datasheet.  For ex. &ldquo;&lt;4 inches&rdquo;.  In these cases the information was entered in the Miscellaneous_Notes field.\n" +
     "				  </li>\n" +
     "				  <li>This was a numeric field that did not allow text.  If the number was hyphenated it was entered in the Miscellaneous_Notes field.\n" +
     "				  </li>\n" +
@@ -789,9 +770,9 @@ angular.module("about/about.metadata.tpl.html", []).run(["$templateCache", funct
     "				  <li>One of the two versions of the brush and tree datasheets does not have a column for tree height.  On these forms, either height was not recorded, or height was  recorded in a drawn in column (often a drawn line split the total column into two columns with total data on the left and height data on the right). When it was clear that these were heights (ie either the word height was written or both totals and heights were recorded), this information was recorded in the height column.  If it was unclear, a note was added in the Miscellaneous_Notes field indicating that additional numbers that are possibly height data were recorded on the datasheet.\n" +
     "				  </li>\n" +
     "				</ul>\n" +
-    "    		</accordion-group>\n" +
+    "    		</tab>\n" +
     "\n" +
-    "    	</accordion>\n" +
+    "    	</tabset>\n" +
     "\n" +
     "    </div>\n" +
     "</div>\n" +
@@ -829,7 +810,7 @@ angular.module("about/about.photos.tpl.html", []).run(["$templateCache", functio
     "\n" +
     "	<h3>A Brief Summary of the Methods</h3>\n" +
     "\n" +
-    "	<p>There are approximately 3,100 black and white landscape and stand scale photographs (9.2 x 13.6 cm) from 1920–1941, many of which are keyed to USGS topographical maps with the location of the photographer is written in red pen on the maps, with an arrow marking the vantage point and view of the photo. The photograph captions typically includes a description of the location and subject of the photograph including relevant genus and species, timber stand conditions, and examples of cultivation, grazing, logging, mining and fire, and quad name. The photographer, date of the photograph, and occasionally township and range are included.</p> \n" +
+    "	<p>There are approximately 3,100 black and white landscape and stand scale photographs (9.2 x 13.6 cm) from 1920&ndash;1941, many of which are keyed to USGS topographical maps with the location of the photographer is written in red pen on the maps, with an arrow marking the vantage point and view of the photo. The photograph captions typically includes a description of the location and subject of the photograph including relevant genus and species, timber stand conditions, and examples of cultivation, grazing, logging, mining and fire, and quad name. The photographer, date of the photograph, and occasionally township and range are included.</p> \n" +
     "\n" +
     "	<p>Each photograph was scanned, and information from captions were entered into a database that is searchable by keyword (information from photograph caption) and genus, species. The location of each photograph depicted on an accompanying map USGS topographic map were georeferenced. The protocol, developed by the Berkeley Museum for Vertebrate Zoology, involves measuring the distance and bearing of each marked point from the known southwest corner and calculating its location.</p>\n" +
     "\n" +
@@ -844,7 +825,7 @@ angular.module("about/about.plotdata.tpl.html", []).run(["$templateCache", funct
     "<div class=\"row\">\n" +
     "    <div class=\"col-sm-12\">\n" +
     "\n" +
-    "		<p>The plot data consists of about 18,000 datasheets of recorded vegetation and environmental data from plots located throughout California and nearby areas of Nevada and Oregon. These plots were surveyed by the VTM field crews as a check on the vegetation polygons, and also to provide details on species composition, size and stand density of trees and shrubs and depth of leaf litter. Most plots were recorded in the 1930's and some as early as the 1920's. Much of the data was collected in timberland since the objective of the VTM project was to survey forest resources (<a target=\"_blank\" href=\"http://digitalassets.lib.berkeley.edu/vtm/ucb/text/cubio_vtm_fm.pdf\">Manual of Field Instructions for Vegetation Type Map of California, pg.1</a>); however, plots were also located in non-timber forests and woodlands, shrublands, and grasslands. The plots cover a gradient of vegetation types and include data regarding tree stand structure (number per diameter class), percent cover of dominant overstory and understory vegetation by species, soil type, parent material, leaf litter, elevation, slope, aspect, parent material, and other environmental variables. All plot data was stored on paper data sheets, and individual plots were numbered according to U.S. Geological Survey (USGS) topographic quadrangle map name, quad section number and plot number. For more information on the plots, please see: <a href=\"/index.html#/about/citations\">Kelly et al. 2005 Madroño paper</a>.</p>\n" +
+    "		<p>The plot data consists of about 18,000 datasheets of recorded vegetation and environmental data from plots located throughout California and nearby areas of Nevada and Oregon. These plots were surveyed by the VTM field crews as a check on the vegetation polygons, and also to provide details on species composition, size and stand density of trees and shrubs and depth of leaf litter. Most plots were recorded in the 1930's and some as early as the 1920's. Much of the data was collected in timberland since the objective of the VTM project was to survey forest resources (<a target=\"_blank\" href=\"http://digitalassets.lib.berkeley.edu/vtm/ucb/text/cubio_vtm_fm.pdf\">Manual of Field Instructions for Vegetation Type Map of California</a>, p.1); however, plots were also located in non-timber forests and woodlands, shrublands, and grasslands. The plots cover a gradient of vegetation types and include data regarding tree stand structure (number per diameter class), percent cover of dominant overstory and understory vegetation by species, soil type, parent material, leaf litter, elevation, slope, aspect, parent material, and other environmental variables. All plot data was stored on paper data sheets, and individual plots were numbered according to U.S. Geological Survey (USGS) topographic quadrangle map name, quad section number and plot number. For more information on the plots, please see: <a href=\"/index.html#/about/citations\">Kelly et al. 2005 Madro&ntilde;o</a>.</p>\n" +
     "\n" +
     "		<h3>A Brief Summary of the Methods</h3>\n" +
     "\n" +
@@ -1208,9 +1189,9 @@ angular.module("about/about.vegmaps.tpl.html", []).run(["$templateCache", functi
     "    <div class=\"col-sm-12\">\n" +
     "\n" +
     "	<h3>A Brief Summary of the Methods</h3>\n" +
-    "	<p>Dominant vegetation type maps were mapped with a minimum mapping unit (MMU) of 16 ha by direct observation ‘from ridges, peaks, and other vantage points’’ (Wieslander 1935) in the field by VTM crews, directly upon 15-minute (1: 62,500-scale) topographic quadrangles, and supplemented by sample plots (which are described below) (Wieslander 1935). According to his reports, it took a two-man crew from six to eight weeks to complete the fieldwork for a 15-minute quad of about 6,070 ha (Wieslander 1935).  The vegetation mapping scheme was driven by ‘‘the dominant vegetation visible externally’’ (Wieslander 1935), in other words, by overstory species recognition, and included ‘‘mosaic types’’ - complex vegetation conditions that resulted from fire or other disturbances, and pure and mixed stand conditions which they associated with “natural plant associations” (Wieslander 1935).</p>\n" +
+    "	<p>Dominant vegetation type maps were mapped with a minimum mapping unit (MMU) of 16 ha by direct observation &ldquo;from ridges, peaks, and other vantage points&rdquo; (Wieslander 1935) in the field by VTM crews, directly upon 15-minute (1: 62,500-scale) topographic quadrangles, and supplemented by sample plots (which are described below) (Wieslander 1935). According to his reports, it took a two-man crew from six to eight weeks to complete the fieldwork for a 15-minute quad of about 6,070 ha (Wieslander 1935).  The vegetation mapping scheme was driven by &ldquo;the dominant vegetation visible externally&rdquo; (Wieslander 1935), in other words, by overstory species recognition, and included &ldquo;mosaic types&rdquo; - complex vegetation conditions that resulted from fire or other disturbances, and pure and mixed stand conditions which they associated with &ldquo;natural plant associations&rdquo; (Wieslander 1935).</p>\n" +
     "\n" +
-    "	<p>The VTM vegetation maps were mostly found in the Marian Koshland Library archives, although the collection was also distributed in various labs and libraries around the state.  As many of the maps as could be found were gathered and brought to UC Davis for digitization by Dr. James Thorne.  The VTM vegetation maps were scanned at 300 dpi, one cut segment at a time, and the scanned versions of the VTM tiles corresponding to each topographic map were then registered to the topographic base map. Once the VTM images were georeferenced, vegetation polygons were traced and plant species codes in each polygon were transcribed. The original VTM plant species codes were linked to modern plant scientific names, and the sequence of species in each polygon was assigned to vegetation and habitat types. The project used the Manual of California Vegetation Types (Sawyer and Keeler‐Wolf 1995), and the California Wildlife Habitat Relationships Models (WHR) (California Department of Fish and Game 2004) for land cover classifications. Once these attributes were added to the maps, they were then error‐checked and finalized.</p>\n" +
+    "	<p>The VTM vegetation maps were mostly found in the Marian Koshland Library archives, although the collection was also distributed in various labs and libraries around the state.  As many of the maps as could be found were gathered and brought to UC Davis for digitization by Dr. James Thorne.  The VTM vegetation maps were scanned at 300 dpi, one cut segment at a time, and the scanned versions of the VTM tiles corresponding to each topographic map were then registered to the topographic base map. Once the VTM images were georeferenced, vegetation polygons were traced and plant species codes in each polygon were transcribed. The original VTM plant species codes were linked to modern plant scientific names, and the sequence of species in each polygon was assigned to vegetation and habitat types. The project used the Manual of California Vegetation Types (Sawyer and Keeler&ndash;Wolf 1995), and the California Wildlife Habitat Relationships Models (WHR) (California Department of Fish and Game 2004) for land cover classifications. Once these attributes were added to the maps, they were then error&ndash;checked and finalized.</p>\n" +
     "\n" +
     "	<h3>Works Cited</h3>\n" +
     "	<p>See <a href=\"/index.html#about/bibliography\">Wieslander Bibliography</a></p>\n" +
@@ -1350,6 +1331,12 @@ angular.module("data/data.photos.tpl.html", []).run(["$templateCache", function(
     "                        </ul>\n" +
     "                    </div>\n" +
     "\n" +
+    "                    <div class=\"map-legend-controls\">\n" +
+    "                        <ul >\n" +
+    "                            <li custom-legend-control>\n" +
+    "                        </ul>\n" +
+    "                    </div>\n" +
+    "\n" +
     "                    <div class=\"map-popup\" >\n" +
     "                        <span ng-hide=\"results.counties.length\">Right click feature for more information.</span>\n" +
     "                        <div class=\"info-box\" ng-show=\"results.counties.length\" ng-cloak>\n" +
@@ -1433,6 +1420,12 @@ angular.module("data/data.plots.tpl.html", []).run(["$templateCache", function($
     "							<li custom-layer-control icon=\"fa fa-leaf\" layer=\"veg\">\n" +
     "						</ul>\n" +
     "					</div>\n" +
+    "\n" +
+    "					<div class=\"map-legend-controls\">\n" +
+    "                        <ul >\n" +
+    "                            <li custom-legend-control>\n" +
+    "                        </ul>\n" +
+    "                    </div>\n" +
     "\n" +
     "					<div class=\"map-popup\" >\n" +
     "						<span ng-hide=\"results.counties.length\">Right click feature for more information.</span>\n" +
