@@ -1,9 +1,10 @@
 angular.module( 'services.VtmPhotoService', ['services.HolosPaginatedResource'])
 
-.factory('VtmPhotos', ['HolosPaginated', 'leafletLayerHelpers',
-  function( HolosPaginated, leafletLayerHelpers) {
+.factory('VtmPhotos', ['$q', 'HolosPaginated',
+  function( $q, HolosPaginated) {
 
      // private data vars
+     var deferred = $q.defer();
      var markerArray = [];
      var markerCount;
 
@@ -18,7 +19,8 @@ angular.module( 'services.VtmPhotoService', ['services.HolosPaginatedResource'])
 
       var queryParams = {
         'collection_code' : 'VTM',
-        'georeferenced' : true
+        'georeferenced' : true,
+        'format': 'json'
       };
 
      //private functions 
@@ -53,7 +55,7 @@ angular.module( 'services.VtmPhotoService', ['services.HolosPaginatedResource'])
               }
             });
             markerCount = markerArray.length;
-            console.log(markerCount + ' new markers created');
+            console.log(markerCount + ' new photo markers created');
 
       };
 
@@ -67,11 +69,10 @@ angular.module( 'services.VtmPhotoService', ['services.HolosPaginatedResource'])
                 queryParams[p] = extraParams[p];
               } 
             }
-            console.log(queryParams);
 
             //Send request to Holos
-            HolosPaginated.loadList('photos', queryParams).then(function(data){
-              console.log('from holos', data);
+            var holosInstance = HolosPaginated.getInstance();
+            holosInstance.loadList('photos', queryParams).then(function(data){
               if (data.length > 0) {
                 createMarkers(data);
               }              

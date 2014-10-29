@@ -1,5 +1,5 @@
-<span ng-hide="results.counties.length">Right click feature for more information.</span>
-<div class="info-box" ng-show="results.counties.length" ng-cloak>
+<span ng-hide="results.quads.length">Click feature for more information.</span>
+<div class="info-box" ng-show="results.quads.length" ng-cloak>
     <div >
         County:
             <span ng-repeat="county in results.counties" repeat-delimiter=",">
@@ -16,19 +16,21 @@
         Veg:
             <span ng-repeat="veg in results.veg" repeat-delimiter=",">
             {{ veg.whr }}
+            <a target="_blank" ng-href="{{veg.url}}" ><i class="fa fa-info-circle"></i></a>
             </span>
     </div>
     <div ng-show="results.plots.length">
         Plots:
             <span ng-repeat="plot in results.plots" repeat-delimiter=",">
             {{ plot.plot_no }}
+            <a target="_blank" ng-href="{{plot.url}}" ><i class="fa fa-info-circle"></i></a>
             </span>
     </div>
         <div ng-show="results.photos.length">
         Photos:
         <div ng-repeat="photo in results.photos">
             <div class="wrap-image">
-                <a target="_blank" href="{{photo.media_url}}">
+                <a target="_blank" ng-href="{{photo.url}}">
                 <img ng-src="{{photo.media_url | thumbnailUrl}}" alt=""
                 style="position: absolute;" resizable-image >
                 </a>

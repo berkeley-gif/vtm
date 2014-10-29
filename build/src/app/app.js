@@ -29,7 +29,7 @@ angular.module( 'vtm', [
   RestangularProvider.setDefaultRequestParams(
     { 
       //apiKey: HOLOS_CONFIG.apiKey,
-      format: 'json'
+      //format: 'json'
     }
   );
   RestangularProvider.setRequestSuffix('/');

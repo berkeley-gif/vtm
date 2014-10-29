@@ -20,11 +20,12 @@ angular.module( 'vtm.data', [
   'restangular',
   'services.VtmPhotoService',
   'directives.customLayerControl',
-  'directives.customMapPopup',
   'directives.repeatDelimiter',
   'directives.customLegendControl',
   'filters.thumbnail',
-  'directives.resizableImage'
+  'directives.resizableImage',
+  'services.VtmPlotsService',
+  'services.debounce'
 ])
 
 /**
@@ -68,7 +69,7 @@ angular.module( 'vtm.data', [
 /**
  * And of course we define a controller for our route.
  */
-.controller( 'DataCtrl', function DataController($scope, $log, $http, $state, $timeout, $modal, leafletData, leafletBoundsHelpers, VtmLayers, VtmPhotos, Restangular) {
+.controller( 'DataCtrl', function DataController($scope, $log, $http, $state, $timeout, $debounce, $modal, leafletData, leafletBoundsHelpers, VtmLayers, VtmPhotos, VtmPlots, Restangular) {
 
   // Map setup
   var center = {
@@ -81,7 +82,6 @@ angular.module( 'vtm.data', [
     [ center.lat-0.1, center.lng-0.1 ],
     [ center.lat+0.1, center.lng+0.1 ]
   ]);
-  console.log('bounds before map', bounds);
 
   var maxBounds = {
     southWest: {
@@ -98,8 +98,8 @@ angular.module( 'vtm.data', [
   var overlays =  {
     veg: VtmLayers.loadLayer('veg'),
     quads: VtmLayers.loadLayer('quads'),
-    plots: VtmLayers.loadLayer('plots'),
-    photos: VtmLayers.loadLayer('photos')     //marker group layer
+    plots: VtmLayers.loadLayer('plots'), //marker group layer
+    photos: VtmLayers.loadLayer('photos')    //marker group layer
   };
 
   
@@ -118,14 +118,7 @@ angular.module( 'vtm.data', [
         map: {
           minZoom: 6,
           scrollWheelZoom: false,
-          doubleClickZoom: false,
-          contextmenu: false,
-          contextmenuItems: [
-            {
-              text: 'Query features',
-              callback: queryFeatures
-            }
-          ]
+          doubleClickZoom: false
         }
       },
       controls : {
@@ -143,40 +136,51 @@ angular.module( 'vtm.data', [
     veg: []
   };
 
-  /////////////////////////////////////////////////////
-  //    GET REFERENCE TO NATIVE LEAFLET OBJECTS      //
-  /////////////////////////////////////////////////////
-
-  $timeout(function(){
-    leafletData.getMap().then(function(map) {
-      $scope.leafletMap = map;
+/*  $scope.$on('leafletDirectiveMap.moveend', function(){
+    leafletData.getMap().then(function(leafletMapObject) {
+      var bboxString = leafletMapObject.getBounds().toBBoxString();
+      var bboxArray = bboxString.split(',').map(function(val){
+        return (parseFloat(val)).toFixed(4);
+      });
+      loadMarkers(bboxArray.toString());
     });
-  },1000);
+  });*/
+
+  $scope.$watch('map.bounds', function(newValue, oldValue){
+
+    if ( newValue !== oldValue ) {
+      // Only increment the counter if the value changed
+      leafletData.getMap().then(function(leafletMapObject) {
+        var bboxString = leafletMapObject.getBounds().toBBoxString();
+        var bboxArray = bboxString.split(',').map(function(val){
+          return (parseFloat(val)).toFixed(4);
+        });
+        loadMarkers(bboxArray.toString());
+      });
+    }
+
+  }, true);
+
 
   $scope.$on('leafletDirectiveMap.click', function(e, args) {
     $scope.results['photos'].length = 0;
-    queryFeatures(args.leafletEvent);
+    $scope.results['plots'].length = 0;
+    queryFeatures(args.leafletEvent.latlng);
   });
 
   $scope.$on('leafletDirectiveMarker.click', function(e, args) {
     var temp_marker = $scope.map.markers[args.markerName];
-/*    var url = temp_marker.media_url;
-    var thumbnailUrl = url.replace(/imgs\/(.*?)(\/)/, "imgs/128x192/");
-    var popupContent =  '<a target="_blank" href="'+ temp_marker.media_url + '">' +
-                            '<img ng-src="' + thumbnailUrl + '" class="img-responsive">' +
-                        '</a>';*/
+    $scope.results['plots'].length = 0;
     $scope.results['photos'].length = 0;
-    $scope.results['photos'].push(temp_marker);
-
-    queryFeatures(args.leafletEvent);
-
+    if (temp_marker.layer == 'plots') {
+      $scope.results['plots'].push(temp_marker);
+    } else {
+      $scope.results['photos'].push(temp_marker);
+    }  
+    queryFeatures(args.leafletEvent.latlng);
   });
 
-  function queryFeatures(args){
-
-    var latlng = args.latlng;
-
-    $scope.results.length = 0;
+  function queryFeatures(latlng){
     
     //Create geojson geometry string fpr query
     var pointGeojson = 
@@ -229,30 +233,24 @@ angular.module( 'vtm.data', [
 
   }
 
-  function loadPhotoMarkers(bboxString){
-    console.log("BBox: " + bboxString);
+  var photoMarkers = [];
+  var plotMarkers = [];
+  function loadMarkers(bboxString){
     VtmPhotos.loadMarkers({'bbox': bboxString});
-    $scope.map.markers = VtmPhotos.getMarkers();
-    console.log('markersfrom data', $scope.markers);
+    VtmPlots.loadMarkers({'bbox': bboxString});
+    photoMarkers = VtmPhotos.getMarkers();
+    plotMarkers = VtmPlots.getMarkers();
+    $debounce(updateMarkers, 1000);
+    
   }
 
-  $scope.$on('leafletDirectiveMap.moveend', function(){
-    console.log('moveend fired');
-    leafletData.getMap().then(function(leafletMapObject) {
-      var bboxString = leafletMapObject.getBounds().toBBoxString();
-      var bboxArray = bboxString.split(',').map(function(val){
-        return (parseFloat(val)).toFixed(4);
-      });
-      loadPhotoMarkers(bboxArray.toString());
-    });
+  function updateMarkers(){
 
-  });
+    $scope.map.markers = photoMarkers.concat(plotMarkers);
+    console.log(photoMarkers.length, plotMarkers.length, $scope.map.markers);
+    $scope.$apply();
+  }
 
-  $scope.$on('leafletDirectiveMarkers.click', function(){
-    console.log('marker click fired');
-
-
-  });
 
   //////////////////////////////////////////////////////////////////
   //  EVENT HANDLERS FOR DETAIL STATE WHEN IT IS OPENED AS MODAL  //
@@ -275,16 +273,11 @@ angular.module( 'vtm.data', [
  */
 .controller( 'PlotsCtrl', function PlotsController($scope, $log, VtmLayers, VtmPhotos) {
 
-
-
-  $log.log('in plots controller');
-
   //Make all overlays except plots invisible
   VtmLayers.showLayer('plots');
   VtmLayers.hideLayer('veg');
   VtmLayers.hideLayer('photos');
 
-  
 
 })
 
@@ -293,31 +286,19 @@ angular.module( 'vtm.data', [
  */
 .controller( 'VegCtrl', function VegController($scope, $log, VtmLayers) {
 
-
-
-  $log.log('in veg controller');
   //Make all overlays except vegetation invisible
   VtmLayers.showLayer('veg');
   VtmLayers.hideLayer('plots');
   VtmLayers.hideLayer('photos');
 
-  
-
 })
 
 .controller( 'PhotosCtrl', function PhotosController($scope, $log, VtmLayers) {
-
-
-
-  $log.log('in photos controller');
 
   //Make all overlays except photos invisible
   VtmLayers.showLayer('photos');
   VtmLayers.hideLayer('veg');
   VtmLayers.hideLayer('plots');
-
-
-  
 
 })
 

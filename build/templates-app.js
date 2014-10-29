@@ -1342,7 +1342,7 @@ angular.module("data/data.photos.tpl.html", []).run(["$templateCache", function(
     "                        </ng-include>\n" +
     "                    </div>\n" +
     "\n" +
-    "                    <leaflet id=\"map\" center=\"map.center\" layers=\"map.layers\" geojson=\"map.geojson\" defaults=\"map.defaults\" controls=\"map.controls\" markers=\"map.markers\"  bounds=\"map.bounds\">\n" +
+    "                    <leaflet id=\"map\" center=\"map.center\" layers=\"map.layers\" defaults=\"map.defaults\" controls=\"map.controls\" markers=\"map.markers\"  geojson=\"map.geojson\" bounds=\"map.bounds\">\n" +
     "                    </leaflet>\n" +
     "\n" +
     "        </div>\n" +
@@ -1399,7 +1399,7 @@ angular.module("data/data.plots.tpl.html", []).run(["$templateCache", function($
     "                        </ng-include>\n" +
     "                    </div>\n" +
     "\n" +
-    "					<leaflet id=\"map\" center=\"map.center\" layers=\"map.layers\" geojson=\"map.geojson\" defaults=\"map.defaults\" controls=\"map.controls\" markers=\"map.markers\"  bounds=\"map.bounds\">\n" +
+    "					<leaflet id=\"map\" center=\"map.center\" layers=\"map.layers\" defaults=\"map.defaults\" controls=\"map.controls\" markers=\"map.markers\"  geojson=\"map.geojson\" bounds=\"map.bounds\">\n" +
     "					</leaflet>\n" +
     "\n" +
     "		</div>\n" +
@@ -1435,8 +1435,8 @@ angular.module("data/data.plots.tpl.html", []).run(["$templateCache", function($
 
 angular.module("data/data.popup.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("data/data.popup.tpl.html",
-    "<span ng-hide=\"results.counties.length\">Right click feature for more information.</span>\n" +
-    "<div class=\"info-box\" ng-show=\"results.counties.length\" ng-cloak>\n" +
+    "<span ng-hide=\"results.quads.length\">Click feature for more information.</span>\n" +
+    "<div class=\"info-box\" ng-show=\"results.quads.length\" ng-cloak>\n" +
     "    <div >\n" +
     "        County:\n" +
     "            <span ng-repeat=\"county in results.counties\" repeat-delimiter=\",\">\n" +
@@ -1453,19 +1453,21 @@ angular.module("data/data.popup.tpl.html", []).run(["$templateCache", function($
     "        Veg:\n" +
     "            <span ng-repeat=\"veg in results.veg\" repeat-delimiter=\",\">\n" +
     "            {{ veg.whr }}\n" +
+    "            <a target=\"_blank\" ng-href=\"{{veg.url}}\" ><i class=\"fa fa-info-circle\"></i></a>\n" +
     "            </span>\n" +
     "    </div>\n" +
     "    <div ng-show=\"results.plots.length\">\n" +
     "        Plots:\n" +
     "            <span ng-repeat=\"plot in results.plots\" repeat-delimiter=\",\">\n" +
     "            {{ plot.plot_no }}\n" +
+    "            <a target=\"_blank\" ng-href=\"{{plot.url}}\" ><i class=\"fa fa-info-circle\"></i></a>\n" +
     "            </span>\n" +
     "    </div>\n" +
     "        <div ng-show=\"results.photos.length\">\n" +
     "        Photos:\n" +
     "        <div ng-repeat=\"photo in results.photos\">\n" +
     "            <div class=\"wrap-image\">\n" +
-    "                <a target=\"_blank\" href=\"{{photo.media_url}}\">\n" +
+    "                <a target=\"_blank\" ng-href=\"{{photo.url}}\">\n" +
     "                <img ng-src=\"{{photo.media_url | thumbnailUrl}}\" alt=\"\"\n" +
     "                style=\"position: absolute;\" resizable-image >\n" +
     "                </a>\n" +
@@ -1525,7 +1527,7 @@ angular.module("data/data.vegetation.tpl.html", []).run(["$templateCache", funct
     "                        </ng-include>\n" +
     "                    </div>\n" +
     "\n" +
-    "                    <leaflet id=\"map\" center=\"map.center\" layers=\"map.layers\" geojson=\"map.geojson\" defaults=\"map.defaults\" controls=\"map.controls\" markers=\"map.markers\"  bounds=\"map.bounds\">\n" +
+    "                    <leaflet id=\"map\" center=\"map.center\" layers=\"map.layers\" defaults=\"map.defaults\" controls=\"map.controls\" markers=\"map.markers\"  geojson=\"map.geojson\" bounds=\"map.bounds\">\n" +
     "                    </leaflet>\n" +
     "\n" +
     "        </div>\n" +
