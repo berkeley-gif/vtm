@@ -1391,7 +1391,7 @@ angular.module("data/data.photos.tpl.html", []).run(["$templateCache", function(
     "                <p><a href ui-sref=\"about.description\">Read more about the digitization method</a></p>\n" +
     "            </tab>\n" +
     "            <tab heading=\"Download\">\n" +
-    "                <p>We are working on providing scans of the original photo datasheets and a Historica Photo Hunt app. In the meantime photographs can be downloaded from <a href=\"http://www.lib.berkeley.edu/BIOS/vtm\" target=\"_blank\">Marian Koshland Bioscience and Natural Resources Library</a>.</p>\n" +
+    "                <p>We are working on providing scans of the original photo datasheets and a Historical Photo Hunt app. In the meantime photographs can be downloaded from <a href=\"http://www.lib.berkeley.edu/BIOS/vtm\" target=\"_blank\">Marian Koshland Bioscience and Natural Resources Library</a>.</p>\n" +
     "            </tab>\n" +
     "            <tab heading=\"Suggested Citations\">\n" +
     "                <ng-include src=\"'about/about.citations.tpl.html'\"></ng-inlcude>\n" +

@@ -44,7 +44,7 @@ angular.module( 'vtm', [
     // .. to look for getList operations
     if (operation === "getList") {
       // .. and handle the data and meta data
-      extractedData.results = element.results;
+      extractedData.results = element.features? element.features : element.results;
       extractedData.count = element.count;
       extractedData.next = element.next;
       extractedData.prev = element.prev;

@@ -69,7 +69,6 @@ angular.module( 'vtm.data', [
 .controller( 'DataCtrl', function DataController($scope, $log, $http, $state, $timeout, $modal, leafletData, leafletBoundsHelpers, VtmLayers, VtmPhotos, Restangular) {
 
   // Map setup
-  console.log('state', $state);
   var center = {
     lat: 37.5,
     lng: -122,
@@ -164,24 +163,6 @@ angular.module( 'vtm.data', [
     var southWest = latlngBounds.southWest;
     var northEast = latlngBounds.northEast;  
 
-/*    var sw = [southWest.lng, southWest.lat];
-    var nw = [northEast.lng, southWest.lat];
-    var ne = [northEast.lng, northEast.lat];
-    var se = [southWest.lng, northEast.lat];
-    var polygonGeojson = 
-      { 
-        'type' : 'Polygon',
-        'coordinates' : [
-          [
-            sw,
-            nw,
-            ne,
-            se,
-            sw
-          ]
-        ]
-      };*/
-
   
     var bboxString = southWest.lng.toFixed(4) + ',' + southWest.lat.toFixed(4) + ',' + northEast.lng.toFixed(2) + ',' + northEast.lat.toFixed(2);
 
@@ -198,32 +179,6 @@ angular.module( 'vtm.data', [
         $scope.results['quads'] = data.results;
       }
     });
-
-    if ( VtmLayers.isVisible('plots') ) {
-      //var vtmplots = Restangular.all('vtmplots');
-      //vtmplots.getList({g: polygonGeojson}).then(function(data){
-      var vtmplots = Restangular.one('layers', 'vtmplots');
-      vtmplots.getList('features', {g: polygonGeojson}).then(function(data){
-        if (data.results.length > 0){
-          $scope.results['plots'].length = 0;
-          $scope.results['plots'] = data.results;
-        }
-      });
-    } else {
-      $scope.results['plots'].length = 0;
-    }
-
-    if ( VtmLayers.isVisible('photos') ) {
-      var vtmphotos = Restangular.all('photos');
-      vtmphotos.getList({ bbox: bboxString, 'collection_code':'vtm', 'georeferenced': true}).then(function(data){
-        if (data.results.length > 0){
-          $scope.results['photos'].length = 0;
-          $scope.results['photos'] = data.results;
-        }
-      });
-    } else {
-      $scope.results['photos'].length = 0;
-    }
 
     if ( VtmLayers.isVisible('veg') ) {
       var vtmveg = Restangular.all('vtmveg');
