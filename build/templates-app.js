@@ -784,7 +784,7 @@ angular.module("about/about.overview.tpl.html", []).run(["$templateCache", funct
     "<div class=\"row\" id=\"#about\">\n" +
     "    <div class=\"col-sm-12\">\n" +
     "\n" +
-    "		<p><img src=\"assets/img/about_history_surveyors_1140x300.png\" class=\"img-responsive\"></img></p>\n" +
+    "		<p><img ng-src=\"assets/img/about_history_surveyors_1140x300.png\" class=\"img-responsive\"></img></p>\n" +
     "\n" +
     "		<p>In the 1930s, forester A. E. Wieslander spearheaded a U. S. Forest Service survey of California vegetation, called the Vegetation Type Mapping Project (VTM).  In this remarkable effort the Forest Service crews mapped over 1/3 (16 million+ hectares) of the state. Because of its comprehensive and detailed nature, the VTM dataset is recognized as a valuable window into the state of early 20th century California flora. The collection has provided data for numerous graduate theses at several Universities, as well as numerous manuscripts in peer-reviewed journals.</p>\n" +
     "\n" +
@@ -1338,41 +1338,8 @@ angular.module("data/data.photos.tpl.html", []).run(["$templateCache", function(
     "                    </div>\n" +
     "\n" +
     "                    <div class=\"map-popup\" >\n" +
-    "                        <span ng-hide=\"results.counties.length\">Right click feature for more information.</span>\n" +
-    "                        <div class=\"info-box\" ng-show=\"results.counties.length\" ng-cloak>\n" +
-    "                            <div >\n" +
-    "                                County:\n" +
-    "                                    <span ng-repeat=\"county in results.counties\" repeat-delimiter=\",\">\n" +
-    "                                    {{ county.properties.name }}\n" +
-    "                                    </span>\n" +
-    "                            </div>\n" +
-    "                            <div>\n" +
-    "                                VTM Quads:\n" +
-    "                                    <span ng-repeat=\"quad in results.quads\" repeat-delimiter=\",\">\n" +
-    "                                    {{ quad.properties.record | split:':':1 }}\n" +
-    "                                    </span>\n" +
-    "                            </div>\n" +
-    "                            <div ng-show=\"results.plots.length\">\n" +
-    "                                Plots:\n" +
-    "                                    <span ng-repeat=\"plot in results.plots\" repeat-delimiter=\",\">\n" +
-    "                                    {{ plot.plot_no }}\n" +
-    "                                    </span>\n" +
-    "                            </div>\n" +
-    "                                <div ng-show=\"results.photos.length\">\n" +
-    "                                Photos:\n" +
-    "                                    <span ng-repeat=\"photo in results.photos\" repeat-delimiter=\",\">\n" +
-    "                                    {{ photo.record }}\n" +
-    "                                    </span>\n" +
-    "                            </div>\n" +
-    "                            <div ng-show=\"results.veg.length\">\n" +
-    "                                Veg:\n" +
-    "                                    <span ng-repeat=\"veg in results.veg\" repeat-delimiter=\",\">\n" +
-    "                                    {{ veg.whr }}\n" +
-    "                                    </span>\n" +
-    "                            </div>\n" +
-    "                        </div>\n" +
-    "\n" +
-    "                    <!-- <div  custom-map-popup layerProp=\"layerProp\" ></div> -->\n" +
+    "                        <ng-include src=\"'data/data.popup.tpl.html'\">\n" +
+    "                        </ng-include>\n" +
     "                    </div>\n" +
     "\n" +
     "                    <leaflet id=\"map\" center=\"map.center\" layers=\"map.layers\" geojson=\"map.geojson\" defaults=\"map.defaults\" controls=\"map.controls\" markers=\"map.markers\"  bounds=\"map.bounds\">\n" +
@@ -1428,42 +1395,9 @@ angular.module("data/data.plots.tpl.html", []).run(["$templateCache", function($
     "                    </div>\n" +
     "\n" +
     "					<div class=\"map-popup\" >\n" +
-    "						<span ng-hide=\"results.counties.length\">Right click feature for more information.</span>\n" +
-    "						<div class=\"info-box\" ng-show=\"results.counties.length\" ng-cloak>\n" +
-    "							<div >\n" +
-    "								County:\n" +
-    "									<span ng-repeat=\"county in results.counties\" repeat-delimiter=\",\">\n" +
-    "									{{ county.properties.name }}\n" +
-    "									</span>\n" +
-    "							</div>\n" +
-    "							<div>\n" +
-    "								VTM Quads:\n" +
-    "									<span ng-repeat=\"quad in results.quads\" repeat-delimiter=\",\">\n" +
-    "									{{ quad.properties.record | split:':':1 }}\n" +
-    "									</span>\n" +
-    "							</div>\n" +
-    "							<div ng-show=\"results.plots.length\">\n" +
-    "								Plots:\n" +
-    "									<span ng-repeat=\"plot in results.plots\" repeat-delimiter=\",\">\n" +
-    "									{{ plot.plot_no }}\n" +
-    "									</span>\n" +
-    "							</div>\n" +
-    "								<div ng-show=\"results.photos.length\">\n" +
-    "								Photos:\n" +
-    "									<span ng-repeat=\"photo in results.photos\" repeat-delimiter=\",\">\n" +
-    "									{{ photo.record }}\n" +
-    "									</span>\n" +
-    "							</div>\n" +
-    "							<div ng-show=\"results.veg.length\">\n" +
-    "								Veg:\n" +
-    "									<span ng-repeat=\"veg in results.veg\" repeat-delimiter=\",\">\n" +
-    "									{{ veg.whr }}\n" +
-    "									</span>\n" +
-    "							</div>\n" +
-    "						</div>\n" +
-    "\n" +
-    " 					<!-- <div  custom-map-popup layerProp=\"layerProp\" ></div> -->\n" +
-    "					</div>\n" +
+    "                        <ng-include src=\"'data/data.popup.tpl.html'\">\n" +
+    "                        </ng-include>\n" +
+    "                    </div>\n" +
     "\n" +
     "					<leaflet id=\"map\" center=\"map.center\" layers=\"map.layers\" geojson=\"map.geojson\" defaults=\"map.defaults\" controls=\"map.controls\" markers=\"map.markers\"  bounds=\"map.bounds\">\n" +
     "					</leaflet>\n" +
@@ -1501,41 +1435,48 @@ angular.module("data/data.plots.tpl.html", []).run(["$templateCache", function($
 
 angular.module("data/data.popup.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("data/data.popup.tpl.html",
-    "<ul>\n" +
-    "	<li>Plot Number:{{layerProp.plot_no}}</li>\n" +
-    "	<li>Plot Map: {{layerProp.map_reference}}</li>\n" +
-    "	<li>Quadrangle: {{layerProp.quadrangle}}</li>\n" +
-    "	<li>TRS: {{layerProp.trs}}</li>\n" +
-    "	<li>Locality: {{layerProp.locality}}</li>\n" +
-    "	<li>Date: {{layerProp.begin_date | date:\"shortDate\"}}</li>\n" +
-    "	<li>Coordinates: {{layerProp.geojson.coordinates[0]}}, {{layerProp.geojson.coordinates[1]}}</li>\n" +
-    "	<li>Coordinate uncertainty (mt): {{layerProp.coordinate_uncertainty_in_meters}}</li>\n" +
-    "	<li>Elevation: {{layerProp.elevation}}</li>\n" +
-    "	<li>Penetrability: {{layerProp.penetrability}}</li>\n" +
-    "	<li>Taken by: {{layerProp.taken_by}}</li>\n" +
-    "	<li>Slope (%): {{layerProp.slope_percent}}</li>\n" +
-    "	<li>Trees:\n" +
-    "		<span ng-hide=\"layerProp.trees.length\">\n" +
-    "        	&nbsp;No data\n" +
-    "		</span>\n" +
-    "		<ul ng-show=\"layerProp.trees.length\">\n" +
-    "        	<li ng-repeat=\"obs in layerProp.trees\">\n" +
-    "            	<a ng-href=\"{{obs.url}}\" target=\"_blank\">{{obs.scientific_name}}</a>\n" +
-    "        	</li>\n" +
-    "		</ul>\n" +
-    "	</li>\n" +
-    "	<li>Brushes:\n" +
-    "		<span ng-hide=\"layerProp.brushes.length\">\n" +
-    "        	&nbsp;No data\n" +
-    "		</span>\n" +
-    "		<ul ng-show=\"layerProp.brushes.length\">\n" +
-    "        	<li ng-repeat=\"obs in layerProp.brushes\">\n" +
-    "            	<a ng-href=\"{{obs.url}}\" target=\"_blank\">{{obs.scientific_name}}</a>\n" +
-    "        	</li>\n" +
-    "		</ul>\n" +
-    "	</li>\n" +
-    "	<li>More details <a ng-href=\"{{layerProp.url}}\" target=\"_blank\"><i class=\"fa fa-info-circle\"></i></a></li>\n" +
-    "</ul>");
+    "<span ng-hide=\"results.counties.length\">Right click feature for more information.</span>\n" +
+    "<div class=\"info-box\" ng-show=\"results.counties.length\" ng-cloak>\n" +
+    "    <div >\n" +
+    "        County:\n" +
+    "            <span ng-repeat=\"county in results.counties\" repeat-delimiter=\",\">\n" +
+    "            {{ county.properties.name }}\n" +
+    "            </span>\n" +
+    "    </div>\n" +
+    "    <div>\n" +
+    "        VTM Quads:\n" +
+    "            <span ng-repeat=\"quad in results.quads\" repeat-delimiter=\",\">\n" +
+    "            {{ quad.properties.record | split:':':1 }}\n" +
+    "            </span>\n" +
+    "    </div>\n" +
+    "    <div ng-show=\"results.veg.length\">\n" +
+    "        Veg:\n" +
+    "            <span ng-repeat=\"veg in results.veg\" repeat-delimiter=\",\">\n" +
+    "            {{ veg.whr }}\n" +
+    "            </span>\n" +
+    "    </div>\n" +
+    "    <div ng-show=\"results.plots.length\">\n" +
+    "        Plots:\n" +
+    "            <span ng-repeat=\"plot in results.plots\" repeat-delimiter=\",\">\n" +
+    "            {{ plot.plot_no }}\n" +
+    "            </span>\n" +
+    "    </div>\n" +
+    "        <div ng-show=\"results.photos.length\">\n" +
+    "        Photos:\n" +
+    "        <div ng-repeat=\"photo in results.photos\">\n" +
+    "            <div class=\"wrap-image\">\n" +
+    "                <a target=\"_blank\" href=\"{{photo.media_url}}\">\n" +
+    "                <img ng-src=\"{{photo.media_url | thumbnailUrl}}\" alt=\"\"\n" +
+    "                style=\"position: absolute;\" resizable-image >\n" +
+    "                </a>\n" +
+    "                <div class=\"tools tools-bottom\">\n" +
+    "                {{photo.authors}}, {{photo.begin_date | date:'yyyy'}} <br/>\n" +
+    "                {{photo.county}}\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "</div>");
 }]);
 
 angular.module("data/data.tpl.html", []).run(["$templateCache", function($templateCache) {
@@ -1580,41 +1521,8 @@ angular.module("data/data.vegetation.tpl.html", []).run(["$templateCache", funct
     "                    </div>\n" +
     "\n" +
     "                    <div class=\"map-popup\" >\n" +
-    "                        <span ng-hide=\"results.counties.length\">Right click feature for more information.</span>\n" +
-    "                        <div class=\"info-box\" ng-show=\"results.counties.length\" ng-cloak>\n" +
-    "                            <div >\n" +
-    "                                County:\n" +
-    "                                    <span ng-repeat=\"county in results.counties\" repeat-delimiter=\",\">\n" +
-    "                                    {{ county.properties.name }}\n" +
-    "                                    </span>\n" +
-    "                            </div>\n" +
-    "                            <div>\n" +
-    "                                VTM Quads:\n" +
-    "                                    <span ng-repeat=\"quad in results.quads\" repeat-delimiter=\",\">\n" +
-    "                                    {{ quad.properties.record | split:':':1 }}\n" +
-    "                                    </span>\n" +
-    "                            </div>\n" +
-    "                            <div ng-show=\"results.plots.length\">\n" +
-    "                                Plots:\n" +
-    "                                    <span ng-repeat=\"plot in results.plots\" repeat-delimiter=\",\">\n" +
-    "                                    {{ plot.plot_no }}\n" +
-    "                                    </span>\n" +
-    "                            </div>\n" +
-    "                                <div ng-show=\"results.photos.length\">\n" +
-    "                                Photos:\n" +
-    "                                    <span ng-repeat=\"photo in results.photos\" repeat-delimiter=\",\">\n" +
-    "                                    {{ photo.record }}\n" +
-    "                                    </span>\n" +
-    "                            </div>\n" +
-    "                            <div ng-show=\"results.veg.length\">\n" +
-    "                                Veg:\n" +
-    "                                    <span ng-repeat=\"veg in results.veg\" repeat-delimiter=\",\">\n" +
-    "                                    {{ veg.whr }}\n" +
-    "                                    </span>\n" +
-    "                            </div>\n" +
-    "                        </div>\n" +
-    "\n" +
-    "                    <!-- <div  custom-map-popup layerProp=\"layerProp\" ></div> -->\n" +
+    "                        <ng-include src=\"'data/data.popup.tpl.html'\">\n" +
+    "                        </ng-include>\n" +
     "                    </div>\n" +
     "\n" +
     "                    <leaflet id=\"map\" center=\"map.center\" layers=\"map.layers\" geojson=\"map.geojson\" defaults=\"map.defaults\" controls=\"map.controls\" markers=\"map.markers\"  bounds=\"map.bounds\">\n" +

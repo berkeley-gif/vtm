@@ -17,41 +17,8 @@
                     </div>
 
                     <div class="map-popup" >
-                        <span ng-hide="results.counties.length">Right click feature for more information.</span>
-                        <div class="info-box" ng-show="results.counties.length" ng-cloak>
-                            <div >
-                                County:
-                                    <span ng-repeat="county in results.counties" repeat-delimiter=",">
-                                    {{ county.properties.name }}
-                                    </span>
-                            </div>
-                            <div>
-                                VTM Quads:
-                                    <span ng-repeat="quad in results.quads" repeat-delimiter=",">
-                                    {{ quad.properties.record | split:':':1 }}
-                                    </span>
-                            </div>
-                            <div ng-show="results.plots.length">
-                                Plots:
-                                    <span ng-repeat="plot in results.plots" repeat-delimiter=",">
-                                    {{ plot.plot_no }}
-                                    </span>
-                            </div>
-                                <div ng-show="results.photos.length">
-                                Photos:
-                                    <span ng-repeat="photo in results.photos" repeat-delimiter=",">
-                                    {{ photo.record }}
-                                    </span>
-                            </div>
-                            <div ng-show="results.veg.length">
-                                Veg:
-                                    <span ng-repeat="veg in results.veg" repeat-delimiter=",">
-                                    {{ veg.whr }}
-                                    </span>
-                            </div>
-                        </div>
-
-                    <!-- <div  custom-map-popup layerProp="layerProp" ></div> -->
+                        <ng-include src="'data/data.popup.tpl.html'">
+                        </ng-include>
                     </div>
 
                     <leaflet id="map" center="map.center" layers="map.layers" geojson="map.geojson" defaults="map.defaults" controls="map.controls" markers="map.markers"  bounds="map.bounds">

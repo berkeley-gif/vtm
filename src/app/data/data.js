@@ -22,7 +22,9 @@ angular.module( 'vtm.data', [
   'directives.customLayerControl',
   'directives.customMapPopup',
   'directives.repeatDelimiter',
-  'directives.customLegendControl'
+  'directives.customLegendControl',
+  'filters.thumbnail',
+  'directives.resizableImage'
 ])
 
 /**
@@ -117,7 +119,7 @@ angular.module( 'vtm.data', [
           minZoom: 6,
           scrollWheelZoom: false,
           doubleClickZoom: false,
-          contextmenu: true,
+          contextmenu: false,
           contextmenuItems: [
             {
               text: 'Query features',
@@ -140,6 +142,35 @@ angular.module( 'vtm.data', [
     photos: [],
     veg: []
   };
+
+  /////////////////////////////////////////////////////
+  //    GET REFERENCE TO NATIVE LEAFLET OBJECTS      //
+  /////////////////////////////////////////////////////
+
+  $timeout(function(){
+    leafletData.getMap().then(function(map) {
+      $scope.leafletMap = map;
+    });
+  },1000);
+
+  $scope.$on('leafletDirectiveMap.click', function(e, args) {
+    $scope.results['photos'].length = 0;
+    queryFeatures(args.leafletEvent);
+  });
+
+  $scope.$on('leafletDirectiveMarker.click', function(e, args) {
+    var temp_marker = $scope.map.markers[args.markerName];
+/*    var url = temp_marker.media_url;
+    var thumbnailUrl = url.replace(/imgs\/(.*?)(\/)/, "imgs/128x192/");
+    var popupContent =  '<a target="_blank" href="'+ temp_marker.media_url + '">' +
+                            '<img ng-src="' + thumbnailUrl + '" class="img-responsive">' +
+                        '</a>';*/
+    $scope.results['photos'].length = 0;
+    $scope.results['photos'].push(temp_marker);
+
+    queryFeatures(args.leafletEvent);
+
+  });
 
   function queryFeatures(args){
 
@@ -169,6 +200,7 @@ angular.module( 'vtm.data', [
     var counties = Restangular.one('layers', 'cacounties');
     counties.getList('features', {bbox: bboxString, fields: 'name'}).then(function(data){
       if (data.results.length > 0){
+        $scope.results['counties'].length = 0;
         $scope.results['counties'] = data.results;
       }
     });
@@ -176,6 +208,7 @@ angular.module( 'vtm.data', [
     var vtmquads = Restangular.one('layers', 'vtmquads');
     vtmquads.getList('features', {bbox: bboxString, fields: 'name'}).then(function(data){
       if (data.results.length > 0){
+        $scope.results['quads'].length = 0;
         $scope.results['quads'] = data.results;
       }
     });
@@ -192,13 +225,9 @@ angular.module( 'vtm.data', [
       $scope.results['veg'].length = 0;
     }
 
-
-
     console.log($scope.results);
 
   }
-
-
 
   function loadPhotoMarkers(bboxString){
     console.log("BBox: " + bboxString);

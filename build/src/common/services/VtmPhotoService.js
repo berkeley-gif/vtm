@@ -36,7 +36,7 @@ angular.module( 'services.VtmPhotoService', ['services.HolosPaginatedResource'])
         }
         marker.layer = 'photos';
         marker.icon = icons.photoIcon;
-        marker.clickable = false;
+        marker.clickable = true;
         return marker;      
      };
 

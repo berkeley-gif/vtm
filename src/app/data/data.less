@@ -21,7 +21,7 @@
 
 .tool-wrapper #map {
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.22);
-  cursor: context-menu !important;
+  cursor: pointer !important;
   height: 500px;
 }
 
@@ -212,6 +212,61 @@
   border-bottom: none;
 }
 
+/* ---------------------------------------------------------------------- */
+/*  GALLERY PANEL                                                         */
+/* ---------------------------------------------------------------------- */
+
+.wrap-image {
+  position: relative;
+  width: 100%;
+  height: 120px;
+  overflow: hidden;
+  border: 6px solid #fff;
+  -webkit-box-shadow: 3px 3px 3px #777;
+  -moz-box-shadow: 3px 3px 3px #777;
+  box-shadow: 3px 3px 3px #777;
+}
+/*.wrap-image img {
+  position: absolute;
+  width: 100%;
+  clip: rect(5px, 200px, 200px, 5px);
+}*/
+
+.wrap-image > .tools {
+  background-color: rgba(64, 64, 64, 0.55);
+  bottom: 0;
+  left: -30px;
+  position: absolute;
+  text-align: center;
+  top: 0;
+  transition: all 0.2s ease 0s;
+  vertical-align: middle;
+  width: 28px;
+  color: white;
+  font-size: 12px;
+}
+.wrap-image > .tools a:hover, .wrap-image > .tools a:focus{
+  text-decoration:none;
+}
+.wrap-image > .tools.tools-bottom {
+  bottom: -34px;
+  height: 34px;
+  left: 0;
+  right: 0;
+  top: auto;
+  width: auto;
+}
+.wrap-image:hover > .tools {
+  left: 0;
+}
+.wrap-image:hover > .tools.tools-bottom {
+  bottom: 0;
+  top: auto;
+}
+.wrap-image > .tools > a:hover, .wrap-image > *:first-child .inner a:hover {
+  color: #C9E2EA;
+  text-decoration: none;
+}
 
 /* Extra small devices (phones, less than 768px) */
 @media (max-width: 767px) {
