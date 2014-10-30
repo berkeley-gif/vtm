@@ -19,8 +19,6 @@ module.exports = function ( karma ) {
       'vendor/restangular/dist/restangular.js',
       'vendor/lodash/dist/lodash.js',
       'vendor/leaflet/dist/leaflet-src.js',
-      'vendor/Leaflet.utfgrid/dist/leaflet.utfgrid-src.js',
-      'vendor/Leaflet.contextmenu/dist/leaflet.contextmenu-src.js',
       'vendor/angular-leaflet/dist/angular-leaflet-directive.js',
       'vendor/angular-touch/angular-touch.js',
       'vendor/angular-socialshare/angular-socialshare.js',

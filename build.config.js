@@ -74,8 +74,6 @@ module.exports = {
       'vendor/restangular/dist/restangular.js',
       'vendor/lodash/dist/lodash.js',
       'vendor/leaflet/dist/leaflet-src.js',
-      'vendor/Leaflet.utfgrid/dist/leaflet.utfgrid-src.js',
-      'vendor/Leaflet.contextmenu/dist/leaflet.contextmenu-src.js',
       'vendor/angular-leaflet/dist/angular-leaflet-directive.js',
       'vendor/angular-touch/angular-touch.js',
       'vendor/angular-socialshare/angular-socialshare.js'
@@ -84,7 +82,6 @@ module.exports = {
      'vendor/bootstrap/dist/css/bootstrap.css',
      'vendor/bootstrap/dist/css/bootstrap.css.map',
      'vendor/leaflet/dist/leaflet.css',
-     'vendor/Leaflet.contextmenu/dist/leaflet.contextmenu.css',
      'vendor/animate.css/animate.css',
      'vendor/angular-socialshare/angular-socialshare.css'
     ],
