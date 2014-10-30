@@ -71,7 +71,21 @@ angular.module( 'vtm', [
 
 })
 
-.run( function run () {
+
+.run(function($rootScope, $location, $window){
+
+  //Google Anlytics & AngularJS with UI Router
+  //http://www.arnaldocapo.com/blog/post/google-analytics-and-angularjs-with-ui-router/72
+  $rootScope
+    .$on('$stateChangeSuccess',
+      function(event){
+
+        if (!$window.ga) {
+          return;
+        }
+
+        $window.ga('send', 'pageview', { page: $location.path() });
+    });
 })
 
 .controller( 'AppCtrl', function AppCtrl ( $scope, $location) {
