@@ -1,7 +1,7 @@
 angular.module( 'services.VtmPlotsService', ['services.HolosPaginatedResource'])
 
-.factory('VtmPlots', ['HolosPaginated', 'leafletLayerHelpers',
-  function( HolosPaginated, leafletLayerHelpers) {
+.factory('VtmPlots', ['$q', 'HolosPaginated',
+  function( $q, HolosPaginated) {
 
      // private data vars
      var markerArray = [];
@@ -45,7 +45,7 @@ angular.module( 'services.VtmPlotsService', ['services.HolosPaginatedResource'])
             var idx = 0;
             data.forEach(function(jsonObject){
               //Check for valid geojson property
-              if (jsonObject.geojson.coordinates){
+              if (jsonObject && jsonObject.geojson.coordinates){
                 var marker = newMarker(jsonObject, idx);
                 markerArray.push(marker);
                 idx++;
@@ -59,6 +59,8 @@ angular.module( 'services.VtmPlotsService', ['services.HolosPaginatedResource'])
      return {
           loadMarkers: function(extraParams) {  
 
+            var deferred = $q.defer();
+
             //Add extra params to queryParams
             for (var p in extraParams){
               if (extraParams.hasOwnProperty(p)){
@@ -71,13 +73,13 @@ angular.module( 'services.VtmPlotsService', ['services.HolosPaginatedResource'])
             holosInstance.loadList('vtmplots', queryParams).then(function(data){              
               if (data.length > 0) {
                 createMarkers(data);
+                deferred.resolve(markerArray);
                 
               }              
             });
 
-          },
-          getMarkers: function(){
-            return markerArray;
+            return deferred.promise;
+
           }
      };
 

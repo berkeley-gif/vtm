@@ -149,14 +149,9 @@ angular.module( 'vtm.data', [
   $scope.$watch('map.bounds', function(newValue, oldValue){
 
     if ( newValue !== oldValue ) {
-      // Only increment the counter if the value changed
-      leafletData.getMap().then(function(leafletMapObject) {
-        var bboxString = leafletMapObject.getBounds().toBBoxString();
-        var bboxArray = bboxString.split(',').map(function(val){
-          return (parseFloat(val)).toFixed(4);
-        });
-        loadMarkers(bboxArray.toString());
-      });
+
+      $debounce(loadMarkers, 1000);
+      
     }
 
   }, true);
@@ -235,26 +230,42 @@ angular.module( 'vtm.data', [
 
   var photoMarkers = [];
   var plotMarkers = [];
-  function loadMarkers(bboxString){
-    VtmPhotos.loadMarkers({'bbox': bboxString});
-    VtmPlots.loadMarkers({'bbox': bboxString});
-    photoMarkers = VtmPhotos.getMarkers();
-    plotMarkers = VtmPlots.getMarkers();
-    $debounce(updateMarkers, 1000);
-    
+
+  function loadMarkers(){
+
+    if (!$scope.map.markers) {
+      $scope.map.markers = [];
+    } else {
+      $scope.map.markers.length = 0;
+    }
+
+    leafletData.getMap()
+      .then( function ( leafletMapObject ) {
+
+        var bboxString = leafletMapObject.getBounds().toBBoxString(); 
+        //Round down coordinates
+/*      bboxString = bboxString.split(',').map(function(val){
+          return (parseFloat(val)).toFixed(4);
+        });
+        bboxString = bboxString.toString());*/
+        console.log(bboxString);
+
+        VtmPhotos
+          .loadMarkers({'bbox': bboxString})
+          .then( function ( data ) {
+
+            console.log('successful in gettting photo markers');
+            $scope.map.markers = $scope.map.markers.concat(data);
+
+            VtmPlots
+              .loadMarkers({'bbox': bboxString})
+              .then( function (data) {
+                console.log('successful in gettting plot markers');
+                $scope.map.markers = $scope.map.markers.concat(data);
+              });
+          });
+    });
   }
-
-  function updateMarkers(){
-
-    $scope.map.markers = photoMarkers.concat(plotMarkers);
-    console.log(photoMarkers.length, plotMarkers.length, $scope.map.markers);
-    $scope.$apply();
-  }
-
-
-  //////////////////////////////////////////////////////////////////
-  //  EVENT HANDLERS FOR DETAIL STATE WHEN IT IS OPENED AS MODAL  //
-  /////////////////////////////////////////////////////////////////
 
   $scope.showAttribution = false;
   $scope.mapAttributionText = 'VTM data provided by <a href="http://openstreetmap.org" target="_blank">' +
