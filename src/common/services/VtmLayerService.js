@@ -19,7 +19,7 @@ angular.module( 'services.VtmLayerService', [])
             maxZoom: 18
           } 
         },
-        plots_tiles : {
+        plots : {
           name: 'VTM Plots',
           type: 'xyz',
           url: tileserver + '/vtmplots/{z}/{x}/{y}.png',
@@ -46,12 +46,6 @@ angular.module( 'services.VtmLayerService', [])
         //marker group
         photos : {
           name: 'VTM Photos',
-          type: 'group',
-          visible: true
-        },
-        //geojson layer
-        plots : {
-          name: 'VTM Plots',
           type: 'group',
           visible: true
         }

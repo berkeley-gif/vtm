@@ -1418,7 +1418,7 @@ angular.module("data/data.plots.tpl.html", []).run(["$templateCache", function($
     "			<tab heading=\"Download\">\n" +
     "				<p> \n" +
     "					Download shapefile containing Plot Data for CA\n" +
-    "					<a class=\"btn btn-large btn-download-icon\" href=\"https://dev-ecoengine.berkeley.edu/data/vtm-plots.zip\">\n" +
+    "					<a class=\"btn btn-large btn-download-icon\" href=\"https://ecoengine.berkeley.edu/data/vtm-plots.zip\">\n" +
     "						<i class=\"fa fa-arrow-circle-down\"></i>					\n" +
     "					</a>\n" +
     "				</p>\n" +
@@ -1545,7 +1545,7 @@ angular.module("data/data.vegetation.tpl.html", []).run(["$templateCache", funct
     "            <tab heading=\"Download\">\n" +
     "                <p> \n" +
     "                    Download shapefile containing Vegetation polygons for CA\n" +
-    "                    <a class=\"btn btn-large btn-download-icon\" href=\"https://dev-ecoengine.berkeley.edu/data/Wieslander_Statewide_CANAD83.zip\">\n" +
+    "                    <a class=\"btn btn-large btn-download-icon\" href=\"https://ecoengine.berkeley.edu/data/Wieslander_Statewide_CANAD83.zip\">\n" +
     "                        <i class=\"fa fa-arrow-circle-down\"></i>                 \n" +
     "                    </a>\n" +
     "                </p>\n" +

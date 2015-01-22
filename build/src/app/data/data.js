@@ -98,7 +98,7 @@ angular.module( 'vtm.data', [
   var overlays =  {
     veg: VtmLayers.loadLayer('veg'),
     quads: VtmLayers.loadLayer('quads'),
-    plots: VtmLayers.loadLayer('plots'), //marker group layer
+    plots: VtmLayers.loadLayer('plots'),
     photos: VtmLayers.loadLayer('photos')    //marker group layer
   };
 
@@ -150,7 +150,7 @@ angular.module( 'vtm.data', [
 
     if ( newValue !== oldValue ) {
 
-      $debounce(loadMarkers, 1000);
+      $debounce(loadMarkers, 500);
       
     }
 
@@ -159,18 +159,18 @@ angular.module( 'vtm.data', [
 
   $scope.$on('leafletDirectiveMap.click', function(e, args) {
     $scope.results['photos'].length = 0;
-    $scope.results['plots'].length = 0;
+    //$scope.results['plots'].length = 0;
     queryFeatures(args.leafletEvent.latlng);
   });
 
   $scope.$on('leafletDirectiveMarker.click', function(e, args) {
     var temp_marker = $scope.map.markers[args.markerName];
-    $scope.results['plots'].length = 0;
+    //$scope.results['plots'].length = 0;
     $scope.results['photos'].length = 0;
-    if (temp_marker.layer == 'plots') {
-      $scope.results['plots'].push(temp_marker);
-    } else {
+    if (temp_marker.layer == 'photos') {
       $scope.results['photos'].push(temp_marker);
+    } else {
+      //$scope.results['photos'].push(temp_marker);
     }  
     queryFeatures(args.leafletEvent.latlng);
   });
@@ -185,16 +185,12 @@ angular.module( 'vtm.data', [
       };
 
     ////Create bounding box for query
-    var latlngBounds = leafletBoundsHelpers.createBoundsFromArray([
+    var latlngBounds = L.latLngBounds([
       [ latlng.lat+0.002, latlng.lng+0.002 ],
       [ latlng.lat-0.002, latlng.lng-0.002 ]
     ]);
 
-    var southWest = latlngBounds.southWest;
-    var northEast = latlngBounds.northEast;  
-
-  
-    var bboxString = southWest.lng.toFixed(4) + ',' + southWest.lat.toFixed(4) + ',' + northEast.lng.toFixed(2) + ',' + northEast.lat.toFixed(2);
+    var bboxString = latlngBounds.toBBoxString();
 
     var counties = Restangular.one('layers', 'cacounties');
     counties.getList('features', {bbox: bboxString, fields: 'name'}).then(function(data){
@@ -224,12 +220,22 @@ angular.module( 'vtm.data', [
       $scope.results['veg'].length = 0;
     }
 
-    console.log($scope.results);
+    if ( VtmLayers.isVisible('plots') ) {
+      var vtmplots = Restangular.all('vtmplots');
+      vtmplots.getList({bbox: bboxString, fields: 'plot_no,url'}).then(function(data){
+        if (data.results.length > 0){
+          $scope.results['plots'].length = 0;
+          $scope.results['plots'] = data.results;
+        }
+      });
+    } else {
+      $scope.results['veg'].length = 0;
+    }
 
   }
 
   var photoMarkers = [];
-  var plotMarkers = [];
+  //var plotMarkers = [];
 
   function loadMarkers(){
 
@@ -243,12 +249,6 @@ angular.module( 'vtm.data', [
       .then( function ( leafletMapObject ) {
 
         var bboxString = leafletMapObject.getBounds().toBBoxString(); 
-        //Round down coordinates
-/*      bboxString = bboxString.split(',').map(function(val){
-          return (parseFloat(val)).toFixed(4);
-        });
-        bboxString = bboxString.toString());*/
-        console.log(bboxString);
 
         VtmPhotos
           .loadMarkers({'bbox': bboxString})
@@ -257,12 +257,12 @@ angular.module( 'vtm.data', [
             console.log('successful in gettting photo markers');
             $scope.map.markers = $scope.map.markers.concat(data);
 
-            VtmPlots
+/*            VtmPlots
               .loadMarkers({'bbox': bboxString})
               .then( function (data) {
                 console.log('successful in gettting plot markers');
                 $scope.map.markers = $scope.map.markers.concat(data);
-              });
+              });*/
           });
     });
   }
