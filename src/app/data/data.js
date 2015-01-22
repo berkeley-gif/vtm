@@ -159,13 +159,13 @@ angular.module( 'vtm.data', [
 
   $scope.$on('leafletDirectiveMap.click', function(e, args) {
     $scope.results['photos'].length = 0;
-    //$scope.results['plots'].length = 0;
+    $scope.results['plots'].length = 0;
     queryFeatures(args.leafletEvent.latlng);
   });
 
   $scope.$on('leafletDirectiveMarker.click', function(e, args) {
     var temp_marker = $scope.map.markers[args.markerName];
-    //$scope.results['plots'].length = 0;
+    $scope.results['plots'].length = 0;
     $scope.results['photos'].length = 0;
     if (temp_marker.layer == 'photos') {
       $scope.results['photos'].push(temp_marker);
