@@ -1418,7 +1418,7 @@ angular.module("data/data.plots.tpl.html", []).run(["$templateCache", function($
     "			<tab heading=\"Download\">\n" +
     "				<p> \n" +
     "					Download shapefile containing Plot Data for CA\n" +
-    "					<a class=\"btn btn-large btn-download-icon\" href=\"https://ecoengine.berkeley.edu/data/vtm-plots.zip\">\n" +
+    "					<a class=\"btn btn-large btn-download-icon\" href=\"https://dev-ecoengine.berkeley.edu/data/vtm-plotsData.zip\">\n" +
     "						<i class=\"fa fa-arrow-circle-down\"></i>					\n" +
     "					</a>\n" +
     "				</p>\n" +
