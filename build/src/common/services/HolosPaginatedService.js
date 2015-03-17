@@ -15,9 +15,9 @@ angular.module( 'services.HolosPaginatedResource', ['restangular'])
       var loadNextPage = function (nextUrl) {
         Restangular.allUrl(resource, nextUrl).getList()
            .then(function(d) {
-                collection = collection.concat(d['results']);
-                if (d['next']) {
-                   nextUrl = d['next'];
+                collection = collection.concat(d.results);
+                if (d.next) {
+                   nextUrl = d.next;
                    //Strip nextUrl of query param format=json because of Restangular
                   //is configured to add it by default (configured in app.js)
                    //nextUrl = nextUrl.replace(/&format=json/g, '');
@@ -35,10 +35,10 @@ angular.module( 'services.HolosPaginatedResource', ['restangular'])
       Restangular.all(resource).getList(queryParams)
         .then( function (d) {
 
-          collection = collection.concat(d['results']);
+          collection = collection.concat(d.results);
 
-          if (d['next']) {
-            nextUrl = d['next'];
+          if (d.next) {
+            nextUrl = d.next;
             //Strip nextUrl of query param &format=json because Restangular
             //is configured to add it by default to every request
             //(configured in app.js)

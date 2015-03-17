@@ -158,19 +158,19 @@ angular.module( 'vtm.data', [
 
 
   $scope.$on('leafletDirectiveMap.click', function(e, args) {
-    $scope.results['photos'].length = 0;
-    $scope.results['plots'].length = 0;
+    $scope.results.photos.length = 0;
+    $scope.results.plots.length = 0;
     queryFeatures(args.leafletEvent.latlng);
   });
 
   $scope.$on('leafletDirectiveMarker.click', function(e, args) {
     var temp_marker = $scope.map.markers[args.markerName];
-    $scope.results['plots'].length = 0;
-    $scope.results['photos'].length = 0;
+    $scope.results.plots.length = 0;
+    $scope.results.photos.length = 0;
     if (temp_marker.layer == 'photos') {
-      $scope.results['photos'].push(temp_marker);
+      $scope.results.photos.push(temp_marker);
     } else {
-      //$scope.results['photos'].push(temp_marker);
+      //$scope.results.photos.push(temp_marker);
     }  
     queryFeatures(args.leafletEvent.latlng);
   });
@@ -195,16 +195,16 @@ angular.module( 'vtm.data', [
     var counties = Restangular.one('layers', 'cacounties');
     counties.getList('features', {bbox: bboxString, fields: 'name'}).then(function(data){
       if (data.results.length > 0){
-        $scope.results['counties'].length = 0;
-        $scope.results['counties'] = data.results;
+        $scope.results.counties.length = 0;
+        $scope.results.counties = data.results;
       }
     });
 
     var vtmquads = Restangular.one('layers', 'vtmquads');
     vtmquads.getList('features', {bbox: bboxString, fields: 'name'}).then(function(data){
       if (data.results.length > 0){
-        $scope.results['quads'].length = 0;
-        $scope.results['quads'] = data.results;
+        $scope.results.quads.length = 0;
+        $scope.results.quads = data.results;
       }
     });
 
@@ -212,24 +212,24 @@ angular.module( 'vtm.data', [
       var vtmveg = Restangular.all('vtmveg');
       vtmveg.getList({g: pointGeojson}).then(function(data){
         if (data.results.length > 0){
-          $scope.results['veg'].length = 0;
-          $scope.results['veg'] = data.results;
+          $scope.results.veg.length = 0;
+          $scope.results.veg = data.results;
         }
       });
     } else {
-      $scope.results['veg'].length = 0;
+      $scope.results.veg.length = 0;
     }
 
     if ( VtmLayers.isVisible('plots') ) {
       var vtmplots = Restangular.all('vtmplots');
       vtmplots.getList({bbox: bboxString, fields: 'plot_no,url'}).then(function(data){
         if (data.results.length > 0){
-          $scope.results['plots'].length = 0;
-          $scope.results['plots'] = data.results;
+          $scope.results.plots.length = 0;
+          $scope.results.plots = data.results;
         }
       });
     } else {
-      $scope.results['veg'].length = 0;
+      $scope.results.veg.length = 0;
     }
 
   }

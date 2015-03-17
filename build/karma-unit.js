@@ -14,7 +14,6 @@ module.exports = function ( karma ) {
       'vendor/angular-animate/angular-animate.js',
       'vendor/angular-bootstrap/ui-bootstrap-tpls.min.js',
       'vendor/angular-modal-service/dst/angular-modal-service.min.js',
-      'vendor/placeholders/angular-placeholders-0.0.1-SNAPSHOT.min.js',
       'vendor/angular-ui-router/release/angular-ui-router.js',
       'vendor/restangular/dist/restangular.js',
       'vendor/lodash/dist/lodash.js',
@@ -33,7 +32,7 @@ module.exports = function ( karma ) {
       'src/assets/**/*.js'
     ],
     frameworks: [ 'jasmine' ],
-    plugins: [ 'karma-jasmine', 'karma-firefox-launcher', 'karma-coffee-preprocessor' ],
+    plugins: [ 'karma-jasmine', 'karma-firefox-launcher'],
     preprocessors: {
       '**/*.coffee': 'coffee',
     },

@@ -30,8 +30,8 @@ angular.module( 'services.VtmPlotsService', ['services.HolosPaginatedResource'])
         } else {
           return;
         }
-        marker.plot_no = jsonObject['plot_no'];
-        marker.url = jsonObject['url'];
+        marker.plot_no = jsonObject.plot_no;
+        marker.url = jsonObject.url;
         marker.layer = 'plots';
         marker.icon = icons.plotIcon;
         marker.clickable = true;

@@ -7,23 +7,18 @@ angular.module( 'vtm', [
   'vtm.howto',
   'ui.router',
   'ngAnimate',
-  'djds4rce.angular-socialshare'
+  'djds4rce.angular-socialshare',
+  'holos.config'
 ])
 
-.constant('HOLOS_CONFIG', {
-  baseUrl: 'https://dev-ecoengine.berkeley.edu'
-  //apiKey: ''
-})
-
-.config( function myAppConfig ( $stateProvider, $urlRouterProvider, RestangularProvider, HOLOS_CONFIG) {
+.config( function myAppConfig ( $stateProvider, $urlRouterProvider, RestangularProvider, ENV) {
 
   $urlRouterProvider.otherwise( '/home' );
 
   ///////////////////////////////
   // Restangular Configuration //
   ///////////////////////////////
-
-  RestangularProvider.setBaseUrl( HOLOS_CONFIG.baseUrl + '/api' );
+  RestangularProvider.setBaseUrl( ENV.apiEndpoint + '/api' );
 
   //Set default request params for all supported request methods
   RestangularProvider.setDefaultRequestParams(

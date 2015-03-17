@@ -1,11 +1,10 @@
 angular.module( 'services.VtmLayerService', [])
 
-.factory('VtmLayers', ['$q', '$timeout', '$http', 'HOLOS_CONFIG',
-  function($q, $timeout, $http, HOLOS_CONFIG ) {
+.factory('VtmLayers', ['$q', '$timeout', '$http', 'ENV',
+  function($q, $timeout, $http, ENV ) {
      
      // private data vars
-      //var tileserver = 'http://localhost:8080';
-      var tileserver = HOLOS_CONFIG.baseUrl + '/tiles';
+      var tileserver = ENV.apiEndpoint + '/tiles';
 
       var mapLayers = {
         //map tiles
