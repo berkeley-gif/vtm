@@ -15,7 +15,8 @@
 angular.module( 'vtm.home', [
   'ui.router',
   'ui.bootstrap',
-  'directives.animatedBanner'
+  'directives.animatedBanner',
+  'matchMedia'
 ])
 
 /**
@@ -35,58 +36,69 @@ angular.module( 'vtm.home', [
 /**
  * Controller for our route.
  */
-.controller( 'HomeCtrl', function HomeController( $scope, $timeout ) {
+.controller( 'HomeCtrl', function HomeController( $scope, $timeout, screenSize ) {
 
-  //Collection of banner images
-  $scope.images = [
-  {
-      source: 'assets/img/banner_sfbay_1140x560.jpg',
+  if (screenSize.is('xs, sm')) {
+
+    $scope.image = {
+      source: 'assets/img/banner_background_1140x560.jpg',
       text: ''
-  },    
-  {
-      source: 'assets/img/banner_yosemite_1140x560.jpg',
-      text: ''
-    },
-  {
-      source: 'assets/img/banner_drawer_1140x560.jpg',
-      text: ''
-  },
+    };
+
+  } else {
+
+    //Collection of banner images
+    $scope.images = [
     {
-      source: 'assets/img/banner_bigtree_1140x560.jpg',
-      text: ''
-    },
+        source: 'assets/img/banner_sfbay_1140x560.jpg',
+        text: ''
+    },    
     {
-      source: 'assets/img/banner_eldorado_1140x560.jpg',
-      text: ''
-    },
-  {
-      source: 'assets/img/banner_placer_1140x560.jpg',
-      text: ''
-  },  
-  {
-      source: 'assets/img/banner_placer-plot_1140x560.jpg',
-      text: ''
-  },
-
+        source: 'assets/img/banner_yosemite_1140x560.jpg',
+        text: ''
+      },
     {
-      source: 'assets/img/banner_lookout_1140x560.jpg',
-      text: ''
-    }
-  ];
+        source: 'assets/img/banner_drawer_1140x560.jpg',
+        text: ''
+    },
+      {
+        source: 'assets/img/banner_bigtree_1140x560.jpg',
+        text: ''
+      },
+      {
+        source: 'assets/img/banner_eldorado_1140x560.jpg',
+        text: ''
+      },
+    {
+        source: 'assets/img/banner_placer_1140x560.jpg',
+        text: ''
+    },  
+    {
+        source: 'assets/img/banner_placer-plot_1140x560.jpg',
+        text: ''
+    },
+
+      {
+        source: 'assets/img/banner_lookout_1140x560.jpg',
+        text: ''
+      }
+    ];
 
 
-  // Default to a random image.
-  var imageCount = $scope.images.length;
-  var index = Math.floor((Math.random() * imageCount * 2 ) % imageCount);
-  $scope.image = $scope.images[ index ];
+    // Default to a random image.
+    var imageCount = $scope.images.length;
+    var index = Math.floor((Math.random() * imageCount * 2 ) % imageCount);
+    $scope.image = $scope.images[ index ];
 
-  var slideImage = (function() {
-    var loop = $timeout(function changePic() {
-        index = (index + 1) % imageCount;
-        $scope.image = $scope.images[ index ];
-        loop = $timeout(changePic, 10000);
-    },5000);
-  }());
+    var slideImage = (function() {
+      var loop = $timeout(function changePic() {
+          index = (index + 1) % imageCount;
+          $scope.image = $scope.images[ index ];
+          loop = $timeout(changePic, 10000);
+      },5000);
+    }());
+
+  }
 
   
 
