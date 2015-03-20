@@ -38,7 +38,7 @@ angular.module( 'vtm.home', [
  */
 .controller( 'HomeCtrl', function HomeController( $scope, $timeout, screenSize ) {
 
-  if (screenSize.is('xs, sm')) {
+  if (screenSize.is('xs')) {
 
     $scope.image = {
       source: 'assets/img/banner_background_1140x560.jpg',

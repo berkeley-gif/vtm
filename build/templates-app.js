@@ -1417,12 +1417,12 @@ angular.module("data/data.plots.tpl.html", []).run(["$templateCache", function($
     "			</tab>\n" +
     "			<tab heading=\"Download\">\n" +
     "				<p> \n" +
-    "					Download shapefile containing Plot Data for CA\n" +
-    "					<a class=\"btn btn-large btn-download-icon\" href=\"https://dev-ecoengine.berkeley.edu/data/vtm-plotsData.zip\">\n" +
+    "					Download zip file containing Plot Data for CA\n" +
+    "					<a class=\"btn btn-large btn-download-icon\" href=\"https://github.com/berkeley-gif/vtm-plotsdata\" target=\"_blank\">\n" +
     "						<i class=\"fa fa-arrow-circle-down\"></i>					\n" +
     "					</a>\n" +
     "				</p>\n" +
-    "				<p>We are working on providing scans of the original vegetation maps.</p>\n" +
+    "				<p>We are working on providing scans of the original plot maps.</p>\n" +
     "			</tab>\n" +
     "			<tab heading=\"Suggested Citations\">\n" +
     "				<ng-include src=\"'about/about.citations.tpl.html'\"></ng-inlcude>\n" +
@@ -1651,7 +1651,7 @@ angular.module("home/home.tpl.html", []).run(["$templateCache", function($templa
     "            <div>\n" +
     "                <animated-banner ng-model=\"image\">\n" +
     "                    <img ng-src=\"{{ image.source }}\"\n" +
-    "                        title=\"{{ image.title }}\" />\n" +
+    "                        alt=\"{{ image.text }}\" />\n" +
     "                </animated-banner>\n" +
     "            </div> \n" +
     "        </div> <!-- end banner -->\n" +

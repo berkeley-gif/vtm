@@ -17,6 +17,7 @@ module.exports = function ( grunt ) {
   grunt.loadNpmTasks('grunt-karma');
   grunt.loadNpmTasks('grunt-ngmin');
   grunt.loadNpmTasks('grunt-html2js');
+  grunt.loadNpmTasks('grunt-string-replace');
 
   /**
    * Load in our build configuration file.
@@ -46,7 +47,6 @@ module.exports = function ( grunt ) {
         ' * <%= pkg.homepage %>\n' +
         ' *\n' +
         ' * Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author %>\n' +
-        ' * Licensed <%= pkg.licenses.type %> <<%= pkg.licenses.url %>>\n' +
         ' */\n'
     },
 
@@ -73,6 +73,8 @@ module.exports = function ( grunt ) {
           }
         }
       },
+      //Not using this currently, doing a string replace instead
+      //since I want the build to point to development environment
       production: {
         options: {
           dest: '<%= compile_dir %>/src/app/app.constants.js'
@@ -82,6 +84,28 @@ module.exports = function ( grunt ) {
             name: 'production',
             apiEndpoint: 'https://ecoengine.berkeley.edu'
           }
+        }
+      }
+    },
+
+    /*
+    *
+    */
+    'string-replace': {
+      production: {
+        src: '<%= compile_dir %>/assets/<%= pkg.name %>-<%= pkg.version %>.js',
+        dest: '<%= compile_dir %>/assets/<%= pkg.name %>-<%= pkg.version %>.js',
+        options: {
+          replacements: [
+            {
+              pattern: 'development',
+              replacement: 'production'
+            },
+            {
+              pattern: 'https://dev-ecoengine.berkeley.edu',
+              replacement: 'https://ecoengine.berkeley.edu'
+            }
+          ]
         }
       }
     },
@@ -567,12 +591,9 @@ module.exports = function ( grunt ) {
    * minifying your code.
    */
   grunt.registerTask( 'compile', [
-    'ngconstant:production'
+    'less:compile', 'copy:compile_assets', 'copy:compile_vendor', 
+    'ngmin', 'concat:compile_js', 'string-replace:production', 'index:compile'
   ]);
-/*  grunt.registerTask( 'compile', [
-    'copy:build_appjs','ngconstant:production','less:compile', 'copy:compile_assets', 'copy:compile_vendor', 
-    'ngmin', 'concat:compile_js','index:compile'
-  ]);*/
 
   /**
    * A utility function to get all app JavaScript sources.

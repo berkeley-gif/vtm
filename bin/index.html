@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html ng-app="vtm" ng-controller="AppCtrl">
+  <head>
+    <title ng-bind="pageTitle"></title>
+
+    <!-- social media tags -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@BerkeleyGIF">
+    <meta name="twitter:title" content="vtm">
+    <meta name="twitter:description" content="Wieslander Vegetation Type Mapping project is a collection of datasets that provides a snapshot of California's vegetation in the early 20th century.">
+    <meta name="twitter:creator" content="@BerkeleyGIF">
+    <meta name="twitter:image:src" content="https://a248.e.akamai.net/assets.github.com/images/modules/logos_page/Octocat.png?1366128846">
+    <meta property="og:title" content="vtm" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="http://vtm.berkeley.edu" />
+    <meta property="og:image" content="https://a248.e.akamai.net/assets.github.com/images/modules/logos_page/Octocat.png?1366128846" />
+    <meta property="og:description" content="Wieslander Vegetation Type Mapping project is a collection of datasets that provides a snapshot of California's vegetation in the early 20th century.">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- font awesome from BootstrapCDN -->
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=EB+Garamond' rel='stylesheet' type='text/css'>
+
+    <!-- compiled CSS -->
+    <link rel="stylesheet" type="text/css" href="vendor/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="vendor/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" type="text/css" href="vendor/animate.css/animate.css" />
+    <link rel="stylesheet" type="text/css" href="vendor/angular-socialshare/angular-socialshare.css" />
+    <link rel="stylesheet" type="text/css" href="assets/vtm-0.0.1.css" />
+
+  </head>
+  <body >
+
+    <div class="wrapper">
+
+    <!-- Navigation -->
+    <div class="header">
+        <!-- Topbar -->
+        <div class="topbar">
+            <div class="container">
+                <!-- Topbar Navigation -->
+                <ul class="loginbar pull-right">
+                    <li>                        
+                        <a twitter  data-lang="en" data-count='none' data-url='http://vtm.berkeley.edu' data-size="medium" data-text="{{socialShare}}" target="_blank"></a>
+                    </li>
+                </ul>
+                <!-- End Topbar Navigation -->
+            </div>
+        </div>
+        <!-- End Topbar -->
+    
+        <!-- Navbar -->
+        <div class="navbar navbar-default" role="navigation">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="fa fa-bars"></span>
+                    </button>
+                    <a class="navbar-brand" href="index.html">
+                        <span class="title">VTM</span><small> (beta)</small>
+                    </a>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse navbar-responsive-collapse" role="navigation">
+                    <ul class="nav navbar-nav">
+                        <!-- Home -->
+                        <li ui-sref-active="active">
+                          <a href ui-sref="home">
+                            <i class="fa fa-home"></i>
+                            Home
+                          </a>
+                        </li>
+                        <!-- End Home -->
+
+                        <!-- Data -->
+                        <li class="dropdown" ui-sref-active="active">
+                            <a href ui-sref="data.overview">
+                                <i class="fa fa-cloud-download"></i>
+                                Explore Data
+                            </a>
+                        </li>
+                        <!-- End Data -->
+
+                        <!-- Learn More -->
+                        <li class="dropdown" ui-sref-active="active">
+                            <a href ui-sref="about.overview" class="dropdown-toggle" data-toggle="dropdown-menu">
+                                <i class="fa fa-info-circle"></i>
+                                Learn More
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href ui-sref="about.overview">History</a></li>
+                                <li><a href ui-sref="about.metadata">Metadata</a></li>
+                                <li><a href ui-sref="about.description">Description</a></li>
+                                <li><a href ui-sref="about.faq">FAQ</a></li>
+                                <li><a href ui-sref="about.bibliography">Bibliography</a></li>
+                                <li><a href ui-sref="about.citations">Suggested Citations</a></li>
+                            </ul>
+                        </li>
+                        <!-- End Learn More -->
+
+                        <!-- Data -->
+                        <li class="dropdown" ui-sref-active="active">
+                            <a href ui-sref="howto.overview">
+                                <i class="fa fa-user"></i>
+                                How To
+                            </a>
+                        </li>
+                        <!-- End Data -->
+
+                    </ul>
+                </div><!--/navbar-collapse-->
+            </div>    
+        </div>            
+        <!-- End Navbar -->
+    </div>
+
+
+    <div ui-view ></div>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="page-header">
+        </div>
+        <div>
+          <p>
+            This site is powered by &nbsp
+            <a href="http://holos.berkeley.edu/" tooltip="Berkeley Ecoinformatics Engine" tooltip-placement="right"><img src="assets/img/HOLOS_logo_color_horizontal_highres_transparent.png" alt="HOLOS" height="40"></a>        
+          </p>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+    <!-- compiled JavaScript -->
+    <script type="text/javascript" src="vendor/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="vendor/angular/angular.min.js"></script>
+    <script type="text/javascript" src="vendor/angular-animate/angular-animate.js"></script>
+    <script type="text/javascript" src="vendor/angular-media-queries/match-media.js"></script>
+    <script type="text/javascript" src="vendor/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+    <script type="text/javascript" src="vendor/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script type="text/javascript" src="vendor/restangular/dist/restangular.min.js"></script>
+    <script type="text/javascript" src="vendor/lodash/dist/lodash.min.js"></script>
+    <script type="text/javascript" src="vendor/leaflet/dist/leaflet-src.js"></script>
+    <script type="text/javascript" src="vendor/angular-leaflet/dist/angular-leaflet-directive.min.js"></script>
+    <script type="text/javascript" src="vendor/angular-touch/angular-touch.min.js"></script>
+    <script type="text/javascript" src="vendor/angular-socialshare/angular-socialshare.js"></script>
+    <script type="text/javascript" src="assets/vtm-0.0.1.js"></script>
+    <!-- Twitter -->
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.11.2/TweenMax.min.js"></script>
+    <script src="http://platform.twitter.com/widgets.js"></script>
+    <!-- Google Analytics -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-1781969-6', 'auto');
+      //Stop google analytics from firing on the first load.
+      //Add an event on each state change provided by the ui router module in app module 
+      //ga('send', 'pageview'); 
+    </script>
+
+  </body>
+</html>
