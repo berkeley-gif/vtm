@@ -191,6 +191,11 @@ pre {
   font-size: 25px;
 }
 
+.header .navbar-brand:hover,
+.header .navbar-brand:visited { 
+  color: #B9485A;
+}
+
 @media (max-width: 992px) {
   .header .navbar-brand { 
     top: 0;
@@ -250,6 +255,11 @@ pre {
 
 /*Responsive Navbar*/
 @media (max-width: 767px) {
+
+  .header .navbar-default .navbar-nav > li {
+    display:inline-block;
+  }
+
   .header .navbar-default .navbar-nav > li > a {
     font-size: 14px;
     padding: 9px 10px;
@@ -257,7 +267,7 @@ pre {
 
   .header .navbar-default .navbar-nav > li a {
     /*margin-bottom: 1px;*/
-    border-bottom: solid 1px #eee;
+    /*border-bottom: solid 1px #eee;*/
   }
 
   .header .navbar-default .navbar-nav > li > a:focus {
@@ -412,8 +422,6 @@ pre {
 .social li a:hover {
   color: black;
 }
-
-
 
 /**
  * Now that all app-wide styles have been applied, we can load the styles for

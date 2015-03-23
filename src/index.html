@@ -52,20 +52,20 @@
             <div class="container">
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+                    <button type="button" class="navbar-toggle" ng-init="isCollapsed = true" ng-click="isCollapsed = !isCollapsed">
                         <span class="sr-only">Toggle navigation</span>
                         <span class="fa fa-bars"></span>
                     </button>
-                    <a class="navbar-brand" href="index.html">
+                    <a class="navbar-brand" ui-sref="home">
                         <span class="title">VTM</span><small> (beta)</small>
                     </a>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse navbar-responsive-collapse" role="navigation">
+                <div class="collapse navbar-collapse navbar-responsive-collapse" role="navigation" collapse="isCollapsed">
                     <ul class="nav navbar-nav">
                         <!-- Home -->
-                        <li ui-sref-active="active">
+                        <li ui-sref-active="active" ng-if=!"isCollapsed">
                           <a href ui-sref="home">
                             <i class="fa fa-home"></i>
                             Home
@@ -88,7 +88,7 @@
                                 <i class="fa fa-info-circle"></i>
                                 Learn More
                             </a>
-                            <ul class="dropdown-menu">
+                            <ul class="dropdown-menu" ng-if=!"isCollapsed">
                                 <li><a href ui-sref="about.overview">History</a></li>
                                 <li><a href ui-sref="about.metadata">Metadata</a></li>
                                 <li><a href ui-sref="about.description">Description</a></li>

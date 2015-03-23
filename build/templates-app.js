@@ -1645,7 +1645,6 @@ angular.module("data/popup/vegetation.popup.tpl.html", []).run(["$templateCache"
 angular.module("home/home.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("home/home.tpl.html",
     "<div class=\"container\" id=\"home\" ng-controller=\"HomeCtrl\">\n" +
-    "    <div id=\"header\">\n" +
     "    <div class=\"fullwidthbanner-container\">\n" +
     "        <div class=\"banner\">\n" +
     "            <div>\n" +
@@ -1663,7 +1662,7 @@ angular.module("home/home.tpl.html", []).run(["$templateCache", function($templa
     "        <div class=\"row\">\n" +
     "                <div class=\"col-sm-3\">\n" +
     "                    <div id=\"portrait\">\n" +
-    "                        <img  src=\"assets/img/wieslander.png\"></img>\n" +
+    "                        <img  src=\"assets/img/wieslander.png\">\n" +
     "                    </div>\n" +
     "                </div>\n" +
     "                <div class=\"col-sm-9\" > \n" +
@@ -1673,7 +1672,7 @@ angular.module("home/home.tpl.html", []).run(["$templateCache", function($templa
     "                </div>\n" +
     "        </div>\n" +
     "    </div>\n" +
-    "</div>\n" +
+    "\n" +
     "    <div class=\"row\">\n" +
     "        <div class=\"item col-md-4 col-sm-4 col-xs-12 text-center\">\n" +
     "            <div class=\"features\">\n" +

@@ -25,17 +25,13 @@ module.exports = function ( karma ) {
       'build/templates-common.js',
       'vendor/angular-mocks/angular-mocks.js',
       
-      'src/**/*.js',
-      'src/**/*.coffee',
+      'src/**/*.js'
     ],
     exclude: [
       'src/assets/**/*.js'
     ],
     frameworks: [ 'jasmine' ],
     plugins: [ 'karma-jasmine', 'karma-firefox-launcher'],
-    preprocessors: {
-      '**/*.coffee': 'coffee',
-    },
 
     /**
      * How to report, by default.

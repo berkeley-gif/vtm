@@ -39,14 +39,14 @@ angular.module( 'vtm.home', [
 .controller( 'HomeCtrl', function HomeController( $scope, $timeout, screenSize ) {
 
   if (screenSize.is('xs')) {
-
+    //do not show slideshow on small screens
     $scope.image = {
       source: 'assets/img/banner_background_1140x560.jpg',
       text: ''
     };
 
   } else {
-
+    //show slideshow on larger screens
     //Collection of banner images
     $scope.images = [
     {
