@@ -1,5 +1,5 @@
 /**
- * vtm - v0.0.1 - 2015-03-23
+ * vtm - v0.0.1 - 2015-04-24
  * https://vtm.berkeley.edu
  *
  * Copyright (c) 2015 Berkeley GIF
@@ -2514,7 +2514,7 @@ angular.module("data/data.vegetation.tpl.html", []).run(["$templateCache", funct
     "    <div class=\"col-md-12\">\n" +
     "        <tabset>\n" +
     "            <tab heading=\"General Information\">\n" +
-    "				<p>Dominant vegetation type maps were mapped with a minimum mapping unit of 16 ha by direct. The vegetation mapping scheme was driven by overstory species recognition, and included \"mosaic types\" - complex vegetation conditions that resulted from fire or other disturbances, and pure and mixed stand conditions which they associated with \"natural plant associations\". The vegetation polygons and associated data can be downloaded (see Download Tab).</p>\n" +
+    "				<p>Dominant vegetation type maps were mapped with a minimum mapping unit of 16 ha by direct observation. The vegetation mapping scheme was driven by overstory species recognition, and included \"mosaic types\" - complex vegetation conditions that resulted from fire or other disturbances, and pure and mixed stand conditions which they associated with \"natural plant associations\". The vegetation polygons and associated data can be downloaded (see Download Tab).</p>\n" +
     "                <p><a href ui-sref=\"about.description\">Read more about the digitization method</a></p>\n" +
     "            </tab>\n" +
     "            <tab heading=\"Download\">\n" +
