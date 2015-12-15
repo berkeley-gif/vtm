@@ -798,9 +798,9 @@ angular.module('services.VtmPhotoService', ['services.HolosPaginatedResource']).
       var marker = {};
       for (var k in jsonObject) {
         if (jsonObject.hasOwnProperty(k)) {
-          if (k === 'geojson') {
-            marker.lat = jsonObject.geojson.coordinates[1];
-            marker.lng = jsonObject.geojson.coordinates[0];
+          if (k === 'geometry') {
+            marker.lat = jsonObject.geometry.coordinates[1];
+            marker.lng = jsonObject.geometry.coordinates[0];
           } else {
             marker[k] = jsonObject[k];
           }
@@ -815,7 +815,7 @@ angular.module('services.VtmPhotoService', ['services.HolosPaginatedResource']).
       markerArray.length = 0;
       var idx = 0;
       data.forEach(function (jsonObject) {
-        if (jsonObject && jsonObject.geojson.coordinates) {
+        if (jsonObject && jsonObject.geometry.coordinates) {
           var marker = newMarker(jsonObject, idx);
           markerArray.push(marker);
           idx++;
@@ -2393,7 +2393,7 @@ angular.module("data/data.plots.tpl.html", []).run(["$templateCache", function($
     "			<tab heading=\"Download\">\n" +
     "				<p> \n" +
     "					Download zip file containing Plot Data for CA\n" +
-    "					<a class=\"btn btn-large btn-download-icon\" href=\"https://github.com/berkeley-gif/vtm-plotsdata/archive/master.zip\" onclick=\"var that=this;_gaq.push([‘_trackEvent’,’Download’,’PlotsZIP’,this.href]);setTimeout(function(){location.href=that.href;},200);return false;\">\n" +
+    "					<a class=\"btn btn-large btn-download-icon\" href=\"https://github.com/berkeley-gif/vtm-plotsdata/archive/master.zip\" onclick=\"var that=this;_gaq.push(['_trackEvent','Download','PlotsZIP',this.href]);setTimeout(function(){location.href=that.href;},400);return false;\">\n" +
     "						<i class=\"fa fa-arrow-circle-down\"></i>					\n" +
     "					</a>\n" +
     "				</p>\n" +
@@ -2520,7 +2520,7 @@ angular.module("data/data.vegetation.tpl.html", []).run(["$templateCache", funct
     "            <tab heading=\"Download\">\n" +
     "                <p> \n" +
     "                    Download shapefile containing Vegetation polygons for CA\n" +
-    "                    <a class=\"btn btn-large btn-download-icon\" href=\"https://ecoengine.berkeley.edu/data/Wieslander_Statewide_CANAD83.zip\" onclick=\"var that=this;_gaq.push([‘_trackEvent’,’Download’,’VegZIP’,this.href]);setTimeout(function(){location.href=that.href;},200);return false;\">\n" +
+    "                    <a class=\"btn btn-large btn-download-icon\" href=\"https://ecoengine.berkeley.edu/data/Wieslander_Statewide_CANAD83.zip\" onclick=\"var that=this;_gaq.push(['_trackEvent','Download','VegZIP',this.href]);setTimeout(function(){location.href=that.href;},400);return false;\">\n" +
     "                        <i class=\"fa fa-arrow-circle-down\"></i>                 \n" +
     "                    </a>\n" +
     "                </p>\n" +

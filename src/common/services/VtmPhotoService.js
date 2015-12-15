@@ -28,9 +28,9 @@ angular.module( 'services.VtmPhotoService', ['services.HolosPaginatedResource'])
         var marker = {};
         for (var k in jsonObject) {
           if (jsonObject.hasOwnProperty(k)){
-            if (k === 'geojson') {
-              marker.lat = jsonObject.geojson.coordinates[1];
-              marker.lng = jsonObject.geojson.coordinates[0];
+            if (k === 'geometry') {
+              marker.lat = jsonObject.geometry.coordinates[1];
+              marker.lng = jsonObject.geometry.coordinates[0];
             } else {
               marker[k] = jsonObject[k];
             }
@@ -42,13 +42,13 @@ angular.module( 'services.VtmPhotoService', ['services.HolosPaginatedResource'])
         return marker;      
      };
 
-     var createMarkers = function(data) {  
+     var createMarkers = function(data) {
             //empty array of any previous markers
             markerArray.length = 0;
             var idx = 0;
             data.forEach(function(jsonObject){
-              //Check for valid geojson property
-              if (jsonObject && jsonObject.geojson.coordinates){
+              //Check for valid geometry property
+              if (jsonObject && jsonObject.geometry.coordinates){
                 var marker = newMarker(jsonObject, idx);
                 markerArray.push(marker);
                 idx++;
