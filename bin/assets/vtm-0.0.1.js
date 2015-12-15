@@ -1,5 +1,5 @@
 /**
- * vtm - v0.0.1 - 2015-04-28
+ * vtm - v0.0.1 - 2015-12-15
  * https://vtm.berkeley.edu
  *
  * Copyright (c) 2015 Berkeley GIF
@@ -2393,7 +2393,7 @@ angular.module("data/data.plots.tpl.html", []).run(["$templateCache", function($
     "			<tab heading=\"Download\">\n" +
     "				<p> \n" +
     "					Download zip file containing Plot Data for CA\n" +
-    "					<a class=\"btn btn-large btn-download-icon\" href=\"https://github.com/berkeley-gif/vtm-plotsdata/archive/master.zip\">\n" +
+    "					<a class=\"btn btn-large btn-download-icon\" href=\"https://github.com/berkeley-gif/vtm-plotsdata/archive/master.zip\" onclick=\"var that=this;_gaq.push([‘_trackEvent’,’Download’,’PlotsZIP’,this.href]);setTimeout(function(){location.href=that.href;},200);return false;\">\n" +
     "						<i class=\"fa fa-arrow-circle-down\"></i>					\n" +
     "					</a>\n" +
     "				</p>\n" +
@@ -2520,7 +2520,7 @@ angular.module("data/data.vegetation.tpl.html", []).run(["$templateCache", funct
     "            <tab heading=\"Download\">\n" +
     "                <p> \n" +
     "                    Download shapefile containing Vegetation polygons for CA\n" +
-    "                    <a class=\"btn btn-large btn-download-icon\" href=\"https://ecoengine.berkeley.edu/data/Wieslander_Statewide_CANAD83.zip\">\n" +
+    "                    <a class=\"btn btn-large btn-download-icon\" href=\"https://ecoengine.berkeley.edu/data/Wieslander_Statewide_CANAD83.zip\" onclick=\"var that=this;_gaq.push([‘_trackEvent’,’Download’,’VegZIP’,this.href]);setTimeout(function(){location.href=that.href;},200);return false;\">\n" +
     "                        <i class=\"fa fa-arrow-circle-down\"></i>                 \n" +
     "                    </a>\n" +
     "                </p>\n" +
